@@ -20,12 +20,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
-# observations = db["observations"]
-# cursor = db.observations.find() 
-# Print out the results 
-# print("Observations:")
-# for observation in cursor:     
-#     print(observation)
 
 
 @app.route("/")

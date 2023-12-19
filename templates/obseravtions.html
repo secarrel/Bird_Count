@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>observations</title>
-</head>
-
-<body>
+{% extends "base.html" %}
+{% block content %}
+    <h2>Community Observations</h2>
     {% for observation in observations %}
         {{ observation.bird_Species }}<br>
         {{ observation.location }}<br>
         {{ observation.date_and_time }}<br>     
     {% endfor %}
-</body>
-
-</html>
+{% endblock %}
