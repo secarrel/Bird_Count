@@ -28,10 +28,10 @@ for observation in cursor:
     print(observation)
 
 
-# @app.route("/")
-# @app.route("/get_observations", methods=['GET'])
-# def get_observations():
-#     return render_template("observations.html", observations=observations)
+@app.route("/")
+@app.route("/hello_world", methods=['GET'])
+def hello_world():
+    return "hello world"
 
 
 if __name__ == "__main__":
