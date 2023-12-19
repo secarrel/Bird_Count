@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template,
+    Flask, Blueprint, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -10,22 +10,28 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
+import pymongo
+
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-print(app.config["MONGO_DBNAME"])
-print(app.config["MONGO_URI"])
-print(app.secret_key)
-
-mongo = PyMongo(app)
 
 
-@app.route("/")
-@app.route("/get_observations")
-def get_observations():
-    observations = mongo.db.observations.find()
-    return render_template("observations.html", observations=observations)
+client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
+db = client["birdcount"]
+observations = db["observations"]
+cursor = db.observations.find() 
+# Print out the results 
+print("Observations:")
+for observation in cursor:     
+    print(observation)
+
+
+# @app.route("/")
+# @app.route("/get_observations", methods=['GET'])
+# def get_observations():
+#     return render_template("observations.html", observations=observations)
 
 
 if __name__ == "__main__":
