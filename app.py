@@ -8,7 +8,7 @@ if os.path.exists("env.py"):
     import env
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 import pymongo
 
@@ -20,18 +20,19 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
-observations = db["observations"]
-cursor = db.observations.find() 
+# observations = db["observations"]
+# cursor = db.observations.find() 
 # Print out the results 
-print("Observations:")
-for observation in cursor:     
-    print(observation)
+# print("Observations:")
+# for observation in cursor:     
+#     print(observation)
 
 
 @app.route("/")
-@app.route("/hello_world", methods=['GET'])
-def hello_world():
-    return "hello world"
+@app.route("/get_observations/")
+def get_observations():
+    observations = db.observations.find()
+    return render_template("obseravtions.html", observations=observations)
 
 
 if __name__ == "__main__":
