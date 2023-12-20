@@ -4,8 +4,45 @@
 <div class="row">
     <div class="col s12 m5">
       <div class="card-panel">
-        <h2>Register</h2>
-        <span></span>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="user_name" type="text" class="validate">
+                <label for="user_name">Username</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select id="experience">
+                  <option value="" disabled selected></option>
+                  <option value="1">Egg (What's a bird?)</option>
+                  <option value="2">Hatchling (New to this)</option>
+                  <option value="3">Fledgling (Garden birds only)</option>
+                  <option value="4">Juvenile (Solid base knowledge)</option>
+                  <option value="5">Adult (Can identify 'that little flitty one')</option>                  
+                  <option value="6">Owl (Have seen all there is to see)</option>
+                </select>
+                <label for="experience">Experience Level</label>
+              </div>
+            </div>
+            <button>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
