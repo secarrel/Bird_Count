@@ -15,22 +15,22 @@
     <!-- Top navbar -->
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Bird Count</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <a href="{{ url_for('welcome') }}" class="brand-logo">Bird Count</a>
+            <a href="{{ url_for('welcome') }}" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">About</a></li>
-                <li><a href="#">Community Observations</a></li>
+                <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
                 <li><a href="#">My Nest</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="{{ url_for('register') }}">Sign up</a></li>
             </ul>
         </div>
     </nav>
     <!-- Mobile sidenav -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="#">About</a></li>
-        <li><a href="#">Community Observations</a></li>
+        <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
         <li><a href="#">My Nest</a></li>
-        <li><a href="#">Sign up</a></li>
+        <li><a href="{{ url_for('register') }}">Sign up</a></li>
     </ul>
 
     {% block content %}

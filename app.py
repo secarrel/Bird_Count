@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -23,10 +24,20 @@ db = client["birdcount"]
 
 
 @app.route("/")
+@app.route("/welcome/")
+def welcome():
+    return render_template("welcome.html")
+
+
 @app.route("/get_observations/")
 def get_observations():
     observations = db.observations.find()
     return render_template("obseravtions.html", observations=observations)
+
+
+@app.route("/regester/", methods=["GET", "POST"])
+def register():
+    return render_template("regester.html")
 
 
 if __name__ == "__main__":
