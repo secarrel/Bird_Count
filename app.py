@@ -29,6 +29,11 @@ def welcome():
     return render_template("welcome.html")
 
 
+@app.route("/about/")
+def about():
+    return render_template("about.html")
+
+
 @app.route("/get_observations/")
 def get_observations():
     observations = db.observations.find()
