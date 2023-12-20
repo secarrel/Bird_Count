@@ -35,9 +35,14 @@ def get_observations():
     return render_template("obseravtions.html", observations=observations)
 
 
-@app.route("/regester/", methods=["GET", "POST"])
+@app.route("/my_nest/")
+def my_nest():
+    return render_template("my_nest.html")
+
+
+@app.route("/register/", methods=["GET", "POST"])
 def register():
-    return render_template("regester.html")
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
