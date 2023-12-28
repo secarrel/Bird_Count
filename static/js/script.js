@@ -10,7 +10,7 @@ $(document).ready(function () {
   $(".dropdown-trigger").dropdown();
   $("select").formSelect();
   $(".datepicker").datepicker({
-    format: "dd mmm yyyy",
+    format: "dd mmmm yyyy",
     yearRange: 1,
     maxDate: minOne,
     showClearBtn: true,
