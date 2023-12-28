@@ -40,9 +40,11 @@ def get_observations():
     return render_template("obseravtions.html", observations=observations)
 
 
-@app.route("/my_nest/")
+@app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
-    return render_template("my_nest.html")
+    username = db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("my_nest.html", username=username)
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -110,3 +112,5 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+
+
