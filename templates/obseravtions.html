@@ -25,6 +25,18 @@
                         <td>{{ observation.location }}</td>
                         <td>{{ observation.date }}</td>
                         <td>{{ observation.time }}</td>
+                        {% if session.user|lower == observation.seen_by|lower %}
+                        <td>
+                            <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-small red">
+                                <i class="fa-regular fa-trash-can "></i>
+                            </a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
