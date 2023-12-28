@@ -119,8 +119,20 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_observation/")
+@app.route("/add_observation/", methods=["GET", "POST"])
 def add_observation():
+    if request.method == "POST":
+        entry = {
+            "bird_species": request.form.get("bird"),
+            "location": request.form.get("location"),
+            "date": request.form.get("date"),
+            "time": request.form.get("time"),
+            "seen_by": session["user"]
+        }
+        db.observations.insert_one(entry)
+        flash("Observation added to your nest")
+        return redirect(url_for("my_nest"))
+            
     return render_template("add_observation.html")
 
 
