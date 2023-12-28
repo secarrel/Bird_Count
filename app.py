@@ -36,15 +36,14 @@ def about():
 
 @app.route("/get_observations/")
 def get_observations():
-    observations = db.observations.find()
+    observations = list(db.observations.find())
     return render_template("obseravtions.html", observations=observations)
 
 
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
-    username = db.users.find_one(
-        {"username": session["user"]})["username"]
-    return render_template("my_nest.html", username=username)
+    observations = list(db.observations.find())
+    return render_template("my_nest.html", observations=observations)
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -128,6 +127,7 @@ def add_observation():
             "date": request.form.get("date"),
             "time": request.form.get("time"),
             "seen_by": session["user"],
+            "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
             "quantity": request.form.get("quantity")
         }
@@ -136,6 +136,32 @@ def add_observation():
         return redirect(url_for("my_nest"))
             
     return render_template("add_observation.html")
+
+
+@app.route("/edit_observations", strict_slashes=False)
+@app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
+def edit_observation(observation_id):
+    if request.method == "POST":
+        entry = {
+            "bird_species": request.form.get("bird"),
+            "location": request.form.get("location"),
+            "date": request.form.get("date"),
+            "time": request.form.get("time"),
+            "seen_by": session["user"],
+            "certainty": request.form.get("certainty"),
+            "notes": request.form.get("notes"),
+            "quantity": request.form.get("quantity")
+        }
+        db.observations.replace_one({"_id": ObjectId(observation_id)}, entry)
+        flash("Observation updated")
+        return redirect(url_for("my_nest"))
+
+    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
+    return render_template("edit_observation.html", observation=observation)
+
+
+    
+            
 
 
 if __name__ == "__main__":

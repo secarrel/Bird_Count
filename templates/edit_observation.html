@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Edit Observation</h3>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-crow prefix"></i>
+                    <input id="bird" name="bird" type="text" pattern="^[a-zA-Z\s]{2,}$" required 
+                    value="{{ observation.bird_species }}">
+                    <label for="bird">Bird Species</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-map-location-dot prefix"></i>
+                    <input id="location" name="location" type="text" pattern="^[a-zA-Z\s]{2,}$" required 
+                    value="{{ observation.location }}">
+                    <label for="location">Location</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-calendar-days prefix"></i>
+                    <input id="date" name="date" type="text" class="datepicker" required
+                    value="{{ observation.date }}">
+                    <label for="date">Date of Observation</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-clock prefix"></i>
+                    <input id="time" name="time" type="text" class="timepicker" required
+                    value="{{ observation.time }}">
+                    <label for="time">Time of Observation</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-eye-low-vision"></i>
+                    <input type="range" name="certainty" id="certainty" min="0" max="10" required
+                    value="{{ observation.certainty }}">
+                    <label for="certainty">Certainty</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-comment prefix"></i>
+                    <input type="text" name="notes" id="notes" value="{{ observation.notes }}">
+                    <label for="notes">Notes</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-hashtag prefix"></i>
+                    <input type="number" name="quantity" id="quantity" value="{{ observation.quantity }}">
+                    <label for="quantity">Quantity</label>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="col s12 btn-large">
+                    Edit Observation <i class="fas fa-edit"></i>
+                </button>
+                <a href="{{ url_for('my_nest')}}" class="btn-small">
+                    Cancel
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
