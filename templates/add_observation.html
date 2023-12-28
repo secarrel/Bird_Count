@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">New Observation</h3>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="#">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-crow prefix"></i>
+                    <input id="bird" name="bird" type="text"
+                        pattern="^[a-zA-Z]$" required>
+                    <label for="bird">Bird Species</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-map-location-dot prefix"></i>
+                    <input id="location" name="location" type="text"
+                        pattern="^[a-zA-Z]$" required>
+                    <label for="location">Location</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-calendar-days prefix"></i>
+                    <input id="date" name="date" type="text" class="datepicker" required>
+                    <label for="date">Date of Observation</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-clock prefix"></i>
+                    <input id="time" name="time" type="text" class="timepicker" required>
+                    <label for="time">Time of Observation</label>
+                </div>
+            </div>
+            <!-- Experience -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-eye-low-vision"></i>
+                    <input type="range" name="certainty" id="certainty" min="0" max="10" />
+                    <label for="certainty">Certainty</label>
+                </div>
+            </div>
+            <!-- register -->
+            <div class="row">
+                <button type="submit" class="col s12 btn-large">
+                    Submit Observation <i class="fas fa-circle-plus"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align">
+                Been here before?
+                <a href="{{ url_for('login') }}">Log in</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
