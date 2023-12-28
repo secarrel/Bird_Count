@@ -22,6 +22,7 @@
 
                 <tbody>
                     {% for observation in observations %}
+                    {% if session.user|lower == observation.seen_by|lower %}
                     <tr>
                         <td>{{ observation.bird_species }}</td>
                         <td>{{ observation.location }}</td>
@@ -38,6 +39,7 @@
                             </a>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
