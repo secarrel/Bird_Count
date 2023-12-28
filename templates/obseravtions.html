@@ -1,9 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Community Observations</h2>
-    {% for observation in observations %}
-        {{ observation.bird_Species }}<br>
-        {{ observation.location }}<br>
-        {{ observation.date_and_time }}<br>     
-    {% endfor %}
+
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Bird Species</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% for observation in observations %}
+                        <tr>
+                            <td>{{ observation.username }}</td>
+                            <td>{{ observation.bird_Species }}</td>
+                            <td>{{ observation.location }}</td>
+                            <td>{{ observation.date }}</td>
+                            <td>{{ observation.time }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        
 {% endblock %}
