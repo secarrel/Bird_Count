@@ -36,15 +36,27 @@
                     <label for="time">Time of Observation</label>
                 </div>
             </div>
-            <!-- Experience -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-eye-low-vision"></i>
-                    <input type="range" name="certainty" id="certainty" min="0" max="10" />
+                    <input type="range" name="certainty" id="certainty" min="0" max="10" required>
                     <label for="certainty">Certainty</label>
                 </div>
             </div>
-            <!-- register -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-regular fa-comment prefix"></i>
+                    <input type="text" name="notes" id="notes">
+                    <label for="notes">Notes</label>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-hashtag prefix"></i>
+                    <input type="number" name="quantity" id="quantity">
+                    <label for="quantity">Quantity</label>
+                </div>
+            </div>
             <div class="row">
                 <button type="submit" class="col s12 btn-large">
                     Submit Observation <i class="fas fa-circle-plus"></i>

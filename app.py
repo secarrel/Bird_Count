@@ -127,7 +127,9 @@ def add_observation():
             "location": request.form.get("location"),
             "date": request.form.get("date"),
             "time": request.form.get("time"),
-            "seen_by": session["user"]
+            "seen_by": session["user"],
+            "notes": request.form.get("notes"),
+            "quantity": request.form.get("quantity")
         }
         db.observations.insert_one(entry)
         flash("Observation added to your nest")

@@ -14,8 +14,10 @@ $(document).ready(function () {
     yearRange: 1,
     maxDate: minOne,
     showClearBtn: true,
+    autoClose: true,
   });
   $(".timepicker").timepicker({
     showClearBtn: true,
+    autoClose: true,
   });
 });
