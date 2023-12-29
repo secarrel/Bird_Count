@@ -163,6 +163,7 @@ def edit_observation(observation_id):
 @app.route("/delete_observations", strict_slashes=False)
 @app.route("/delete_observation/<observation_id>")
 def delete_observation(observation_id):
+    
     db.observations.delete_one({"_id": ObjectId(observation_id)})
     flash("Observation deleted")
     return redirect(url_for("get_observations"))

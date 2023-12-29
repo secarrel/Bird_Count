@@ -20,4 +20,5 @@ $(document).ready(function () {
     showClearBtn: true,
     autoClose: true,
   });
+  $(".modal").modal();
 });
