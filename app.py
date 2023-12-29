@@ -11,6 +11,7 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__, template_folder='templates')
 
+
 import pymongo
 
 
@@ -40,12 +41,42 @@ def get_observations():
     return render_template("observations.html", observations=observations)
 
 
-@app.route("/search", strict_slashes=False)
 @app.route("/search/", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     observations = list(db.observations.find({"$text": {"$search": query}}))
     return render_template("observations.html", observations=observations)
+
+
+@app.route("/sort_user/", methods=["GET", "POST"])
+def sort_user():
+    observations = list(db.observations.find().sort('seen_by', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+@app.route("/sort_birds/", methods=["GET", "POST"])
+def sort_birds():
+    observations = list(db.observations.find().sort('bird_species', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+@app.route("/sort_location/", methods=["GET", "POST"])
+def sort_location():
+    observations = list(db.observations.find().sort('location', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+@app.route("/sort_date/", methods=["GET", "POST"])
+def sort_date():
+    observations = list(db.observations.find().sort('date', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+@app.route("/sort_time/", methods=["GET", "POST"])
+def sort_time():
+    observations = list(db.observations.find().sort('time', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
 
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
