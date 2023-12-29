@@ -37,8 +37,15 @@ def about():
 @app.route("/get_observations/")
 def get_observations():
     observations = list(db.observations.find())
-    return render_template("obseravtions.html", observations=observations)
+    return render_template("observations.html", observations=observations)
 
+
+@app.route("/search", strict_slashes=False)
+@app.route("/search/", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    observations = list(db.observations.find({"$text": {"$search": query}}))
+    return render_template("observations.html", observations=observations)
 
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
@@ -163,7 +170,7 @@ def edit_observation(observation_id):
 @app.route("/delete_observations", strict_slashes=False)
 @app.route("/delete_observation/<observation_id>")
 def delete_observation(observation_id):
-    
+
     db.observations.delete_one({"_id": ObjectId(observation_id)})
     flash("Observation deleted")
     return redirect(url_for("get_observations"))
