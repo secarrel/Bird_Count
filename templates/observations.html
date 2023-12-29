@@ -28,6 +28,7 @@
 <div class="row">
     <div class="col s12">
         <div class="card-panel">
+            {% if observations|length > 0 %}
             <table class="highlight">
                 <thead>
                     <tr>
@@ -97,6 +98,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% else %}
+                <h3> No results </h3>
+            {% endif %}
         </div>
     </div>
 </div>
