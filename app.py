@@ -92,8 +92,14 @@ def my_nest():
 @app.route("/life_list/")
 def show_life_list():
     observations = list(db.observations.distinct("bird_species", {"seen_by": session["user"]}))
-    print(observations)
-    return render_template("life_list.html", observations=observations)
+
+    bird_count = [
+        {'$match': {'seen_by': session['user']}},
+        {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
+    ]
+    tally = list(db.observations.aggregate(bird_count))
+
+    return render_template("life_list.html", tally=tally)
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -136,7 +142,7 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}!".format(request.form.get("username")))
-                    return redirect(url_for("profile"))
+                    return redirect(url_for("my_nest"))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -150,15 +156,32 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/", methods=["GET", "POST"])
-def profile():
-    username = db.users.find_one(
-        {"username": session["user"]})["username"]
+# @app.route("/profile/")
+# def profile():
+#     username = session["user"]
     
-    if session["user"]:
-            return render_template("profile.html", username=username)
+#     if username :
+#         user = db.users.find_one({'username': username})
+#         return render_template("profile.html", user=user)
 
-    return redirect(url_for("login"))
+
+# @app.route("/edit_user/", methods=["GET", "POST"])
+# def edit_username():
+#     username = session["user"]
+#     original_details = db.users.find_one({'username': username})  
+    
+#     if request.method == "POST":
+#         details = {
+#             "username": request.form.get("username").lower(),
+#             "password": generate_password_hash(request.form.get("password")),
+#             "email": request.form.get("email"),
+#             "experience": request.form.get("experience")
+#         }
+#         db.users.replace_one(original_details, details)
+#         flash("User details updated")
+#         return redirect(url_for("get_profile"))
+
+#     return render_template("edit_user.html")
 
 
 @app.route("/logout/")
@@ -179,7 +202,7 @@ def add_observation():
             "seen_by": session["user"],
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
-            "quantity": request.form.get("quantity"),
+            "quantity": int(request.form.get('quantity')),
             "edited": False            
         }
         db.observations.insert_one(entry)
@@ -194,8 +217,6 @@ def add_observation():
 def edit_observation(observation_id):
     original_entry = db.observations.find_one({"_id": ObjectId(observation_id)})
     original_user = original_entry.get("seen_by")
-    print(original_entry)
-    print(original_user)
     if request.method == "POST":
         entry = {
             "bird_species": request.form.get("bird"),

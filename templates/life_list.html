@@ -9,11 +9,22 @@
                 <p>
                     A collection of all the birds you have seen and submitted on Bird Count.
                 </p>
-                {% for observation in observations %}
-                <div>
-                    {{ observation }}
-                </div>
-                {% endfor %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Bird Species </th>
+                            <th> Quantity </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bird in tally %}
+                        <tr>
+                            <td> {{ bird._id }}</td>
+                            <td> {{ bird.totalQuantity }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
