@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m5">
+        <div class="card-panel">
+            <div class=card-heading>
+                <h4> My life list </h4>
+                <p>
+                    A collection of all the birds you have seen and submitted on Bird Count.
+                </p>
+                {% for observation in observations %}
+                <div>
+                    {{ observation }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -89,6 +89,13 @@ def my_nest():
     return render_template("my_nest.html", observations=observations)
 
 
+@app.route("/life_list/")
+def show_life_list():
+    observations = list(db.observations.distinct("bird_species", {"seen_by": session["user"]}))
+    print(observations)
+    return render_template("life_list.html", observations=observations)
+
+
 @app.route("/register/", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -213,7 +220,6 @@ def edit_observation(observation_id):
 @app.route("/delete_observations", strict_slashes=False)
 @app.route("/delete_observation/<observation_id>")
 def delete_observation(observation_id):
-
     db.observations.delete_one({"_id": ObjectId(observation_id)})
     flash("Observation deleted")
     return redirect(url_for("get_observations"))
