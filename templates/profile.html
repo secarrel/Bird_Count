@@ -1,8 +1,27 @@
-{% extends "base.html" %}
+<!-- {% extends "base.html" %}
 {% block content %}
 
 <h3 class="center-align">
   My Profile
 </h3>
-            
-{% endblock %}
+<div class="row">
+  <div class="col s12">
+    <div class="card-panel">
+      <div class=card-heading>
+        <h4> 
+          Edit Profile 
+          <a href="{{ url_for('edit_user') }}" class="btn-small">
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+        </h4>
+        <ul>
+          <li> Username: {{user.username}} </li>
+          <li> Email: {{user.email}} </li>
+         <li> experience: {{user.experience}} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} -->
