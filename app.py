@@ -60,6 +60,12 @@ def sort_birds():
     return render_template("observations.html", observations=observations)
 
 
+@app.route("/sort_quantity/", methods=["GET", "POST"])
+def sort_quantity():
+    observations = list(db.observations.find().sort('quantity', pymongo.DESCENDING))
+    return render_template("observations.html", observations=observations)
+
+
 @app.route("/sort_location/", methods=["GET", "POST"])
 def sort_location():
     observations = list(db.observations.find().sort('location', pymongo.ASCENDING))
@@ -69,12 +75,6 @@ def sort_location():
 @app.route("/sort_date/", methods=["GET", "POST"])
 def sort_date():
     observations = list(db.observations.find().sort('date', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_time/", methods=["GET", "POST"])
-def sort_time():
-    observations = list(db.observations.find().sort('time', pymongo.ASCENDING))
     return render_template("observations.html", observations=observations)
 
 
@@ -167,7 +167,8 @@ def add_observation():
             "seen_by": session["user"],
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
-            "quantity": request.form.get("quantity")
+            "quantity": request.form.get("quantity"),
+            "edited": False            
         }
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
@@ -179,20 +180,26 @@ def add_observation():
 @app.route("/edit_observations", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
+    original_entry = db.observations.find_one({"_id": ObjectId(observation_id)})
+    original_user = original_entry.get("seen_by")
+    print(original_entry)
+    print(original_user)
     if request.method == "POST":
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
             "date": request.form.get("date"),
             "time": request.form.get("time"),
-            "seen_by": session["user"],
+            "seen_by": original_user,
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
-            "quantity": request.form.get("quantity")
+            "quantity": request.form.get("quantity"),
+            "edited": True,
+            "edited_by": session["user"]
         }
         db.observations.replace_one({"_id": ObjectId(observation_id)}, entry)
         flash("Observation updated")
-        return redirect(url_for("my_nest"))
+        return redirect(url_for("get_observations"))
 
     observation = db.observations.find_one({"_id": ObjectId(observation_id)})
     return render_template("edit_observation.html", observation=observation)
