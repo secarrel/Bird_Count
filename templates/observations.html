@@ -72,11 +72,11 @@
                 <tbody>
                     {% for observation in observations %}
                     <tr>
-                        <td>{{ observation.seen_by }}</td>
-                        <td>{{ observation.bird_species }}</td>
-                        <td>{{ observation.quantity }}</td>
-                        <td>{{ observation.location }}</td>
-                        <td>{{ observation.date }}</td>
+                        <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.seen_by }}</td>
+                        <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
+                        <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
+                        <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
+                        <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
                         {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
                         <td>
                             <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
@@ -104,6 +104,27 @@
                             </div>
                         </td>                        
                         {% endif %}
+                        <div id="observation-details{{ observation._id }}" class="modal">
+                            <div class="col s12 modal-content">
+                                <div class="card-image">
+                                    <img src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                    <span class="observation-title">{{ observation.bird_species }} <em>by</em> {{ observation.seen_by }} </em></span>
+                                </div>
+                                <div class="card-content">
+                                    <p>
+                                        Quantity: {{ observation.quantity }} <br>
+                                        Certainty: {{ observation.certainty }}/10 <br>
+                                        location: {{ observation.location }} <br>
+                                        Seen on: {{ observation.date }} @ {{ observation.time }} <br>
+                                        Notes from {{observation.seen_by}}: <br>
+                                        {{ observation.notes }}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url_for('get_observations') }}" class="modal-close btn-flat">Close</a>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     {% endfor %}
                 </tbody>
