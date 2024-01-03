@@ -44,6 +44,21 @@ def get_observations():
     return render_template("observations.html", observations=observations)
 
 
+@app.route("/get_users/")
+def get_users():
+    users = list(db.users.find())
+    print(users)
+    return render_template("admin.html", users=users)
+
+
+@app.route("/delete_user", strict_slashes=False)
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("User successfully deleted")
+    return redirect(url_for("get_users"))
+
+
 @app.route("/search/", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -137,7 +152,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}!".format(request.form.get("username")))
+                    flash("Welcome, {}! You have successfully logged in.".format(request.form.get("username")))
                     return redirect(url_for("my_nest"))
             else:
                 # invalid password match
