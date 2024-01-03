@@ -32,6 +32,7 @@ $(document).ready(function () {
 
   $(".modal").modal();
 
+  // Fetch location data for location autocomplete
   fetch("../static/js/locations.json")
     .then((response) => {
       if (response.ok) {
@@ -47,13 +48,36 @@ $(document).ready(function () {
           autoCompleteData[key] = null;
         }
       }
-      $("input.autocomplete").autocomplete({
+      $("input.autocompletelocation").autocomplete({
         data: autoCompleteData,
       });
     })
     .catch((error) => {
       console.error("Error fetching autocomplete data:", error);
     });
-});
 
+  // Fetch location data for birds autocomplete
+  fetch("../static/js/birds.json")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to retrieve autocomplete data");
+      }
+    })
+    .then((birds) => {
+      let autoCompleteBirds = {};
+      for (let bird of birds) {
+        for (let key in bird) {
+          autoCompleteBirds[key] = null;
+        }
+      }
+      $("input.autocompletebird").autocomplete({
+        data: autoCompleteBirds,
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching autocomplete data:", error);
+    });
+});
 

@@ -8,9 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
-
 app = Flask(__name__, template_folder='templates')
-
 
 import pymongo
 
@@ -91,8 +89,6 @@ def my_nest():
 
 @app.route("/life_list/")
 def show_life_list():
-    observations = list(db.observations.distinct("bird_species", {"seen_by": session["user"]}))
-
     bird_count = [
         {'$match': {'seen_by': session['user']}},
         {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
