@@ -144,9 +144,106 @@
     <div class="col s12">
         <div class="card-panel">
             <h4>My Account</h4>
-            <div class="private"> Edit visibility of my observations</div>
-            <div class="edit-details"> Edit individual fields of my user profile</div>
+            <div class="privacy card-panel">
+                <form method="POST" action="#">
+                    <h5>Edit privacy settings</h5> 
+                    <p>Set the visibility of your observations to the community?</p>
+                    <div class="switch">
+                        <label>
+                            Invisible
+                            <input type="checkbox" checked="checked">
+                            <span class="lever"></span>
+                            Visible
+                        </label>
+                    </div>
+                    <p>Make your observations anonymous by hiding your username?</p>
+                    <div class="switch">
+                        <label>
+                            No
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            Yes
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="edit-details card-panel"> 
+                <h5>Edit Account Details</h5>
+                <div>
+                    <p> Email: {{ user.email }}</p>
+                    <a href="#email-modal" class="modal-trigger"><i class="fa-solid fa-pencil"></i></a>
+                </div>
+                <div>
+                    <p> Experience: {{ user.experience }}/6</p>
+                    <a href="#experience-modal" class="modal-trigger"><i class="fa-solid fa-pencil"></i></a>
+                </div>                
+            </div>
+            <div class="delete-acount card-panel">
+                <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger red"><i class="fa-solid fa-triangle-exclamation"></i>DELETE ACCOUNT<i class="fa-solid fa-triangle-exclamation"></i></a>
+            </div>
         </div>
     </div>
 </div>
+<div>
+
+<!-- Edit Email Modal -->
+<form id="email-modal" class="modal">
+    <div class="modal-content">
+        <h4>Edit Email</h4>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-at prefix"></i>
+                <input id="email" name="email" type="email" class="validate" required>
+                <label for="email">Email</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat">Update</a>
+        <a href="#!" class="modal-close btn-flat">Cancel</a>
+    </div>
+</form>
+
+<!-- Edit Experience Modal -->
+<form id="experience-modal" class="modal">
+    <div class="modal-content">
+        <h4>Edit Experience</h4>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-graduation-cap prefix"></i>
+                <select id="experience" name="experience">
+                    <option value="" disabled selected></option>
+                    <option value="1"><strong>Egg</strong> (What's a bird?)</option>
+                    <option value="2"><strong>Hatchling</strong> (New to this)</option>
+                    <option value="3"><strong>Fledgling</strong> (Garden birds only)</option>
+                    <option value="4"><strong>Juvenile</strong> ("That's a Coot, not a Moorhen")</option>
+                    <option value="5"><strong>Adult</strong> (Can identify 'that little flitty one')</option>
+                    <option value="6"><strong>Owl</strong> (Have seen ALL the birds)</option>
+                </select>
+                <label for="experience">Experience Level</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat">Update</a>
+        <a href="#!" class="modal-close btn-flat">Cancel</a>
+    </div>
+</form>
+
+<!-- Delete Account Modal -->
+<div id="confirm-delete-account{{ user._id }}" class="modal">
+    <div class="modal-content">
+        <h4>Delete Account</h4>
+        <p>
+            Are you sure you want to delete your account? <br>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!"
+            class="modal-close btn-flat">Agree</a>
+        <div class="modal-close btn-flat">Cancel</div>
+    </div>
+</div>
+
+
 {% endblock %}

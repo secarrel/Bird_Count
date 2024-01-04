@@ -113,7 +113,11 @@ def sort_date():
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
     observations = list(db.observations.find())
-    return render_template("my_nest.html", observations=observations)
+    username = session["user"]
+    if username :
+        user = db.users.find_one({'username': username})
+        print (user)
+    return render_template("my_nest.html", observations=observations, user=user)
 
 
 @app.route("/life_list/")
