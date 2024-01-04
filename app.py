@@ -280,7 +280,15 @@ def new_message():
         db.messages.insert_one(message)
         flash("Message sent successfully")
         return redirect(url_for("my_nest"))
-            
+
+
+@app.route("/delete_message", strict_slashes=False)
+@app.route("/delete_message/<message_id>")
+def delete_message(message_id):
+    db.messages.delete_one({"_id": ObjectId(message_id)})
+    flash("Message deleted")
+    return redirect(url_for("get_users"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
