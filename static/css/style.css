@@ -2,3 +2,7 @@
     line-height: 2px;
     font-size: 14px;
 }
+
+.hidden {
+    display: none;
+}

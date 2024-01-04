@@ -43,7 +43,6 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
-    print(messages)
     return render_template("admin.html", users=users)
 
 
