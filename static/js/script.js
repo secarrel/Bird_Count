@@ -83,3 +83,15 @@ $(document).ready(function () {
     });
 });
 
+
+const visibilitySwitch = document.getElementById("visibility-switch");
+
+visibilitySwitch.addEventListener("change", function () {
+  document.getElementById("visibility-form").submit();
+});
+
+const anonymousSwitch = document.getElementById("anonymous-switch");
+
+anonymousSwitch.addEventListener("change", function () {
+  document.getElementById("anonymous-form").submit();
+});

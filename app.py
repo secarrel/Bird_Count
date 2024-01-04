@@ -49,7 +49,6 @@ def get_users():
 @app.route("/view_messages/")
 def view_messages():
     messages = list(db.messages.find())
-    print(messages)
     return render_template("messages.html", messages=messages)
 
 
@@ -89,6 +88,47 @@ def edit_user_experience(user_id):
             {'$set': {'experience': new_experience}}
         )
         flash("Experience updated")
+        return redirect(url_for("my_nest"))
+
+
+@app.route("/edit_user_visibility", strict_slashes=False)
+@app.route("/edit_user_visibility/<user_id>", methods=["GET", "POST"])
+def edit_user_visibility(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        visibility = request.form.get("visibility-switch")
+        
+        if visibility == "on":
+            visibility = True
+        elif visibility == "None":
+            visibility = False
+
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'visibility': visibility}}
+        )
+        flash("Visibility updated")
+        return redirect(url_for("my_nest"))
+
+
+@app.route("/edit_user_anonymous", strict_slashes=False)
+@app.route("/edit_user_anonymous/<user_id>", methods=["GET", "POST"])
+def edit_user_anonymous(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        anonymous = request.form.get("anonymous-switch")
+        print(anonymous)
+
+        if anonymous == "on":
+            anonymous = True
+        elif anonymous == "None":
+            anonymous = False
+
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'anonymous': anonymous}}
+        )
+        flash("Anonymity updated")
         return redirect(url_for("my_nest"))
 
 
@@ -147,7 +187,6 @@ def my_nest():
     username = session["user"]
     if username :
         user = db.users.find_one({'username': username})
-        print (user)
     return render_template("my_nest.html", observations=observations, user=user)
 
 
@@ -177,7 +216,9 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email"),
-            "experience": request.form.get("experience")
+            "experience": request.form.get("experience"),
+            "visibility": request.form.get("visibility-switch"),
+            "anonymous": request.form.get("anonymous-switch")
         }
         db.users.insert_one(register)
 
