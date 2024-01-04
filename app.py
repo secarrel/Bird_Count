@@ -78,6 +78,20 @@ def edit_user_email(user_id):
         return redirect(url_for("my_nest"))
 
 
+@app.route("/edit_user_experience", strict_slashes=False)
+@app.route("/edit_user_experience/<user_id>", methods=["GET", "POST"])
+def edit_user_experience(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        new_experience = request.form.get("experience-edit")
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'experience': new_experience}}
+        )
+        flash("Experience updated")
+        return redirect(url_for("my_nest"))
+
+
 @app.route("/sort_username/", methods=["GET", "POST"])
 def sort_username():
     users = list(db.users.find().sort('username', pymongo.ASCENDING))
