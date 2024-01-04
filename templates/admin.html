@@ -7,12 +7,13 @@
     <div class="col s12">
         <div class="card-panel">
             <h4 class="center-align">Registered Users</h4>
+
             {% if users|length > 0 %}
             <table class="highlight">
                 <thead>
                     <tr>
                         <th>
-                            <a href="#">
+                            <a href="{{ url_for('sort_username') }}">
                                 Username <i class="fa-solid fa-sort"></i>
                             </a>
                         </th>
@@ -22,7 +23,7 @@
                             </a>
                         </th>
                         <th>
-                            <a href="#">
+                            <a href="{{ url_for('sort_experience') }}">
                                 experience <i class="fa-solid fa-sort"></i>
                             </a>
                         </th>

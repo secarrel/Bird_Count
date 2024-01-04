@@ -47,7 +47,6 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
-    print(users)
     return render_template("admin.html", users=users)
 
 
@@ -57,6 +56,18 @@ def delete_user(user_id):
     db.users.delete_one({"_id": ObjectId(user_id)})
     flash("User successfully deleted")
     return redirect(url_for("get_users"))
+
+
+@app.route("/sort_username/", methods=["GET", "POST"])
+def sort_username():
+    users = list(db.users.find().sort('username', pymongo.ASCENDING))
+    return render_template("admin.html", users=users)
+
+
+@app.route("/sort_experience/", methods=["GET", "POST"])
+def sort_experience():
+    users = list(db.users.find().sort('experience', pymongo.ASCENDING))
+    return render_template("admin.html", users=users)
 
 
 @app.route("/search/", methods=["GET", "POST"])
