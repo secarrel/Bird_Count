@@ -47,6 +47,18 @@
             <div class="contact-form-container">
                 <form method="POST" action="{{ url_for('new_message') }}">
                     <div class="row">
+                        <div class="input-field col s12 hidden">
+                            <input id="sender" name="sender" type="text" value=" {{ session.user }} " pattern="^[a-zA-Z\s]{2,}$">
+                            <label for="sender">Sender</label>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="input-field col s12 hidden">
+                            <input id="recipient" name="recipient" type="text" value="admin" pattern="^[a-zA-Z\s]{2,}$">
+                            <label for="recipient">Recipient</label>
+                        </div>
+                    </div>                    
+                    <div class="row">
                         <div class="input-field col s12">
                             <input id="subject" name="subject" type="text" pattern="^[a-zA-Z\s]{2,}$" required>
                             <label for="subject">Subject</label>

@@ -43,8 +43,8 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
-
     messages = list(db.messages.find())
+    print(messages)
     return render_template("admin.html", users=users, messages=messages)
 
 
@@ -272,7 +272,8 @@ def new_message():
         body = request.form.get("body")
         current_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = {
-            "username": session["user"],
+            "sender": session["user"],
+            "recipient": request.form.get("recipient"),
             "subject": request.form.get("subject"),
             "body": body,
             "time": current_timestamp
