@@ -36,7 +36,7 @@ def about():
 
 @app.route("/get_observations/")
 def get_observations():
-    observations = list(db.observations.find())
+    observations = list(db.observations.find().sort("date", -1))
     return render_template("observations.html", observations=observations)
 
 
