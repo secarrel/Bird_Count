@@ -17,6 +17,8 @@ $(document).ready(function () {
 
   $("select").formSelect();
 
+  $(".collapsible").collapsible();
+
   $(".datepicker").datepicker({
     format: "dd mmmm yyyy",
     yearRange: 1,

@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -47,7 +48,9 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
-    return render_template("admin.html", users=users)
+
+    messages = list(db.messages.find())
+    return render_template("admin.html", users=users, messages=messages)
 
 
 @app.route("/delete_user", strict_slashes=False)
@@ -267,6 +270,22 @@ def delete_observation(observation_id):
     flash("Observation deleted")
     return redirect(url_for("get_observations"))
 
+
+@app.route("/new_message/", methods=["GET", "POST"])
+def new_message():
+    if request.method == "POST":
+        body = request.form.get("body")
+        current_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        message = {
+            "username": session["user"],
+            "subject": request.form.get("subject"),
+            "body": body,
+            "time": current_timestamp
+        }
+        db.messages.insert_one(message)
+        flash("Message sent successfully")
+        return redirect(url_for("my_nest"))
+            
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
