@@ -64,6 +64,20 @@ def delete_user(user_id):
         return redirect(url_for("logout"))
 
 
+@app.route("/edit_user_email", strict_slashes=False)
+@app.route("/edit_user_email/<user_id>", methods=["GET", "POST"])
+def edit_user_email(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        new_email = request.form.get("email-edit")
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'email': new_email}}
+        )
+        flash("Email updated")
+        return redirect(url_for("my_nest"))
+
+
 @app.route("/sort_username/", methods=["GET", "POST"])
 def sort_username():
     users = list(db.users.find().sort('username', pymongo.ASCENDING))
@@ -186,34 +200,6 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
-
-
-# @app.route("/profile/")
-# def profile():
-#     username = session["user"]
-    
-#     if username :
-#         user = db.users.find_one({'username': username})
-#         return render_template("profile.html", user=user)
-
-
-# @app.route("/edit_user/", methods=["GET", "POST"])
-# def edit_username():
-#     username = session["user"]
-#     original_details = db.users.find_one({'username': username})  
-    
-#     if request.method == "POST":
-#         details = {
-#             "username": request.form.get("username").lower(),
-#             "password": generate_password_hash(request.form.get("password")),
-#             "email": request.form.get("email"),
-#             "experience": request.form.get("experience")
-#         }
-#         db.users.replace_one(original_details, details)
-#         flash("User details updated")
-#         return redirect(url_for("get_profile"))
-
-#     return render_template("edit_user.html")
 
 
 @app.route("/logout/")
