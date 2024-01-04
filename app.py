@@ -34,11 +34,6 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/admin/")
-def admin():
-    return render_template("admin.html")
-
-
 @app.route("/get_observations/")
 def get_observations():
     observations = list(db.observations.find())
