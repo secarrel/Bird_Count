@@ -3,6 +3,7 @@
 
 <h3 class="center-align">My Nest</h3>
 <a href="{{ url_for('view_messages') }}" class=" btn"> <i class="fa-solid fa-envelope"></i> </a>
+<a href="#contact_admin" class="btn modal-trigger"><i class="fa-solid fa-pen-to-square"></i></a>
 <div class="row">
     <div class="col s12 m5">
         <div class="card-panel">
@@ -38,10 +39,9 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col s12 m5">
-        <div class="card-panel">
-            <div class=card-heading>
+<div id="contact_admin" class="modal">
+        <div class="card-panel modal-content">
+            <div class="card-heading ">
                 <h4> Contact Admin </h4>
             </div>
             <div class="contact-form-container">
@@ -75,10 +75,10 @@
                             Submit Observation <i class="fas fa-circle-plus"></i>
                         </button>
                     </div>
+                    <div class="modal-close btn-flat">Cancel</div>
                 </form>
             </div>
         </div>
-    </div>
 </div>
 
 
