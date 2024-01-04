@@ -58,7 +58,10 @@ def view_messages():
 def delete_user(user_id):
     db.users.delete_one({"_id": ObjectId(user_id)})
     flash("User successfully deleted")
-    return redirect(url_for("get_users"))
+    if session["user"] == 'admin':
+        return redirect(url_for("get_users"))
+    else:
+        return redirect(url_for("logout"))
 
 
 @app.route("/sort_username/", methods=["GET", "POST"])

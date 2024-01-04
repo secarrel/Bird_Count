@@ -193,14 +193,14 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-at prefix"></i>
-                <input id="email" name="email" type="email" class="validate" required>
-                <label for="email">Email</label>
+                <input id="email-edit" name="email-edit" type="email" class="validate" required>
+                <label for="email-edit">Email</label>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat">Update</a>
-        <a href="#!" class="modal-close btn-flat">Cancel</a>
+        <div class="modal-close btn-flat">Cancel</div>
     </div>
 </form>
 
@@ -211,7 +211,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-graduation-cap prefix"></i>
-                <select id="experience" name="experience">
+                <select id="experience-edit" name="experience-edit">
                     <option value="" disabled selected></option>
                     <option value="1"><strong>Egg</strong> (What's a bird?)</option>
                     <option value="2"><strong>Hatchling</strong> (New to this)</option>
@@ -220,13 +220,13 @@
                     <option value="5"><strong>Adult</strong> (Can identify 'that little flitty one')</option>
                     <option value="6"><strong>Owl</strong> (Have seen ALL the birds)</option>
                 </select>
-                <label for="experience">Experience Level</label>
+                <label for="experience-edit">Experience Level</label>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat">Update</a>
-        <a href="#!" class="modal-close btn-flat">Cancel</a>
+        <div class="modal-close btn-flat">Cancel</div>
     </div>
 </form>
 
@@ -239,8 +239,7 @@
         </p>
     </div>
     <div class="modal-footer">
-        <a href="#!"
-            class="modal-close btn-flat">Agree</a>
+        <a href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Agree</a>
         <div class="modal-close btn-flat">Cancel</div>
     </div>
 </div>
