@@ -285,7 +285,7 @@ def new_message():
         }
         db.messages.insert_one(message)
         flash("Message sent successfully")
-        return redirect(url_for("my_nest"))
+        return redirect(url_for("view_messages"))
 
 
 @app.route("/delete_message", strict_slashes=False)
