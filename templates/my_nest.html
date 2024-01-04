@@ -145,22 +145,24 @@
         <div class="card-panel">
             <h4>My Account</h4>
             <div class="privacy card-panel">
-                <form method="POST" action="#">
-                    <h5>Edit privacy settings</h5> 
+                <h5>Edit privacy settings</h5> 
+                <form id="visibility-form" method="POST" action="{{ url_for('edit_user_visibility', user_id=user._id) }}">
                     <p>Set the visibility of your observations to the community?</p>
                     <div class="switch">
                         <label>
                             Invisible
-                            <input type="checkbox" checked="checked">
+                            <input id="visibility-switch" name="visibility-switch" type="checkbox" {% if user.visibility %} checked {% endif %}>
                             <span class="lever"></span>
                             Visible
                         </label>
                     </div>
+                </form>
+                <form id="anonymous-form" method="POST" action="{{ url_for('edit_user_anonymous', user_id=user._id) }}">
                     <p>Make your observations anonymous by hiding your username?</p>
                     <div class="switch">
                         <label>
                             No
-                            <input type="checkbox">
+                            <input id="anonymous-switch" name="anonymous-switch" type="checkbox" {% if user.anonymous %} checked {% endif %}>
                             <span class="lever"></span>
                             Yes
                         </label>
