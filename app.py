@@ -43,9 +43,15 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
+    print(messages)
+    return render_template("admin.html", users=users)
+
+
+@app.route("/view_messages/")
+def view_messages():
     messages = list(db.messages.find())
     print(messages)
-    return render_template("admin.html", users=users, messages=messages)
+    return render_template("messages.html", messages=messages)
 
 
 @app.route("/delete_user", strict_slashes=False)
