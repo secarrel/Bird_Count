@@ -115,7 +115,14 @@
                                     <div class="col s12 modal-content">
                                         <div class="card-image">
                                             <img src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                                            <span class="observation-title">{{ observation.bird_species }} <em>by</em> {{ observation.seen_by }} </em></span>
+                                            <span class="observation-title">
+                                                {{ observation.bird_species }} <em>by</em> 
+                                                {% if observation.anonymous %}
+                                                    AnonymousBirdy
+                                                {% else %}
+                                                    {{ observation.seen_by }}
+                                                {% endif %}
+                                            </span>
                                         </div>
                                         <div class="card-content">
                                             <p>
