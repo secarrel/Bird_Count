@@ -37,6 +37,16 @@ def about():
 @app.route("/get_observations/")
 def get_observations():
     observations = list(db.observations.find().sort("date", -1))
+    anonymous_users = list(db.users.find({"anonymous": True}, {"_id": 1}))
+    anonymous_user_ids = list(user["_id"] for user in anonymous_users)
+    print(anonymous_users)
+    print(anonymous_user_ids)
+    for user_id in anonymous_user_ids:
+        db.observations.update_many(
+            {"_id": ObjectId(user_id)},
+            {"$set": {"anonymous": False}}
+        )
+    
     return render_template("observations.html", observations=observations)
 
 
@@ -96,17 +106,26 @@ def edit_user_experience(user_id):
 def edit_user_visibility(user_id):
     if request.method == "POST":
         user = ObjectId(user_id)
-        visibility = request.form.get("visibility-switch")
+        username = session["user"]
+        visible = request.form.get("visibility-switch")
         
-        if visibility == "on":
-            visibility = True
-        elif visibility == "None":
-            visibility = False
+        if visible == "on":
+            visible = True
+        elif visible == "None":
+            visible = False
+        print(user)
+        print(visible)
 
         db.users.update_one(
             {'_id': user},
-            {'$set': {'visibility': visibility}}
+            {'$set': {'visible': request.form.get("visibility-switch")}}
         )
+
+        db.observations.update_one(
+            {'seen_by': username},
+            {'$set': {'visible': visible}}
+        )
+
         flash("Visibility updated")
         return redirect(url_for("my_nest"))
 
@@ -116,7 +135,9 @@ def edit_user_visibility(user_id):
 def edit_user_anonymous(user_id):
     if request.method == "POST":
         user = ObjectId(user_id)
+        username = session["user"]
         anonymous = request.form.get("anonymous-switch")
+        print(user)
         print(anonymous)
 
         if anonymous == "on":
@@ -128,6 +149,12 @@ def edit_user_anonymous(user_id):
             {'_id': user},
             {'$set': {'anonymous': anonymous}}
         )
+
+        db.observations.update_one(
+            {'seen_by': username},
+            {'$set': {'anonymous': anonymous}}
+        )
+
         flash("Anonymity updated")
         return redirect(url_for("my_nest"))
 
@@ -217,7 +244,7 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email"),
             "experience": request.form.get("experience"),
-            "visibility": request.form.get("visibility-switch"),
+            "visible": request.form.get("visibility-switch"),
             "anonymous": request.form.get("anonymous-switch")
         }
         db.users.insert_one(register)
@@ -259,8 +286,8 @@ def login():
 
 @app.route("/logout/")
 def logout():
-    flash("You have been logged out")
     session.pop("user")
+    flash("You have been logged out")
     return redirect(url_for("login"))
 
 
@@ -276,7 +303,9 @@ def add_observation():
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
             "quantity": int(request.form.get('quantity')),
-            "edited": False            
+            "edited": False,
+            "anonymous": False,
+            "visibile": True            
         }
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
