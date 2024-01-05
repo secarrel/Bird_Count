@@ -36,17 +36,7 @@ def about():
 
 @app.route("/get_observations/")
 def get_observations():
-    observations = list(db.observations.find().sort("date", -1))
-    anonymous_users = list(db.users.find({"anonymous": True}, {"_id": 1}))
-    anonymous_user_ids = list(user["_id"] for user in anonymous_users)
-    print(anonymous_users)
-    print(anonymous_user_ids)
-    for user_id in anonymous_user_ids:
-        db.observations.update_many(
-            {"_id": ObjectId(user_id)},
-            {"$set": {"anonymous": False}}
-        )
-    
+    observations = list(db.observations.find().sort("date", -1)) 
     return render_template("observations.html", observations=observations)
 
 
