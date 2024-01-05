@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-crow prefix"></i>
-                    <input id="bird" name="bird" type="text" pattern="^[a-zA-Z\s]{2,}$" required 
+                    <input id="bird" name="bird" type="text" required 
                     value="{{ observation.bird_species }}">
                     <label for="bird">Bird Species</label>
                 </div>
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-map-location-dot prefix"></i>
-                    <input id="location" name="location" type="text" pattern="^[a-zA-Z\s]{2,}$" required 
+                    <input id="location" name="location" type="text" required 
                     value="{{ observation.location }}">
                     <label for="location">Location</label>
                 </div>
@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-hashtag prefix"></i>
-                    <input type="number" name="quantity" id="quantity" value="{{ observation.quantity }}">
+                    <input type="number" name="quantity" id="quantity" min="1" value="{{ observation.quantity }}">
                     <label for="quantity">Quantity</label>
                 </div>
             </div>
