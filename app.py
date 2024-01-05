@@ -103,8 +103,6 @@ def edit_user_visibility(user_id):
             visible = True
         else:
             visible = False
-        print(visible)
-        print(user)
 
         db.users.update_one(
             {'_id': ObjectId(user)},
@@ -127,9 +125,7 @@ def edit_user_anonymous(user_id):
         user = user_id
         username = session["user"]
         anonymous = request.form.get("anonymous-switch")
-        print(user)
-        print(username)
-        
+
         if anonymous == "on":
             anonymous = True
         else:
@@ -142,7 +138,7 @@ def edit_user_anonymous(user_id):
         )
 
         db.observations.update_one(
-            {'seen_by': username},
+            {'seen_by': str(username)},
             {'$set': {'anonymous': anonymous}}
         )
 
@@ -203,9 +199,48 @@ def sort_date():
 def my_nest():
     observations = list(db.observations.find())
     username = session["user"]
+    users_observations = list(db.observations.find({"seen_by": username}))
+    quantities = []
+    species_seen = []
+    unique_species = []
+    certainty_list = []
+    species_count = 0
+    total_observations = 0
+
     if username :
         user = db.users.find_one({'username': username})
-    return render_template("my_nest.html", observations=observations, user=user)
+
+    # make lists of relevent data
+    for users_observation in users_observations:
+        quantities.append(users_observation["quantity"])
+        species_seen.append(users_observation["bird_species"])
+        certainty_list.append(int(users_observation["certainty"]))
+
+    for count in quantities:
+        total_observations += int(count)
+
+    for species in species_seen :
+        if species not in unique_species:
+            unique_species.append(species)
+    
+    species_count = len(unique_species)
+
+    total_certainty = sum(certainty_list)
+
+    try:
+        average_certainty = total_certainty / len(certainty_list)
+    except ZeroDivisionError:
+        average_certainty = 0
+        print("cannot divide by zero")
+
+    return render_template(
+        "my_nest.html", 
+        observations=observations, 
+        user=user, 
+        total_observations=total_observations, 
+        species_count=species_count, 
+        average_certainty=average_certainty
+    )
 
 
 @app.route("/life_list/")
@@ -235,8 +270,8 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email"),
             "experience": request.form.get("experience"),
-            "visible": True,
-            "anonymous": False
+            "visible": bool("True"),
+            "anonymous": bool("")
         }
         db.users.insert_one(register)
 
@@ -289,6 +324,9 @@ def add_observation():
         user_info = db.users.find_one({"username": user})
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
+
+        print(visible)
+        print(anonymous)
 
         entry = {
             "bird_species": request.form.get("bird"),
