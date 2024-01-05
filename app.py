@@ -95,20 +95,20 @@ def edit_user_experience(user_id):
 @app.route("/edit_user_visibility/<user_id>", methods=["GET", "POST"])
 def edit_user_visibility(user_id):
     if request.method == "POST":
-        user = ObjectId(user_id)
+        user = user_id
         username = session["user"]
         visible = request.form.get("visibility-switch")
         
         if visible == "on":
             visible = True
-        elif visible == "None":
+        else:
             visible = False
-        print(user)
         print(visible)
+        print(user)
 
         db.users.update_one(
-            {'_id': user},
-            {'$set': {'visible': request.form.get("visibility-switch")}}
+            {'_id': ObjectId(user)},
+            {'$set': {'visible': visible}}
         )
 
         db.observations.update_one(
@@ -124,19 +124,20 @@ def edit_user_visibility(user_id):
 @app.route("/edit_user_anonymous/<user_id>", methods=["GET", "POST"])
 def edit_user_anonymous(user_id):
     if request.method == "POST":
-        user = ObjectId(user_id)
+        user = user_id
         username = session["user"]
         anonymous = request.form.get("anonymous-switch")
         print(user)
-        print(anonymous)
-
+        print(username)
+        
         if anonymous == "on":
             anonymous = True
-        elif anonymous == "None":
+        else:
             anonymous = False
 
+        print(anonymous)
         db.users.update_one(
-            {'_id': user},
+            {'_id': ObjectId(user)},
             {'$set': {'anonymous': anonymous}}
         )
 
@@ -234,8 +235,8 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email"),
             "experience": request.form.get("experience"),
-            "visible": request.form.get("visibility-switch"),
-            "anonymous": request.form.get("anonymous-switch")
+            "visible": True,
+            "anonymous": False
         }
         db.users.insert_one(register)
 
@@ -284,6 +285,11 @@ def logout():
 @app.route("/add_observation/", methods=["GET", "POST"])
 def add_observation():
     if request.method == "POST":
+        user = session["user"]
+        user_info = db.users.find_one({"username": user})
+        visible = user_info["visible"]
+        anonymous = user_info["anonymous"]
+
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
@@ -294,8 +300,8 @@ def add_observation():
             "notes": request.form.get("notes"),
             "quantity": int(request.form.get('quantity')),
             "edited": False,
-            "anonymous": False,
-            "visibile": True            
+            "anonymous": anonymous,
+            "visible": visible            
         }
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
