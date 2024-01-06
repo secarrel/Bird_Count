@@ -13,188 +13,50 @@ app = Flask(__name__, template_folder='templates')
 
 import pymongo
 
-
+# Set up MongoDB
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
 
-
 @app.route("/")
+
+
+# Render template for welcome page
 @app.route("/welcome/")
 def welcome():
     return render_template("welcome.html")
 
 
+# Render template for about page
 @app.route("/about/")
 def about():
     return render_template("about.html")
 
 
+# Render template for community observations page
 @app.route("/get_observations/")
 def get_observations():
     observations = list(db.observations.find().sort("date", -1)) 
     return render_template("observations.html", observations=observations)
 
 
+# Render template for Admin's nest page
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
     return render_template("admin.html", users=users)
 
 
+# Render template for messages page
 @app.route("/view_messages/")
 def view_messages():
     messages = list(db.messages.find())
     return render_template("messages.html", messages=messages)
 
-
-@app.route("/delete_user", strict_slashes=False)
-@app.route("/delete_user/<user_id>")
-def delete_user(user_id):
-    db.users.delete_one({"_id": ObjectId(user_id)})
-    flash("User successfully deleted")
-    if session["user"] == 'admin':
-        return redirect(url_for("get_users"))
-    else:
-        return redirect(url_for("logout"))
-
-
-@app.route("/edit_user_email", strict_slashes=False)
-@app.route("/edit_user_email/<user_id>", methods=["GET", "POST"])
-def edit_user_email(user_id):
-    if request.method == "POST":
-        user = ObjectId(user_id)
-        new_email = request.form.get("email-edit")
-        db.users.update_one(
-            {'_id': user},
-            {'$set': {'email': new_email}}
-        )
-        flash("Email updated")
-        return redirect(url_for("my_nest"))
-
-
-@app.route("/edit_user_experience", strict_slashes=False)
-@app.route("/edit_user_experience/<user_id>", methods=["GET", "POST"])
-def edit_user_experience(user_id):
-    if request.method == "POST":
-        user = ObjectId(user_id)
-        new_experience = request.form.get("experience-edit")
-        db.users.update_one(
-            {'_id': user},
-            {'$set': {'experience': new_experience}}
-        )
-        flash("Experience updated")
-        return redirect(url_for("my_nest"))
-
-
-@app.route("/edit_user_visibility", strict_slashes=False)
-@app.route("/edit_user_visibility/<user_id>", methods=["GET", "POST"])
-def edit_user_visibility(user_id):
-    if request.method == "POST":
-        user = user_id
-        username = session["user"]
-        visible = request.form.get("visibility-switch")
-        
-        if visible == "on":
-            visible = True
-        else:
-            visible = False
-
-        db.users.update_one(
-            {'_id': ObjectId(user)},
-            {'$set': {'visible': visible}}
-        )
-
-        db.observations.update_one(
-            {'seen_by': username},
-            {'$set': {'visible': visible}}
-        )
-
-        flash("Visibility updated")
-        return redirect(url_for("my_nest"))
-
-
-@app.route("/edit_user_anonymous", strict_slashes=False)
-@app.route("/edit_user_anonymous/<user_id>", methods=["GET", "POST"])
-def edit_user_anonymous(user_id):
-    if request.method == "POST":
-        user = user_id
-        username = session["user"]
-        anonymous = request.form.get("anonymous-switch")
-
-        if anonymous == "on":
-            anonymous = True
-        else:
-            anonymous = False
-
-        print(anonymous)
-        db.users.update_one(
-            {'_id': ObjectId(user)},
-            {'$set': {'anonymous': anonymous}}
-        )
-
-        db.observations.update_one(
-            {'seen_by': str(username)},
-            {'$set': {'anonymous': anonymous}}
-        )
-
-        flash("Anonymity updated")
-        return redirect(url_for("my_nest"))
-
-
-@app.route("/sort_username/", methods=["GET", "POST"])
-def sort_username():
-    users = list(db.users.find().sort('username', pymongo.ASCENDING))
-    return render_template("admin.html", users=users)
-
-
-@app.route("/sort_experience/", methods=["GET", "POST"])
-def sort_experience():
-    users = list(db.users.find().sort('experience', pymongo.ASCENDING))
-    return render_template("admin.html", users=users)
-
-
-@app.route("/search/", methods=["GET", "POST"])
-def search():
-    query = request.form.get("query")
-    observations = list(db.observations.find({"$text": {"$search": query}}))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_user/", methods=["GET", "POST"])
-def sort_user():
-    observations = list(db.observations.find().sort('seen_by', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_birds/", methods=["GET", "POST"])
-def sort_birds():
-    observations = list(db.observations.find().sort('bird_species', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_quantity/", methods=["GET", "POST"])
-def sort_quantity():
-    observations = list(db.observations.find().sort('quantity', pymongo.DESCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_location/", methods=["GET", "POST"])
-def sort_location():
-    observations = list(db.observations.find().sort('location', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-@app.route("/sort_date/", methods=["GET", "POST"])
-def sort_date():
-    observations = list(db.observations.find().sort('date', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
+# Render template for my nest page
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
     observations = list(db.observations.find())
@@ -249,8 +111,10 @@ def my_nest():
         species_count=species_count, 
         average_certainty=average_certainty,
         tally=tally
-    )        
+    )
 
+
+# Render template for registration page
 @app.route("/register/", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -310,13 +174,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/logout/")
-def logout():
-    session.pop("user")
-    flash("You have been logged out")
-    return redirect(url_for("login"))
-
-
+# Render template for add observations page 
 @app.route("/add_observation/", methods=["GET", "POST"])
 def add_observation():
     if request.method == "POST":
@@ -345,6 +203,7 @@ def add_observation():
     return render_template("add_observation.html")
 
 
+# Render template for edit observations page
 @app.route("/edit_observations", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
@@ -377,6 +236,16 @@ def edit_observation(observation_id):
     return render_template("edit_observation.html", observation=observation)
 
 
+# ------------------ function routes -----------------
+# Logout the session user
+@app.route("/logout/")
+def logout():
+    session.pop("user")
+    flash("You have been logged out")
+    return redirect(url_for("login"))
+
+
+# Delete the selected observation
 @app.route("/delete_observations", strict_slashes=False)
 @app.route("/delete_observation/<observation_id>")
 def delete_observation(observation_id):
@@ -385,6 +254,7 @@ def delete_observation(observation_id):
     return redirect(request.referrer)
 
 
+# Write and send a new message 
 @app.route("/new_message/", methods=["GET", "POST"])
 def new_message():
     if request.method == "POST":
@@ -402,6 +272,7 @@ def new_message():
         return redirect(request.referrer)
 
 
+# delete the selected message 
 @app.route("/delete_message", strict_slashes=False)
 @app.route("/delete_message/<message_id>")
 def delete_message(message_id):
@@ -410,6 +281,170 @@ def delete_message(message_id):
     return redirect(request.referrer)
 
 
+# --------- Routes for editing and deleting user settings. ------------ 
+# Route for deleting user
+@app.route("/delete_user", strict_slashes=False)
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("User successfully deleted")
+    if session["user"] == 'admin':
+        return redirect(url_for("get_users"))
+    else:
+        return redirect(url_for("logout"))
+
+
+# Route for editing session user's email
+@app.route("/edit_user_email", strict_slashes=False)
+@app.route("/edit_user_email/<user_id>", methods=["GET", "POST"])
+def edit_user_email(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        new_email = request.form.get("email-edit")
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'email': new_email}}
+        )
+        flash("Email updated")
+        return redirect(url_for("my_nest"))
+
+
+# Route for editing session user's experience level
+@app.route("/edit_user_experience", strict_slashes=False)
+@app.route("/edit_user_experience/<user_id>", methods=["GET", "POST"])
+def edit_user_experience(user_id):
+    if request.method == "POST":
+        user = ObjectId(user_id)
+        new_experience = request.form.get("experience-edit")
+        db.users.update_one(
+            {'_id': user},
+            {'$set': {'experience': new_experience}}
+        )
+        flash("Experience updated")
+        return redirect(url_for("my_nest"))
+
+
+# Route for editing session user's visibility
+@app.route("/edit_user_visibility", strict_slashes=False)
+@app.route("/edit_user_visibility/<user_id>", methods=["GET", "POST"])
+def edit_user_visibility(user_id):
+    if request.method == "POST":
+        user = user_id
+        username = session["user"]
+        visible = request.form.get("visibility-switch")
+        
+        if visible == "on":
+            visible = True
+        else:
+            visible = False
+
+        db.users.update_one(
+            {'_id': ObjectId(user)},
+            {'$set': {'visible': visible}}
+        )
+
+        db.observations.update_one(
+            {'seen_by': username},
+            {'$set': {'visible': visible}}
+        )
+
+        flash("Visibility updated")
+        return redirect(url_for("my_nest"))
+
+
+# Route for editing session user's anominity
+@app.route("/edit_user_anonymous", strict_slashes=False)
+@app.route("/edit_user_anonymous/<user_id>", methods=["GET", "POST"])
+def edit_user_anonymous(user_id):
+    if request.method == "POST":
+        user = user_id
+        username = session["user"]
+        anonymous = request.form.get("anonymous-switch")
+
+        if anonymous == "on":
+            anonymous = True
+        else:
+            anonymous = False
+
+        print(anonymous)
+        db.users.update_one(
+            {'_id': ObjectId(user)},
+            {'$set': {'anonymous': anonymous}}
+        )
+
+        db.observations.update_one(
+            {'seen_by': str(username)},
+            {'$set': {'anonymous': anonymous}}
+        )
+
+        flash("Anonymity updated")
+        return redirect(url_for("my_nest"))
+
+
+
+# --------- Routes for Admin to sort fields in users table. ------------ 
+
+
+# Sort by username
+@app.route("/sort_username/", methods=["GET", "POST"])
+def sort_username():
+    users = list(db.users.find().sort('username', pymongo.ASCENDING))
+    return render_template("admin.html", users=users)
+
+# Sort by experience
+@app.route("/sort_experience/", methods=["GET", "POST"])
+def sort_experience():
+    users = list(db.users.find().sort('experience', pymongo.ASCENDING))
+    return render_template("admin.html", users=users)
+
+
+# ----------- Search and sort functionality in observation table -----------
+
+
+# Search bird species and location fields
+@app.route("/search/", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    observations = list(db.observations.find({"$text": {"$search": query}}))
+    return render_template("observations.html", observations=observations)
+
+
+# Sort by user
+@app.route("/sort_user/", methods=["GET", "POST"])
+def sort_user():
+    observations = list(db.observations.find().sort('seen_by', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+# Sort by bird species
+@app.route("/sort_birds/", methods=["GET", "POST"])
+def sort_birds():
+    observations = list(db.observations.find().sort('bird_species', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+# Sort by quantity
+@app.route("/sort_quantity/", methods=["GET", "POST"])
+def sort_quantity():
+    observations = list(db.observations.find().sort('quantity', pymongo.DESCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+# Sort by location
+@app.route("/sort_location/", methods=["GET", "POST"])
+def sort_location():
+    observations = list(db.observations.find().sort('location', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+# Sort by date
+@app.route("/sort_date/", methods=["GET", "POST"])
+def sort_date():
+    observations = list(db.observations.find().sort('date', pymongo.ASCENDING))
+    return render_template("observations.html", observations=observations)
+
+
+# Run the app
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
