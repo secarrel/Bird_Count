@@ -91,7 +91,7 @@ def my_nest():
     total_certainty = sum(certainty_list)
 
     try:
-        average_certainty = total_certainty / len(certainty_list)
+        average_certainty = int(total_certainty / len(certainty_list))
     except ZeroDivisionError:
         average_certainty = 0
         print("cannot divide by zero")
@@ -144,6 +144,7 @@ def register():
     return render_template("register.html")
 
 
+# Render template for login page
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
