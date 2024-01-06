@@ -9,7 +9,7 @@
         <div class="card-panel">
             <div class= card-heading>
                 <h4 > My life list </h4>
-                <a href="{{ url_for('show_life_list') }}"><i class="fa-solid fa-binoculars"></i></a>
+                <a href="#life-list-modal{{ user._id }}" class="modal-trigger"><i class="fa-solid fa-binoculars"></i></a>
             </div>
         </div>
     </div>
@@ -35,49 +35,6 @@
         </div>
     </div>
 </div>
-
-<div id="contact_admin" class="modal">
-        <div class="card-panel modal-content">
-            <div class="card-heading ">
-                <h4> Contact Admin </h4>
-            </div>
-            <div class="contact-form-container">
-                <form method="POST" action="{{ url_for('new_message') }}">
-                    <div class="row">
-                        <div class="input-field col s12 hidden">
-                            <input id="sender" name="sender" type="text" value=" {{ session.user }} " pattern="^[a-zA-Z\s]{2,}$">
-                            <label for="sender">Sender</label>
-                        </div>
-                    </div>                    
-                    <div class="row">
-                        <div class="input-field col s12 hidden">
-                            <input id="recipient" name="recipient" type="text" value="admin" pattern="^[a-zA-Z\s]{2,}$">
-                            <label for="recipient">Recipient</label>
-                        </div>
-                    </div>                    
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="subject" name="subject" type="text" pattern="^[a-zA-Z\s]{2,}$" required>
-                            <label for="subject">Subject</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                            <label for="body">Type your message</label>
-                        </div>                    
-                    </div>
-                    <div class="row">
-                        <button type="submit" class="col s12 btn-large">
-                            Submit Observation <i class="fas fa-circle-plus"></i>
-                        </button>
-                    </div>
-                    <div class="modal-close btn-flat">Cancel</div>
-                </form>
-            </div>
-        </div>
-</div>
-
 
 <div class="row">
     <div class="col s12">
@@ -208,7 +165,83 @@
         </div>
     </div>
 </div>
-<div>
+
+
+<div id="contact_admin" class="modal">
+    <div class="card-panel modal-content">
+        <div class="card-heading ">
+            <h4> Contact Admin </h4>
+        </div>
+        <div class="contact-form-container">
+            <form method="POST" action="{{ url_for('new_message') }}">
+                <div class="row">
+                    <div class="input-field col s12 hidden">
+                        <input id="sender" name="sender" type="text" value=" {{ session.user }} "
+                            pattern="^[a-zA-Z\s]{2,}$">
+                        <label for="sender">Sender</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 hidden">
+                        <input id="recipient" name="recipient" type="text" value="admin" pattern="^[a-zA-Z\s]{2,}$">
+                        <label for="recipient">Recipient</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="subject" name="subject" type="text" pattern="^[a-zA-Z\s]{2,}$" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                        <label for="body">Type your message</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large">
+                        Submit Observation <i class="fas fa-circle-plus"></i>
+                    </button>
+                </div>
+                <div class="modal-close btn-flat">Cancel</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="life-list-modal{{ user._id }}">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 m5">
+                <div class=card-heading>
+                    <h4> My life list </h4>
+                    <p>
+                        A collection of all the birds you have seen and submitted on Bird Count.
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Bird Species </th>
+                                <th> Quantity </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bird in tally %}
+                            <tr>
+                                <td> {{ bird._id }}</td>
+                                <td> {{ bird.totalQuantity }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Edit Email Modal -->
 <form method="POST" action="{{ url_for('edit_user_email', user_id=user._id) }}" id="email-modal" class="modal">

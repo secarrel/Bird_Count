@@ -206,6 +206,7 @@ def my_nest():
     certainty_list = []
     species_count = 0
     total_observations = 0
+    bird_tally = 0
 
     if username :
         user = db.users.find_one({'username': username})
@@ -233,26 +234,21 @@ def my_nest():
         average_certainty = 0
         print("cannot divide by zero")
 
+    bird_count = [
+    {'$match': {'seen_by': session['user']}},
+    {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
+    ]
+    tally = list(db.observations.aggregate(bird_count))
+
     return render_template(
         "my_nest.html", 
         observations=observations, 
         user=user, 
         total_observations=total_observations, 
         species_count=species_count, 
-        average_certainty=average_certainty
-    )
-
-
-@app.route("/life_list/")
-def show_life_list():
-    bird_count = [
-        {'$match': {'seen_by': session['user']}},
-        {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
-    ]
-    tally = list(db.observations.aggregate(bird_count))
-
-    return render_template("life_list.html", tally=tally)
-
+        average_certainty=average_certainty,
+        tally=tally
+    )        
 
 @app.route("/register/", methods=["GET", "POST"])
 def register():
@@ -325,9 +321,6 @@ def add_observation():
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
 
-        print(visible)
-        print(anonymous)
-
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
@@ -354,6 +347,11 @@ def edit_observation(observation_id):
     original_entry = db.observations.find_one({"_id": ObjectId(observation_id)})
     original_user = original_entry.get("seen_by")
     if request.method == "POST":
+        user = session["user"]
+        user_info = db.users.find_one({"username": user})
+        visible = user_info["visible"]
+        anonymous = user_info["anonymous"]
+
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
@@ -362,9 +360,11 @@ def edit_observation(observation_id):
             "seen_by": original_user,
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
-            "quantity": request.form.get("quantity"),
+            "quantity": int(request.form.get("quantity")),
             "edited": True,
-            "edited_by": session["user"]
+            "edited_by": session["user"],
+            "anonymous": anonymous,
+            "visible": visible            
         }
         db.observations.replace_one({"_id": ObjectId(observation_id)}, entry)
         flash("Observation updated")
