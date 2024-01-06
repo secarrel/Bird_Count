@@ -238,6 +238,7 @@ def my_nest():
     {'$match': {'seen_by': session['user']}},
     {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
     ]
+
     tally = list(db.observations.aggregate(bird_count))
 
     return render_template(
@@ -292,7 +293,10 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}! You have successfully logged in.".format(request.form.get("username")))
-                    return redirect(url_for("my_nest"))
+                    if session["user"] == 'admin':
+                        return redirect(url_for("get_users"))
+                    else:
+                        return redirect(url_for("my_nest"))                    
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -336,7 +340,7 @@ def add_observation():
         }
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
-        return redirect(url_for("my_nest"))
+        return redirect(url_for("my_nest")) 
             
     return render_template("add_observation.html")
 
@@ -344,10 +348,10 @@ def add_observation():
 @app.route("/edit_observations", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
-    original_entry = db.observations.find_one({"_id": ObjectId(observation_id)})
-    original_user = original_entry.get("seen_by")
+    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
+    original_user = observation.get("seen_by")
     if request.method == "POST":
-        user = session["user"]
+        user = original_user
         user_info = db.users.find_one({"username": user})
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
@@ -370,7 +374,6 @@ def edit_observation(observation_id):
         flash("Observation updated")
         return redirect(url_for("get_observations"))
 
-    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
     return render_template("edit_observation.html", observation=observation)
 
 
@@ -379,7 +382,7 @@ def edit_observation(observation_id):
 def delete_observation(observation_id):
     db.observations.delete_one({"_id": ObjectId(observation_id)})
     flash("Observation deleted")
-    return redirect(url_for("get_observations"))
+    return redirect(request.referrer)
 
 
 @app.route("/new_message/", methods=["GET", "POST"])
@@ -396,7 +399,7 @@ def new_message():
         }
         db.messages.insert_one(message)
         flash("Message sent successfully")
-        return redirect(url_for("view_messages"))
+        return redirect(request.referrer)
 
 
 @app.route("/delete_message", strict_slashes=False)
@@ -404,7 +407,7 @@ def new_message():
 def delete_message(message_id):
     db.messages.delete_one({"_id": ObjectId(message_id)})
     flash("Message deleted")
-    return redirect(url_for("get_users"))
+    return redirect(request.referrer)
 
 
 if __name__ == "__main__":
