@@ -33,9 +33,12 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="user"> {{ session.user }}
-                    <i class="fa-regular fa-circle-user"></i>
-                </a></li>
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="user"> 
+                        <i class="fa-regular fa-circle-user"></i>
+                        {{ session.user }}
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
