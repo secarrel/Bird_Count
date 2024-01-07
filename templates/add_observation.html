@@ -61,6 +61,18 @@
                         Submit Observation <i class="fas fa-circle-plus"></i>
                     </button>
                 </div>
+                <div class="row">
+                    {% if session.user != 'admin' %}
+                    <a href="{{ url_for('my_nest')}}" class="btn-small tooltipped" data-position="bottom"
+                        data-tooltip="Your changes will not be saved">
+                        Cancel, return to my nest
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('get_observations')}}" class="btn-small tooltipped" data-position="bottom"
+                        data-tooltip="Your changes will not be saved">
+                        Cancel, return to observations
+                    </a>
+                </div>
             </div>
         </form>
     </div>
