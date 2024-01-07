@@ -32,18 +32,18 @@
                             <a class="hidden" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
-                            <a href="{{ url_for('sort_descending', observation_field='bird_species') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             {% elif request.path == url_for('sort_descending', observation_field='bird_species') %}
-                            <a href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             {% else %}
-                            <a href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
@@ -57,18 +57,18 @@
                             <a class="hidden" href="{{ url_for('sort_ascending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
-                            <a href="{{ url_for('sort_descending', observation_field='quantity') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             {% elif request.path == url_for('sort_descending', observation_field='quantity') %}
-                            <a href="{{ url_for('sort_ascending', observation_field='quantity') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show lowest quantity first" href="{{ url_for('sort_ascending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             {% else %}
-                            <a href="{{ url_for('sort_ascending', observation_field='quantity') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='quantity') }}">
@@ -82,18 +82,18 @@
                             <a class="hidden" href="{{ url_for('sort_ascending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
-                            <a href="{{ url_for('sort_descending', observation_field='location') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             {% elif request.path == url_for('sort_descending', observation_field='location') %}
-                            <a href="{{ url_for('sort_ascending', observation_field='location') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             {% else %}
-                            <a href="{{ url_for('sort_ascending', observation_field='location') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='location') }}">
@@ -107,18 +107,18 @@
                             <a class="hidden" href="{{ url_for('sort_ascending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
-                            <a href="{{ url_for('sort_descending', observation_field='date') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             {% elif request.path == url_for('sort_descending', observation_field='date') %}
-                            <a href="{{ url_for('sort_ascending', observation_field='date') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show oldest first" href="{{ url_for('sort_ascending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             {% else %}
-                            <a href="{{ url_for('sort_ascending', observation_field='date') }}">
+                            <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <a class="hidden" href="{{ url_for('sort_descending', observation_field='date') }}">
