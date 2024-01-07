@@ -36,8 +36,9 @@ def about():
 # Render template for community observations page
 @app.route("/get_observations/")
 def get_observations():
-    observations = list(db.observations.find().sort("date", -1)) 
-    return render_template("observations.html", observations=observations)
+    users = list(db.users.find())
+    observations = list(db.observations.find().sort("date", -1))
+    return render_template("observations.html", observations=observations, users=users)
 
 
 # Render template for Admin's nest page

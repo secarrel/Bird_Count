@@ -7,19 +7,29 @@
     <div class="col s12">
         <div class="card-panel">
             <h3 class="center-align">Community Observations</h3>
-            <a href="{{ url_for('get_observations') }}" class="center-align btn">Reset All</a>
+            <a href="{{ url_for('get_observations') }}" class="center-align btn tooltipped" data-position="bottom" data-tooltip="Reset sort and search results">
+                Reset All
+            </a>
+            {% if session.user %}
+            <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation" href="{{ url_for('add_observation') }}">
+                New Observation 
+                <i class="fa-solid fa-crow"></i>
+                <i class="fa-solid fa-plus"></i>
+            </a>
+            {% else %}
+            <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Create an account and record your observations"
+                href="{{ url_for('register') }}">
+                Add observations!
+                <i class="fa-solid fa-user-plus"></i>
+            </a>
+            {% endif %}
             <form action="{{ url_for('search') }}" method="POST">
                 <div class="row valign-wrapper">
-                    <div class="input-field col s12 m8">
-                        <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                    <div class="input-field col s12 m6">
                         <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                        <label for="query">Search Observations</label>
+                        <label for="query">Search for an observation using fields: <em>"Seen By", "Bird Species" or "Location" </em></label>
                     </div>
-                    <div class="col s12 m2">
-                        <button type="submit" class="btn-large">
-                            <i class="fas fa-search left"></i> Search
-                        </button>
-                    </div>
+                    <button type="submit"><i class="fas fa-search prefix"></i></button>
                 </div>
             </form>
             {% if observations|length > 0 %}
@@ -147,12 +157,12 @@
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
                                 {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
                                 <td>
-                                    <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
+                                    <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small tooltipped" data-position="left" data-tooltip="Edit">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#confirm-delete{{ observation._id }}" class="btn modal-trigger red">
+                                    <a href="#confirm-delete{{ observation._id }}" class="btn modal-trigger red tooltipped" data-position="right" data-tooltip="Delete">
                                         <i class="fa-regular fa-trash-can "></i>
                                     </a>
                                     <div id="confirm-delete{{ observation._id }}" class="modal">
