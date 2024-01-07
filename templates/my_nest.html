@@ -1,27 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-
 <h3 class="center-align">My Nest</h3>
-<a href="{{ url_for('view_messages') }}" class=" btn"> <i class="fa-solid fa-envelope"></i> </a>
-<a href="#contact_admin" class="btn modal-trigger"><i class="fa-solid fa-pen-to-square"></i></a>
-<div class="row">
-    <div class="col s12 m5">
-        <div class="card-panel">
-            <div class= card-heading>
-                <h4 > My life list </h4>
-                <a href="#life-list-modal{{ user._id }}" class="modal-trigger"><i class="fa-solid fa-binoculars"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
 
+<!-- Bird Stats -->
 <div class="row">
-    <div class="col s12 m5">
+    <div class="col s12">
         <div class="card-panel">
             <div class=card-heading>
-                <h4> My Bird Stats </h4>
+                <h4 class="center-align"> My Bird Stats </h4>
             </div>
             <div class="bird-stats">
+                <h5> Observation Stats </h5>
                 <div>
                     Total Birds Observed: {{ total_observations }}
                 </div>
@@ -31,15 +20,23 @@
                 <div>
                     Average Certainty: {{ average_certainty}}/10
                 </div>
+                <div class=card-heading>
+                    <h5> My life list </h5>
+                    <p>
+                        A collection and count of all bird species you have seen and submitted on Bird Count.
+                    </p>
+                    <a href="#life-list-modal{{ user._id }}" class="modal-trigger">View your life list <i class="fa-solid fa-binoculars"></i></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Observations -->
 <div class="row">
     <div class="col s12">
         <div class="card-panel">
-            <h4>My Observations</h4>
+            <h4 class="center-align">My Observations</h4>
             <table class="highlight">
                 <a class="btn-small" href="{{ url_for('add_observation') }}">
                     New Observation 
@@ -52,7 +49,6 @@
                         <th>Quantity</th>
                         <th>Location</th>
                         <th>Date</th>
-                        <th>Time</th>
                     </tr>
                 </thead>
 
@@ -64,7 +60,6 @@
                             <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
                             <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
                             <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.time }}</td>
                             <td>
                                 <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
                                     <i class="fa-solid fa-pencil"></i>
@@ -125,7 +120,19 @@
 <div class="row">
     <div class="col s12">
         <div class="card-panel">
-            <h4>My Account</h4>
+            <h4 class="center-align">Contact Admin</h4>
+            <p> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
+            <a href="#pigeon-hole" class="btn modal-trigger"> Pigeon Hole <i class="fa-solid fa-envelope"></i> </a>
+            <a href="#contact-admin" class="btn modal-trigger"> Contact admin <i class="fa-solid fa-circle-info"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Account Settings -->
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="center-align">My Account</h4>
             <div class="privacy card-panel">
                 <h5>Edit privacy settings</h5> 
                 <form id="visibility-form" method="POST" action="{{ url_for('edit_user_visibility', user_id=user._id) }}">
@@ -162,15 +169,20 @@
                     <a href="#experience-modal" class="modal-trigger"><i class="fa-solid fa-pencil"></i></a>
                 </div>                
             </div>
-            <div class="delete-acount card-panel">
-                <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger red"><i class="fa-solid fa-triangle-exclamation"></i>DELETE ACCOUNT<i class="fa-solid fa-triangle-exclamation"></i></a>
+            <div class="delete-account card-panel">
+                <h5>Delete Account</h5>
+                <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger red">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    DELETE ACCOUNT
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-
-<div id="contact_admin" class="modal">
+<!-- New Message Modal -->
+<div id="contact-admin" class="modal">
     <div class="card-panel modal-content">
         <div class="card-heading ">
             <h4> Contact Admin </h4>
@@ -198,13 +210,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                        <textarea id="body" name="body" class="materialize-textarea" required></textarea>
                         <label for="body">Type your message</label>
                     </div>
                 </div>
                 <div class="row">
                     <button type="submit" class="col s12 btn-large">
-                        Submit Observation <i class="fas fa-circle-plus"></i>
+                        Send message <i class="fa-regular fa-paper-plane"></i>
                     </button>
                 </div>
                 <div class="modal-close btn-flat">Cancel</div>
@@ -213,16 +225,13 @@
     </div>
 </div>
 
-
+<!-- Life List Modal -->
 <div class="modal" id="life-list-modal{{ user._id }}">
     <div class="modal-content">
         <div class="row">
             <div class="col s12 m5">
                 <div class=card-heading>
                     <h4> My life list </h4>
-                    <p>
-                        A collection of all the birds you have seen and submitted on Bird Count.
-                    </p>
                     <table>
                         <thead>
                             <tr>
@@ -240,6 +249,110 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pigeon Hole Modal -->
+<div class="row modal" id="pigeon-hole">
+    <div class="col s12">
+        <div class="card-panel">
+            <div class=card-heading>
+                <h4 class="center-align">
+                    Recieved Messages
+                </h4>
+                <ul class="collapsible">
+                    {% for message in messages %}
+                    {% if message.recipient == session.user %}
+                    <li>
+                        <div class="collapsible-header">
+                            From: {{ message.sender }} |
+                            Subject:{{ message.subject }} |
+                            Sent at: {{ message.time }}
+                            <!-- Delete message  -->
+                            <a href="#confirm-delete-message{{ message._id }}" class="btn modal-trigger red">
+                                <i class="fa-regular fa-trash-can "></i>
+                            </a>
+                            <div id="confirm-delete-message{{ message._id }}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Delete Message</h4>
+                                    <p>
+                                        Are you sure you want to delete this message? <br>
+                                        Message selected for deletion: <br>
+                                        From: {{ message.sender }} |
+                                        Subject:{{ message.subject }} |
+                                        Sent at: {{ message.time }} <br>
+                                        {{ message.body }}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url_for('delete_message', message_id=message._id) }}"
+                                        class="modal-close btn-flat">Agree</a>
+                                    <div class="modal-close btn-flat">Cancel</div>
+                                </div>
+                            </div>
+                            <!-- Reply to message  -->
+                            <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                class="btn modal-trigger">
+                                <i class="fa-solid fa-reply "></i>
+                            </a>
+                            <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                class="modal">
+                                <div class="modal-content">
+                                    <h4>Reply to {{ message.sender }}</h4>
+                                    <div>
+                                        <h5> {{ message.sender }}'s message:</h5>
+                                        <p>
+                                            Subject:{{ message.subject }} <br>
+                                            {{ message.body }}
+                                        </p>
+                                    </div>
+                                    <form method="POST" action="{{ url_for('new_message') }}">
+                                        <div class="row">
+                                            <div class="input-field col s12 hidden">
+                                                <input id="sender" name="sender" type="text" value=" {{ session.user }}"
+                                                    pattern="^[a-zA-Z\s]{2,}$">
+                                                <label for="sender">Sender</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12 hidden">
+                                                <input id="recipient" name="recipient" type="text"
+                                                    value="{{ message.sender }}" pattern="^[a-zA-Z\s]{2,}$">
+                                                <label for="subject">Recipient</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="subject" name="subject" type="text"
+                                                    value="{{ message.subject }}" pattern="^[a-zA-Z\s]{2,}$" required>
+                                                <label for="subject">Subject</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                                                <label for="body">Type your message</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="col s12 btn-large">
+                                                Send <i class="fa-regular fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="modal-close btn-flat">Cancel</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body"><span>{{ message.body }}</span></div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
@@ -297,10 +410,15 @@
         <p>
             Are you sure you want to delete your account? <br>
         </p>
+        <p>
+            Your observations will not be deleted with your account as they provide important information and statistics which helps
+            us with our bird research. All off your observations will appear in the community observations and as if created by an 
+            anonymous user, so the community will not know these are your observations. 
+        </p>
     </div>
     <div class="modal-footer">
-        <a href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Agree</a>
-        <div class="modal-close btn-flat">Cancel</div>
+        <a href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Yes, delete</a>
+        <div class="modal-close btn-flat">No, cancel</div>
     </div>
 </div>
 
