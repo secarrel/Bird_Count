@@ -45,7 +45,8 @@ def get_observations():
 @app.route("/get_users/")
 def get_users():
     users = list(db.users.find())
-    return render_template("admin.html", users=users)
+    messages = list(db.messages.find())
+    return render_template("admin.html", users=users, messages=messages)
 
 
 # Render template for my nest page
