@@ -121,16 +121,23 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
+        
 
-        register = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password")),
-            "email": request.form.get("email"),
-            "experience": request.form.get("experience"),
-            "visible": bool("True"),
-            "anonymous": bool("")
-        }
-        db.users.insert_one(register)
+        experience = request.form.get("experience")
+
+        if experience == '0' or 'How much do you know about birds?':
+            flash("Please fill in all required fields to register")
+            return redirect(url_for("register"))
+        else:
+            register = {
+                "username": request.form.get("username").lower(),
+                "password": generate_password_hash(request.form.get("password")),
+                "email": request.form.get("email"),
+                "experience": request.form.get("experience"),
+                "visible": bool("True"),
+                "anonymous": bool("")
+            }
+            db.users.insert_one(register)
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
@@ -313,11 +320,15 @@ def edit_user_experience(user_id):
     if request.method == "POST":
         user = ObjectId(user_id)
         new_experience = request.form.get("experience-edit")
-        db.users.update_one(
-            {'_id': user},
-            {'$set': {'experience': new_experience}}
-        )
-        flash("Experience updated")
+        
+        if new_experience == '0':
+            flash("No changes made, fill in the experience field to make changes")
+        else:
+            db.users.update_one(
+                {'_id': user},
+                {'$set': {'experience': new_experience}}
+            )
+            flash("Experience updated")
         return redirect(url_for("my_nest"))
 
 
