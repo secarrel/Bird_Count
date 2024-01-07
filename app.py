@@ -21,11 +21,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
 
-@app.route("/")
-
-
 # Render template for welcome page
-@app.route("/welcome/")
+@app.route("/")
 def welcome():
     return render_template("welcome.html")
 
@@ -68,7 +65,6 @@ def my_nest():
     certainty_list = []
     species_count = 0
     total_observations = 0
-    bird_tally = 0
 
     if username :
         user = db.users.find_one({'username': username})
