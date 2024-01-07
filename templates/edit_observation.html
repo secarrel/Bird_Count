@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-crow prefix"></i>
-                    <input id="bird" name="bird" type="text" required 
+                    <input id="bird" class="autocompletebird" name="bird" type="text" required 
                     value="{{ observation.bird_species }}">
                     <label for="bird">Bird Species</label>
                 </div>
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-map-location-dot prefix"></i>
-                    <input id="location" name="location" type="text" required 
+                    <input id="location" class="autocompletelocation" name="location" type="text" required 
                     value="{{ observation.location }}">
                     <label for="location">Location</label>
                 </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="row">
-                <button type="submit" class="col s12 btn-large">
+                <button type="submit" class="col s12 btn-large tooltipped" data-position="bottom" data-tooltip="On submission you will be redirected to the Community Observations page">
                     Edit Observation <i class="fas fa-edit"></i>
                 </button>
                 <a href="{{ url_for('get_observations')}}" class="btn-small">
