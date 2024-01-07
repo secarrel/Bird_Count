@@ -48,16 +48,10 @@ def get_users():
     return render_template("admin.html", users=users)
 
 
-# Render template for messages page
-@app.route("/view_messages/")
-def view_messages():
-    messages = list(db.messages.find())
-    return render_template("messages.html", messages=messages)
-
 # Render template for my nest page
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
-    observations = list(db.observations.find())
+    observations = list(db.observations.find().sort("date", -1))
     username = session["user"]
     users_observations = list(db.observations.find({"seen_by": username}))
     quantities = []
@@ -100,6 +94,9 @@ def my_nest():
 
     tally = list(db.observations.aggregate(bird_count))
 
+
+    messages = list(db.messages.find())
+
     return render_template(
         "my_nest.html", 
         observations=observations, 
@@ -107,7 +104,8 @@ def my_nest():
         total_observations=total_observations, 
         species_count=species_count, 
         average_certainty=average_certainty,
-        tally=tally
+        tally=tally,
+        messages=messages
     )
 
 
