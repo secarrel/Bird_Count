@@ -340,7 +340,7 @@ def edit_user_visibility(user_id):
             {'$set': {'visible': visible}}
         )
 
-        db.observations.update_one(
+        db.observations.update_many(
             {'seen_by': username},
             {'$set': {'visible': visible}}
         )
@@ -369,7 +369,7 @@ def edit_user_anonymous(user_id):
             {'$set': {'anonymous': anonymous}}
         )
 
-        db.observations.update_one(
+        db.observations.update_many(
             {'seen_by': str(username)},
             {'$set': {'anonymous': anonymous}}
         )
