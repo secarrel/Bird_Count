@@ -7,7 +7,6 @@ let maxDate;
 let locations = {}
 
 
-
 $(document).ready(function () {
   M.AutoInit();
 
