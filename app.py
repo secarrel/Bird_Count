@@ -406,38 +406,17 @@ def search():
     return render_template("observations.html", observations=observations)
 
 
-# Sort by user
-@app.route("/sort_user/", methods=["GET", "POST"])
-def sort_user():
-    observations = list(db.observations.find().sort('seen_by', pymongo.ASCENDING))
+@app.route("/sort_ascending", strict_slashes=False)
+@app.route("/sort_ascending/<observation_field>", methods=["GET", "POST"])
+def sort_ascending(observation_field):
+    observations = list(db.observations.find().sort(observation_field, pymongo.ASCENDING))
     return render_template("observations.html", observations=observations)
 
 
-# Sort by bird species
-@app.route("/sort_birds/", methods=["GET", "POST"])
-def sort_birds():
-    observations = list(db.observations.find().sort('bird_species', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-# Sort by quantity
-@app.route("/sort_quantity/", methods=["GET", "POST"])
-def sort_quantity():
-    observations = list(db.observations.find().sort('quantity', pymongo.DESCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-# Sort by location
-@app.route("/sort_location/", methods=["GET", "POST"])
-def sort_location():
-    observations = list(db.observations.find().sort('location', pymongo.ASCENDING))
-    return render_template("observations.html", observations=observations)
-
-
-# Sort by date
-@app.route("/sort_date/", methods=["GET", "POST"])
-def sort_date():
-    observations = list(db.observations.find().sort('date', pymongo.ASCENDING))
+@app.route("/sort_descending", strict_slashes=False)
+@app.route("/sort_descending/<observation_field>", methods=["GET", "POST"])
+def sort_descending(observation_field):
+    observations = list(db.observations.find().sort(observation_field, pymongo.DESCENDING))
     return render_template("observations.html", observations=observations)
 
 
