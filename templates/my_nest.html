@@ -144,7 +144,7 @@
                             appear in the community observations. You will still be able to see your observations in your nest.
                         </p>
                         <div class="switch">
-                            <label>
+                            <label class="tooltipped" data-position="bottom" data-tooltip="Changes are updated immediately">
                                 Invisible
                                 <input id="visibility-switch" name="visibility-switch" type="checkbox" {% if user.visible is true %} checked {% endif %}>
                                 <span class="lever"></span>
@@ -161,7 +161,7 @@
                             still be visible to the community but your username will be hidden.
                         </p>
                         <div class="switch">
-                            <label>
+                            <label class="tooltipped" data-position="bottom" data-tooltip="Changes are updated immediately">
                                 No
                                 <input id="anonymous-switch" name="anonymous-switch" type="checkbox" {% if user.anonymous is true %} checked {% endif %}>
                                 <span class="lever"></span>
