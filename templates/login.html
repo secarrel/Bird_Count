@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% if session.user %}
+    <!-- Redirect to login only visible to non-users -->
+    <a href="{{ url_for('my_nest') }}"> You are already logged in. Click to be redirected to your nest </a>
+{% else %}
 <h3 class="center-align">Log In</h3>
 
 <div class="row">
@@ -42,5 +45,6 @@
     </p>
   </div>
 </div>
-            
+
+{% endif %}
 {% endblock %}
