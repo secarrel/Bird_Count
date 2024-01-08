@@ -126,7 +126,7 @@ def register():
         experience = request.form.get("experience")
         print(experience)
         if experience == '0':
-            flash("Please fill in all required fields to register")
+            flash("You need to choose a value for 'experience'. This can be changed in your nest at any time.")
             return redirect(url_for("register"))
         else:
             register = {
