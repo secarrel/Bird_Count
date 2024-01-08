@@ -212,14 +212,14 @@ def add_observation():
 @app.route("/edit_observations", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
-    if request.method == "POST":
-        observation = db.observations.find_one({"_id": ObjectId(observation_id)})
-        original_user = observation.get("seen_by")
-        user_info = db.users.find_one({"username": original_user})
-        user_id = user_info["_id"]
-        visible = user_info["visible"]
-        anonymous = user_info["anonymous"]
+    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
+    original_user = observation.get("seen_by")
+    user_info = db.users.find_one({"username": original_user})
+    user_id = user_info["_id"]
+    visible = user_info["visible"]
+    anonymous = user_info["anonymous"]
 
+    if request.method == "POST":
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
@@ -239,7 +239,7 @@ def edit_observation(observation_id):
         flash("Observation updated")
         return redirect(url_for("get_observations"))
 
-    return render_template("edit_observation.html", observation=observation)
+    return render_template("edit_observation.html", observation=observation, original_user=original_user)
 
 
 # ------------------ function routes -----------------

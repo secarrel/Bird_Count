@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% if session.user == original_user or session.user == 'admin' %}
 
 <h3 class="center-align">Edit Observation</h3>
 
@@ -77,4 +78,10 @@
     </form>
 </div>
 
+{% else %}
+    <!-- Redirect to welcome -->
+    <div>
+        <a href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home page. </a>
+    </div>
+{% endif %}
 {% endblock %}
