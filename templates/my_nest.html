@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if session.user and session.user != 'admin' %}
 <h3 class="center-align">My Nest</h3>
 <!-- Bird Stats -->
 <div class="row">
@@ -457,10 +456,4 @@
         <div class="modal-close btn-flat">No, cancel</div>
     </div>
 </div>
-{% else %}
-    <!-- Redirect to welcome if not allowed access-->
-    <div>
-        <a href="{{ url_for('welcome') }}"> You are not authorised to access this page. Click to return to home page.
-        </a>
-    </div>
 {% endblock %}

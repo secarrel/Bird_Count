@@ -52,8 +52,20 @@ def get_users():
 # Render template for my nest page
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
+    if 'user' not in session:
+        flash("Log in or register to get started")
+        return redirect(url_for('login'))
+    elif session["user"] == 'admin':
+        flash("Admin can't access personal nests")
+        return redirect(url_for('get_users'))
+
     observations = list(db.observations.find().sort("date", -1))
-    username = session["user"]
+    try:
+        username = session["user"]
+    except: 
+        username =""
+        print("user is not logged in")
+
     users_observations = list(db.observations.find({"seen_by": username}))
     quantities = []
     species_seen = []
