@@ -254,7 +254,7 @@
             <div class="col s12 m5">
                 <div class=card-heading>
                     <h4> My life list </h4>
-                    {% if tally|selectattr('seen_by', 'equalto', session['user'])|list %}
+                    {% if tally|length > 0 %}
                     <table>
                         <thead>
                             <tr>
