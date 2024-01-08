@@ -49,7 +49,6 @@ def get_users():
     for user in all_users:
         if user['username'] !='admin':
             users.append(user)
-    print(users)
     messages = list(db.messages.find())
     return render_template("admin.html", users=users, messages=messages)
 
@@ -189,15 +188,16 @@ def add_observation():
     if request.method == "POST":
         user = session["user"]
         user_info = db.users.find_one({"username": user})
+        user_id = user_info["_id"]
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
-
         entry = {
             "bird_species": request.form.get("bird"),
             "location": request.form.get("location"),
             "date": request.form.get("date"),
             "time": request.form.get("time"),
             "seen_by": session["user"],
+            "seen_by_id": user_id,
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
             "quantity": int(request.form.get('quantity')),
@@ -216,11 +216,11 @@ def add_observation():
 @app.route("/edit_observations", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
-    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
-    original_user = observation.get("seen_by")
     if request.method == "POST":
-        user = original_user
-        user_info = db.users.find_one({"username": user})
+        observation = db.observations.find_one({"_id": ObjectId(observation_id)})
+        original_user = observation.get("seen_by")
+        user_info = db.users.find_one({"username": original_user})
+        user_id = user_info["_id"]
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
 
@@ -230,6 +230,7 @@ def edit_observation(observation_id):
             "date": request.form.get("date"),
             "time": request.form.get("time"),
             "seen_by": original_user,
+            "seen_by_id": user_id,
             "certainty": request.form.get("certainty"),
             "notes": request.form.get("notes"),
             "quantity": int(request.form.get("quantity")),
@@ -296,11 +297,16 @@ def delete_message(message_id):
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     user = db.users.find_one({"_id": ObjectId(user_id)})
-    username = user["username"]
+    username = user['username']
     db.users.delete_one({"_id": ObjectId(user_id)})
     db.observations.update_many(
         {'seen_by': username},
-        {'$set': {'anonymous': bool(True)}}
+        {
+            '$set': {
+                'anonymous': bool(True),
+                'seen_by': 'admin' 
+            }
+        }
     )
     flash("User successfully deleted")
     if session["user"] == 'admin':
