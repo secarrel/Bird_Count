@@ -132,8 +132,14 @@
         <div class="card-panel">
             <h4 class="center-align">Contact Admin</h4>
             <p> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
-            <a href="#pigeon-hole" class="btn modal-trigger"> Pigeon Hole <i class="fa-solid fa-envelope"></i> </a>
-            <a href="#contact-admin" class="btn modal-trigger"> Contact admin <i class="fa-solid fa-circle-info"></i></a>
+            <a href="#pigeon-hole" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
+                Pigeon Hole 
+                <i class="fa-solid fa-envelope"></i> 
+            </a>
+            <a href="#contact-admin" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
+                Contact admin 
+                <i class="fa-solid fa-circle-info"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -184,11 +190,15 @@
                 <h5>Edit Account Details</h5>
                 <div>
                     <p> Email: {{ user.email }}</p>
-                    <a href="#email-modal" class="modal-trigger"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="#email-modal" class="modal-trigger tooltipped" data-position="right" data-tooltip="Edit your email address">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
                 </div>
                 <div>
                     <p> Experience: {{ user.experience }}/6</p>
-                    <a href="#experience-modal" class="modal-trigger"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="#experience-modal" class="modal-trigger tooltipped" data-position="right" data-tooltip="Edit your experience level">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
                 </div>                
             </div>
             <div class="delete-account card-panel">

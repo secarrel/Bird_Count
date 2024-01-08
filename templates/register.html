@@ -13,6 +13,9 @@
           <input id="username" name="username" type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
             class="validate" required>
           <label for="username">Username <strong class="required">*</strong></label>
+          <div class="tooltipped" data-position="right" data-tooltip="Username can only contain letters and numbers.">
+            <i class="fa-regular fa-circle-question"></i>
+          </div>
         </div>
       </div>
       <!-- passowrd -->
@@ -22,6 +25,9 @@
           <input id="password" name="password" type="password" minlength="5" maxlength="15"
             pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
           <label for="password">Password <strong class="required">*</strong></label>
+          <div class="tooltipped" data-position="right" data-tooltip="Password can only contain letters and numbers. This field is case sensitive.">
+            <i class="fa-regular fa-circle-question"></i>
+          </div>
         </div>
       </div>
       <!-- Email -->
@@ -30,6 +36,9 @@
           <i class="fas fa-at prefix"></i>
           <input id="email" name="email" type="email" class="validate" required>
           <label for="email">Email <strong class="required">*</strong></label>
+          <div class="tooltipped" data-position="right" data-tooltip="This must be a standard email address. Must contain '@'.">
+            <i class="fa-regular fa-circle-question"></i>
+          </div>
         </div>
       </div>
       <!-- Experience -->
@@ -48,7 +57,7 @@
           <label for="experience">Experience Level <strong class="required">*</strong></label>
         </div>
       </div>
-      <p><strong class="required">*</strong> indicated required field</p>
+      <p><strong class="required">*</strong> indicates required field</p>
       <!-- register -->
       <div class="row">
         <button type="submit" class="col s12 btn-large">
