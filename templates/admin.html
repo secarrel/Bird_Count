@@ -76,6 +76,7 @@
                 <h4 class="center-align">
                     Recieved Messages
                 </h4>
+                {% if messages|selectattr('recipient', 'equalto', 'admin')|list %}
                 <ul class="collapsible">
                     {% for message in messages %}
                     {% if message.recipient == session.user %}
@@ -165,6 +166,9 @@
                     {% endif %}
                     {% endfor %}
                 </ul>
+                {% else %}
+                    <h6>You have no new messages</h6>
+                {% endif %}
             </div>
         </div>
     </div>
