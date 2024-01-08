@@ -1,227 +1,233 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Admin Page</h3>
-<a href="#pigeon-hole" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
-    Pigeon Hole 
-    <i class="fa-solid fa-envelope"></i> 
-</a>
-<div class="row">
-    <div class="col s12">
-        <div class="card-panel">
-            <h4 class="center-align">Registered Users</h4>
-            {% if users|length > 0 %}
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th>
-                            {% if request.path == url_for('sort_ascending_admin', observation_field='username') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by username"
-                                href="{{ url_for('sort_descending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% elif request.path == url_for('sort_descending_admin', observation_field='username') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
-                                href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
-                                href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% endif %}
-                            Username
-                        </th>
-                        <th> Email</th>
-                        <th>
-                            {% if request.path == url_for('sort_ascending_admin', observation_field='experience') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by experience"
-                                href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% elif request.path == url_for('sort_descending_admin', observation_field='experience') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
-                                href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
-                                href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
-                            {% endif %}
-                            Experience
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        {% if user.username != 'admin' %}
-                            <tr>
-                                <td href="#user-details{{ user._id }}" class="modal-trigger">
-                                    {{ user.username }}
-                                </td>
-                                <td href="#user-details{{ user._id }}" class="modal-trigger">
-                                    {{ user.email }}
-                                </td>
-                                <td href="#user-details{{ user._id }}" class="modal-trigger">
-                                    {{ user.experience }}
-                                </td>
-                                <td>
-                                    <a href="#confirm-delete-user{{ user._id }}" class="btn modal-trigger red">
-                                        <i class="fa-regular fa-trash-can "></i>
-                                    </a>
-                                    <div id="confirm-delete-user{{ user._id }}" class="modal">
-                                        <div class="modal-content">
-                                            <h4>Delete User</h4>
-                                            <p>
-                                                Are you sure you want to delete this user? <br>
-                                                User selected for deletion: <br>
-                                                {{ user.username }}
-                                            </p>
+{% if session.user == 'admin' %}
+    <h3 class="center-align">Admin Page</h3>
+    <a href="#pigeon-hole" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
+        Pigeon Hole 
+        <i class="fa-solid fa-envelope"></i> 
+    </a>
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel">
+                <h4 class="center-align">Registered Users</h4>
+                {% if users|length > 0 %}
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>
+                                {% if request.path == url_for('sort_ascending_admin', observation_field='username') %}
+                                <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by username"
+                                    href="{{ url_for('sort_descending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% elif request.path == url_for('sort_descending_admin', observation_field='username') %}
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
+                                    href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% else %}
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
+                                    href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% endif %}
+                                Username
+                            </th>
+                            <th> Email</th>
+                            <th>
+                                {% if request.path == url_for('sort_ascending_admin', observation_field='experience') %}
+                                <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by experience"
+                                    href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% elif request.path == url_for('sort_descending_admin', observation_field='experience') %}
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
+                                    href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% else %}
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
+                                    href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                                <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                                {% endif %}
+                                Experience
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            {% if user.username != 'admin' %}
+                                <tr>
+                                    <td href="#user-details{{ user._id }}" class="modal-trigger">
+                                        {{ user.username }}
+                                    </td>
+                                    <td href="#user-details{{ user._id }}" class="modal-trigger">
+                                        {{ user.email }}
+                                    </td>
+                                    <td href="#user-details{{ user._id }}" class="modal-trigger">
+                                        {{ user.experience }}
+                                    </td>
+                                    <td>
+                                        <a href="#confirm-delete-user{{ user._id }}" class="btn modal-trigger red">
+                                            <i class="fa-regular fa-trash-can "></i>
+                                        </a>
+                                        <div id="confirm-delete-user{{ user._id }}" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Delete User</h4>
+                                                <p>
+                                                    Are you sure you want to delete this user? <br>
+                                                    User selected for deletion: <br>
+                                                    {{ user.username }}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="{{ url_for('delete_user', user_id=user._id) }}"
+                                                    class="modal-close btn-flat">Agree</a>
+                                                <div class="modal-close btn-flat">Cancel</div>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a href="{{ url_for('delete_user', user_id=user._id) }}"
-                                                class="modal-close btn-flat">Agree</a>
-                                            <div class="modal-close btn-flat">Cancel</div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
-                {% else %}
-                    <h5>There are currently no users registered</h5>
-                {% endif %}
-        </div>
-    </div>
-</div>
-<!-- Pigeon Hole Modal -->
-<div class="row modal" id="pigeon-hole">
-    <div class="col s12">
-        <div class="card-panel">
-            <div class="card-heading">
-                <h4 class="center-align">
-                    Recieved Messages
-                </h4>
-                {% if messages|selectattr('recipient', 'equalto', 'admin')|list %}
-                <ul class="collapsible">
-                    {% for message in messages %}
-                    {% if message.recipient == session.user %}
-                    <li>
-                        <div class="collapsible-header">
-                            From: {{ message.sender }} |
-                            Subject:{{ message.subject }} |
-                            Sent at: {{ message.time }}
-                            <!-- Delete message  -->
-                            <a href="#confirm-delete-message{{ message._id }}" class="btn modal-trigger red">
-                                <i class="fa-regular fa-trash-can "></i>
-                            </a>
-                            <!-- Reply to message  -->
-                            <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                class="btn modal-trigger">
-                                <i class="fa-solid fa-reply "></i>
-                            </a>
-                        </div>
-                        <div class="collapsible-body"><span>{{ message.body }}</span></div>
-                    </li>
-                    <div id="confirm-delete-message{{ message._id }}" class="modal">
-                        <div class="modal-content">
-                            <h4>Delete Message</h4>
-                            <p>
-                                Are you sure you want to delete this message? <br>
-                                Message selected for deletion: <br>
-                                From: {{ message.sender }} |
-                                Subject:{{ message.subject }} |
-                                Sent at: {{ message.time }} <br>
-                                {{ message.body }}
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Agree</a>
-                            <div class="modal-close btn-flat">Cancel</div>
-                        </div>
-                    </div>
-                    <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}" class="modal">
-                        <div class="modal-content">
-                            <h4>Reply to {{ message.sender }}</h4>
-                            <div>
-                                <h5> {{ message.sender }}'s message:</h5>
-                                <p>
-                                    Subject:{{ message.subject }} <br>
-                                    {{ message.body }}
-                                </p>
-                            </div>
-                            <form method="POST" action="{{ url_for('new_message') }}">
-                                <div class="row">
-                                    <div class="input-field col s12 hidden">
-                                        <input id="sender" name="sender" type="text" value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
-                                        <label for="sender">Sender</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12 hidden">
-                                        <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
-                                            pattern="^[a-zA-Z\s]{2,}$">
-                                        <label for="subject">Recipient</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="subject" name="subject" type="text" value="{{ message.subject }}"
-                                            pattern="^[a-zA-Z\s]{2,}$" required>
-                                        <label for="subject">Subject</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                                        <label for="body">Type your message</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <button type="submit" class="col s12 btn-large">
-                                        Send <i class="fa-regular fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal-close btn-flat">Cancel</div>
-                        </div>
-                    </div>
-
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                    {% else %}
+                        <h5>There are currently no users registered</h5>
                     {% endif %}
-                    {% endfor %}
-                </ul>
-                {% else %}
-                    <h6>You have no new messages</h6>
-                {% endif %}
             </div>
         </div>
     </div>
-</div>
+    <!-- Pigeon Hole Modal -->
+    <div class="row modal" id="pigeon-hole">
+        <div class="col s12">
+            <div class="card-panel">
+                <div class="card-heading">
+                    <h4 class="center-align">
+                        Recieved Messages
+                    </h4>
+                    {% if messages|selectattr('recipient', 'equalto', 'admin')|list %}
+                    <ul class="collapsible">
+                        {% for message in messages %}
+                        {% if message.recipient == session.user %}
+                        <li>
+                            <div class="collapsible-header">
+                                From: {{ message.sender }} |
+                                Subject:{{ message.subject }} |
+                                Sent at: {{ message.time }}
+                                <!-- Delete message  -->
+                                <a href="#confirm-delete-message{{ message._id }}" class="btn modal-trigger red">
+                                    <i class="fa-regular fa-trash-can "></i>
+                                </a>
+                                <!-- Reply to message  -->
+                                <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                    class="btn modal-trigger">
+                                    <i class="fa-solid fa-reply "></i>
+                                </a>
+                            </div>
+                            <div class="collapsible-body"><span>{{ message.body }}</span></div>
+                        </li>
+                        <div id="confirm-delete-message{{ message._id }}" class="modal">
+                            <div class="modal-content">
+                                <h4>Delete Message</h4>
+                                <p>
+                                    Are you sure you want to delete this message? <br>
+                                    Message selected for deletion: <br>
+                                    From: {{ message.sender }} |
+                                    Subject:{{ message.subject }} |
+                                    Sent at: {{ message.time }} <br>
+                                    {{ message.body }}
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Agree</a>
+                                <div class="modal-close btn-flat">Cancel</div>
+                            </div>
+                        </div>
+                        <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}" class="modal">
+                            <div class="modal-content">
+                                <h4>Reply to {{ message.sender }}</h4>
+                                <div>
+                                    <h5> {{ message.sender }}'s message:</h5>
+                                    <p>
+                                        Subject:{{ message.subject }} <br>
+                                        {{ message.body }}
+                                    </p>
+                                </div>
+                                <form method="POST" action="{{ url_for('new_message') }}">
+                                    <div class="row">
+                                        <div class="input-field col s12 hidden">
+                                            <input id="sender" name="sender" type="text" value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
+                                            <label for="sender">Sender</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 hidden">
+                                            <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
+                                                pattern="^[a-zA-Z\s]{2,}$">
+                                            <label for="subject">Recipient</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="subject" name="subject" type="text" value="{{ message.subject }}"
+                                                pattern="^[a-zA-Z\s]{2,}$" required>
+                                            <label for="subject">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                                            <label for="body">Type your message</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button type="submit" class="col s12 btn-large">
+                                            Send <i class="fa-regular fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-close btn-flat">Cancel</div>
+                            </div>
+                        </div>
 
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <h6>You have no new messages</h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <!-- Redirect to welcome only visible to non-admin users -->
+    <div>
+        <a href="{{ url_for('welcome') }}"> You are not authorised to access this page. Click to return to home page. </a>
+    </div>
+{% endif %}
 
 {% endblock %}
