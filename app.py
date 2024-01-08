@@ -290,7 +290,13 @@ def delete_message(message_id):
 @app.route("/delete_user", strict_slashes=False)
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
+    user = db.users.find_one({"_id": ObjectId(user_id)})
+    username = user["username"]
     db.users.delete_one({"_id": ObjectId(user_id)})
+    db.observations.update_many(
+        {'seen_by': username},
+        {'$set': {'anonymous': bool(True)}}
+    )
     flash("User successfully deleted")
     if session["user"] == 'admin':
         return redirect(url_for("get_users"))
