@@ -3,7 +3,9 @@
 
 <h3 class="center-align">About</h3>
 
+<!-- Determine if the user is logged in -->
 {% if session.user %}
+    <!-- Only allow the user to add observations if they are logged in -->
     <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
         href="{{ url_for('add_observation') }}">
         New Observation
@@ -11,6 +13,7 @@
         <i class="fa-solid fa-plus"></i>
     </a>
 {% else %}
+    <!-- If user is not logged in they are directed to the log in page -->
     <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
         href="{{ url_for('login') }}">
         Add observations
