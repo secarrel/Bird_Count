@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<h3 class="center-align">My Nest</h3>
 
+{% if session.user and session.user != 'admin' %}
+<h3 class="center-align">My Nest</h3>
 <!-- Bird Stats -->
 <div class="row">
     <div class="col s12">
@@ -31,7 +32,6 @@
         </div>
     </div>
 </div>
-
 <!-- Observations -->
 <div class="row">
     <div class="col s12">
@@ -125,7 +125,6 @@
         </div>
     </div>
 </div>
-
 <!-- Contact Admin -->
 <div class="row">
     <div class="col s12">
@@ -143,7 +142,6 @@
         </div>
     </div>
 </div>
-
 <!-- Account Settings -->
 <div class="row">
     <div class="col s12">
@@ -212,7 +210,6 @@
         </div>
     </div>
 </div>
-
 <!-- New Message Modal -->
 <div id="contact-admin" class="modal">
     <div class="card-panel modal-content">
@@ -256,7 +253,6 @@
         </div>
     </div>
 </div>
-
 <!-- Life List Modal -->
 <div class="modal" id="life-list-modal{{ user._id }}">
     <div class="modal-content">
@@ -294,7 +290,6 @@
         </div>
     </div>
 </div>
-
 <!-- Pigeon Hole Modal -->
 <div class="row modal" id="pigeon-hole">
     <div class="col s12">
@@ -402,7 +397,6 @@
         </div>
     </div>
 </div>
-
 <!-- Edit Email Modal -->
 <form method="POST" action="{{ url_for('edit_user_email', user_id=user._id) }}" id="email-modal" class="modal">
     <div class="modal-content">
@@ -420,7 +414,6 @@
         <div class="modal-close btn-flat">Cancel</div>
     </div>
 </form>
-
 <!-- Edit Experience Modal -->
 <form method="POST" action="{{ url_for('edit_user_experience', user_id=user._id) }}" id="experience-modal" class="modal">
     <div class="modal-content">
@@ -446,7 +439,6 @@
         <div class="modal-close btn-flat">Cancel</div>
     </div>
 </form>
-
 <!-- Delete Account Modal -->
 <div id="confirm-delete-account{{ user._id }}" class="modal">
     <div class="modal-content">
@@ -465,6 +457,10 @@
         <div class="modal-close btn-flat">No, cancel</div>
     </div>
 </div>
-
-
+{% else %}
+    <!-- Redirect to welcome if not allowed access-->
+    <div>
+        <a href="{{ url_for('welcome') }}"> You are not authorised to access this page. Click to return to home page.
+        </a>
+    </div>
 {% endblock %}
