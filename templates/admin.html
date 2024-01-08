@@ -7,6 +7,7 @@
     <div class="col s12">
         <div class="card-panel">
             <h4 class="center-align">Registered Users</h4>
+            {% if users|length > 0 %}
             <table class="highlight">
                 <thead>
                     <tr>
@@ -59,6 +60,9 @@
                             </tr>
                         {% endif %}
                     {% endfor %}
+                {% else %}
+                    <h5>There are currently no users registered</h5>
+                {% endif %}
                 </tbody>
             </table>
         </div>
