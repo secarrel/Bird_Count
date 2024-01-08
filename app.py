@@ -44,11 +44,7 @@ def get_observations():
 # Render template for Admin's nest page
 @app.route("/get_users/")
 def get_users():
-    all_users = list(db.users.find())
-    users = []
-    for user in all_users:
-        if user['username'] !='admin':
-            users.append(user)
+    users = list(db.users.find())
     messages = list(db.messages.find())
     return render_template("admin.html", users=users, messages=messages)
 
@@ -409,17 +405,17 @@ def edit_user_anonymous(user_id):
 
 # --------- Routes for Admin to sort fields in users table. ------------ 
 
-
-# Sort by username
-@app.route("/sort_username/", methods=["GET", "POST"])
-def sort_username():
-    users = list(db.users.find().sort('username', pymongo.ASCENDING))
+@app.route("/sort_ascending_admin", strict_slashes=False)
+@app.route("/sort_ascending_admin/<observation_field>", methods=["GET", "POST"])
+def sort_ascending_admin(observation_field):
+    users = list(db.users.find().sort(observation_field, pymongo.ASCENDING))
     return render_template("admin.html", users=users)
 
-# Sort by experience
-@app.route("/sort_experience/", methods=["GET", "POST"])
-def sort_experience():
-    users = list(db.users.find().sort('experience', pymongo.ASCENDING))
+
+@app.route("/sort_descending_admin", strict_slashes=False)
+@app.route("/sort_descending_admin/<observation_field>", methods=["GET", "POST"])
+def sort_descending_admin(observation_field):
+    users = list(db.users.find().sort(observation_field, pymongo.DESCENDING))
     return render_template("admin.html", users=users)
 
 
