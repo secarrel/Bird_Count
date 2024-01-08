@@ -2,5 +2,21 @@
 {% block content %}
 
 <h3 class="center-align">About</h3>
+
+{% if session.user %}
+    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+        href="{{ url_for('add_observation') }}">
+        New Observation
+        <i class="fa-solid fa-crow"></i>
+        <i class="fa-solid fa-plus"></i>
+    </a>
+{% else %}
+    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Create an account and record your observations"
+        href="{{ url_for('login') }}">
+        Add observations!
+        <i class="fa-solid fa-user-plus"></i>
+    </a>
+{% endif %}
+
      
 {% endblock %}
