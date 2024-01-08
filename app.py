@@ -124,8 +124,8 @@ def register():
         
 
         experience = request.form.get("experience")
-
-        if experience == '0' or 'How much do you know about birds?':
+        print(experience)
+        if experience == '0':
             flash("Please fill in all required fields to register")
             return redirect(url_for("register"))
         else:
