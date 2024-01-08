@@ -37,82 +37,91 @@
     <div class="col s12">
         <div class="card-panel">
             <h4 class="center-align">My Observations</h4>
-            <table class="highlight">
+            {% if observations|selectattr('seen_by', 'equalto', session['user'])|list %}                        
+            <a class="btn-small" href="{{ url_for('add_observation') }}">
+                New Observation 
+                <i class="fa-solid fa-crow"></i>
+                <i class="fa-solid fa-plus"></i>
+            </a>
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Bird Species</th>
+                            <th>Quantity</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                            {% for observation in observations %}
+                                {% if session.user|lower == observation.seen_by|lower %}
+                                <tr>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
+                                    <td>
+                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#confirm-delete" class="btn modal-trigger red">
+                                            <i class="fa-regular fa-trash-can "></i>
+                                        </a>
+                                        <div id="confirm-delete" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Delete Observation</h4>
+                                                <p>
+                                                    Are you sure you want to delete this observation? <br>
+                                                    Observation selected for deletion: <br>
+                                                    {{ observation.bird_species }}, {{ observation.location }}, {{ observation.date }}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="{{ url_for('delete_observation', observation_id=observation._id) }}"
+                                                    class="modal-close btn-flat">Agree</a>
+                                                <a href="{{ url_for('my_nest') }}" class="modal-close btn-flat">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <div id="my-observation-details{{ observation._id }}" class="modal">
+                                        <div class="col s12 modal-content">
+                                            <div class="card-image">
+                                                <img
+                                                    src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                                <span class="observation-title">{{ observation.bird_species }} <em>by</em> {{ observation.seen_by }}
+                                                    </em></span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p>
+                                                    Quantity: {{ observation.quantity }} <br>
+                                                    Certainty: {{ observation.certainty }}/10 <br>
+                                                    location: {{ observation.location }} <br>
+                                                    Seen on: {{ observation.date }} @ {{ observation.time }} <br>
+                                                    Notes from {{observation.seen_by}}: <br>
+                                                    {{ observation.notes }}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="modal-close btn-flat">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h6>You haven't submitted any observations yet</h6>
                 <a class="btn-small" href="{{ url_for('add_observation') }}">
-                    New Observation 
+                    Add Observation
                     <i class="fa-solid fa-crow"></i>
                     <i class="fa-solid fa-plus"></i>
                 </a>
-                <thead>
-                    <tr>
-                        <th>Bird Species</th>
-                        <th>Quantity</th>
-                        <th>Location</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for observation in observations %}
-                        {% if session.user|lower == observation.seen_by|lower %}
-                        <tr>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
-                            <td>
-                                <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#confirm-delete" class="btn modal-trigger red">
-                                    <i class="fa-regular fa-trash-can "></i>
-                                </a>
-                                <div id="confirm-delete" class="modal">
-                                    <div class="modal-content">
-                                        <h4>Delete Observation</h4>
-                                        <p>
-                                            Are you sure you want to delete this observation? <br>
-                                            Observation selected for deletion: <br>
-                                            {{ observation.bird_species }}, {{ observation.location }}, {{ observation.date }}
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url_for('delete_observation', observation_id=observation._id) }}"
-                                            class="modal-close btn-flat">Agree</a>
-                                        <a href="{{ url_for('my_nest') }}" class="modal-close btn-flat">Cancel</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <div id="my-observation-details{{ observation._id }}" class="modal">
-                                <div class="col s12 modal-content">
-                                    <div class="card-image">
-                                        <img
-                                            src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                                        <span class="observation-title">{{ observation.bird_species }} <em>by</em> {{ observation.seen_by }}
-                                            </em></span>
-                                    </div>
-                                    <div class="card-content">
-                                        <p>
-                                            Quantity: {{ observation.quantity }} <br>
-                                            Certainty: {{ observation.certainty }}/10 <br>
-                                            location: {{ observation.location }} <br>
-                                            Seen on: {{ observation.date }} @ {{ observation.time }} <br>
-                                            Notes from {{observation.seen_by}}: <br>
-                                            {{ observation.notes }}
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="modal-close btn-flat">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% endif %}
         </div>
     </div>
 </div>
