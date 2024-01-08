@@ -1,66 +1,89 @@
 {% extends "base.html" %}
 {% block content %}
-
-{% if session.user %}
+<!-- Only allow users who are logged in and not the admin to view this content-->
+{% if session.user and session.user != 'admin' %}
+    <!-- Page heading -->
     <h3 class="center-align">New Observation</h3>
-
-    <div class="row">
+    <!-- Add observation form -->
+    <div id="add-observation-container" class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_observation') }}">
             <div class="card-panel">
-                <div class="row">
+                <!-- Input field for bird species -->
+                <div id="bird-species-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-crow prefix"></i>
                         <input id="bird" class="autocompletebird" name="bird" type="text" required>
-                        <label for="bird">Bird Species</label>
+                        <label for="bird">Bird Species <strong class="required">*</strong></label>
+                        <div class="tooltipped" data-position="right" data-tooltip="Using the autocomplete options will make it easier to search for your results.">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- Input field for location -->
+                <div id="location-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-map-location-dot prefix"></i>
                         <input id="location" class="autocompletelocation" name="location" type="text" required>
-                        <label for="location">Location</label>
+                        <label for="location">Location <strong class="required">*</strong></label>
+                        <div class="tooltipped" data-position="right" data-tooltip="Using the autocomplete options will make it easier to search for your results. 
+                            If you want to be more specific with the location of your observation you can add extra 
+                            information in brackets after the district. EG. Newport (RSPB Wetlands)">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- Input field for date -->
+                <div id="date-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-calendar-days prefix"></i>
                         <input id="date" name="date" type="text" class="datepicker" required>
-                        <label for="date">Date of Observation</label>
+                        <label for="date">Date of Observation <strong class="required">*</strong></label>
                     </div>
                 </div>
-                <div class="row">
+                <!-- Input field for time -->
+                <div id="time-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-clock prefix"></i>
                         <input id="time" name="time" type="text" class="timepicker" required>
-                        <label for="time">Time of Observation</label>
+                        <label for="time">Time of Observation <strong class="required">*</strong></label>
                     </div>
                 </div>
-                <div class="row">
+                <!-- Input field for certainty -->
+                <div id="certainty-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         <input type="range" name="certainty" id="certainty" min="0" max="10" required>
-                        <label for="certainty">Certainty</label>
+                        <label for="certainty">Certainty <strong class="required">*</strong></label>
                     </div>
                 </div>
-                <div class="row">
+                <!-- Input field for notes -->
+                <div id="notes-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-comment prefix"></i>
                         <input type="text" name="notes" id="notes">
                         <label for="notes">Notes</label>
+                        <div class="tooltipped" data-position="right" data-tooltip="Talk about anything... What was the weather like? 
+                            Describe the bird's appearance if you're unsure of identification! What was the bird doing?">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
                     </div>
                 </div>            
-                <div class="row">
+                <!-- Input field for quantity -->
+                <div id="quantity-add" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-hashtag prefix"></i>
                         <input type="number" name="quantity" id="quantity" min="1" required>
-                        <label for="quantity">Quantity</label>
+                        <label for="quantity">Quantity <strong class="required">*</strong></label>
                     </div>
                 </div>
+                <p><strong class="required">*</strong> indicates required field</p>
+                <!-- Submit observation -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large">
+                    <button type="submit" class="col s12 btn-large tooltipped" data-position="right" data-tooltip="You will be redirected to your nest.">
                         Submit Observation <i class="fas fa-circle-plus"></i>
                     </button>
                 </div>
+                <!-- Cancel and redirect -->
                 <div class="row">
                     {% if session.user != 'admin' %}
                     <a href="{{ url_for('my_nest')}}" class="btn-small tooltipped" data-position="bottom"
@@ -77,6 +100,7 @@
         </form>
     </div>
 {% else %}
+    <!-- Redirect to login only visible to non-users -->
     <a href="{{ url_for('login') }}"> Please log in to add observations </a>
 {% endif %}
 {% endblock %}
