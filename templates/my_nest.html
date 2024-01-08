@@ -254,6 +254,7 @@
             <div class="col s12 m5">
                 <div class=card-heading>
                     <h4> My life list </h4>
+                    {% if tally|selectattr('seen_by', 'equalto', session['user'])|list %}
                     <table>
                         <thead>
                             <tr>
@@ -270,6 +271,14 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                {% else %}
+                    <h6>You haven't got any birds in your nest</h6>
+                    <a class="btn-small" href="{{ url_for('add_observation') }}">
+                        Add Observation
+                        <i class="fa-solid fa-crow"></i>
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                {% endif %}
                 </div>
             </div>
         </div>
@@ -379,7 +388,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit Email Modal -->
 <form method="POST" action="{{ url_for('edit_user_email', user_id=user._id) }}" id="email-modal" class="modal">
