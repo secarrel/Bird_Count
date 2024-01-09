@@ -8,18 +8,25 @@ let locations = {}
 
 
 $(document).ready(function () {
+  // Automatically initialise materialize
   M.AutoInit();
 
+  // Activate sidebar navigation for mobile view
   $(".sidenav").sidenav({ edge: "right" });
 
+  // Activate dropdown for navbar
   $(".dropdown-trigger").dropdown();
 
+  // Activate the dropdown select input for experience field
   $("select").formSelect();
 
+  // Activate the collapsible messages board
   $(".collapsible").collapsible();
 
+  // Activate tooltips
   $(".tooltipped").tooltip();
 
+  // Activate the date picker for adding observations
   $(".datepicker").datepicker({
     format: "dd mmmm yyyy",
     yearRange: 1,
@@ -28,11 +35,13 @@ $(document).ready(function () {
     autoClose: true,
   });
 
+  // Activate the timepicker for adding observations
   $(".timepicker").timepicker({
     showClearBtn: true,
     autoClose: true,
   });
 
+  // Activate modals
   $(".modal").modal();
 
   // Fetch location data for location autocomplete
@@ -41,7 +50,7 @@ $(document).ready(function () {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to retrieve autocomplete data");
+        throw new Error("Failed to retrieve location data");
       }
     })
     .then((locations) => {
@@ -51,21 +60,22 @@ $(document).ready(function () {
           autoCompleteData[key] = null;
         }
       }
+      // Activate autocomplete
       $("input.autocompletelocation").autocomplete({
         data: autoCompleteData,
       });
     })
     .catch((error) => {
-      console.error("Error fetching autocomplete data:", error);
+      console.error("Error fetching location data:", error);
     });
 
-  // Fetch location data for birds autocomplete
+  // Fetch bird data for birds autocomplete
   fetch("../static/js/birds.json")
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to retrieve autocomplete data");
+        throw new Error("Failed to retrieve bird data");
       }
     })
     .then((birds) => {
@@ -75,24 +85,27 @@ $(document).ready(function () {
           autoCompleteBirds[key] = null;
         }
       }
+      // Activate autocomplete
       $("input.autocompletebird").autocomplete({
         data: autoCompleteBirds,
       });
     })
     .catch((error) => {
-      console.error("Error fetching autocomplete data:", error);
+      console.error("Error fetching bird data:", error);
     });
 });
 
-
+// -------------- Privacy switches ---------------
+// Identify switch elements
 const visibilitySwitch = document.getElementById("visibility-switch");
+const anonymousSwitch = document.getElementById("anonymous-switch");
 
+// Add event listener to visibility switch so it's value is submitted on change
 visibilitySwitch.addEventListener("change", function () {
   document.getElementById("visibility-form").submit();
 });
 
-const anonymousSwitch = document.getElementById("anonymous-switch");
-
+// Add event listener to anonymity switch so it's value is submitted on change
 anonymousSwitch.addEventListener("change", function () {
   document.getElementById("anonymous-form").submit();
 });
