@@ -1,193 +1,186 @@
 {% extends "base.html" %}
 {% block content %}
-
-
-
-<div class="row">
+<!-- Anyone is authorised to view this page so no access restrictions required -->
+<div id="community-observations-container" class="row">
     <div class="col s12">
         <div class="card-panel">
+            <!-- Page heading -->
             <h3 class="center-align">Community Observations</h3>
             <a href="{{ url_for('get_observations') }}" class="center-align btn tooltipped" data-position="bottom" data-tooltip="Reset sort and search results">
                 Reset All
             </a>
+            <!-- If the user is logged in display 'new observation' button -->
             {% if session.user %}
-            <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation" href="{{ url_for('add_observation') }}">
-                New Observation 
-                <i class="fa-solid fa-crow"></i>
-                <i class="fa-solid fa-plus"></i>
-            </a>
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation" href="{{ url_for('add_observation') }}">
+                    New Observation 
+                    <i class="fa-solid fa-crow"></i>
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            <!-- If user isn't logged in display button to log in -->
             {% else %}
-            <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
-                href="{{ url_for('login') }}">
-                Add observations
-                <i class="fa-solid fa-user-plus"></i>
-            </a>
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations" href="{{ url_for('login') }}">
+                    Add observations
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
             {% endif %}
+            <!-- Search observations -->
             <form action="{{ url_for('search') }}" method="POST">
                 <div class="row valign-wrapper">
+                    <!-- Search input field -->
                     <div class="input-field col s12 m6">
                         <input type="text" name="query" id="query" minlength="3" class="validate" required>
                         <label for="query">Search for an observation using fields: <em>"Seen By", "Bird Species" or "Location" </em></label>
                     </div>
+                    <!-- Submit button -->
                     <button type="submit"><i class="fas fa-search prefix"></i></button>
                 </div>
             </form>
+            <!-- Display observations if there are more than 0 -->
             {% if observations|length > 0 %}
             <table class="highlight" id="community-observations">
+                <!-- Table headings -->
                 <thead>
                     <tr>
-                        <th> Seen By </th>                        
+                        <th> Seen By </th>
                         <th>
+                            <!-- Sort bird species in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='bird_species') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                            <!-- Sort bird species in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='bird_species') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                            <!-- Sort bird species in ascending order if unsorted -->
                             {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='bird_species') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by species" href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
                             {% endif %}
                             Bird Species
                         </th>
                         <th>
+                            <!-- Sort quantity in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='quantity') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
+                            <!-- Sort quantity in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='quantity') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show lowest quantity first" href="{{ url_for('sort_ascending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show lowest quantity first" href="{{ url_for('sort_ascending', observation_field='quantity') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
+                            <!-- Sort quantity in descending order if not sorted -->
                             {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='quantity') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show highest quantity first" href="{{ url_for('sort_descending', observation_field='quantity') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
                             {% endif %}
                             Quantity
                         </th>
                         <th>
+                            <!-- Sort location in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='location') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by species" href="{{ url_for('sort_descending', observation_field='location') }}">
+                                    <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                            <!-- Sort location in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='location') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                            <!-- Sort location in ascending order if not sorted -->
                             {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-a-z"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='location') }}">
-                                <i class="fa-solid fa-arrow-down-z-a"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by location" href="{{ url_for('sort_ascending', observation_field='location') }}">
+                                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
                             {% endif %}
                             Location
                         </th>
                         <th>
+                            <!-- Sort date in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='date') %}
-                            <a class="hidden" href="{{ url_for('sort_ascending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
+                            <!-- Sort date in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='date') %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show oldest first" href="{{ url_for('sort_ascending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show oldest first" href="{{ url_for('sort_ascending', observation_field='date') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
+                            <!-- Sort date in descending order if not sorted -->
                             {% else %}
-                            <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
-                            <a class="hidden" href="{{ url_for('sort_descending', observation_field='date') }}">
-                                <i class="fa-solid fa-sort"></i>
-                            </a>
+                                <a class="tooltipped" data-position="bottom" data-tooltip="Show most recent first" href="{{ url_for('sort_descending', observation_field='date') }}">
+                                    <i class="fa-solid fa-sort"></i>
+                                </a>
                             {% endif %}
                             Date
                         </th>
                     </tr>
                 </thead>
-            
+                <!-- Observation table data -->
                 <tbody>
                     {% for observation in observations %}
+                        <!-- Only show observations with visibility set to true -->
                         {% if observation.visible %}
                             <tr>
+                                <!-- Observation 'seen by' -->
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">
+                                    <!-- If observation is set to anonymous display 'seen by' as anonymousbirdy -->
                                     {% if observation.anonymous %}
                                         anonymousbirdy
                                     {% else %}
                                         {{ observation.seen_by }}
                                     {% endif %}
                                 </td>
+                                <!-- Other observation data -->
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
                                 <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
+                                <!-- If the session user is logged in or is the admin, display edit and delete buttons -->
                                 {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
-                                <td>
-                                    <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small tooltipped" data-position="left" data-tooltip="Edit">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#confirm-delete{{ observation._id }}" class="btn modal-trigger red tooltipped" data-position="right" data-tooltip="Delete">
-                                        <i class="fa-regular fa-trash-can "></i>
-                                    </a>
-                                    <div id="confirm-delete{{ observation._id }}" class="modal">
-                                        <div class="modal-content">
-                                            <h4>Delete Observation</h4>
-                                            <p>
-                                                Are you sure you want to delete this observation? <br>
-                                                Observation selected for deletion: <br>
-                                                {{ observation.bird_species }}, {{ observation.location }}, {{ observation.date }}
-                                            </p>
+                                    <!-- Edit observation -->
+                                    <td>
+                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small tooltipped" data-position="left" data-tooltip="Edit">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </a>
+                                    </td>
+                                    <!-- Delete observation -->
+                                    <td>
+                                        <a href="#confirm-delete{{ observation._id }}" class="btn modal-trigger red tooltipped" data-position="right" data-tooltip="Delete">
+                                            <i class="fa-regular fa-trash-can "></i>
+                                        </a>
+                                        <!-- Confirm delete modal -->
+                                        <div id="confirm-delete{{ observation._id }}" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Delete Observation</h4>
+                                                <p>
+                                                    Are you sure you want to delete this observation? <br>
+                                                    Observation selected for deletion: <br>
+                                                    {{ observation.bird_species }}, {{ observation.location }}, {{ observation.date }}
+                                                </p>
+                                            </div>
+                                            <!-- Delete confirm or cancel buttons-->
+                                            <div class="modal-footer">
+                                                <a href="{{ url_for('delete_observation', observation_id=observation._id) }}"
+                                                    class="modal-close btn-flat">Delete</a>
+                                                <div class="modal-close btn-flat">Cancel</div>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a href="{{ url_for('delete_observation', observation_id=observation._id) }}"
-                                                class="modal-close btn-flat">Agree</a>
-                                            <a href="{{ url_for('get_observations') }}" class="modal-close btn-flat">Cancel</a>
-                                        </div>
-                                    </div>
-                                </td>                        
+                                    </td>                        
                                 {% endif %}
+                                <!-- Observation modal -->
                                 <div id="observation-details{{ observation._id }}" class="modal">
                                     <div class="col s12 modal-content">
+                                        <!-- Observation image -->
                                         <div class="card-image">
                                             <img src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
                                             <span class="observation-title">
                                                 {{ observation.bird_species }} <em>by</em> 
+                                                <!-- If observation is set to anonymous, replace username -->
                                                 {% if observation.anonymous %}
                                                     AnonymousBirdy
                                                 {% else %}
@@ -195,6 +188,7 @@
                                                 {% endif %}
                                             </span>
                                         </div>
+                                        <!-- Observation details -->
                                         <div class="card-content">
                                             <p>
                                                 Quantity: {{ observation.quantity }} <br>
@@ -205,6 +199,7 @@
                                                 {{ observation.notes }}
                                             </p>
                                         </div>
+                                        <!-- Close modal -->
                                         <div class="modal-footer">
                                             <a href="{{ url_for('get_observations') }}" class="modal-close btn-flat">Close</a>
                                         </div>
@@ -215,6 +210,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <!-- If there are no results explain empty table -->
             {% else %}
                 <h3> No results </h3>
             {% endif %}
