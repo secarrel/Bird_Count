@@ -44,6 +44,13 @@ def get_observations():
 # Render template for Admin's nest page
 @app.route("/get_users/")
 def get_users():
+    if 'user' not in session:
+        flash("Log in or register to get started")
+        return redirect(url_for('login'))
+    elif session["user"] != 'admin':
+        flash("You are not authorised to view the admin page")
+        return redirect(url_for('my_nest'))
+
     users = list(db.users.find())
     messages = list(db.messages.find())
     return render_template("admin.html", users=users, messages=messages)
@@ -59,13 +66,8 @@ def my_nest():
         flash("Admin can't access personal nests")
         return redirect(url_for('get_users'))
 
-    observations = list(db.observations.find().sort("date", -1))
-    try:
-        username = session["user"]
-    except: 
-        username =""
-        print("user is not logged in")
-
+    observations = list(db.observations.find().sort("date", -1))        
+    username = session["user"]
     users_observations = list(db.observations.find({"seen_by": username}))
     quantities = []
     species_seen = []
@@ -194,6 +196,13 @@ def login():
 @app.route("/add_observation/", methods=["GET", "POST"])
 def add_observation():
     if request.method == "POST":
+        if 'user' not in session:
+            flash("Log in or register to get started")
+            return redirect(url_for('login'))
+        elif session["user"] == 'admin':
+            flash("Admin can't add observations")
+            return redirect(url_for('get_users'))
+
         user = session["user"]
         user_info = db.users.find_one({"username": user})
         user_id = user_info["_id"]
@@ -231,6 +240,13 @@ def edit_observation(observation_id):
     visible = user_info["visible"]
     anonymous = user_info["anonymous"]
 
+    if 'user' not in session:
+        flash("You are not authorised to edit other user's observation. Log in or register to get started.")
+        return redirect(url_for('login'))
+    elif session["user"] != original_user and session["user"] != 'admin':
+        flash("You are not authorised to edit other user's observation.")
+        return redirect(url_for('get_observations'))
+    
     if request.method == "POST":
         entry = {
             "bird_species": request.form.get("bird"),
