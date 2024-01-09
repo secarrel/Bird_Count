@@ -23,9 +23,6 @@
                                 <th>
                                     <!-- Sort descending if ascending -->
                                     {% if request.path == url_for('sort_ascending_admin', observation_field='username') %}
-                                    <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
-                                        <i class="fa-solid fa-arrow-down-a-z"></i>
-                                    </a>
                                     <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by username"
                                         href="{{ url_for('sort_descending_admin', observation_field='username') }}">
                                         <i class="fa-solid fa-arrow-down-z-a"></i>
@@ -36,17 +33,11 @@
                                         href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
                                         <i class="fa-solid fa-arrow-down-a-z"></i>
                                     </a>
-                                    <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
-                                        <i class="fa-solid fa-arrow-down-z-a"></i>
-                                    </a>
                                     <!-- Sort descending if unsorted -->
                                     {% else %}
                                     <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
                                         href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
                                         <i class="fa-solid fa-arrow-down-a-z"></i>
-                                    </a>
-                                    <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='username') }}">
-                                        <i class="fa-solid fa-arrow-down-z-a"></i>
                                     </a>
                                     {% endif %}
                                     Username
@@ -57,9 +48,6 @@
                                 <th>
                                     <!-- Sort descending if ascending -->
                                     {% if request.path == url_for('sort_ascending_admin', observation_field='experience') %}
-                                    <a class="hidden" href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                        <i class="fa-solid fa-arrow-down-a-z"></i>
-                                    </a>
                                     <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by experience"
                                         href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
                                         <i class="fa-solid fa-arrow-down-z-a"></i>
@@ -70,17 +58,11 @@
                                         href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
                                         <i class="fa-solid fa-arrow-down-a-z"></i>
                                     </a>
-                                    <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                        <i class="fa-solid fa-arrow-down-z-a"></i>
-                                    </a>
                                     <!-- Sort ascending if unsorted -->
                                     {% else %}
                                     <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
                                         href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
                                         <i class="fa-solid fa-arrow-down-a-z"></i>
-                                    </a>
-                                    <a class="hidden" href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                        <i class="fa-solid fa-arrow-down-z-a"></i>
                                     </a>
                                     {% endif %}
                                     Experience
