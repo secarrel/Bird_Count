@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!-- Page heading -->
 <h3 class="center-align">Welcome</h3>
-
+<!-- Get started button for logged-in users -->
 {% if session.user %}
-<a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
-    href="{{ url_for('add_observation') }}">
-    New Observation
-    <i class="fa-solid fa-crow"></i>
-    <i class="fa-solid fa-plus"></i>
-</a>
+    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+        href="{{ url_for('add_observation') }}">
+        New Observation
+        <i class="fa-solid fa-crow"></i>
+        <i class="fa-solid fa-plus"></i>
+    </a>
+<!-- Get started button for users not logged in -->
 {% else %}
-<a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
-    href="{{ url_for('login') }}">
-    Add observations
-    <i class="fa-solid fa-user-plus"></i>
-</a>
+    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+        href="{{ url_for('login') }}">
+        Add observations
+        <i class="fa-solid fa-user-plus"></i>
+    </a>
 {% endif %}
 
      
