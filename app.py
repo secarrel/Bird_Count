@@ -23,10 +23,20 @@ app.secret_key = os.environ.get("SECRET_KEY")
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
 
+
+@app.context_processor
+def inject_user():
+    """ Add session user infromation to all templates before they are rendered"""
+    user = None
+    if 'user' in session:
+        username = session['user']
+        user = db.users.find_one({'username': username})
+    return dict(user=user)
+
 # Render template for welcome page.
 @app.route("/")
 def welcome():
-    """ Renders the 'Welcome' page template """
+    """ Renders template for the 'Welcome' page."""
     return render_template("welcome.html")
 
 
@@ -218,6 +228,20 @@ def register():
         
         # Validate 'experience' field so '0' isn't an accepted value.
         experience = request.form.get("experience")
+        # Match experience levels to different avatars
+        if experience == '1':
+            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-photo-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '2':
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '3':
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '4':
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '5':
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '6':
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+
         # Redirect if value is invalid.
         if experience == '0':
             flash("You need to choose a value for 'experience'. This can be changed in your nest at any time.")
@@ -230,7 +254,8 @@ def register():
                 "email": request.form.get("email"),
                 "experience": request.form.get("experience"),
                 "visible": bool("True"),
-                "anonymous": bool("")
+                "anonymous": bool(""),
+                "avatar": avatar_url
             }
             db.users.insert_one(register)
 
@@ -551,16 +576,33 @@ def edit_user_experience(user_id):
     if request.method == "POST":
         # Get the 'experience' field value from the form.
         user = ObjectId(user_id)
-        new_experience = request.form.get("experience-edit")
+        experience = request.form.get("experience-edit")
         
+        # Match experience levels to different avatars
+        if experience == '1':
+            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-photo-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '2':
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '3':
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '4':
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '5':
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+        elif experience == '6':
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
         # Validate 'experience' field so that value cannot = 0.
-        if new_experience == '0':
+        if experience == '0':
             flash("No changes made, fill in the experience field to make changes")
         # Update the 'experience' field in the database.
         else:
             db.users.update_one(
                 {'_id': user},
-                {'$set': {'experience': new_experience}}
+                {'$set': {
+                    'experience': experience,
+                    'avatar': avatar_url
+                    }
+                }
             )
             flash("Experience updated")
         return redirect(url_for("my_nest"))

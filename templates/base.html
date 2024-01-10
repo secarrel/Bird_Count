@@ -34,10 +34,20 @@
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
                 <li>
-                    <a class="dropdown-trigger" href="#!" data-target="user"> 
-                        <i class="fa-regular fa-circle-user"></i>
-                        {{ session.user }}
-                    </a>
+                    <div class="dropdown-trigger user" data-target="user">
+                        {% if session.user %}
+                            <div class="avatar-container">
+                                <img class="avatar" src='{{ user.avatar }}'  alt="User's avatar" width="50" height="50">                               
+                            </div>
+                            <div>
+                                {{ session.user }}
+                                <i class="fa-solid fa-circle-chevron-down"></i>
+                            </div>
+                        {% else %}
+                            <i class="fa-regular fa-circle-user"></i>
+                            <i class="fa-solid fa-circle-chevron-down"></i>
+                        {% endif %}
+                        </div>
                 </li>
             </ul>
         </div>
@@ -73,7 +83,6 @@
 
     {% block content %}
     {% endblock %}
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>

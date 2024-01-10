@@ -11,3 +11,24 @@
     color: red;
 }
 
+.avatar-container {
+    border-radius: 20%;
+    overflow: hidden ;
+    width: 60px;
+    height: 60px;
+}
+
+.avatar {
+    scale: 1.6;
+    object-fit: cover;
+}
+
+.user {
+    display: inline-block;
+    color: black;
+}
+
+.dropdown-trigger {
+    cursor: pointer;
+    display: inline-flex !important;
+}
