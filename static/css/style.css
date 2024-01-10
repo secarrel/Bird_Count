@@ -26,14 +26,14 @@
 }
 
 .avatar-drop {
-    scale: 1.6;
+    scale: 1;
     object-fit: cover;
     width: 160px;
     height: 160px;
+    padding: 5px;
 }
 
 .avatar-drop-container {
-    border-radius: 20%;
     overflow: hidden ;
     width: 160px;
     height: 160px;
@@ -51,4 +51,5 @@
 .dropdown-trigger {
     cursor: pointer;
     display: inline-flex !important;
+    width: 180px !important;
 }
