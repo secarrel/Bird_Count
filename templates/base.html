@@ -12,111 +12,113 @@
     <title>Bird Count</title>
 </head>
 <body>
-    <!-- Dropdown section of navbar -->
-    <ul id="user" class="dropdown-content">
-        {% if session.user and session.user != 'admin' %}
-        <li>
-            <div class="avatar-drop-container">
-                <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
-            </div>
-            <div class="username-drop">
-                {{ session.user }}
-            </div>
-        </li>
-        <li><a href="{{ url_for('my_nest') }}">My Nest</a></li>
-        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        {% elif session.user == 'admin' %}
-        <li>
-            <div class="avatar-drop-container">
-                <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
-            </div>
-            <div class="username-drop">
-                {{ session.user }}
-            </div>
-        </li>
-        <li><a href="{{ url_for('get_users') }}">Admin Nest</a></li>
-        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        {% else %}
-        <li><a href="{{ url_for('register') }}">Sign Up</a></li>
-        <li><a href="{{ url_for('login') }}">Log In</a></li>
-        {% endif %}
-    </ul>
-    <!-- Top navbar -->
-    <nav>
-        <div class="nav-wrapper">
-            <a href="{{ url_for('welcome') }}" class="brand-logo">Bird Count</a>
-            <a href="{{ url_for('welcome') }}" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
+    <header>
+        <!-- Dropdown section of navbar -->
+        <ul id="full-nav-dropdown" class="dropdown-content">
+            {% if session.user and session.user != 'admin' %}
                 <li>
-                    <div class="dropdown-trigger user" data-target="user">
-                        {% if session.user %}
-                            <div class="avatar-container">
-                                <img class="avatar" src='{{ user.avatar }}'  alt="User's avatar">                               
-                            </div>
-                            <div>
-                                {{ session.user }}
-                                <i class="fa-solid fa-circle-chevron-down"></i>
-                            </div>
-                        {% else %}
-                            <i class="fa-regular fa-circle-user"></i>
-                            <i class="fa-solid fa-circle-chevron-down"></i>
-                        {% endif %}
-                        </div>
+                    <div class="avatar-drop-container">
+                        <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
+                    </div>
+                    <h6 class="username-drop">
+                        Hi, {{ session.user }}!
+                    </h6>
                 </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- Mobile sidenav -->
-    <ul class="sidenav" id="mobile-demo">
-        {% if session.user and session.user != 'admin' %}
-        <div class="avatar-drop-container">
-            <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
-        </div>
-        <div class="username-drop">
-            {{ session.user }}
-        </div>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
-        <li><a href="{{ url_for('my_nest') }}">My Nest</a></li>
-        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        {% elif session.user == 'admin' %}
-        <li>
+                <li><a href="{{ url_for('my_nest') }}">My Nest</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% elif session.user == 'admin' %}
+                <li>
+                    <div class="avatar-drop-container">
+                        <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
+                    </div>
+                    <h6 class="username-drop">
+                        {{ session.user }}
+                    </h6>
+                </li>
+                <li><a href="{{ url_for('get_users') }}">Admin Nest</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+            {% endif %}
+        </ul>
+        <!-- Top navbar -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="{{ url_for('welcome') }}" class="brand-logo">Bird Count</a>
+                <a href="{{ url_for('welcome') }}" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
+                    <li class="highlight-custom">
+                        <div class="dropdown-trigger" data-target="full-nav-dropdown">
+                            {% if session.user %}
+                                <div class="avatar-container">
+                                    <img class="avatar" src='{{ user.avatar }}'  alt="User's avatar">                               
+                                </div>
+                                <div>
+                                    {{ session.user }}
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            {% else %}
+                                <i class="fa-regular fa-circle-user"></i>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Mobile sidenav -->
+        <ul class="sidenav" id="mobile-demo">
+            {% if session.user and session.user != 'admin' %}
             <div class="avatar-drop-container">
                 <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
             </div>
             <div class="username-drop">
                 {{ session.user }}
             </div>
-        </li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
-        <li><a href="{{ url_for('get_users') }}">Admin Nest</a></li>
-        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        {% else %}
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
-        <li><a href="{{ url_for('register') }}">Sign Up</a></li>
-        <li><a href="{{ url_for('login') }}">Log In</a></li>
-        {% endif %}
-    </ul>
-
-    <section>
-        <!-- flash messages -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="row flashes">
-                    <h4 class="center-align">{{ message }}</h4>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
+            <li><a href="{{ url_for('my_nest') }}">My Nest</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% elif session.user == 'admin' %}
+            <li>
+                <div class="avatar-drop-container">
+                    <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
                 </div>
-                {% endfor %}
+                <div class="username-drop">
+                    {{ session.user }}
+                </div>
+            </li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
+            <li><a href="{{ url_for('get_users') }}">Admin Nest</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('get_observations') }}">Community Observations</a></li>
+            <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
             {% endif %}
-        {% endwith %}
-    </section>
-
-    {% block content %}
-    {% endblock %}
+        </ul>
+    </header>
+    <main>
+        <section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="center-align">{{ message }}</h4>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+        {% block content %}
+        {% endblock %}
+    </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>

@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Page heading -->
-<h3 class="center-align">Welcome</h3>
+<div id="welcome-container">
+    <div id="welcome-heading-container">
+        <h3 class="center-align">Welcome</h3>
+        <h5 class="center-align"> Join our birding community to learn what birds are in your local area and to share your observations.</h5>
+    </div>
+</div>
 <!-- Get started button for logged-in users -->
 {% if session.user %}
     <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
@@ -18,6 +23,4 @@
         <i class="fa-solid fa-user-plus"></i>
     </a>
 {% endif %}
-
-     
 {% endblock %}
