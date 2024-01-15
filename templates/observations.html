@@ -177,7 +177,7 @@
                                     <div class="col s12 modal-content">
                                         <!-- Observation image -->
                                         <div class="card-image">
-                                            <img src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                            <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
                                             <span class="observation-title">
                                                 {{ observation.bird_species }} <em>by</em> 
                                                 <!-- If observation is set to anonymous, replace username -->

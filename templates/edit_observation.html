@@ -6,7 +6,7 @@
 <h3 class="center-align">Edit Observation</h3>
 <!-- Edit observation form -->
 <div id="edit-observation" class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
         <div class="card-panel">
             <!-- Input field for bird species -->
             <div id="bird-species-edit" class="row">
@@ -77,6 +77,13 @@
                     <i class="fa-solid fa-hashtag prefix"></i>
                     <input type="number" name="quantity" id="quantity" min="1" value="{{ observation.quantity }}">
                     <label for="quantity">Quantity <strong class="required">*</strong></label>
+                </div>
+            </div>
+            <!-- Input field for image -->
+            <div id="image-add" class="row">
+                <div class="input-field col s12">
+                    <label for="image-file">Upload Image (optional):</label>
+                    <input type="file" name="image-file" id="image-file">
                 </div>
             </div>
             <p><strong class="required">*</strong> indicates required field</p>

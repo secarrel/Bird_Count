@@ -1,29 +1,33 @@
 # Imports
 import os
+import io
 from flask import (
     Flask, Blueprint, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, send_file)
 from flask_pymongo import PyMongo
+from gridfs import GridFS
 from bson.objectid import ObjectId
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+
+# Set up app.
 app = Flask(__name__, template_folder='templates')
 
 
 # Set up MongoDB.
 import pymongo
-
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
 db = client["birdcount"]
+fs = GridFS(db)
 
 
+# Add user data to all templates.
 @app.context_processor
 def inject_user():
     """ Add session user infromation to all templates before they are rendered"""
@@ -57,13 +61,12 @@ def get_observations():
         users(list): all data from users in the birdcount database.
         observations(list): all data from observations in the birdcount database.
     """
-
     # Get users data from the database.
     users = list(db.users.find())
 
     # Get observations data from database and sort with most recent first.
     observations = list(db.observations.find().sort("date", -1))
-    
+
     return render_template("observations.html", observations=observations, users=users)
 
 
@@ -344,6 +347,21 @@ def add_observation():
         visible = user_info["visible"]
         anonymous = user_info["anonymous"]
 
+        # Check if the file is present in the request
+        if 'image-file' in request.files:
+            image_file = request.files['image-file']
+            if image_file.filename != '':
+                # A file has been uploaded; proceed to handle it
+                image_id = fs.put(image_file)
+                # Further logic to handle the image ID, possibly storing it in the database
+            else:
+                # No file uploaded; handle accordingly
+                image_id = ObjectId('65a5180da67bcd438af8f165')
+                print("No file uploaded")
+        else:
+            # No file field in the request; handle accordingly
+            print("No file field in the request")
+                
         # Create new observation document in 'observations' collection.
         entry = {
             "bird_species": request.form.get("bird"),
@@ -359,10 +377,11 @@ def add_observation():
             "anonymous": anonymous,
             "visible": visible            
         }
+        if image_id is not None:
+            entry["image"] = image_id
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
         return redirect(url_for("my_nest")) 
-            
     return render_template("add_observation.html")
 
 
@@ -408,6 +427,21 @@ def edit_observation(observation_id):
         flash("You are not authorised to edit other user's observation.")
         return redirect(url_for('get_observations'))
     
+    # Check if the file is present in the request
+    if 'image-file' in request.files:
+        image_file = request.files['image-file']
+        if image_file.filename != '':
+            # A file has been uploaded; proceed to handle it
+            image_id = fs.put(image_file)
+            # Further logic to handle the image ID, possibly storing it in the database
+        else:
+            # No file uploaded; handle accordingly
+            image_id = ObjectId('65a5180da67bcd438af8f165')
+            print("No file uploaded")
+    else:
+        # No file field in the request; handle accordingly
+        print("No file field in the request")
+
     if request.method == "POST":
         # Get information from form fields to create new data for observation.
         entry = {
@@ -425,6 +459,9 @@ def edit_observation(observation_id):
             "anonymous": anonymous,
             "visible": visible            
         }
+        if image_id is not None:
+            entry["image"] = image_id
+
         # Replace document with matching id with 'entry'.
         db.observations.replace_one({"_id": ObjectId(observation_id)}, entry)
         flash("Observation updated")
@@ -434,6 +471,14 @@ def edit_observation(observation_id):
 
 
 # ------------------ function routes -----------------
+@app.route("/get_image", strict_slashes=False)
+@app.route('/get_image/<observation_id>')
+def get_image(observation_id):
+    document = db.observations.find_one({"_id": ObjectId(observation_id)})
+    image_id = document.get("image")
+    image_file = fs.get(image_id)
+    return send_file(image_file, mimetype='image/jpeg')
+
 # Logout the session user
 @app.route("/logout/")
 def logout():
