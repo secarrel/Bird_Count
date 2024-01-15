@@ -356,7 +356,7 @@ def add_observation():
                 # Further logic to handle the image ID, possibly storing it in the database
             else:
                 # No file uploaded; handle accordingly
-                image_id = ObjectId('65a5180da67bcd438af8f165')
+                image_id = ObjectId('65a522a638bb15858a80cc53')
                 print("No file uploaded")
         else:
             # No file field in the request; handle accordingly
@@ -436,7 +436,7 @@ def edit_observation(observation_id):
             # Further logic to handle the image ID, possibly storing it in the database
         else:
             # No file uploaded; handle accordingly
-            image_id = ObjectId('65a5180da67bcd438af8f165')
+            image_id = ObjectId('65a522a638bb15858a80cc53')
             print("No file uploaded")
     else:
         # No file field in the request; handle accordingly
@@ -499,6 +499,11 @@ def delete_observation(observation_id):
     Parameters:
         observation_id (str): a unique string.
     """
+    observation = db.observations.find_one({"_id": ObjectId(observation_id)})
+    image_id = observation["image"]
+    if ObjectId(image_id) != ObjectId("65a522a638bb15858a80cc53"):
+        fs.delete(ObjectId(image_id))
+        flash("Image file deleted")
     db.observations.delete_one({"_id": ObjectId(observation_id)})
     flash("Observation deleted")
     return redirect(request.referrer)
