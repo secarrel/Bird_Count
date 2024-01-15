@@ -99,13 +99,19 @@ $(document).ready(function () {
 // Identify switch elements
 const visibilitySwitch = document.getElementById("visibility-switch");
 const anonymousSwitch = document.getElementById("anonymous-switch");
+const visibilityForm = document.getElementById("visibility-form");
+const anonymousForm = document.getElementById("anonymous-form");
 
 // Add event listener to visibility switch so it's value is submitted on change
-visibilitySwitch.addEventListener("change", function () {
-  document.getElementById("visibility-form").submit();
-});
+if (visibilitySwitch && visibilityForm) {
+  visibilitySwitch.addEventListener("change", function () {
+    document.getElementById("visibility-form").submit();
+  });
+}
 
 // Add event listener to anonymity switch so it's value is submitted on change
-anonymousSwitch.addEventListener("change", function () {
-  document.getElementById("anonymous-form").submit();
-});
+if (anonymousSwitch && anonymousForm) {
+  anonymousSwitch.addEventListener("change", function () {
+    document.getElementById("anonymous-form").submit();
+  });
+}
