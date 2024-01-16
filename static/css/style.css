@@ -118,8 +118,7 @@ nav a {
 
 /* ------- Side Nav Dropdown content ------- */
 .sidenav {
-    background-color: #fff;
-    z-index: 999 !important;
+    background-color: #ffffffee;
 }
 
 .sidenav-overlay {
