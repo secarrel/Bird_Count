@@ -17,12 +17,12 @@
 
 /* ---------------------- HEADER ---------------------- */
 header {
-    position: fixed;
+    position: sticky;
     width: 100%;
 }
 
 nav {
-    background-color: #e49452ec;
+    background-color: #e49452;
     box-shadow: none;
 }
 
@@ -150,7 +150,13 @@ nav a {
 
 .btn-small {
     background-color:#8DAB7F ;
+    margin: 10px;
 }
+
+.btn-small:hover {
+    background-color:#4a6140 ;
+}
+
 
 .btn-small i {
     color: #efefef !important;
@@ -161,9 +167,10 @@ nav a {
     background-color: #a70032 !important;
 }
 
-html {
-    font-size: 0px;
+.delete-red:hover {
+    background-color: #6b0020 !important;
 }
+
 
 body {
     background-color: #192738;
@@ -204,6 +211,44 @@ i {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.col .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+td, th{
+    text-align: center;
+    padding: 3px 0;
+    border-radius: 0;
+}
+
+tbody {
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.card-panel {
+    margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  position: static;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c95e008a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c95e00;
 }
 
 /* ---------------------- WELCOME PAGE ---------------------- */
@@ -301,9 +346,63 @@ i {
 
 /* ---------------------- COMMUNITY OBSERVATIONS PAGE ---------------------- */
 #community-observations-container {
-    background-image: url("https://images.unsplash.com/photo-1605953961632-04da10198e95?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-
+    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-attachment: fixed;    
+    padding: 20px;
+    min-height: 90vh;
 }
+
+#community-observations-container h3 {
+    margin: 10px;
+}
+
+#observation-card {
+    background-color: #192738;
+    color:#efefef;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.set-size {
+    min-width: 200px !important;
+}
+
+#query {
+    color:#efefef;
+    font-size: 14px;
+}
+
+.small-margin-button {
+    margin: 1px;
+}
+
+#bird-info-modal {
+    background-color: #192738;
+    color: #efefef;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#bird-info-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bird-info-image-container img {
+    max-width: 100%;
+    max-height: 60vh;
+}
+
+.modal .modal-footer {
+    background-color:#192738;
+}
+
 /* ---------------------- MY NEST PAGE ---------------------- */
 /* ---------------------- ADMIN PAGE ---------------------- */
 /* ---------------------- LOG-IN PAGE ---------------------- */
@@ -320,6 +419,14 @@ i {
         margin: 10px;
     }
 }
+
+@media only screen and (max-width: 1170px) {
+    .valign-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 @media only screen and (max-width: 880px) {
     .row {
         margin-top: 20px;
@@ -327,6 +434,11 @@ i {
         flex-direction: column;
         align-items: center;
     }
+
+    .hide-mobile {
+    display : none;
+    }
+
 }
 
 @media only screen and (max-width: 700px) {
@@ -377,5 +489,31 @@ i {
     #about-heading-container h5 {
         font-size: 16px;
     }
+
+    #community-observations-container {
+    padding: 0;
+    }   
+
+
+
+    .modal {
+        width: 80%;
+    }
+    
+}
+@media only screen and (max-width: 350px) {
+        #logo-container {
+        max-height: 40px;
+    }
+
+    #nav-logo {
+        max-height: 40px;
+        margin: 10px;
+    }
+
+    .modal {
+    width: 95%;
+    }
+
 
 }
