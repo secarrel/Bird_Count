@@ -1,33 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Page heading -->
-<div id="welcome-container">
+<section id="welcome-container">
     <div id="welcome-heading-container">
-        <h3 class="center-align">Welcome</h3>
-        <h5 class="center-align"> Join our birding community to learn what birds are in your local area and to share your observations.</h5>
+        <h3>Welcome</h3>
+        <h5> Join our birding community to learn what birds are in your local area and to share your observations.</h5>
     </div>
-</div>
-<div id="get-started-container">
-    <div id="get-started-heading-container">
-        <h3 class="center-align">Get started!</h3>
-        <h5 class="center-align"> Join our birding community to learn what birds are in your local area and to share your
-            observations.</h5>
+</section>
+<section id="get-started-container">
+    <h3 class="center-align">Get started!</h3>
+    <div id="signup-welcome" class="dark-section">
+        <div id="get-started-button">
+            <!-- Get started button for logged-in users -->
+            {% if session.user %}
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+                    href="{{ url_for('add_observation') }}">
+                    New Observation
+                    <i class="fa-solid fa-crow"></i>
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            <!-- Get started button for users not logged in -->
+            {% else %}
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+                    href="{{ url_for('register') }}">
+                    Sign-up
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
+            {% endif %}
+        </div>
     </div>
-</div>
-<!-- Get started button for logged-in users -->
-{% if session.user %}
-    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
-        href="{{ url_for('add_observation') }}">
-        New Observation
-        <i class="fa-solid fa-crow"></i>
-        <i class="fa-solid fa-plus"></i>
-    </a>
-<!-- Get started button for users not logged in -->
-{% else %}
-    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
-        href="{{ url_for('login') }}">
-        Add observations
-        <i class="fa-solid fa-user-plus"></i>
-    </a>
-{% endif %}
+    <div id="community-observations-welcome" class="light-section">
+        See What the community have seen
+    </div>
+    <div id="record-observations-welcome" class="dark-section">
+        Record your observations
+    </div>
+    <div id="your-birding-stats-welcome" class="light-section">
+        See your birding stats
+    </div>
+    <div id="gallery-welcome" class="dark-section">
+        Gallery
+    </div>
+</section>
 {% endblock %}
