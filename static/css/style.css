@@ -22,14 +22,14 @@ header {
 }
 
 nav {
-    background-color: #e494526c;
+    background-color: #e49452ec;
     box-shadow: none;
 }
 
 nav a {
     padding: 0 15px !important;
+    font-size: 16px !important;
 }
-
 
 /* ----------- Full width nav ----------- */
 .nav-wrapper {
@@ -80,6 +80,7 @@ nav a {
     cursor: pointer;
     display: inline-flex !important;
     max-width: 190px !important;
+    font-size: 16px !important;
 }
 
 /* ------- Full Nav Dropdown content ------- */
@@ -107,13 +108,16 @@ nav a {
 .username-drop {
     text-align: center;
     margin: 0 0 20px 0 ;
+    color: #192738;
+    font-size: 16px;
 }
 
 #non-user-full-nav i {
     margin: auto;
     justify-content: center;
-    font-size: xx-large;
     padding: 0 56px;
+    color: #192738;
+    font-size: 30px;
 }
 
 /* ------- Side Nav Dropdown content ------- */
@@ -144,39 +148,162 @@ nav a {
     align-self: center;
 }
 
+.btn-small {
+    background-color:#8DAB7F ;
+}
+
+.btn-small i {
+    color: #efefef !important;
+    font-size: 16px;
+}
+
+.delete-red {
+    background-color: #a70032 !important;
+}
+
+html {
+    font-size: 0px;
+}
+
 body {
     background-color: #192738;
+    font-size: 14px;
 }
+
+.dark-section {
+    background-color: #192738;
+    color: #efefef;
+    padding: 20px 40px;
+}
+
+.light-section {
+    background-color: #243449;
+    color: #efefef;
+    padding: 20px 40px;
+}
+
+h3 {
+    font-size: 35px;
+}
+
+h4 {
+    font-size: 30px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+i {
+    font-size: large;
+    color: white;
+}
+
+.row {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 /* ---------------------- WELCOME PAGE ---------------------- */
-/* ----------- Heading and image ----------- */
+/* ----------- Heading and Image Section----------- */
 #welcome-container {
-    width: 100%;
     height: 85vh;
     background-image: url("https://images.unsplash.com/photo-1624696280171-78a17bc5990c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-position: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
 #welcome-heading-container {
-    height: 200px;
+    height: 150px;
     width:50vw;
-    background-color: #ffffffc2;
+    background-color:#192738c5;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 15px;
 }
 
 #welcome-heading-container h3 {
-    margin: 10px;
+    color: #efefef;
+    font-size: 35px;
+    margin: 0 !important;
+}
+
+#welcome-heading-container h5 {
+    color: #efefef;
+    font-size: 18px;
+}
+
+
+/* ----------- Get Started Section ----------- */
+/* Sign up or log in */
+#get-started-container {
+    color:#ffffff;
 }
 
 /* ---------------------- ABOUT PAGE ---------------------- */
+/* ----------- About Heading Section ----------- */
+#about-container {
+    background-image: url("https://images.unsplash.com/photo-1510449925649-7d7feb9816d6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#about-heading-container {
+    height: 200px;
+    width:50vw;
+    background-color:#192738c5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+
+#about-heading-container h3 {
+    color: #efefef;
+    font-size: 35px;
+}
+
+#about-heading-container h5 {
+    color: #efefef;
+    font-size: 18px;
+}
+
+/* ----------- About Content Section ----------- */
+#for-the-user p {
+    font-weight: 600;
+}
+
+#about-list-container ul li{
+    padding: 5px;
+}
+
+#get-started-button i {
+    font-size: 16px;
+    color: #efefef;
+}
+
+.about-image-container img{
+    width: 100%;
+    padding: 20px;
+}
+
 /* ---------------------- COMMUNITY OBSERVATIONS PAGE ---------------------- */
+#community-observations-container {
+    background-image: url("https://images.unsplash.com/photo-1605953961632-04da10198e95?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+
+}
 /* ---------------------- MY NEST PAGE ---------------------- */
 /* ---------------------- ADMIN PAGE ---------------------- */
 /* ---------------------- LOG-IN PAGE ---------------------- */
@@ -191,6 +318,14 @@ body {
 
     #welcome-heading-container h3 {
         margin: 10px;
+    }
+}
+@media only screen and (max-width: 880px) {
+    .row {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -218,20 +353,29 @@ body {
     #welcome-heading-container {
         height: 200px ;
         width: 80vw;
-        background-color: #ffffffc2;
-        display: flex;
-        flex-direction: column;
         padding: 15px;
     }
 
     #welcome-heading-container h3 {
-        margin: 10px;
         font-size: 35px;
     }
 
     #welcome-heading-container h5 {
-        margin: 10px;
         font-size: 20px;
+    }
+
+    #about-heading-container {
+        height: 250px ;
+        width: 80vw;
+        padding: 15px;
+    }
+
+    #about-heading-container h3 {
+        font-size: 30px;
+    }
+
+    #about-heading-container h5 {
+        font-size: 16px;
     }
 
 }

@@ -6,6 +6,7 @@ let minOne = new Date(year, month, day - 1);
 let maxDate;
 let locations = {}
 
+// -------------- Execute when page is ready ---------------
 
 $(document).ready(function () {
   // Automatically initialise materialize

@@ -1,25 +1,101 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h3 class="center-align">About</h3>
-
-<!-- Determine if the user is logged in -->
-{% if session.user %}
-    <!-- Only allow the user to add observations if they are logged in -->
-    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
-        href="{{ url_for('add_observation') }}">
-        New Observation
-        <i class="fa-solid fa-crow"></i>
-        <i class="fa-solid fa-plus"></i>
-    </a>
-{% else %}
-    <!-- If user is not logged in they are directed to the log in page -->
-    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
-        href="{{ url_for('login') }}">
-        Add observations
-        <i class="fa-solid fa-user-plus"></i>
-    </a>
-{% endif %}
-
-     
+<!-- Page heading -->
+<section id="about-container">
+    <div id="about-heading-container">
+        <h3>About</h3>
+        <h5>By recording your bird observations with accurate supporting data, you are helping 
+            ornithologists and bird enthusiasts understand the population, distribution and behaviour of 
+            bird species in the UK.</h5>
+    </div>
+</section>
+<section id="about-content-container">
+    <div class="dark-section center-align row">
+        <div class="col s12 m12 l6">
+            <h4 class="center-align">What is Bird Count?</h4>
+            <p> 
+                Bird Count is a platform for recording personal bird sightings and sharing them with
+                the community. By sharing information about species' and their locations we are making 
+                bird watching more accessible to those that might not know where to look and what they 
+                are looking for! The more people that are out spotting birds and recording bird data, 
+                the better our understanding of species population, distribution and behaviour. 
+                <br>
+                We love birds and we know you do as well, which is why conservation is our main mission.
+                We work closely with the British Trust for Ornothology (BTO) who use our data to carry out 
+                a wide range of work and research for the benefit of birds and people.
+                <br>
+                Bird Count also gives you the opportunity to share your favourite bird photos, which will
+                also help new bird watchers with bird identification. Your photos will contribute to the important
+                data set being created with each observation. If you need an excuse to get out and start
+                taking photos, this is it! 
+            </p>
+            <a class="btn-small" href="https://www.bto.org/" target="_blank">
+                Learn more about the BTO
+                <i class="fa-solid fa-book-open"></i>
+            </a>
+        </div>
+        <div class="col s12 m12 l6 about-image-container">
+            <img src="https://images.unsplash.com/photo-1480044965905-02098d419e96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        </div>
+    </div>
+    <div id="for-the-user" class="light-section center-align row">
+        <div class="col s12 m12 l6 about-image-container">
+            <img src="https://images.unsplash.com/photo-1559780530-28f4e94b4bad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        </div>
+        <div class="col s12 m12 l6">
+            <h4 class="center-align">What can you get out of it?</h4>
+            <p>
+                By signing up for Bird Count and recording your bird sightings, you can:
+            </p>
+            <div id="about-list-container">
+                <ul >
+                    <li>Keep track of your sightings and bird data.</li>
+                    <li>Find more birds by using community observations as guidance.</li>
+                    <li>Share your sightings to inspire other bird watchers.</li>
+                    <li>Find out what birds have been spotted nearby.</li>
+                    <li>Contribute to important data collection, science and conservation.</li>
+                </ul>
+            </div>
+            <p>
+                Sound good?...
+            </p>
+            <div id="get-started-button">
+                <!-- Get started button for logged-in users -->
+                {% if session.user %}
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+                    href="{{ url_for('add_observation') }}">
+                    Start recording!
+                    <i class="fa-solid fa-crow"></i>
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+                <!-- Get started button for users not logged in -->
+                {% else %}
+                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+                    href="{{ url_for('register') }}">
+                    Sign-up
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="dark-section center-align row">
+        <div class="col s12 m12 l6">
+            <h4 class="center-align">Having trouble identifying a bird?</h4>
+            <p>
+                Our sister site <em>Bird Spot</em> has a very useful identification guide and sell
+                useful hand guides and bird books. They also have educational articles and advice for
+                bird watchers and photographers.  
+            </p>
+            <a class="btn-small" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank">
+                Identify a bird
+                <i class="fa-solid fa-binoculars"></i>
+            </a>
+        </div>
+        <div class="col s12 m12 l6 about-image-container">
+            <img
+                src="https://images.unsplash.com/photo-1560951750-1e85780f946b?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        </div>
+    </div>
+</section>
 {% endblock %}
