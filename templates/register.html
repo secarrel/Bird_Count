@@ -1,83 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Page heading -->
-<h3 class="center-align">Register</h3>
-<!-- Registration form -->
-<div class="row">
-  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
-    <div class="card-panel">
-      <!-- username -->
-      <div id="register-username" class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-user-plus prefix"></i>
-          <input id="username" name="username" type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
-            class="validate" required>
-          <label for="username">Username <strong class="required">*</strong></label>
-          <!-- Tooltip -->
-          <div class="tooltipped" data-position="right" data-tooltip="Username can only contain letters and numbers.">
-            <i class="fa-regular fa-circle-question"></i>
+<div id="register-page-conatainer">
+  <!-- Registration form -->
+  <div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+      <div class="card-panel">
+        <!-- Page heading -->
+        <h3 class="center-align">Register</h3>
+        <!-- username -->
+        <div id="register-username" class="row">
+          <div class="input-field col s12">
+            <i class="fas fa-user-plus prefix"></i>
+            <input id="username" name="username" type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+              class="validate" required>
+            <label class="tooltipped" data-position="bottom" data-tooltip="Username can only contain letters and numbers." for="username">Username <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+            <!-- Tooltip -->
+            <div >
+              
+            </div>
+          </div>
+        </div>
+        <!-- passowrd -->
+        <div id="register-password" class="row">
+          <div class="input-field col s12">
+            <i class="fas fa-user-lock prefix"></i>
+            <input id="password" name="password" type="password" minlength="5" maxlength="15"
+              pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+            <label class="tooltipped" data-position="bottom" data-tooltip="Password can only contain letters and numbers. This field is case sensitive." for="password">Password <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+            <!-- Tooltip -->
+            <div >
+              
+            </div>
+          </div>
+        </div>
+        <!-- Email -->
+        <div id="register-email" class="row">
+          <div class="input-field col s12">
+            <i class="fas fa-at prefix"></i>
+            <input id="email" name="email" type="email" class="validate" required>
+            <label for="email" class="tooltipped" data-position="bottom" data-tooltip="This must be a standard email address. Must contain '@'.">Email <strong class="required" >*</strong> <i class="fa-regular fa-circle-question"></i></label>
+            <!-- Tooltip -->
+            <div >
+              </i>
+            </div>
+          </div>
+        </div>
+        <!-- Experience -->
+        <div id="register-experience" class="row">
+          <div class="input-field col s12">
+            <i class="fas fa-graduation-cap prefix"></i>
+            <select id="experience" name="experience" class="validate" required>
+              <option value="0" selected>How much do you know about birds?</option>
+              <option value="1"><strong>Egg</strong> (What's a bird?)</option>
+              <option value="2"><strong>Hatchling</strong> (New to this)</option>
+              <option value="3"><strong>Fledgling</strong> (Garden birds only)</option>
+              <option value="4"><strong>Juvenile</strong> ("That's a Coot, not a Moorhen")</option>
+              <option value="5"><strong>Adult</strong> (Can identify 'that little flitty one')</option>
+              <option value="6"><strong>Owl</strong> (Have seen ALL the birds)</option>
+            </select>
+            <label for="experience">Experience Level <strong class="required">*</strong></label>
+          </div>
+        </div>
+        <p><strong class="required">*</strong> indicates required field</p>
+        <!-- Register submit button-->
+        <div id="register-button" class="row">
+          <button type="submit" class="col s12 btn-small">
+            Register <i class="fas fa-sign-in-alt"></i>
+          </button>
+        </div>
+        <!-- Redirect to login -->
+        <div id="register-to-login" class="row">
+          <div class="col s12">
+            <p class="center-align">
+              Been here before?
+              <a href="{{ url_for('login') }}">Log in</a>
+            </p>
           </div>
         </div>
       </div>
-      <!-- passowrd -->
-      <div id="register-password" class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-user-lock prefix"></i>
-          <input id="password" name="password" type="password" minlength="5" maxlength="15"
-            pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-          <label for="password">Password <strong class="required">*</strong></label>
-          <!-- Tooltip -->
-          <div class="tooltipped" data-position="right" data-tooltip="Password can only contain letters and numbers. This field is case sensitive.">
-            <i class="fa-regular fa-circle-question"></i>
-          </div>
-        </div>
-      </div>
-      <!-- Email -->
-      <div id="register-email" class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-at prefix"></i>
-          <input id="email" name="email" type="email" class="validate" required>
-          <label for="email">Email <strong class="required">*</strong></label>
-          <!-- Tooltip -->
-          <div class="tooltipped" data-position="right" data-tooltip="This must be a standard email address. Must contain '@'.">
-            <i class="fa-regular fa-circle-question"></i>
-          </div>
-        </div>
-      </div>
-      <!-- Experience -->
-      <div id="register-experience" class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-graduation-cap prefix"></i>
-          <select id="experience" name="experience" class="validate" required>
-            <option value="0" selected>How much do you know about birds?</option>
-            <option value="1"><strong>Egg</strong> (What's a bird?)</option>
-            <option value="2"><strong>Hatchling</strong> (New to this)</option>
-            <option value="3"><strong>Fledgling</strong> (Garden birds only)</option>
-            <option value="4"><strong>Juvenile</strong> ("That's a Coot, not a Moorhen")</option>
-            <option value="5"><strong>Adult</strong> (Can identify 'that little flitty one')</option>
-            <option value="6"><strong>Owl</strong> (Have seen ALL the birds)</option>
-          </select>
-          <label for="experience">Experience Level <strong class="required">*</strong></label>
-        </div>
-      </div>
-      <p><strong class="required">*</strong> indicates required field</p>
-      <!-- Register submit button-->
-      <div id="register-button" class="row">
-        <button type="submit" class="col s12 btn-large">
-          Register <i class="fas fa-sign-in-alt"></i>
-        </button>
-      </div>
-    </div>
-  </form>
-  <!-- Redirect to login -->
-  <div id="register-to-login" class="row">
-    <div class="col s12">
-      <p class="center-align">
-        Been here before?
-        <a href="{{ url_for('login') }}">Log in</a>
-      </p>
-    </div>
+    </form>
   </div>
 </div>
-
 {% endblock %}
