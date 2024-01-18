@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="login-page-conatainer">
+<div class="background-img" id="login-page-conatainer">
   {% if session.user %}
       <!-- Redirect to login only visible to non-users -->
       <a href="{{ url_for('my_nest') }}"> You are already logged in. Click to be redirected to your nest </a>

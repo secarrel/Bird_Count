@@ -115,6 +115,15 @@ label {
     padding: 20px 40px;
 }
 
+.background-img {
+    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-attachment: fixed;    
+    padding: 20px;
+    min-height: 90vh;
+    color: #efefef;
+}
+
 /* ----------- Rows and Columns ----------- */
 .row {
     margin-top: 20px;
@@ -368,14 +377,6 @@ nav a {
 }
 
 /* ---------------------- COMMUNITY OBSERVATIONS PAGE ---------------------- */
-#community-observations-container {
-    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-attachment: fixed;    
-    padding: 20px;
-    min-height: 90vh;
-}
-
 #community-observations-container h3 {
     margin: 10px;
 }
@@ -429,31 +430,27 @@ nav a {
 }
 
 /* ---------------------- MY NEST PAGE ---------------------- */
-/* ---------------------- ADMIN PAGE ---------------------- */
-/* ---------------------- LOG-IN PAGE ---------------------- */
-#login-page-conatainer {
-    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-attachment: fixed;    
-    padding: 20px;
-    min-height: 90vh;
-    color: #efefef;
+#nest-heading-container {
+    height: 100px;
+    width:50vw;
+    background-color:#192738c5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px;
+    margin: auto;
 }
 
+#nest-heading{
+    margin: 0;
+}
+
+/* ---------------------- ADMIN PAGE ---------------------- */
+/* ---------------------- LOG-IN PAGE ---------------------- */
 input {
     color: #efefef;
 }
 /* ---------------------- REGISTER PAGE ---------------------- */
-
-#register-page-conatainer {
-    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-attachment: fixed;    
-    padding: 20px;
-    min-height: 90vh;
-    color: #efefef;
-}
-
 .select-wrapper input.select-dropdown{
     color: #9e9e9e;
 }
@@ -467,14 +464,6 @@ input {
     fill: #9e9e9e;
 }
 /* ---------------------- ADD OBSERVATION PAGE ---------------------- */
-#add-observation-container {
-    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-attachment: fixed;    
-    padding: 20px;
-    min-height: 90vh;
-    color: #efefef;
-}
 
 input#file-upload-button {
     display: none;
@@ -520,15 +509,6 @@ input[type=range] {
 }
 
 /* ---------------------- EDIT OBSERVATION PAGE ---------------------- */
-#edit-observation-container {
-    background-image: url("https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-attachment: fixed;    
-    padding: 20px;
-    min-height: 90vh;
-    color: #efefef;
-}
-
 .row .col.s3 {
     margin-right: auto;
 }

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="edit-observation-container">
+<div class="background-img" id="edit-observation-container">
     <!-- Only allow the admin or observation creator to edit the chosen observation -->
     {% if session.user == original_user or session.user == 'admin' %}
     <!-- Edit observation form -->
