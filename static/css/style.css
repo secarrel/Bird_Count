@@ -445,6 +445,50 @@ nav a {
     margin: 0;
 }
 
+/* ----------- Stats Section ----------- */
+#bird-stats-container{
+    text-align: center;
+}
+.circle-container {
+    background-color: #E49452;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #192738;
+    font-size: 30px;
+    margin: 15px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.stats-label {
+    height: 40px;
+    width: 150px;
+    text-align: center;
+}
+
+.stats-label h6{
+    height: 40px;
+    margin: auto 0;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#life-list-container{
+    margin-top: 24px;
+}
 /* ---------------------- ADMIN PAGE ---------------------- */
 /* ---------------------- LOG-IN PAGE ---------------------- */
 input {

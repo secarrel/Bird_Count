@@ -14,23 +14,42 @@
                 </div>
                 <!-- Stats -->
                 <div class="bird-stats">
-                    <h5> Observation Stats </h5>
-                    <div>
-                        Total Birds Observed: {{ total_observations }}
-                    </div>
-                    <div>
-                        Total Bird Species Observed: {{ species_count }}
-                    </div>
-                    <div>
-                        Average Certainty: {{ average_certainty}}/10
+                    <div class="light-section">
+                        <h5> Observation Stats </h5>
+                        <div class="flex-row" id="stats-container">
+                            <div id="total-birds-container" class="stat">
+                                <div class="stats-label">
+                                    <h6>Total Birds Observed</h6> 
+                                </div>
+                                <div class="circle-container">
+                                    <p>{{ total_observations }}</p>
+                                </div> 
+                            </div>
+                            <div id="total-species-container" class="stat">
+                                <div class="stats-label">
+                                    <h6>Total Bird Species Observed</h6>
+                                </div>
+                                <div class="circle-container">
+                                    <p>{{ species_count }}</p>
+                                </div>
+                            </div>
+                            <div id="average-certainty-container" class="stat">
+                                <div class="stats-label">
+                                    <h6>Average Certainty</h6>
+                                </div>
+                                <div class="circle-container">
+                                    <p>{{ average_certainty}}/10</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Life list -->
-                    <div class=card-heading>
+                    <div class="light-section" id="life-list-container">
                         <h5> My life list </h5>
                         <p>
                             A collection and count of all bird species you have seen and submitted on Bird Count.
                         </p>
-                        <a href="#life-list-modal{{ user._id }}" class="modal-trigger">View your life list <i class="fa-solid fa-binoculars"></i></a>
+                        <a href="#life-list-modal{{ user._id }}" class="modal-trigger btn-small">View your life list <i class="fa-solid fa-binoculars"></i></a>
                     </div>
                 </div>
             </div>
