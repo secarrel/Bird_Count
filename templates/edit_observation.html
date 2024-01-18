@@ -1,116 +1,116 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Only allow the admin or observation creator to edit the chosen observation -->
-{% if session.user == original_user or session.user == 'admin' %}
-<!-- Page heading -->
-<h3 class="center-align">Edit Observation</h3>
-<!-- Edit observation form -->
-<div id="edit-observation" class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
-        <div class="card-panel">
-            <!-- Input field for bird species -->
-            <div id="bird-species-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-crow prefix"></i>
-                    <input id="bird" class="autocompletebird" name="bird" type="text" required value="{{ observation.bird_species }}">
-                    <label for="bird">Bird Species <strong class="required">*</strong></label>
-                    <div class="tooltipped" data-position="right"
-                        data-tooltip="Using the autocomplete options will make it easier to search for your results.">
-                        <i class="fa-regular fa-circle-question"></i>
+<div id="edit-observation-container">
+    <!-- Only allow the admin or observation creator to edit the chosen observation -->
+    {% if session.user == original_user or session.user == 'admin' %}
+    <!-- Edit observation form -->
+    <div id="edit-observation" class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
+            <div class="card-panel">
+                <!-- Page heading -->
+                <h3 class="center-align">Edit Observation</h3>
+                <!-- Input field for bird species -->
+                <div id="bird-species-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-crow prefix"></i>
+                        <input id="bird" class="autocompletebird" name="bird" type="text" required value="{{ observation.bird_species }}">
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Using the autocomplete options will make it easier to search for your results." for="bird">Bird Species <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
                     </div>
                 </div>
-            </div>
-            <!-- Input field for location -->
-            <div id="location-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-map-location-dot prefix"></i>
-                    <input id="location" class="autocompletelocation" name="location" type="text" required value="{{ observation.location }}">
-                    <label for="location">Location <strong class="required">*</strong></label>
-                    <div class="tooltipped" data-position="right" data-tooltip="Using the autocomplete options will make it easier to search for your results. 
-                                                If you want to be more specific with the location of your observation you can add extra 
-                                                information in brackets after the district. EG. Newport (RSPB Wetlands)">
-                        <i class="fa-regular fa-circle-question"></i>
+                <!-- Input field for location -->
+                <div id="location-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-map-location-dot prefix"></i>
+                        <input id="location" class="autocompletelocation" name="location" type="text" required value="{{ observation.location }}">
+                        <label class="tooltipped" data-position="bottom" data-tooltip="Using the autocomplete options will make it easier to search for your results. 
+                                                    If you want to be more specific with the location of your observation you can add extra 
+                                                    information in brackets after the district. EG. Newport (RSPB Wetlands)" for="location">Location <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
                     </div>
                 </div>
-            </div>
-            <!-- Input field for date -->
-            <div id="date-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-calendar-days prefix"></i>
-                    <input id="date" name="date" type="text" class="datepicker" required
-                    value="{{ observation.date }}">
-                    <label for="date">Date of Observation <strong class="required">*</strong></label>
-                </div>
-            </div>
-            <!-- Input field for time -->
-            <div id="time-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-clock prefix"></i>
-                    <input id="time" name="time" type="text" class="timepicker" required value="{{ observation.time }}">
-                    <label for="time">Time of Observation <strong class="required">*</strong></label>
-                </div>
-            </div>
-            <!-- Input field for certainty -->
-            <div id="certainty-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-eye-low-vision"></i>
-                    <input type="range" name="certainty" id="certainty" min="0" max="10" required value="{{ observation.certainty }}">
-                    <label for="certainty">Certainty <strong class="required">*</strong></label>
-                </div>
-            </div>
-            <!-- Input field for notes -->
-            <div id="notes-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-comment prefix"></i>
-                    <input type="text" name="notes" id="notes" value="{{ observation.notes }}">
-                    <label for="notes">Notes</label>
-                    <div class="tooltipped" data-position="right"
-                        data-tooltip="Talk about anything... What was the weather like? 
-                                                Describe the bird's appearance if you're unsure of identification! What was the bird doing?">
-                        <i class="fa-regular fa-circle-question"></i>
+                <!-- Input field for date -->
+                <div id="date-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-calendar-days prefix"></i>
+                        <input id="date" name="date" type="text" class="datepicker" required
+                        value="{{ observation.date }}">
+                        <label for="date">Date of Observation <strong class="required">*</strong></label>
                     </div>
                 </div>
-            </div>
-            <!-- Input field for quantity -->
-            <div id="quantity-edit" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-hashtag prefix"></i>
-                    <input type="number" name="quantity" id="quantity" min="1" value="{{ observation.quantity }}">
-                    <label for="quantity">Quantity <strong class="required">*</strong></label>
+                <!-- Input field for time -->
+                <div id="time-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-clock prefix"></i>
+                        <input id="time" name="time" type="text" class="timepicker" required value="{{ observation.time }}">
+                        <label for="time">Time of Observation <strong class="required">*</strong></label>
+                    </div>
+                </div>
+                <!-- Input field for certainty -->
+                <div id="certainty-edit" class="row">
+                    <div class="certainty-label col s12 m4 l3">
+                        <i class="fa-solid fa-eye-low-vision"></i>
+                        <p> Certainty <strong class="required">*</strong></p>
+                    </div>
+                    <div class="input-field col s12 m8 l9">
+                        <label for="certainty"></label>
+                        <input type="range" name="certainty" id="certainty" min="0" max="10" required value="{{ observation.certainty }}">
+                    </div>
+                </div>
+                <!-- Input field for notes -->
+                <div id="notes-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-comment prefix"></i>
+                        <input type="text" name="notes" id="notes" value="{{ observation.notes }}">
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Talk about anything... What was the weather like? Describe the bird's appearance if you're unsure of identification! What was the bird doing?"for="notes">Notes <i class="fa-regular fa-circle-question"></i> </label>
+                    </div>
+                </div>
+                <!-- Input field for quantity -->
+                <div id="quantity-edit" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-hashtag prefix"></i>
+                        <input type="number" name="quantity" id="quantity" min="1" value="{{ observation.quantity }}">
+                        <label for="quantity">Quantity <strong class="required">*</strong></label>
+                    </div>
+                </div>
+                <!-- Input field for image -->
+                <div id="image-add" class="row">
+                    <div class="input-field col s12">
+                        <div class="col s12 m6 l6">
+                            <i class="fa-solid fa-camera prefix"></i>
+                            <label for="image-file">Upload Image (optional):</label>
+                        </div>
+                        <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
+                    </div>
+                </div>
+                <p><strong class="required">*</strong> indicates required field</p>
+                <!-- Update observation -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-small tooltipped" data-position="bottom" data-tooltip="On submission you will be redirected to the Community Observations page">
+                        Edit Observation <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <!-- Cancel and redirect -->
+                <div class="row">
+                    <!-- Non-admin users are returned to 'my nest' -->
+                    {% if session.user != 'admin' %}        
+                    <a href="{{ url_for('my_nest')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                        Cancel, return to my nest
+                    </a>
+                    <!-- Admin user is returned to 'community observations' -->
+                    {% endif %}
+                    <a href="{{ url_for('get_observations')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                        Cancel, return to community observations
+                    </a>
                 </div>
             </div>
-            <!-- Input field for image -->
-            <div id="image-add" class="row">
-                <div class="input-field col s12">
-                    <label for="image-file">Upload Image (optional):</label>
-                    <input type="file" name="image-file" id="image-file">
-                </div>
-            </div>
-            <p><strong class="required">*</strong> indicates required field</p>
-            <div id="submit-edit-observation" class="row">
-                <!-- Submit and get directed to community observations -->
-                <button type="submit" class="col s12 btn-large tooltipped" data-position="bottom" data-tooltip="On submission you will be redirected to the Community Observations page">
-                    Edit Observation <i class="fas fa-edit"></i>
-                </button>
-                <!-- Non-admin users are returned to 'my nest' -->
-                {% if session.user != 'admin' %}        
-                <a href="{{ url_for('my_nest')}}" class="btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
-                    Cancel, return to my nest
-                </a>
-                <!-- Admin user is returned to 'community observations' -->
-                {% endif %}
-                <a href="{{ url_for('get_observations')}}" class="btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
-                    Cancel, return to community observations
-                </a>
-            </div>
-        </div>
-    </form>
-</div>
-
-{% else %}
-    <!-- Redirect to welcome if not allowed access-->
-    <div>
-        <a href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home page. </a>
+        </form>
     </div>
-{% endif %}
+    {% else %}
+        <!-- Redirect to welcome if not allowed access-->
+        <div>
+            <a href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home page. </a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

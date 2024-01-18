@@ -43,9 +43,13 @@
                     </div>
                 </div>
                 <!-- Input field for certainty -->
-                <div id="certainty-add" class="row">
-                    <div class="col s12">
-                        <label for="certainty">Certainty <strong class="required">*</strong></label>
+                <div id="certainty-edit" class="row">
+                    <div class="certainty-label col s12 m4 l3">
+                        <i class="fa-solid fa-eye-low-vision"></i>
+                        <p> Certainty <strong class="required">*</strong></p>
+                    </div>
+                    <div class="input-field col s12 m8 l9">
+                        <label for="certainty"></label>
                         <input type="range" name="certainty" id="certainty" min="0" max="10" required>
                     </div>
                 </div>
@@ -69,11 +73,11 @@
                 <!-- Input field for image -->
                 <div id="image-add" class="row">
                     <div class="input-field col s12">
-                        <div class="col s6 m6 l6">
+                        <div class="col s12 m6 l6">
                             <i class="fa-solid fa-camera prefix"></i>
                             <label for="image-file">Upload Image (optional):</label>
                         </div>
-                        <input class="col s6 m6 l6" type="file" name="image-file" id="image-file">
+                        <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
                     </div>
                 </div>
                 <p><strong class="required">*</strong> indicates required field</p>
@@ -85,11 +89,12 @@
                 </div>
                 <!-- Cancel and redirect -->
                 <div class="row">
+                    <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}
-                    <a href="{{ url_for('my_nest')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom"
-                        data-tooltip="Your changes will not be saved">
+                    <a href="{{ url_for('my_nest')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
+                    <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
                     <a href="{{ url_for('get_observations')}}" class=" cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom"
                         data-tooltip="Your changes will not be saved">
