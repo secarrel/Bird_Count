@@ -484,10 +484,20 @@ nav a {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #life-list-container{
     margin-top: 24px;
+}
+
+#observation-list-nest-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#my-observation-new-obs {
+    margin: auto;
 }
 /* ---------------------- ADMIN PAGE ---------------------- */
 /* ---------------------- LOG-IN PAGE ---------------------- */
@@ -644,13 +654,29 @@ input[type=range] {
     padding: 0;
     }   
 
-
-
     .modal {
         width: 80%;
     }
     
 }
+
+@media only screen and (max-width: 500px) {
+    .mobile-narrow{
+        width: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-panel {
+        padding: 7px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}
+
 @media only screen and (max-width: 350px) {
         #logo-container {
         max-height: 40px;

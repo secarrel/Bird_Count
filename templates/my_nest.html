@@ -63,18 +63,20 @@
                 <!-- Find if there are any observations made by session user -->
                 {% if observations|selectattr('seen_by', 'equalto', session['user'])|list %}                        
                     <!-- New observation button -->
-                    <a class="btn-small" href="{{ url_for('add_observation') }}">
-                        New Observation 
-                        <i class="fa-solid fa-crow"></i>
-                        <i class="fa-solid fa-plus"></i>
-                    </a>
+                    <div class="center-align">
+                        <a class="btn-small center-align" href="{{ url_for('add_observation') }}">
+                            New Observation 
+                            <i class="fa-solid fa-crow"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    </div>
                     <!-- Observation table -->
                     <table class="highlight">
                         <thead>
                             <tr>
                                 <th>Bird Species</th>
-                                <th>Quantity</th>
-                                <th>Location</th>
+                                <th class="hide-mobile">Quantity</th>
+                                <th class="hide-mobile">Location</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -84,19 +86,19 @@
                                 {% if session.user|lower == observation.seen_by|lower %}
                                 <tr>
                                     <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.quantity }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile">{{ observation.quantity }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile">{{ observation.location }}</td>
                                     <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
                                     <!-- Edit observation button -->
                                     <td>
-                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small">
+                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small mobile-narrow">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <!-- Delete observation -->
                                     <td>
                                         <!-- Delete button -->
-                                        <a href="#confirm-delete" class="btn modal-trigger red">
+                                        <a href="#confirm-delete" class="btn-small modal-trigger red mobile-narrow">
                                             <i class="fa-regular fa-trash-can "></i>
                                         </a>
                                         <!-- Delete modal -->
