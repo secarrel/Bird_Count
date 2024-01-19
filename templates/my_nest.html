@@ -2,8 +2,8 @@
 {% block content %}
 <div class="background-img">
     <!-- Page heading -->
-    <div id="nest-heading-container">
-        <h2 class="center-align" id="nest-heading">My Nest</h2>
+    <div class="nest-heading-container">
+        <h2 class="center-align nest-heading">My Nest</h2>
     </div>
     <!-- Bird Stats -->
     <div id="bird-stats-container" class="row">
@@ -71,7 +71,7 @@
                         </a>
                     </div>
                     <!-- Observation table -->
-                    <table class="highlight">
+                    <table class="highlight light-section">
                         <thead>
                             <tr>
                                 <th>Bird Species</th>
@@ -162,17 +162,19 @@
         <div class="col s12">
             <div class="card-panel">
                 <h4 class="center-align">Contact Admin</h4>
-                <p> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
-                <!-- Messages -->
-                <a href="#pigeon-hole" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
-                    Pigeon Hole 
-                    <i class="fa-solid fa-envelope"></i> 
-                </a>
-                <!-- Contact Admin -->
-                <a href="#contact-admin" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
-                    Contact admin 
-                    <i class="fa-solid fa-circle-info"></i>
-                </a>
+                <p class="center-align"> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
+                <div class="row">
+                    <!-- Messages -->
+                    <a href="#pigeon-hole" class="btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
+                        Pigeon Hole 
+                        <i class="fa-solid fa-envelope"></i> 
+                    </a>
+                    <!-- Contact Admin -->
+                    <a href="#contact-admin" class="btn-small col s12 m6 l6 modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
+                        Contact admin 
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -182,10 +184,10 @@
             <div class="card-panel">
                 <!-- Section heading -->
                 <h4 class="center-align">My Account</h4>
-                <div class="privacy card-panel">
+                <div class="privacy card-panel" id="edit-privacy-container">
                     <h5>Edit privacy settings</h5> 
                     <!-- Edit visibility -->
-                    <div class="card-panel">
+                    <div class="light-section-less-padding" id="edit-visibility-container">
                         <form id="visibility-form" method="POST" action="{{ url_for('edit_user_visibility', user_id=user._id) }}">
                             <h6>Visibility</h6>
                             <p>
@@ -203,19 +205,19 @@
                         </form>
                     </div>
                     <!-- Edit anonymity -->
-                    <div class="card-panel">
+                    <div class="light-section-less-padding">
                         <form id="anonymous-form" method="POST" action="{{ url_for('edit_user_anonymous', user_id=user._id) }}">
                             <h6>Anonymity</h6>
                             <p>
-                                Set the anonymity of your observations to the community. If set to 'yes' (anonymous) your observations will 
+                                Set the anonymity of your observations to the community. If set to 'anonymous' your observations will 
                                 still be visible to the community but your username will be hidden.
                             </p>
                             <div class="switch">
                                 <label class="tooltipped" data-position="bottom" data-tooltip="Changes are updated immediately">
-                                    No
+                                    Named
                                     <input id="anonymous-switch" name="anonymous-switch" type="checkbox" {% if user.anonymous is true %} checked {% endif %}>
                                     <span class="lever"></span>
-                                    Yes
+                                    Anonymous
                                 </label>
                             </div>
                         </form>
@@ -223,25 +225,27 @@
                 </div>
                 <div class="edit-details card-panel"> 
                     <h5>Edit Account Details</h5>
-                    <!-- Edit Email -->
-                    <div>
-                        <p> Email: {{ user.email }}</p>
-                        <a href="#email-modal" class="modal-trigger tooltipped" data-position="right" data-tooltip="Edit your email address">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                    </div>
-                    <!-- Edit experience -->
-                    <div>
-                        <p> Experience: {{ user.experience }}/6</p>
-                        <a href="#experience-modal" class="modal-trigger tooltipped" data-position="right" data-tooltip="Edit your experience level">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                    </div>                
+                    <div class="row">
+                        <!-- Edit Email -->
+                        <div class="light-section-less-padding col s12 m12 l6" id="edit-email-container">
+                            <p> Email: {{ user.email }}</p>
+                            <a href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="right" data-tooltip="Edit your email address">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </div>
+                        <!-- Edit experience -->
+                        <div class="light-section-less-padding col s12 m12 l6" id="edit-experience-container">
+                            <p> Experience: {{ user.experience }}/6</p>
+                            <a href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="right" data-tooltip="Edit your experience level">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </div>    
+                    </div>            
                 </div>
                 <!-- Delete Account -->
                 <div class="delete-account card-panel">
                     <h5>Delete Account</h5>
-                    <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger red">
+                    <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger btn-small red" id="delete-account-button">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         DELETE ACCOUNT
                         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -340,7 +344,7 @@
         </div>
     </div>
     <!-- Pigeon Hole Modal -->
-    <div class="row modal" id="pigeon-hole">
+    <div class="row modal pigeon-hole" id="pigeon-hole">
         <div class="col s12">
             <div class="card-panel">
                 <div class=card-heading>
@@ -356,7 +360,7 @@
                                 {% if message.recipient == session.user %}
                                     <li>
                                         <!-- Message Summary -->
-                                        <div class="collapsible-header">
+                                        <div class="collapsible-header light-section">
                                             From: {{ message.sender }} |
                                             Subject:{{ message.subject }} |
                                             Sent at: {{ message.time }}
