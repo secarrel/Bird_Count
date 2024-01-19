@@ -1,6 +1,14 @@
-.flashes h4 {
-    line-height: 2px;
-    font-size: 14px;
+.flashes h4{
+    font-size: 20px;
+    color: #efefef;
+    margin: 0;
+    padding: 5px;
+}
+
+.flashes {
+        width: 100%;
+        line-height: 30px;
+        margin: 0;
 }
 
 .hidden {
@@ -113,6 +121,12 @@ label {
     background-color: #243449;
     color: #efefef;
     padding: 20px 40px;
+}
+
+.light-section-less-padding{
+    background-color: #243449;
+    color: #efefef;
+    padding: 5px;
 }
 
 .background-img {
@@ -430,7 +444,7 @@ nav a {
 }
 
 /* ---------------------- MY NEST PAGE ---------------------- */
-#nest-heading-container {
+.nest-heading-container {
     height: 100px;
     width:50vw;
     background-color:#192738c5;
@@ -441,7 +455,7 @@ nav a {
     margin: auto;
 }
 
-#nest-heading{
+.nest-heading{
     margin: 0;
 }
 
@@ -492,14 +506,50 @@ nav a {
 }
 
 #observation-list-nest-container {
+    text-align: center;
+}
+
+#contact-admin-container {
     display: flex;
     flex-direction: column;
 }
 
-#my-observation-new-obs {
+#edit-visibility-container{
+    margin-bottom: 10px;
+}
+
+#edit-email-container{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px;
+}
+
+#edit-email-container p{
+    width: 200px;    
+}
+
+#edit-experience-container{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px;
+}
+
+#edit-experience-container p{
+    width: 200px;
+}
+
+#delete-account-button {
+    width: 100%;
     margin: auto;
 }
 /* ---------------------- ADMIN PAGE ---------------------- */
+.pigeon-hole {
+
+}
 /* ---------------------- LOG-IN PAGE ---------------------- */
 input {
     color: #efefef;
