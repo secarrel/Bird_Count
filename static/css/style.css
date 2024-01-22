@@ -641,6 +641,71 @@ input[type=range] {
     margin-right: auto;
 }
 
+/* ---------------------- FOOTER ---------------------- */
+#footer-container {
+    width: 100%;
+    background-color: #e49452;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.footer-section {
+    width: 300px;
+}
+
+#footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#footer-logo img {
+    max-width: 200px;
+    padding: 3px 0;
+}
+
+#footer-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color:#192738;
+    text-decoration: none;
+    width: 300px;
+    padding: 10px;
+}
+
+#footer-links h6{
+    color:#192738;
+    text-decoration: underline;
+}
+
+#footer-links a{
+    color:#192738 !important;
+    text-decoration: none;
+}
+
+#footer-links a:hover{
+    color:#243449 !important;
+    font-weight: 500;
+}
+
+
+#footer-links a i{
+    color:#192738 !important;
+    text-decoration: none;
+}
+
 /* ---------------------- BREAKPOINTS ---------------------- */
 @media only screen and (max-width: 1450px) {
     /* ----------- WELCOME - Heading and image ----------- */

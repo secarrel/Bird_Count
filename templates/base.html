@@ -131,6 +131,42 @@
         {% block content %}
         {% endblock %}
     </main>
+    <footer>
+        <div id="footer-container">
+            <div id="footer-logo" class="footer-section">
+                <a href="{{ url_for('welcome') }}" >
+                    <img src="../static/assets/images/black-logo.png"
+                        alt="Bird Count logo dsplaying the name, bird silhouette and slogan.">
+                </a>
+            </div>
+            <div id="footer-buttons" class="footer-section">
+                <div>
+                    <!-- Get started button for logged-in users -->
+                    {% if session.user and session.user != "admin" %}
+                    <a class="btn-small"
+                        href="{{ url_for('add_observation') }}">
+                        New Observation
+                        <i class="fa-solid fa-crow"></i>
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                    <!-- Get started button for users not logged in -->
+                    {% elif session.user != "admin" %}
+                    <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+                        href="{{ url_for('register') }}">
+                        Sign-up
+                        <i class="fa-solid fa-user-plus"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="footer-links" class="footer-section">
+                <h6> Useful links</h6>
+                <a href="https://www.bto.org/" target="_blank"> <i class="fa-brands fa-earlybirds"></i> Learn about the BTO</a>            
+                <a href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank"> <i class="fa-solid fa-binoculars"></i> Identify a Bird</a>
+                <a href="https://github.com/secarrel/Bird_Count" target="_blank"> <i class="fa-brands fa-github"></i> Learn more about Bird Count</a>        
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
