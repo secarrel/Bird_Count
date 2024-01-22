@@ -300,7 +300,6 @@ nav a {
     background-color: #ffffffee;
 }
 
-/* ---------------------- FLASH MESSAGES ---------------------- */
 /* ---------------------- WELCOME PAGE ---------------------- */
 /* ----------- Heading and Image Section----------- */
 #welcome-container {
@@ -509,10 +508,12 @@ nav a {
     margin-top: 24px;
 }
 
+/* ----------- Nest Observations Section ----------- */
 #observation-list-nest-container {
     text-align: center;
 }
 
+/* ----------- Contact Admin Section ----------- */
 #contact-admin-container {
     display: flex;
     flex-direction: column;
@@ -648,9 +649,12 @@ input[type=range] {
     }
 
     .hide-mobile {
-    display : none;
+        display : none;
     }
-
+    
+    .contact-admin-btn {
+        width: 100% !important;
+    }
 }
 
 @media only screen and (max-width: 700px) {
