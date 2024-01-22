@@ -61,7 +61,7 @@
             </p>
             <div id="get-started-button">
                 <!-- Get started button for logged-in users -->
-                {% if session.user %}
+                {% if session.user and session.user != "admin" %}
                 <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
                     href="{{ url_for('add_observation') }}">
                     Start recording!
@@ -69,7 +69,7 @@
                     <i class="fa-solid fa-plus"></i>
                 </a>
                 <!-- Get started button for users not logged in -->
-                {% else %}
+                {% elif session.user != "admin"%}
                 <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
                     href="{{ url_for('register') }}">
                     Sign-up

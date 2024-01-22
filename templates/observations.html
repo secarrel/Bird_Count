@@ -12,16 +12,16 @@
             <form action="{{ url_for('search') }}" method="POST">
                 <div class="row valign-wrapper">
                     <!-- If the user is logged in display 'new observation' button -->
-                    {% if session.user %}
+                    {% if session.user and session.user != "admin" %}
                         <a class="btn-small tooltipped set-size" data-position="bottom" data-tooltip="Add your own observation" href="{{ url_for('add_observation') }}">
                             New Observation 
                             <i class="fa-solid fa-crow"></i>
                             <i class="fa-solid fa-plus"></i>
                         </a>
                     <!-- If user isn't logged in display button to log in -->
-                    {% else %}
+                    {% elif session.user != "admin" %}
                         <a class="btn-small tooltipped set-size" data-position="bottom" data-tooltip="Log in to record your observations" href="{{ url_for('login') }}">
-                            Add observations
+                            Log in
                             <i class="fa-solid fa-user-plus"></i>
                         </a>
                     {% endif %}
