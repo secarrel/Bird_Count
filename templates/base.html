@@ -17,14 +17,14 @@
         <!-- Dropdown section of navbar -->
         <ul id="full-nav-dropdown" class="dropdown-content">
             {% if session.user and session.user != 'admin' %}
-                <li>
+                <div>
                     <div class="avatar-drop-container">
                         <img class="avatar-drop" src='{{ user.avatar }}' alt="User's avatar">
                     </div>
                     <h6 class="username-drop">
                         Hi, {{ session.user }}!
                     </h6>
-                </li>
+                </div>
                 <li><a href="{{ url_for('my_nest') }}">My Nest</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% elif session.user == 'admin' %}
