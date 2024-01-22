@@ -78,8 +78,9 @@
                     <div class="input-field col s12">
                         <div class="col s12 m6 l6">
                             <i class="fa-solid fa-camera prefix"></i>
-                            <label for="image-file">Upload Image (optional):</label>
+                            <label for="image-file">Change Image (optional):</label>
                         </div>
+                        <a href="#observation-details{{ observation._id }}" class="modal-trigger btn-small">Current image</a>
                         <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
                     </div>
                 </div>
@@ -102,6 +103,19 @@
                     <a href="{{ url_for('get_observations')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to community observations
                     </a>
+                </div>
+                <!-- Image modal -->
+                <div id="observation-details{{ observation._id }}" class="modal">
+                    <div id="bird-info-modal" class="col s12 modal-content">
+                        <!-- Observation image -->
+                        <div id="bird-info-image-container" class="card-image">
+                            <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
+                        </div>
+                        <!-- Close modal -->
+                        <div class="modal-footer">
+                            <div class="modal-close btn-small">Close</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

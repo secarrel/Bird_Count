@@ -233,7 +233,7 @@ def register():
         experience = request.form.get("experience")
         # Match experience levels to different avatars
         if experience == '1':
-            avatar_url = '../static/assets/images/eggs.jpeg' 
+            avatar_url = '../static/assets/images/eggs.png' 
         elif experience == '2':
             avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
         elif experience == '3':
@@ -417,6 +417,8 @@ def edit_observation(observation_id):
     user_id = user_info["_id"]
     visible = user_info["visible"]
     anonymous = user_info["anonymous"]
+    original_image_id = observation.get("image")
+    
 
     # Redirect user to login if they are not already.
     if 'user' not in session:
@@ -436,7 +438,7 @@ def edit_observation(observation_id):
             # Further logic to handle the image ID, possibly storing it in the database
         else:
             # No file uploaded; handle accordingly
-            image_id = ObjectId('65a522a638bb15858a80cc53')
+            image_id = ObjectId(original_image_id)
             print("No file uploaded")
     else:
         # No file field in the request; handle accordingly
@@ -477,6 +479,7 @@ def get_image(observation_id):
     document = db.observations.find_one({"_id": ObjectId(observation_id)})
     image_id = document.get("image")
     image_file = fs.get(image_id)
+    print(image_file)
     return send_file(image_file, mimetype='image/jpeg')
 
 # Logout the session user
