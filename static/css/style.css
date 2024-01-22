@@ -221,6 +221,11 @@ nav a {
     max-height: 64px;
     padding: 3px 0;
 }
+
+#nav-logo:hover {
+    max-height: 65px;
+}
+
 /* ------- User menu ------- */
 .avatar-container {
     border-radius: 5px;
@@ -666,6 +671,10 @@ input[type=range] {
 #footer-logo img {
     max-width: 200px;
     padding: 3px 0;
+}
+
+#footer-logo img:hover {
+    max-width: 203px;
 }
 
 #footer-buttons {
