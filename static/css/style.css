@@ -84,8 +84,12 @@ body {
     font-size: 14px;
 }
 
+h2 {
+    font-size: 40px !important;
+}
+
 h3 {
-    font-size: 35px;
+    font-size: 35px !important;
 }
 
 h4 {
@@ -93,7 +97,7 @@ h4 {
 }
 
 h5 {
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 i {
@@ -547,9 +551,7 @@ nav a {
     margin: auto;
 }
 /* ---------------------- ADMIN PAGE ---------------------- */
-.pigeon-hole {
 
-}
 /* ---------------------- LOG-IN PAGE ---------------------- */
 input {
     color: #efefef;
@@ -724,6 +726,10 @@ input[type=range] {
 
     table {
         font-size: 12px;
+    }
+
+    .nest-heading {
+        font-size: 30px !important;
     }
 }
 
