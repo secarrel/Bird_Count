@@ -444,6 +444,7 @@ nav a {
 
 .modal .modal-footer {
     background-color:#192738 !important;
+    color: #efefef;
 }
 
 .modal .modal-content {
@@ -519,6 +520,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow-x: hidden;
 }
 
 #life-list-table {
@@ -756,7 +758,7 @@ input[type=range] {
 }
 
 @media only screen and (max-width: 350px) {
-        #logo-container {
+    #logo-container {
         max-height: 40px;
     }
 
@@ -766,8 +768,14 @@ input[type=range] {
     }
 
     .modal {
-    width: 95%;
+        width: 95%;
     }
 
-
+    #life-list-table {
+        width: 200px;
+    }   
+    
+    #life-list-container{
+        padding: 5px !important;
+    }
 }
