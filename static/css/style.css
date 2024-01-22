@@ -444,13 +444,15 @@ nav a {
 
 .modal .modal-footer {
     background-color:#192738 !important;
-    color: #efefef;
 }
 
 .modal .modal-content {
     background-color:#192738 !important;
 }
 
+.modal .modal-close {
+    color: #efefef !important;
+}
 /* ---------------------- MY NEST PAGE ---------------------- */
 .nest-heading-container {
     height: 100px;
