@@ -443,7 +443,11 @@ nav a {
 }
 
 .modal .modal-footer {
-    background-color:#192738;
+    background-color:#192738 !important;
+}
+
+.modal .modal-content {
+    background-color:#192738 !important;
 }
 
 /* ---------------------- MY NEST PAGE ---------------------- */
@@ -504,8 +508,21 @@ nav a {
     flex-wrap: wrap;
 }
 
+/* ----------- Life-list section, button and modal ----------- */
 #life-list-container{
     margin-top: 24px;
+}
+
+#life-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#life-list-table {
+    width: 300px;
 }
 
 /* ----------- Nest Observations Section ----------- */
@@ -712,6 +729,7 @@ input[type=range] {
 
     .modal {
         width: 80%;
+        background-color: #192738 !important;
     }
     
 }

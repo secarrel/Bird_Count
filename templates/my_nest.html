@@ -306,14 +306,14 @@
     <!-- Life List Modal -->
     <div class="modal" id="life-list-modal{{ user._id }}">
         <div class="modal-content">
-            <div class="row">
+            <div id="life-content">
                 <div class="col s12 m5">
-                    <div class=card-heading>
+                    <div class="card-heading">
                         <!-- Life list content -->
                         <h4> My life list </h4>
                         <!-- Display list if not empty -->
                         {% if tally|length > 0 %}
-                            <table>
+                            <table id="life-list-table">
                                 <thead>
                                     <tr>
                                         <th> Bird Species </th>
