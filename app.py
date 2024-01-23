@@ -386,7 +386,7 @@ def add_observation():
 
 
 # Render template for edit observations page
-@app.route("/edit_observations", strict_slashes=False)
+@app.route("/edit_observation", strict_slashes=False)
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
     """
@@ -839,12 +839,12 @@ def sort_descending(observation_field):
 
 # error 404 handler
 @app.errorhandler(404)
-def page_not_found(error):
+def page_not_found(e):
     return render_template("404.html"),404
 
 # error 500 handler
 @app.errorhandler(500)
-def internal_server_error(error):
+def internal_server_error(e):
     return render_template('404.html'), 500
 
 # Run the app

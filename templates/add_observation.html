@@ -105,7 +105,7 @@
         </form>
     {% else %}
         <!-- Redirect to login only visible to non-users -->
-        <a href="{{ url_for('login') }}"> Please log in to add observations </a>
-</div>
+        <div id="redirect-add-obs"></div>
+    </div>
 {% endif %}
 {% endblock %}
