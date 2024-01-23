@@ -644,6 +644,10 @@ nav a {
 input {
     color: #efefef;
 }
+
+.margin-auto {
+    margin: auto;
+}
 /* ---------------------- REGISTER PAGE ---------------------- */
 .select-wrapper input.select-dropdown{
     color: #9e9e9e;
@@ -811,6 +815,10 @@ input[type=range] {
     .contact-admin-btn {
         width: 100% !important;
     }
+
+    #footer-buttons{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 700px) {
@@ -896,6 +904,39 @@ input[type=range] {
 
     .nest-heading {
         font-size: 30px !important;
+    }
+
+    /* footer  */
+    #footer-container {
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .footer-section {
+        width: 250px;
+    }
+
+    #footer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #footer-logo img {
+        max-width: 200px;
+        padding: 3px 0;
+    }
+
+    #footer-logo img:hover {
+        max-width: 203px;
+    }
+
+    #footer-links {
+        align-items: flex-start;
+        padding: 10px;
+        max-width: 230px;
     }
 }
 
