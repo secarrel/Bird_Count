@@ -4,42 +4,65 @@
 <section id="welcome-container">
     <div id="welcome-heading-container">
         <h3>Welcome</h3>
-        <h5> Join our birding community to find out what birds are in your local area and share your observations.</h5>
+        <h5 > Join our birding community to find out what birds are in your local area and share your observations.</h5>
     </div>
 </section>
 <section id="get-started-container">
     <h3 class="center-align">Get started!</h3>
-    <div id="signup-welcome" class="dark-section">
-        <div id="get-started-button">
-            <!-- Get started button for logged-in users -->
-            {% if session.user and session.user != "admin" %}
-                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
-                    href="{{ url_for('add_observation') }}">
-                    New Observation
-                    <i class="fa-solid fa-crow"></i>
-                    <i class="fa-solid fa-plus"></i>
-                </a>
-            <!-- Get started button for users not logged in -->
-            {% elif session.user != "admin" %}
-                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
-                    href="{{ url_for('register') }}">
-                    Sign-up
-                    <i class="fa-solid fa-user-plus"></i>
-                </a>
-            {% endif %}
+    <h6 id="get-started-text"> See what you can do with bird count... </h6>
+    <div id="get-started-button-welcome">
+        <!-- Get started button for logged-in users -->
+        {% if session.user and session.user != "admin" %}
+        <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+            href="{{ url_for('add_observation') }}">
+            New Observation
+            <i class="fa-solid fa-crow"></i>
+            <i class="fa-solid fa-plus"></i>
+        </a>
+        <!-- Get started button for users not logged in -->
+        {% elif session.user != "admin" %}
+        <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+            href="{{ url_for('register') }}">
+            Sign-up
+            <i class="fa-solid fa-user-plus"></i>
+        </a>
+        {% endif %}
+    </div>
+    <div id="community-observations-welcome" class="welcome-section light-section">
+        <div class="welcome-text">
+            <h5>Find out what birds have been spotted by the community</h5>
+            <p>Don't know where to look for birds? You can check out what your fellow birding community have seen for some inspiration. It may even help you grow your own bird list a bit faster!</p>
+        </div>
+        <div id="community-image" class="welcome-image">
+            <img src="static/assets/images/community-observations-img.png" alt="community observations board">
         </div>
     </div>
-    <div id="community-observations-welcome" class="light-section">
-        See What the community have seen
+    <div id="record-observations-welcome" class="welcome-section dark-section">
+        <div id="upload-image" class="welcome-image">
+            <img src="static/assets/images/upload.png" alt="community observations board">
+        </div>
+        <div class="welcome-text">
+            <h5>Record your own observations!</h5>
+            <p>Inspired by the community? Give back by sharing your observations and helping them find new birding spots. If you don't want to do it for them, you can jump into 'invisible' or 'anonymous' mode and just use Bird Count to keep a bird list for yourself.</p>
+        </div>
     </div>
-    <div id="record-observations-welcome" class="dark-section">
-        Record your observations
+    <div id="your-birding-stats-welcome" class="welcome-section light-section">
+        <div class="welcome-text">
+            <h5>Keep track with your bird stats!</h5>
+            <p>It's not a competition... but it is fun seeing who can see the most bird species or quantity of birds. We give you stats about your bird watching to make it easy to share with friends of challenge yourself. You'll even have access to your life list, a list of all the species you have seen, so you can start a checklist!</p>
+        </div>
+        <div id="community-image" class="welcome-image">
+            <img src="static/assets/images/your-birding-stats.png" alt="community observations board">
+        </div>
     </div>
-    <div id="your-birding-stats-welcome" class="light-section">
-        See your birding stats
-    </div>
-    <div id="gallery-welcome" class="dark-section">
-        Gallery
+    <div id="gallery-welcome" class="welcome-section dark-section">
+        <div id="community-image" class="welcome-image">
+            <img src="static/assets/images/share-images.png" alt="community observations board">
+        </div>
+        <div class="welcome-text">
+            <h5>Share your favourite photographs</h5>
+            <p>Bird watching is about more than looking to some of you... so we think it's important that you can capture and share your favourite finds with your community. Upload a photo with your observations to enjoy the beauty of birds with your peers.</p>
+        </div>
     </div>
 </section>
 {% endblock %}

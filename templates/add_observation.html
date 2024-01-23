@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <!-- Input field for certainty -->
-                <div id="certainty-edit" class="row">
+                <div id="certainty-add">
                     <div class="certainty-label col s12 m4 l3">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         <p> Certainty <strong class="required">*</strong></p>
@@ -73,9 +73,9 @@
                 <!-- Input field for image -->
                 <div id="image-add" class="row">
                     <div class="input-field col s12">
-                        <div class="col s12 m6 l6">
+                        <div class="image-add-label" class="col s12 m6 l6">
                             <i class="fa-solid fa-camera prefix"></i>
-                            <label for="image-file">Upload Image (optional):</label>
+                            <label  for="image-file">Upload Image (optional):</label>
                         </div>
                         <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
                     </div>
@@ -91,12 +91,12 @@
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}
-                    <a href="{{ url_for('my_nest')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                    <a href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a href="{{ url_for('get_observations')}}" class=" cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom"
+                    <a href="{{ url_for('get_observations')}}" class=" cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
                         data-tooltip="Your changes will not be saved">
                         Cancel, return to observations
                     </a>
