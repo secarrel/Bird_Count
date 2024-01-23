@@ -841,6 +841,11 @@ input[type=range] {
         padding: 3px 0;
     }
 
+    #nav-logo:hover{
+        max-height: 56px;
+        padding: 3px 0;
+    }
+
     /* ----------- WELCOME - Heading and image ----------- */
     #welcome-heading-container {
         height: 200px ;
@@ -947,6 +952,11 @@ input[type=range] {
 
     #nav-logo {
         max-height: 40px;
+        margin: 10px;
+    }
+
+    #nav-logo:hover {
+        max-height: 41px;
         margin: 10px;
     }
 
