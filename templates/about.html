@@ -29,8 +29,8 @@
                 data set being created with each observation. If you need an excuse to get out and start
                 taking photos, this is it! 
             </p>
-            <a class="btn-small" href="https://www.bto.org/" target="_blank">
-                Learn more about the BTO
+            <a class="btn-small about-button" href="https://www.bto.org/" target="_blank">
+                Learn about the BTO
                 <i class="fa-solid fa-book-open"></i>
             </a>
         </div>
@@ -59,10 +59,10 @@
             <p>
                 Sound good?...
             </p>
-            <div id="get-started-button">
+            <div id="get-started-button" >
                 <!-- Get started button for logged-in users -->
                 {% if session.user and session.user != "admin" %}
-                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+                <a class="btn-small tooltipped about-button" data-position="bottom" data-tooltip="Add your own observation"
                     href="{{ url_for('add_observation') }}">
                     Start recording!
                     <i class="fa-solid fa-crow"></i>
@@ -70,7 +70,7 @@
                 </a>
                 <!-- Get started button for users not logged in -->
                 {% elif session.user != "admin"%}
-                <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+                <a class="btn-small tooltipped about-button" data-position="bottom" data-tooltip="Log in to record your observations"
                     href="{{ url_for('register') }}">
                     Sign-up
                     <i class="fa-solid fa-user-plus"></i>
@@ -87,7 +87,7 @@
                 useful hand guides and bird books. They also have educational articles and advice for
                 bird watchers and photographers.  
             </p>
-            <a class="btn-small" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank">
+            <a class="btn-small about-button" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank">
                 Identify a bird
                 <i class="fa-solid fa-binoculars"></i>
             </a>

@@ -989,6 +989,13 @@ input[type=range] {
     }
 }
 
+@media only screen and (max-width: 400px) {
+    .about-button{
+        width: 100%;
+        margin: auto;
+    }
+}
+
 @media only screen and (max-width: 350px) {
     #logo-container {
         max-height: 40px;
