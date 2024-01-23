@@ -553,6 +553,14 @@ nav a {
     width: 300px;
 }
 
+#life-list-table th{    
+    text-align: left !important;
+}
+
+#life-list-table td{    
+    text-align: left !important;
+}
+
 /* ----------- Nest Observations Section ----------- */
 #observation-list-nest-container {
     text-align: center;
