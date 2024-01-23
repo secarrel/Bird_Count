@@ -360,23 +360,25 @@ nav a {
 }
 
 #about-heading-container {
-    height: 200px;
+    height: 300px;
     width:50vw;
     background-color:#192738c5;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 15px;
+    justify-content: center;
+    padding-bottom: 20px;
 }
 
 #about-heading-container h3 {
     color: #efefef;
     font-size: 35px;
+    margin: 10px;
 }
 
 #about-heading-container h5 {
     color: #efefef;
     font-size: 18px;
+    margin: 10px;
 }
 
 /* ----------- About Content Section ----------- */
@@ -931,6 +933,18 @@ input[type=range] {
 
     .nest-heading {
         font-size: 30px !important;
+    }
+
+    /* about */
+    #about-heading-container h3 {
+        font-size: 30px !important;
+        margin: 10px;
+    }
+
+    #about-heading-container h5 {
+        color: #efefef;
+        font-size: 15px !important;
+        margin: 10px;
     }
 
     /* footer  */
