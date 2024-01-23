@@ -7,7 +7,7 @@
         <div class="nest-heading-container">
             <h2 class="center-align nest-heading">Admin Nest</h2>
         </div>        <!-- Messages from users -->
-        <a href="#pigeon-hole" class="btn-small modal-trigger tooltipped" data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
+        <a href="#pigeon-hole-admin" class="btn-small modal-trigger tooltipped" data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
             Pigeon Hole 
             <i class="fa-solid fa-envelope"></i> 
         </a>
@@ -122,7 +122,7 @@
             </div>
         </div>
         <!-- Pigeon Hole Modal -->
-        <div class="modal" id="pigeon-hole" class="pigeon-hole">
+        <div class="modal" id="pigeon-hole-admin" class="pigeon-hole">
             <div class="col s12">
                 <div class="card-panel">
                     <div class="card-heading ">
@@ -138,25 +138,30 @@
                                 {% if message.recipient == session.user %}
                                 <li id="messages-to-admin">
                                     <!-- Expandable message details -->
-                                    <div id="display-recieved-admin" class="collapsible-header  light-section">
-                                        From: {{ message.sender }} |
-                                        Subject:{{ message.subject }} |
+                                    <div id="display-recieved-admin" class="collapsible-header light-section-less-padding">
+                                        From: {{ message.sender }} <br>
+                                        Subject: {{ message.subject }} <br>
                                         Sent at: {{ message.time }}
-                                        <!-- Delete message  -->
-                                        <a href="#confirm-delete-message{{ message._id }}" class="btn-small delete-red modal-trigger red">
-                                            <i class="fa-regular fa-trash-can "></i>
-                                        </a>
-                                        <!-- Reply to message  -->
-                                        <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                            class="btn-small modal-trigger">
-                                            <i class="fa-solid fa-reply "></i>
-                                        </a>
+                                        <div class="button-container">
+                                            <!-- Delete message button -->
+                                            <a href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
+                                                <i class="fa-regular fa-trash-can "></i>
+                                            </a>
+                                            <!-- Reply to message button -->
+                                            <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                                class="btn modal-trigger btn-small pigeon-hole-button">
+                                                <i class="fa-solid fa-reply "></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <!-- Message body hidden until message is expanded -->
-                                    <div class="collapsible-body"><span>{{ message.body }}</span></div>
+                                    <!-- Message Content -->
+                                    <div class="collapsible-body">
+                                        <h6>Message:</h6>
+                                        <span>{{ message.body }}</span>
+                                    </div>
                                 </li>
                                 <!-- Modal to confirm deletion of message -->
-                                <div id="confirm-delete-message{{ message._id }}" class="modal">
+                                <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
                                     <!-- Display message content -->
                                     <div class="modal-content">
                                         <h4>Delete Message</h4>
@@ -176,8 +181,8 @@
                                     </div>
                                 </div>
                                 <!-- Reply to message modal -->
-                                <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}" class="modal">
-                                    <div class="modal-content">
+                                <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}" class="modal pigeon-button-modal">
+                                    <div class="modal-content ">
                                         <!-- Message content to reply to -->
                                         <h4>Reply to {{ message.sender }}</h4>
                                         <div>
@@ -221,7 +226,7 @@
                                             </div>
                                             <!-- Send message -->
                                             <div id="send-button-admin" class="row">
-                                                <button type="submit" class="col s12 btn-large">
+                                                <button type="submit" class="col s12 btn-small">
                                                     Send <i class="fa-regular fa-paper-plane"></i>
                                                 </button>
                                             </div>

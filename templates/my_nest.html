@@ -165,7 +165,7 @@
                 <p class="center-align"> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
                 <div class="row">
                     <!-- Messages -->
-                    <a href="#pigeon-hole" class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
+                    <a href="#pigeon-hole-nest" class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
                         Pigeon Hole 
                         <i class="fa-solid fa-envelope"></i> 
                     </a>
@@ -229,14 +229,14 @@
                         <!-- Edit Email -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-email-container">
                             <p> Email: {{ user.email }}</p>
-                            <a href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="right" data-tooltip="Edit your email address">
+                            <a href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your email address">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>
                         <!-- Edit experience -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-experience-container">
                             <p> Experience: {{ user.experience }}/6</p>
-                            <a href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="right" data-tooltip="Edit your experience level">
+                            <a href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your experience level">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>    
@@ -258,7 +258,7 @@
     <div id="contact-admin" class="modal">
         <div class="card-panel modal-content">
             <div class="card-heading ">
-                <h4> Contact Admin </h4>
+                <h4 class="center-align"> Contact Admin </h4>
             </div>
             <div class="contact-form-container">
                 <!-- Contact Form -->
@@ -294,183 +294,183 @@
                     </div>
                     <!-- Send button -->
                     <div class="row">
-                        <button type="submit" class="col s12 btn-large">
+                        <button type="submit" class="col s12 btn-small">
                             Send message <i class="fa-regular fa-paper-plane"></i>
                         </button>
                     </div>
-                    <div class="modal-close btn-flat">Cancel</div>
                 </form>
             </div>
         </div>
     </div>
     <!-- Life List Modal -->
-    <div class="modal" id="life-list-modal{{ user._id }}">
-        <div class="modal-content">
-            <div id="life-content">
-                <div class="col s12 m5">
-                    <div class="card-heading">
-                        <!-- Life list content -->
-                        <h4> My life list </h4>
-                        <!-- Display list if not empty -->
-                        {% if tally|length > 0 %}
-                            <table id="life-list-table">
-                                <thead>
-                                    <tr>
-                                        <th> Bird Species </th>
-                                        <th> Quantity </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for bird in tally %}
-                                    <tr>
-                                        <td> {{ bird._id }}</td>
-                                        <td> {{ bird.totalQuantity }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        <!-- Hide list and display message explaining empty list -->
-                        {% else %}
-                            <h6>You haven't got any birds in your nest</h6>
-                            <a class="btn-small" href="{{ url_for('add_observation') }}">
-                                Add Observation
-                                <i class="fa-solid fa-crow"></i>
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
+    <div id="life-list-modal{{ user._id }}" class="modal">
+        <div class="modal-content" id="life-content">
+            <!-- Life list content -->
+            <div class="row">
+                <h4> My life list </h4>
             </div>
+            <!-- Display list if not empty -->
+            {% if tally|length > 0 %}
+            <table id="life-list-table">
+                <thead>
+                    <tr>
+                        <th> Bird Species </th>
+                        <th> Quantity </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bird in tally %}
+                    <tr>
+                        <td> {{ bird._id }}</td>
+                        <td> {{ bird.totalQuantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Hide list and display message explaining empty list -->
+            {% else %}
+            <h6>You haven't got any birds in your nest</h6>
+            <a class="btn-small" href="{{ url_for('add_observation') }}">
+                Add Observation
+                <i class="fa-solid fa-crow"></i>
+                <i class="fa-solid fa-plus"></i>
+            </a>
+            {% endif %}
         </div>
     </div>
     <!-- Pigeon Hole Modal -->
-    <div class="row modal pigeon-hole" id="pigeon-hole">
-        <div class="col s12">
-            <div class="card-panel">
-                <div class=card-heading>
-                    <!-- Messages list -->
-                    <h4 class="center-align">
-                        Recieved Messages
-                    </h4>
-                    <!-- Display messages if there are any addressed to the session user -->
-                    {% if messages|selectattr('recipient', 'equalto', session['user'])|list %}
-                        <ul class="collapsible">
-                            {% for message in messages %}
-                                <!-- Only show messages addressed to the session user -->
-                                {% if message.recipient == session.user %}
-                                    <li>
-                                        <!-- Message Summary -->
-                                        <div class="collapsible-header light-section">
-                                            From: {{ message.sender }} |
-                                            Subject:{{ message.subject }} |
-                                            Sent at: {{ message.time }}
-                                            <!-- Delete message  -->
-                                            <a href="#confirm-delete-message{{ message._id }}" class="btn modal-trigger red">
+    <div class="row modal pigeon-hole" id="pigeon-hole-nest">
+        <div class="card-panel">
+            <div class="card-heading">
+                <!-- Messages list -->
+                <h4 class="center-align">
+                    Recieved Messages
+                </h4>
+                <!-- Display messages if there are any addressed to the session user -->
+                {% if messages|selectattr('recipient', 'equalto', session['user'])|list %}
+                    <ul class="collapsible">
+                        <!-- List messages -->
+                        {% for message in messages %}
+                            <!-- Only show messages addressed to the session user -->
+                            {% if message.recipient == session.user %}
+                                <li id="messages-to-user">
+                                    <!-- Message Summary -->
+                                    <div id="display-recieved-user" class="collapsible-header light-section-less-padding">
+                                        From: {{ message.sender }} <br>
+                                        Subject: {{ message.subject }} <br>
+                                        Sent at: {{ message.time }}
+                                        <div class="button-container">
+                                            <!-- Delete Message Button -->
+                                            <a href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
                                                 <i class="fa-regular fa-trash-can "></i>
                                             </a>
-                                            <!-- Delete message confirmation -->
-                                            <div id="confirm-delete-message{{ message._id }}" class="modal">
-                                                <div class="modal-content">
-                                                    <h4>Delete Message</h4>
-                                                    <p>
-                                                        Are you sure you want to delete this message? <br>
-                                                        Message selected for deletion: <br>
-                                                        From: {{ message.sender }} |
-                                                        Subject:{{ message.subject }} |
-                                                        Sent at: {{ message.time }} <br>
-                                                        {{ message.body }}
-                                                    </p>
-                                                </div>
-                                                <!-- Confirm or cancel delete buttons -->
-                                                <div class="modal-footer">
-                                                    <a href="{{ url_for('delete_message', message_id=message._id) }}"
-                                                        class="modal-close btn-flat">Agree</a>
-                                                    <div class="modal-close btn-flat">Cancel</div>
-                                                </div>
-                                            </div>
-                                            <!-- Reply to message  -->
+                                            <!-- Reply to message button -->
                                             <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                                class="btn modal-trigger">
+                                                class="btn modal-trigger btn-small pigeon-hole-button">
                                                 <i class="fa-solid fa-reply "></i>
                                             </a>
-                                            <!-- Reply to message modal -->
-                                            <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                                class="modal">
-                                                <!-- Message Content -->
-                                                <div class="modal-content">
-                                                    <h4>Reply to {{ message.sender }}</h4>
-                                                    <div>
-                                                        <h5> {{ message.sender }}'s message:</h5>
-                                                        <p>
-                                                            Subject:{{ message.subject }} <br>
-                                                            {{ message.body }}
-                                                        </p>
-                                                    </div>
-                                                    <!-- Reply form -->
-                                                    <form method="POST" action="{{ url_for('new_message') }}">
-                                                        <!-- Sender pre-filled field -->
-                                                        <div class="row">
-                                                            <div class="input-field col s12 hidden">
-                                                                <input id="sender" name="sender" type="text" value=" {{ session.user }}"
-                                                                    pattern="^[a-zA-Z\s]{2,}$">
-                                                                <label for="sender">Sender</label>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Recipient pre-filled field -->
-                                                        <div class="row">
-                                                            <div class="input-field col s12 hidden">
-                                                                <input id="recipient" name="recipient" type="text"
-                                                                    value="{{ message.sender }}" pattern="^[a-zA-Z\s]{2,}$">
-                                                                <label for="subject">Recipient</label>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Subject pre-filled field -->
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <input id="subject" name="subject" type="text"
-                                                                    value="{{ message.subject }}" pattern="^[a-zA-Z\s]{2,}$" required>
-                                                                <label for="subject">Subject</label>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Body field -->
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                                                                <label for="body">Type your message</label>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Send message button -->
-                                                        <div class="row">
-                                                            <button type="submit" class="col s12 btn-large">
-                                                                Send <i class="fa-regular fa-paper-plane"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <!-- Cancel and close modal -->
-                                                <div class="modal-footer">
-                                                    <div class="modal-close btn-flat">Cancel</div>
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <!-- Message Content -->
+                                    <div class="collapsible-body">
+                                        <h6>Message:</h6>
+                                        <span>{{ message.body }}</span>
+                                    </div>
+                                </li>
+                            <!-- Modal to confirm deletion of message -->
+                            <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
+                                <div class="modal-content">
+                                    <h4>Delete Message</h4>
+                                    <p>
+                                        Are you sure you want to delete this message? <br>
+                                        Message selected for deletion: <br>
+                                        From: {{ message.sender }} |
+                                        Subject:{{ message.subject }} |
+                                        Sent at: {{ message.time }} <br>
+                                        {{ message.body }}
+                                    </p>
+                                </div>
+                                <!-- Confirm or cancel delete buttons -->
+                                <div class="modal-footer">
+                                    <a href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Agree</a>
+                                    <div class="modal-close btn-flat">Cancel</div>
+                                </div>
+                            </div>
+                            <!-- Reply to message modal -->
+                            <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                class="modal pigeon-button-modal">
+                                <!-- Message Content -->
+                                <div class="modal-content">
+                                    <div>
+                                        <h5 class="center-align">Reply to {{ message.sender }}</h5>
+                                        <div>
+                                            <h6> {{ message.sender }}'s message:</h6>
+                                            <p>
+                                                Subject: {{ message.subject }} <br>
+                                                {{ message.body }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Reply form -->
+                                    <form method="POST" class="light-section-less-padding" action="{{ url_for('new_message') }}">
+                                        <h6> Your reply:</h6>
+                                        <!-- Sender pre-filled field -->
+                                        <div class="input-field col s12 hidden">
+                                            <input id="sender" name="sender" type="text" value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
+                                            <label for="sender">Sender</label>
+                                        </div>
+                                        <!-- Recipient pre-filled field -->
+                                        <div class="input-field col s12 hidden">
+                                            <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
+                                                pattern="^[a-zA-Z\s]{2,}$">
+                                            <label for="subject">Recipient</label>
+                                        </div>
+                                        <!-- Subject pre-filled field -->
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="subject" name="subject" type="text" value="{{ message.subject }}"
+                                                    pattern="^[a-zA-Z\s]{2,}$" required>
+                                                <label for="subject">Subject</label>
                                             </div>
                                         </div>
-                                        <!-- Message Content -->
-                                        <div class="collapsible-body"><span>{{ message.body }}</span></div>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    <!-- If there are no messages to the user display message explaining list is empty -->
-                    {% else %}
-                        <h6>You have no new messages</h6>
-                    {% endif %}
-                </div>
+                                        <!-- Body field -->
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                                                <label for="body">Type your message</label>
+                                            </div>
+                                        </div>
+                                        <!-- Send message button -->
+                                        <div class="row">
+                                            <button type="submit" class="col s12 btn-small">
+                                                Send <i class="fa-regular fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- Cancel and close modal -->
+                                <div class="modal-footer">
+                                    <div class="modal-close btn-flat">Cancel</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                <!-- If there are no messages to the user display message explaining list is empty -->
+                {% else %}
+                    <h6>You have no new messages</h6>
+                {% endif %}
+            </div>
+            <!-- Confrim or cancel buttons -->
+            <div class="modal-footer">
+                <div class="modal-close btn-flat">Close</div>
             </div>
         </div>
     </div>
     <!-- Edit Email Modal -->
     <form method="POST" action="{{ url_for('edit_user_email', user_id=user._id) }}" id="email-modal" class="modal">
         <div class="modal-content">
-            <h4>Edit Email</h4>
+            <h4 class="center-align">Edit Email</h4>
             <!-- Email edit input field -->
             <div class="row">
                 <div class="input-field col s12">
@@ -483,19 +483,18 @@
         <!-- Submit button -->
         <div class="modal-footer">
             <button type="submit" class="modal-close btn-flat">Update</a>
-            <div class="modal-close btn-flat">Cancel</div>
         </div>
     </form>
     <!-- Edit Experience Modal -->
-    <form method="POST" action="{{ url_for('edit_user_experience', user_id=user._id) }}" id="experience-modal" class="modal">
+    <form method="POST" action="{{ url_for('edit_user_experience', user_id=user._id) }}" id="experience-modal" class="modal edit-modal">
         <!-- Edit experience input field -->
-        <div class="modal-content">
-            <h4>Edit Experience</h4>
+        <div class="modal-content edit-modal">
+            <h4 class="center-align" >Edit Experience</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-graduation-cap prefix"></i>
                     <select id="experience-edit" name="experience-edit" required>
-                        <option value="0" selected></option>
+                        <option value="0" selected>Select your experience level:</option>
                         <option value="1"><strong>Egg</strong> (What's a bird?)</option>
                         <option value="2"><strong>Hatchling</strong> (New to this)</option>
                         <option value="3"><strong>Fledgling</strong> (Garden birds only)</option>
@@ -510,20 +509,19 @@
         <!-- Submit or cancel buttons -->
         <div class="modal-footer">
             <button type="submit" class="modal-close btn-flat">Update</a>
-            <div class="modal-close btn-flat">Cancel</div>
         </div>
     </form>
     <!-- Delete Account Modal -->
     <div id="confirm-delete-account{{ user._id }}" class="modal">
         <div class="modal-content">
-            <h4>Delete Account</h4>
+            <h4 class="center-align">Delete Account</h4>
             <p>
                 Are you sure you want to delete your account? <br>
             </p>
             <p>
                 Your observations will not be deleted with your account as they provide important information and statistics which helps
-                us with our bird research. All off your observations will appear in the community observations and as if created by an 
-                anonymous user, so the community will not know these are your observations. 
+                us with our bird research. All off your observations will appear in the community observations as if created by an 
+                anonymous user; the community will not know these are your observations. 
             </p>
         </div>
         <!-- Confrim or cancel buttons -->

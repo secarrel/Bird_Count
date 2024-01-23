@@ -115,3 +115,4 @@ if (anonymousSwitch && anonymousForm) {
     document.getElementById("anonymous-form").submit();
   });
 }
+

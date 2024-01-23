@@ -479,7 +479,6 @@ def get_image(observation_id):
     document = db.observations.find_one({"_id": ObjectId(observation_id)})
     image_id = document.get("image")
     image_file = fs.get(image_id)
-    print(image_file)
     return send_file(image_file, mimetype='image/jpeg')
 
 # Logout the session user
