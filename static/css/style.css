@@ -642,7 +642,7 @@ nav a {
 
 /* ---------------------- LOG-IN PAGE ---------------------- */
 input {
-    color: #efefef;
+    color: #efefef !important;
 }
 
 .margin-auto {
@@ -778,6 +778,28 @@ input[type=range] {
 #footer-links a i{
     color:#192738 !important;
     text-decoration: none;
+}
+
+/* ---------------------- 404 page ---------------------- */
+#error-page-conatainer {
+    background-image: url("https://images.unsplash.com/photo-1549619856-ac562a3ed1a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    height: 90vh;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #efefef;
+}
+
+#error-card {
+    text-align:center;
+    padding: 40px;
+    background-color: #192738bd;
+}
+
+#error-card h2{
+    text-align:center;
+    margin: 0;
 }
 
 /* ---------------------- BREAKPOINTS ---------------------- */

@@ -419,7 +419,6 @@ def edit_observation(observation_id):
     anonymous = user_info["anonymous"]
     original_image_id = observation.get("image")
     
-
     # Redirect user to login if they are not already.
     if 'user' not in session:
         flash("You are not authorised to edit other user's observation. Log in or register to get started.")
@@ -836,6 +835,17 @@ def sort_descending(observation_field):
     observations = list(db.observations.find().sort(observation_field, pymongo.DESCENDING))
     return render_template("observations.html", observations=observations)
 
+
+
+# error 404 handler
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("404.html"),404
+
+# error 500 handler
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('404.html'), 500
 
 # Run the app
 if __name__ == "__main__":
