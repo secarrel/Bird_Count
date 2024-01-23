@@ -4,7 +4,7 @@
     <!-- Only allow users who are logged in and not the admin to view this content-->
     {% if session.user and session.user != 'admin' %}
         <!-- Add observation form -->
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_observation') }}" enctype="multipart/form-data">
+        <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('add_observation') }}" enctype="multipart/form-data">
             <div class="card-panel">
                 <!-- Page heading -->
                 <h3 class="center-align">New Observation</h3>

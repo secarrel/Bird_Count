@@ -421,7 +421,7 @@ def edit_observation(observation_id):
     
     # Redirect user to login if they are not already.
     if 'user' not in session:
-        flash("You are not authorised to edit other user's observation. Log in or register to get started.")
+        flash("You are not authorised to edit other users' observations. Log in or register to get started.")
         return redirect(url_for('login'))
     # Redirect user to community observations page if they are logged in but neither the admin or creator of the observation.
     elif session["user"] != original_user and session["user"] != 'admin':
@@ -436,7 +436,7 @@ def edit_observation(observation_id):
             image_id = fs.put(image_file)
             # Further logic to handle the image ID, possibly storing it in the database
         else:
-            # No file uploaded; handle accordingly
+            # No file uploaded; set value of image_id to original id
             image_id = ObjectId(original_image_id)
             print("No file uploaded")
     else:

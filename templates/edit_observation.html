@@ -5,7 +5,7 @@
     {% if session.user == original_user or session.user == 'admin' %}
     <!-- Edit observation form -->
     <div id="edit-observation" class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
+        <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
             <div class="card-panel">
                 <!-- Page heading -->
                 <h3 class="center-align">Edit Observation</h3>
@@ -95,13 +95,13 @@
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}        
-                    <a href="{{ url_for('my_nest')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                    <a href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a href="{{ url_for('get_observations')}}" class="cancel col s6 m6 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
-                        Cancel, return to community observations
+                    <a href="{{ url_for('get_observations')}}" class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                        Cancel, return to community
                     </a>
                 </div>
                 <!-- Image modal -->
