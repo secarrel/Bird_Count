@@ -2,7 +2,7 @@ let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth();
 let day = date.getDate();
-let minOne = new Date(year, month, day - 1);
+let minOne = new Date(year, month, day);
 let maxDate;
 let locations = {}
 
@@ -33,6 +33,7 @@ $(document).ready(function () {
     maxDate: minOne,
     showClearBtn: true,
     autoClose: true,
+    defaultDate: date,
   });
 
   // Activate the timepicker for adding observations
