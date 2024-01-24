@@ -137,6 +137,7 @@ label {
     padding: 20px;
     min-height: 90vh;
     color: #efefef;
+    background-position: center;
 }
 
 /* ----------- Rows and Columns ----------- */
@@ -807,6 +808,7 @@ input[type=range] {
 }
 
 /* ---------------------- FOOTER ---------------------- */
+
 #footer-container {
     width: 100%;
     background-color: #e49452;
