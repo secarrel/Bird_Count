@@ -6,9 +6,9 @@
 }
 
 .flashes {
-        width: 100%;
+        width: 70%;
         line-height: 30px;
-        margin: 0;
+        margin: auto;
 }
 
 .hidden {
@@ -359,6 +359,7 @@ nav a {
 .welcome-section {
     display: flex;
     flex-direction: row;
+    align-items: center
 }
 
 .welcome-text {
@@ -916,6 +917,13 @@ input[type=range] {
     }
 }
 
+@media only screen and (max-width: 1000px) {
+    .welcome-section {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
 @media only screen and (max-width: 880px) {
     .row {
         margin-top: 20px;
@@ -975,6 +983,11 @@ input[type=range] {
 
     #welcome-heading-container h5 {
         font-size: 20px;
+    }
+
+    .welcome-image img {
+        max-width: 390px;
+        border-radius: 100px 0 100px 0;
     }
 
     #about-heading-container {
@@ -1091,6 +1104,12 @@ input[type=range] {
         width: 100%;
         margin: auto;
     }
+
+    .welcome-image img {
+        max-width: 270px;
+        border-radius: 100px 0 100px 0;
+    }
+
 }
 
 @media only screen and (max-width: 350px) {
