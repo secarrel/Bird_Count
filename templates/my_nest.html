@@ -71,7 +71,7 @@
                         </a>
                     </div>
                     <!-- Observation table -->
-                    <table class="highlight light-section">
+                    <table id="nest-observation-table" class="highlight light-section">
                         <thead>
                             <tr>
                                 <th>Bird Species</th>
@@ -120,23 +120,22 @@
                                     </td>
                                     <!-- Modal for observation details -->
                                     <div id="my-observation-details{{ observation._id }}" class="modal">
-                                        <div class="col s12 modal-content">
-                                            <div class="card-image">
-                                                <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
-                                                <span class="observation-title">{{ observation.bird_species }} <em>by</em> {{ observation.seen_by }} </span>
-                                            </div>
-                                            <div class="card-content">
-                                                <p>
-                                                    Quantity: {{ observation.quantity }} <br>
-                                                    Certainty: {{ observation.certainty }}/10 <br>
-                                                    location: {{ observation.location }} <br>
-                                                    Seen on: {{ observation.date }} @ {{ observation.time }} <br>
-                                                    Notes from {{observation.seen_by}}: <br>
-                                                    {{ observation.notes }}
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="modal-close btn-flat">Close</button>
+                                        <div id="bird-info-modal-nest" class="col s12 modal-content">
+                                            <div id="bird-info-body-nest">
+                                                <div class="card-image" id="bird-info-image-container-nest">
+                                                    <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
+                                                    <span class="observation-title">{{ observation.bird_species }}</span>
+                                                </div>
+                                                <div class="card-content" id="observation-data-nest">
+                                                    <p>
+                                                        Quantity: {{ observation.quantity }} <br>
+                                                        Certainty: {{ observation.certainty }}/10 <br>
+                                                        location: {{ observation.location }} <br>
+                                                        Seen on: {{ observation.date }} @ {{ observation.time }} <br>
+                                                        Notes from {{observation.seen_by}}: <br>
+                                                        {{ observation.notes }}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
