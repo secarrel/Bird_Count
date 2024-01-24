@@ -759,6 +759,11 @@ input[type=range] {
     margin-left: 15px;
 }
 
+.autocompleteLocation, 
+.autocompleteBird{
+    z-index: 100 !important;
+}
+
 /* ---------------------- EDIT OBSERVATION PAGE ---------------------- */
 .row .col.s3 {
     margin-right: auto;

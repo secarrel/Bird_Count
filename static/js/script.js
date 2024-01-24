@@ -61,7 +61,7 @@ $(document).ready(function () {
         }
       }
       // Activate autocomplete
-      $("input.autocompletelocation").autocomplete({
+      $("input.autocompleteLocation").autocomplete({
         data: autoCompleteData,
       });
     })
@@ -86,7 +86,7 @@ $(document).ready(function () {
         }
       }
       // Activate autocomplete
-      $("input.autocompletebird").autocomplete({
+      $("input.autocompleteBird").autocomplete({
         data: autoCompleteBirds,
       });
     })
