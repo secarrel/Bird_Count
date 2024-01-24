@@ -39,10 +39,7 @@
     align-items: center;
     align-self: center;
 }
-/* ----------- Forms ----------- */
-.input-field {
-    z-index: 1 !important;
-}
+
 /* ----------- Buttons ----------- */
 .btn-small {
     background-color:#8DAB7F ;
@@ -757,11 +754,6 @@ input[type=range] {
 .certainty-label p{
     font-size: 16px;
     margin-left: 15px;
-}
-
-.autocompleteLocation, 
-.autocompleteBird{
-    z-index: 100 !important;
 }
 
 /* ---------------------- EDIT OBSERVATION PAGE ---------------------- */
