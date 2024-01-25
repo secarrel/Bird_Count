@@ -11,9 +11,9 @@
         <div id="register-username" class="row">
           <div class="input-field col s12">
             <i class="fas fa-user-plus prefix"></i>
-            <input id="username" name="username" type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+            <input id="username" name="username" type="text" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,15}$"
               class="validate" required>
-            <label class="tooltipped" data-position="bottom" data-tooltip="Username can only contain letters and numbers." for="username">Username <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+            <label class="tooltipped" data-position="bottom" data-tooltip="Username can only contain letters and numbers. Must be 5-20 letters. Cannot contain spaces. This field is not case sensitive" for="username">Username <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
             <!-- Tooltip -->
             <div >
               
@@ -26,7 +26,7 @@
             <i class="fas fa-user-lock prefix"></i>
             <input id="password" name="password" type="password" minlength="5" maxlength="15"
               pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-            <label class="tooltipped" data-position="bottom" data-tooltip="Password can only contain letters and numbers. This field is case sensitive." for="password">Password <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+            <label class="tooltipped" data-position="bottom" data-tooltip="Password can only contain letters and numbers. Must be 5-15 letters. Cannot contain spaces. This field is case sensitive." for="password">Password <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
             <!-- Tooltip -->
             <div >
               
