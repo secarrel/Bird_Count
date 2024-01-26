@@ -70,6 +70,14 @@ def get_observations():
     return render_template("observations.html", observations=observations, users=users)
 
 
+# Route to display the modal based on observation ID
+# @app.route('/show_modal/<observation_id>')
+# def get_bird_modal_data(observation_id):
+#     observation_data = observations.get(observation_id)
+#     get_image(observation_id)
+#     return observation_id
+
+
 # Render template for Admin's nest page.
 @app.route("/get_users/")
 def get_users():
@@ -246,7 +254,7 @@ def register():
             avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
 
         # Redirect if value is invalid.
-        if experience == '0':
+        if experience == '':
             flash("You need to choose a value for 'experience'. This can be changed in your nest at any time.")
             return redirect(url_for("register"))
         # Register user if experience is valid.
