@@ -4,7 +4,7 @@
 <section id="welcome-container">
     <div id="welcome-heading-container">
         <h3>Welcome</h3>
-        <h5 > Join our birding community to find out what birds are in your local area and share your observations.</h5>
+        <p > Join our birding community to find out what birds are in your local area and share your observations.</p>
     </div>
 </section>
 <section id="get-started-container">
@@ -13,7 +13,7 @@
     <div id="get-started-button-welcome">
         <!-- Get started button for logged-in users -->
         {% if session.user and session.user != "admin" %}
-        <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
+        <a aria-label="Make a new observation" class="btn-small tooltipped" data-position="bottom" data-tooltip="Add your own observation"
             href="{{ url_for('add_observation') }}">
             New Observation
             <i class="fa-solid fa-crow"></i>
@@ -21,7 +21,7 @@
         </a>
         <!-- Get started button for users not logged in -->
         {% elif session.user != "admin" %}
-        <a class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+        <a aria-label="Create an account to get started" class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
             href="{{ url_for('register') }}">
             Sign-up
             <i class="fa-solid fa-user-plus"></i>
