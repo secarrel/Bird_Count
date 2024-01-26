@@ -205,6 +205,12 @@ nav a {
     font-size: 16px !important;
 }
 
+.no-link:hover {
+    background-color: #ffffff00 !important;
+    cursor: default !important;
+    text-decoration: none;
+}
+
 /* ----------- Full width nav ----------- */
 .nav-wrapper {
     padding: 0 10px;
