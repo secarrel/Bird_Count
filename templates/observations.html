@@ -180,37 +180,37 @@
                                         </div>
                                     </td>                        
                                 {% endif %}
-                                <!-- Observation modal -->
-                                <div id="observation-details{{ observation._id }}" class="bird-modal">
-                                    <div id="bird-info-modal" class="col s12 bird-modal-content">
-                                        <div id="bird-info-body">
-                                            <!-- Observation image -->
-                                            <div id="bird-info-image-container" class="card-image">
-                                                <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
-                                                <span class="observation-title">
-                                                    {{ observation.bird_species }} <em>by</em> 
-                                                    <!-- If observation is set to anonymous, replace username -->
-                                                    {% if observation.anonymous %}
-                                                        AnonymousBirdy
-                                                    {% else %}
-                                                        {{ observation.seen_by }}
-                                                    {% endif %}
-                                                </span>
-                                            </div>
-                                            <!-- Observation details -->
-                                            <div class="card-content" id="observation-data">
-                                                <p>
-                                                    Quantity: {{ observation.quantity }} <br>
-                                                    Certainty: {{ observation.certainty }}/10 <br>
-                                                    Location: {{ observation.location }} <br>
-                                                    Seen on: {{ observation.date }} @ {{ observation.time }} <br>
-                                                    {{ observation.notes }}
-                                                </p>
-                                            </div>
-                                        </div>  
-                                    </div>
-                                </div>
                             </tr>
+                            <!-- Observation modal -->
+                            <div id="observation-details{{ observation._id }}" class="bird-modal">
+                                <div id="bird-info-modal" class="col s12 bird-modal-content">
+                                    <div id="bird-info-body">
+                                        <!-- Observation image -->
+                                        <div id="bird-info-image-container" class="card-image">
+                                            <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
+                                            <span class="observation-title">
+                                                {{ observation.bird_species }} <em>by</em> 
+                                                <!-- If observation is set to anonymous, replace username -->
+                                                {% if observation.anonymous %}
+                                                    AnonymousBirdy
+                                                {% else %}
+                                                    {{ observation.seen_by }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                        <!-- Observation details -->
+                                        <div class="card-content" id="observation-data">
+                                            <p>
+                                                Quantity: {{ observation.quantity }} <br>
+                                                Certainty: {{ observation.certainty }}/10 <br>
+                                                Location: {{ observation.location }} <br>
+                                                Seen on: {{ observation.date }} @ {{ observation.time }} <br>
+                                                {{ observation.notes }}
+                                            </p>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
                         {% endif %}
                     {% endfor %}
                 </tbody>
