@@ -127,7 +127,7 @@
                     {% for observation in observations %}
                         <!-- Only show observations with visibility set to true -->
                         {% if observation.visible %}
-                            <tr>
+                            <tr class="observation-modal-trigger" id="observation-details{{ observation._id }}">
                                 <!-- Observation 'seen by' -->
                                 <td class="hide-mobile">
                                     <!-- If observation is set to anonymous display 'seen by' as anonymousbirdy -->
@@ -182,8 +182,8 @@
                                     </td>                        
                                 {% endif %}
                                 <!-- Observation modal -->
-                                <div id="observation-details{{ observation._id }}" class="modal">
-                                    <div id="bird-info-modal" class="col s12 modal-content">
+                                <div id="observation-details{{ observation._id }}" class="bird-modal">
+                                    <div id="bird-info-modal" class="col s12 bird-modal-content">
                                         <div id="bird-info-body">
                                             <!-- Observation image -->
                                             <div id="bird-info-image-container" class="card-image">

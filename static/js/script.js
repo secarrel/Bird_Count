@@ -128,3 +128,35 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "/login/";
   }
 });
+
+
+// -------------- Open modal with table row ---------------
+  // Get all table rows with the class observation-modal-trigger
+  let triggerRows = document.querySelectorAll(".observation-modal-trigger");
+
+  // Iterate over each trigger row
+  triggerRows.forEach(function (row) {
+    // Add click event listener to each trigger row
+    row.addEventListener("click", function () {
+      // Extract the observation ID from the row's ID attribute
+      let observationId = this.id.replace("observation-details", "");
+
+      // Construct the modal ID using the observation ID
+      let modalId = "observation-details" + observationId;
+
+      // Get the modal element
+      let modal = document.getElementById(modalId);
+
+      // If modal exists, display it
+      if (modal) {
+        modal.style.display = "flex";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    });
+  });
