@@ -68,7 +68,7 @@ table.highlight>tbody>tr:hover {
     }
 }
 /* ----------- Buttons ----------- */
-.bird-modal {
+/* .bird-modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -78,16 +78,16 @@ table.highlight>tbody>tr:hover {
     height: 104%;
     overflow:scroll;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-}
+/* } */
 
-.bird-modal-content{
+/* .bird-modal-content{
     background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered horizontally */
+    margin: 10% auto; /* 15% from the top and centered horizontally
     padding: 20px;
     border: 1px solid #888;
     height: fit-content;
     width: fit-content;
-}
+} */
 /* ----------- Buttons ----------- */
 .btn-small {
     background-color:#8DAB7F ;
@@ -385,8 +385,8 @@ nav a {
     margin: 0 !important;
 }
 
-#welcome-heading-container h5 {
-    color: #efefef;
+#welcome-heading-container p {
+    color: #efefef !important;
     font-size: 18px;
 }
 
@@ -1036,8 +1036,8 @@ input[type=range] {
         font-size: 35px;
     }
 
-    #welcome-heading-container h5 {
-        font-size: 20px;
+    #welcome-heading-container p {
+        font-size: 15px;
     }
 
     .welcome-image img {
