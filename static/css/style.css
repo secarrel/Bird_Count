@@ -106,12 +106,12 @@ table.highlight>tbody>tr:hover {
 }
 
 .delete-red {
-    background-color: #a70032 !important;
+    background-color: #c65d5d !important;
     margin: 2px;
 }
 
 .delete-red:hover {
-    background-color: #6b0020 !important;
+    background-color: #832b2b !important;
 }
 
 .cancel {
