@@ -39,14 +39,14 @@
                 <li><a href="{{ url_for('get_users') }}">Admin Nest</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-                <div>
+                <li class="no-link">
                     <div class="avatar-drop-container" id="non-user-full-nav">
                         <i class="fa-regular fa-circle-user center-align-icon"></i>
                     </div>
                     <h6 class="username-drop">
                         Get Started!
                     </h6>
-                </div>
+                </li>
                 <li><a href="{{ url_for('register') }}">Sign Up</a></li>
                 <li><a href="{{ url_for('login') }}">Log In</a></li>
             {% endif %}
