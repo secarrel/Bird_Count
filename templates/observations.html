@@ -129,7 +129,7 @@
                         {% if observation.visible %}
                             <tr>
                                 <!-- Observation 'seen by' -->
-                                <td href="#observation-details{{ observation._id }}" class="modal-trigger hide-mobile">
+                                <td class="hide-mobile">
                                     <!-- If observation is set to anonymous display 'seen by' as anonymousbirdy -->
                                     {% if observation.anonymous %}
                                         anonymousbirdy
@@ -138,21 +138,28 @@
                                     {% endif %}
                                 </td>
                                 <!-- Other observation data -->
-                                <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
-                                <td href="#observation-details{{ observation._id }}" class="modal-trigger hide-mobile">{{ observation.quantity }}</td>
-                                <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.location }}</td>
-                                <td href="#observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
+                                <td>{{ observation.bird_species }}</td>
+                                <td class="hide-mobile">{{ observation.quantity }}</td>
+                                <td>{{ observation.location }}</td>
+                                <td>{{ observation.date }}</td>
+                                <!-- View observation -->
+                                <td>
+                                    <a href="#observation-details{{ observation._id }}" class="modal-trigger tooltipped"
+                                        data-position="bottom" data-tooltip="View more details">
+                                        <i class="fa-solid fa-expand"></i>
+                                    </a>
+                                </td>
                                 <!-- If the session user is logged in or is the admin, display edit and delete buttons -->
                                 {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
                                     <!-- Edit observation -->
                                     <td class="hide-mobile">
-                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small edit-button tooltipped" data-position="left" data-tooltip="Edit">
+                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small edit-button tooltipped" data-position="bottom" data-tooltip="Edit">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <!-- Delete observation -->
                                     <td class="hide-mobile">
-                                        <a href="#confirm-delete{{ observation._id }}" class="btn-small modal-trigger delete-button delete-red tooltipped" data-position="right" data-tooltip="Delete">
+                                        <a href="#confirm-delete{{ observation._id }}" class="btn-small modal-trigger delete-button delete-red tooltipped" data-position="bottom" data-tooltip="Delete">
                                             <i class="fa-regular fa-trash-can "></i>
                                         </a>
                                         <!-- Confirm delete modal -->
