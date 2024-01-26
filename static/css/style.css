@@ -92,6 +92,8 @@ table.highlight>tbody>tr:hover {
 .btn-small {
     background-color:#8DAB7F ;
     margin: 10px;
+    color: #192738;
+    font-weight: 600 !important;
 }
 
 .btn-small:hover {
@@ -99,7 +101,7 @@ table.highlight>tbody>tr:hover {
 }
 
 .btn-small i {
-    color: #efefef !important;
+    color: #192738 !important;
     font-size: 16px;
 }
 
@@ -793,6 +795,8 @@ input {
 .margin-auto {
     margin: auto;
 }
+
+
 /* ---------------------- REGISTER PAGE ---------------------- */
 .select-wrapper input.select-dropdown{
     color: #9e9e9e;
