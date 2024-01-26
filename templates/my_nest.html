@@ -49,7 +49,7 @@
                         <p>
                             A collection and count of all bird species you have seen and submitted on Bird Count.
                         </p>
-                        <a href="#life-list-modal{{ user._id }}" id="life-list-btn" class="modal-trigger btn-small">View your life list <i class="fa-solid fa-binoculars"></i></a>
+                        <a aria-label="View your life list" href="#life-list-modal{{ user._id }}" id="life-list-btn" class="modal-trigger btn-small">View your life list <i class="fa-solid fa-binoculars"></i></a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                 {% if observations|selectattr('seen_by', 'equalto', session['user'])|list %}                        
                     <!-- New observation button -->
                     <div class="center-align">
-                        <a class="btn-small center-align" href="{{ url_for('add_observation') }}">
+                        <a aria-label="New observation" class="btn-small center-align" href="{{ url_for('add_observation') }}">
                             New Observation 
                             <i class="fa-solid fa-crow"></i>
                             <i class="fa-solid fa-plus"></i>
@@ -91,14 +91,14 @@
                                     <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
                                     <!-- Edit observation button -->
                                     <td>
-                                        <a href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small mobile-narrow">
+                                        <a aria-label="Edit observation" href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small mobile-narrow">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <!-- Delete observation -->
                                     <td>
                                         <!-- Delete button -->
-                                        <a href="#confirm-delete" class="btn-small modal-trigger delete-red mobile-narrow">
+                                        <a aria-label="Delete observation" href="#confirm-delete" class="btn-small modal-trigger delete-red mobile-narrow">
                                             <i class="fa-regular fa-trash-can "></i>
                                         </a>
                                         <!-- Delete modal -->
@@ -113,7 +113,7 @@
                                             </div>
                                             <!-- Confirm or cancel delete -->
                                             <div class="modal-footer">
-                                                <a href="{{ url_for('delete_observation', observation_id=observation._id) }}" class="modal-close btn-flat">Delete</a>
+                                                <a aria-label="Delete Observation" href="{{ url_for('delete_observation', observation_id=observation._id) }}" class="modal-close btn-flat">Delete</a>
                                                 <button class="modal-close btn-flat">Cancel</button>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                 <!-- No observations submitted message -->
                 {% else %}
                     <h6>You haven't submitted any observations yet</h6>
-                    <a class="btn-small" href="{{ url_for('add_observation') }}">
+                    <a aria-label="Add Observation" class="btn-small" href="{{ url_for('add_observation') }}">
                         Add Observation
                         <i class="fa-solid fa-crow"></i>
                         <i class="fa-solid fa-plus"></i>
@@ -164,12 +164,12 @@
                 <p class="center-align"> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
                 <div class="row">
                     <!-- Messages -->
-                    <a href="#pigeon-hole-nest" class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
+                    <a aria-label="Look in pigeon hole" href="#pigeon-hole-nest" class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
                         Pigeon Hole 
                         <i class="fa-solid fa-envelope"></i> 
                     </a>
                     <!-- Contact Admin -->
-                    <a href="#contact-admin" class="contact-admin-btn btn-small col s12 m6 l6 modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
+                    <a aria-label="Contact admin" href="#contact-admin" class="contact-admin-btn btn-small col s12 m6 l6 modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
                         Contact admin 
                         <i class="fa-solid fa-circle-info"></i>
                     </a>
@@ -228,14 +228,14 @@
                         <!-- Edit Email -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-email-container">
                             <p> Email: {{ user.email }}</p>
-                            <a href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your email address">
+                            <a aria-label="Edit email" href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your email address">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>
                         <!-- Edit experience -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-experience-container">
                             <p> Experience: {{ user.experience }}/6</p>
-                            <a href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your experience level">
+                            <a aria-label="Edit experience" href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your experience level">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>    
@@ -244,7 +244,7 @@
                 <!-- Delete Account -->
                 <div class="delete-account card-panel">
                     <h5>Delete Account</h5>
-                    <a href="#confirm-delete-account{{ user._id }}" class="modal-trigger btn-small delete-red" id="delete-account-button">
+                    <a aria-label="Delete account" href="#confirm-delete-account{{ user._id }}" class="modal-trigger btn-small delete-red" id="delete-account-button">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         DELETE ACCOUNT
                         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -329,7 +329,7 @@
             <!-- Hide list and display message explaining empty list -->
             {% else %}
             <h6>You haven't got any birds in your nest</h6>
-            <a class="btn-small" href="{{ url_for('add_observation') }}">
+            <a aria-label="Add Observation" class="btn-small" href="{{ url_for('add_observation') }}">
                 Add Observation
                 <i class="fa-solid fa-crow"></i>
                 <i class="fa-solid fa-plus"></i>
@@ -360,11 +360,11 @@
                                         Sent at: {{ message.time }}
                                         <div class="button-container">
                                             <!-- Delete Message Button -->
-                                            <a href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
+                                            <a aria-label="Delete message" href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
                                                 <i class="fa-regular fa-trash-can "></i>
                                             </a>
                                             <!-- Reply to message button -->
-                                            <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                            <a aria-label="Reply to message" href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
                                                 class="btn modal-trigger btn-small pigeon-hole-button">
                                                 <i class="fa-solid fa-reply "></i>
                                             </a>
@@ -391,7 +391,7 @@
                                 </div>
                                 <!-- Confirm or cancel delete buttons -->
                                 <div class="modal-footer">
-                                    <a href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Agree</a>
+                                    <a aria-label="Yes, delete message" href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Yes, delete</a>
                                     <div class="modal-close btn-flat">Cancel</div>
                                 </div>
                             </div>
@@ -525,7 +525,7 @@
         </div>
         <!-- Confrim or cancel buttons -->
         <div class="modal-footer">
-            <a href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Yes, delete</a>
+            <a aria-label="Yes, delete account" href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Yes, delete</a>
             <div class="modal-close btn-flat">No, cancel</div>
         </div>
     </div>
