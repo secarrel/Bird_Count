@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="background-img" class="row">
+<div class="background-img row">
     <!-- Only allow users who are logged in and not the admin to view this content-->
     {% if session.user and session.user != 'admin' %}
         <!-- Add observation form -->
