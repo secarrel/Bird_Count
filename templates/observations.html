@@ -138,7 +138,8 @@
                                 data-quantity="{{ observation.quantity }}"
                                 data-image="{{ observation.image }}"
                                 data-anonymous="{{ observation.anonymous }}"
-                                data-certainty="{{ observation.certainty }}">
+                                data-certainty="{{ observation.certainty }}"
+                                data-notes="{{ observation.notes }}">
                                 <!-- Observation 'seen by' -->
                                 <td class="hide-mobile">
                                     <!-- If observation is set to anonymous display 'seen by' as anonymousbirdy -->
@@ -205,7 +206,7 @@
                         <div id="bird-info-body">
                             <!-- Observation image -->
                             <div id="bird-info-image-container" class="card-image">
-                                <img id="observation-image" src="" alt="Observation Image">
+                                <img id="observation-image" src=" " alt="Observation Image">
                                 <span id="observation-title">
                                 </span>
                             </div>

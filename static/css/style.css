@@ -523,6 +523,11 @@ nav a {
     flex-direction: column;
     justify-content: center;
     align-items: left;
+    max-width: 230px;
+}
+
+#observation-details {
+    width: fit-content !important
 }
 
 #bird-info-body p{

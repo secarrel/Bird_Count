@@ -145,11 +145,16 @@ observationRow.forEach(function(observation) {
     let observationId = observation.dataset.id;
     let anonymous = observation.dataset.anonymous;
     let certainty = observation.dataset.certainty;
+    let notes = observation.dataset.notes;
 
     if (anonymous === "True") {
       seenBy = "AnonymousBirdy";
     }
-    
+
+    if (notes === "") {
+      notes = 'None';
+    }
+
   // Get image for this observation
   fetch(`/get_image/${observationId}`)
     .then((response) => response.blob())
@@ -169,6 +174,7 @@ observationRow.forEach(function(observation) {
           "Quantity: " + quantity;
         document.getElementById("observation-certainty").innerText =
           "Certainty: " + certainty + "/10";
+        document.getElementById("observation-notes").innerText = "Notes: " + notes;
 
         // Open the modal
         let instance = M.Modal.getInstance(observationModal);
