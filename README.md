@@ -615,6 +615,8 @@ You can fork this repository by using the following steps:
 | [Office for National Statistics](https://geoportal.statistics.gov.uk/documents/ons::local-authority-districts-counties-and-unitary-authorities-april-2021-map-in-united-kingdom--1/about) | Add and edit observation: location autocomplete input field | I used district data provided by this site for the location autocomplete data list. |
 | [Code Institute (TIm Neslon): Task Manager Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main) | Entire site | This tutorial provided my site with it's initial structure and inspiration. I built on, adapted and developed the code from this tutorial. |
 | [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README | This helped me with the writing of the README. |
+| [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob) | Observation details modals | Ths resource helped me to display images in my observation details modals. |
+
 ### Media
 
 | Source | Link | Artist | Notes |

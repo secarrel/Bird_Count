@@ -130,33 +130,53 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// -------------- Open modal with table row ---------------
-  // Get all table rows with the class observation-modal-trigger
-  let triggerRows = document.querySelectorAll(".observation-modal-trigger");
+// -------------- Fill and open observation modal ---------------
+let observationRow = document.querySelectorAll(".observation-modal-trigger");
+let observationModal = document.getElementById("observation-details")
 
-  // Iterate over each trigger row
-  triggerRows.forEach(function (row) {
-    // Add click event listener to each trigger row
-    row.addEventListener("click", function () {
-      // Extract the observation ID from the row's ID attribute
-      let observationId = this.id.replace("observation-details", "");
+observationRow.forEach(function(observation) {
+  observation.addEventListener("click", function () {
+    let species = observation.dataset.species;
+    let location = observation.dataset.location;
+    let date = observation.dataset.date;
+    let time = observation.dataset.time;
+    let seenBy = observation.dataset.seenBy;
+    let quantity = observation.dataset.quantity;
+    let observationId = observation.dataset.id;
+    let anonymous = observation.dataset.anonymous;
+    let certainty = observation.dataset.certainty;
 
-      // Construct the modal ID using the observation ID
-      let modalId = "observation-details" + observationId;
+    if (anonymous === "True") {
+      seenBy = "AnonymousBirdy";
+    }
+    
+  // Get image for this observation
+  fetch(`/get_image/${observationId}`)
+    .then((response) => response.blob())
+    .then((image) => {
+      let imageUrl = URL.createObjectURL(image);
+      let modalImage = document.getElementById("observation-image");
+    
+      // When image has loaded, change modal content and open.
+      modalImage.onload = function() {
+        document.getElementById("observation-title").innerText =
+          species + " by " + seenBy;
+        document.getElementById("observation-location").innerText =
+          "Location: " + location;
+        document.getElementById("observation-date").innerText =
+          "Seen: " + date + " @ " + time;
+        document.getElementById("observation-quantity").innerText =
+          "Quantity: " + quantity;
+        document.getElementById("observation-certainty").innerText =
+          "Certainty: " + certainty + "/10";
 
-      // Get the modal element
-      let modal = document.getElementById(modalId);
+        // Open the modal
+        let instance = M.Modal.getInstance(observationModal);
+        instance.open();
+      };
 
-      // If modal exists, display it
-      if (modal) {
-        modal.style.display = "flex";
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.addEventListener("click", function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      });
+      modalImage.src = imageUrl;
+    
     });
   });
+});
