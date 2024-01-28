@@ -271,7 +271,6 @@ nav a {
 }
 
 .avatar {
-    scale: 1.5;
     object-fit: cover;
     width: 50px;
     height: 50px;
@@ -314,7 +313,6 @@ nav a {
 }
 
 .avatar-drop {
-    scale: 1;
     width: 100%;
     padding: 4px 4px 0 4px;
 }
@@ -522,8 +520,12 @@ nav a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: flex-start;
     max-width: 230px;
+}
+
+#observation-data p{
+    margin: 0 !important;
 }
 
 #observation-details {
@@ -811,10 +813,6 @@ input#file-upload-button {
     border-bottom-style: solid;
     border-bottom-width: thin;
     width: calc(100% - 3rem);
-}
-
-.fa-camera {
-    translate: -10px -12px;
 }
 
 .fa-eye-low-vision {
