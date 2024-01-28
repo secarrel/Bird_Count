@@ -165,15 +165,14 @@
                                     <!-- Edit observation -->
                                     <td>
                                         <a href="{{ url_for('edit_observation', observation_id=observation._id) }}"
-                                            class="btn-small edit-button tooltipped hide-mobile" data-position="bottom" data-tooltip="Edit">
+                                            class="btn-small edit-button hide-mobile">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <!-- Delete observation -->
                                     <td>
                                         <a href="#confirm-delete{{ observation._id }}"
-                                            class="btn-small modal-trigger delete-button delete-red tooltipped hide-mobile" data-position="bottom"
-                                            data-tooltip="Delete">
+                                            class="btn-small modal-trigger delete-button delete-red hide-mobile">
                                             <i class="fa-regular fa-trash-can "></i>
                                         </a>
                                         <!-- Confirm delete modal -->
@@ -194,6 +193,15 @@
                                             </div>
                                         </div>
                                     </td>
+                                {% else %}
+                                <!-- Edit observation -->
+                                    <td>
+                                        <a href="#" class="hide-mobile"></a>
+                                    </td>
+                                    <!-- Delete observation -->
+                                    <td>
+                                        <a href="#" class="hide-mobile"></a>
+                                    </td>
                                 {% endif %}
                             </tr>
                             {% endif %}
@@ -206,7 +214,7 @@
                         <div id="bird-info-body">
                             <!-- Observation image -->
                             <div id="bird-info-image-container" class="card-image">
-                                <img id="observation-image" src=" " alt="Observation Image">
+                                <img id="observation-image" src="#" alt="Observation Image">
                                 <span id="observation-title">
                                 </span>
                             </div>
