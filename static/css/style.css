@@ -861,6 +861,12 @@ input[type="range"] {
   margin-left: 15px;
 }
 
+.image-add-label {
+  margin-bottom: 30px !important;
+}
+
+
+
 /* ---------------------- EDIT OBSERVATION PAGE ---------------------- */
 .row .col.s3 {
   margin-right: auto;
@@ -1075,10 +1081,6 @@ input[type="range"] {
   #bird-info-body,
   #bird-info-body-nest {
     flex-wrap: wrap;
-  }
-
-  .image-add-label {
-    margin-bottom: 20px;
   }
 
   #edit-image-button-container {
