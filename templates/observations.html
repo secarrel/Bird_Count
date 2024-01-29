@@ -168,12 +168,12 @@
                         data-certainty="{{ observation.certainty }}" data-notes="{{ observation.notes }}">
                         <!-- Observation 'seen by' -->
                         <!-- View observation -->
-                        <td class="hide-mobile">
+                        <td class="hide-mobile details-trigger">
                             <a>
                                 <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                             </a>
                         </td>
-                        <td class="hide-mobile">
+                        <td class="hide-mobile details-trigger">
                             <!-- If observation is set to anonymous display 'seen by' as anonymousbirdy -->
                             {% if observation.anonymous %}
                             anonymousbirdy
@@ -182,10 +182,10 @@
                             {% endif %}
                         </td>
                         <!-- Other observation data -->
-                        <td>{{ observation.bird_species }}</td>
-                        <td class="hide-mobile">{{ observation.quantity }}</td>
-                        <td>{{ observation.location }}</td>
-                        <td>{{ observation.date }}</td>
+                        <td class="details-trigger">{{ observation.bird_species }}</td>
+                        <td class="hide-mobile details-trigger">{{ observation.quantity }}</td>
+                        <td class="details-trigger">{{ observation.location }}</td>
+                        <td class="details-trigger">{{ observation.date }}</td>
                         <!-- If the session user is logged in or is the admin, display edit and delete buttons -->
                         {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
                         <!-- Edit observation -->
@@ -203,7 +203,7 @@
                                 <i class="fa-regular fa-trash-can "></i>
                             </a>
                             <!-- Confirm delete modal -->
-                            <div id="confirm-delete{{ observation._id }}" class="modal">
+                            <div id="confirm-delete{{ observation._id }}" class="modal delete-modal">
                                 <div class="modal-content">
                                     <h4>Delete Observation</h4>
                                     <p>

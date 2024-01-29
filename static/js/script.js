@@ -125,56 +125,59 @@ if (redirectAddObs) {
 // -------------- Fill and open observation modal ---------------
 let observationRow = document.querySelectorAll(".observation-modal-trigger");
 let observationModal = document.getElementById("observation-details");
+let deleteButtons = document.querySelectorAll(".delete-button");
 
 observationRow.forEach(function (observation) {
-  observation.addEventListener("click", function () {
-    let species = observation.dataset.species;
-    let location = observation.dataset.location;
-    let date = observation.dataset.date;
-    let time = observation.dataset.time;
-    let seenBy = observation.dataset.seenBy;
-    let quantity = observation.dataset.quantity;
-    let observationId = observation.dataset.id;
-    let anonymous = observation.dataset.anonymous;
-    let certainty = observation.dataset.certainty;
-    let notes = observation.dataset.notes;
+  observation.addEventListener("click", function (event) {
+    if (event.target.classList.contains("details-trigger")) {
+      let species = observation.dataset.species;
+      let location = observation.dataset.location;
+      let date = observation.dataset.date;
+      let time = observation.dataset.time;
+      let seenBy = observation.dataset.seenBy;
+      let quantity = observation.dataset.quantity;
+      let observationId = observation.dataset.id;
+      let anonymous = observation.dataset.anonymous;
+      let certainty = observation.dataset.certainty;
+      let notes = observation.dataset.notes;
 
-    if (anonymous === "True") {
-      seenBy = "AnonymousBirdy";
+      if (anonymous === "True") {
+        seenBy = "AnonymousBirdy";
+      }
+
+      if (notes === "") {
+        notes = "No notes were added.";
+      }
+
+      // Get image for this observation
+      fetch(`/get_image/${observationId}`)
+        .then((response) => response.blob())
+        .then((image) => {
+          let imageUrl = URL.createObjectURL(image);
+          let modalImage = document.getElementById("observation-image");
+
+          // When image has loaded, change modal content and open.
+          modalImage.onload = function () {
+            document.getElementById("observation-title").innerText =
+              species + " by " + seenBy;
+            document.getElementById("observation-location").innerText =
+              "Location: " + location;
+            document.getElementById("observation-date").innerText =
+              "Seen: " + date + " @ " + time;
+            document.getElementById("observation-quantity").innerText =
+              "Quantity: " + quantity;
+            document.getElementById("observation-certainty").innerText =
+              "Certainty: " + certainty + "/10";
+            document.getElementById("observation-notes").innerText =
+              "Notes: " + notes;
+
+            // Open the modal
+            let instance = M.Modal.getInstance(observationModal);
+            instance.open();
+          };
+
+          modalImage.src = imageUrl;
+        });
     }
-
-    if (notes === "") {
-      notes = "No notes were added.";
-    }
-
-    // Get image for this observation
-    fetch(`/get_image/${observationId}`)
-      .then((response) => response.blob())
-      .then((image) => {
-        let imageUrl = URL.createObjectURL(image);
-        let modalImage = document.getElementById("observation-image");
-
-        // When image has loaded, change modal content and open.
-        modalImage.onload = function () {
-          document.getElementById("observation-title").innerText =
-            species + " by " + seenBy;
-          document.getElementById("observation-location").innerText =
-            "Location: " + location;
-          document.getElementById("observation-date").innerText =
-            "Seen: " + date + " @ " + time;
-          document.getElementById("observation-quantity").innerText =
-            "Quantity: " + quantity;
-          document.getElementById("observation-certainty").innerText =
-            "Certainty: " + certainty + "/10";
-          document.getElementById("observation-notes").innerText =
-            "Notes: " + notes;
-
-          // Open the modal
-          let instance = M.Modal.getInstance(observationModal);
-          instance.open();
-        };
-
-        modalImage.src = imageUrl;
-      });
   });
 });
