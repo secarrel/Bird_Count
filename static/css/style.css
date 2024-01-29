@@ -44,8 +44,15 @@
   color: #192738;
 }
 
+.fa-feather-pointed {
+  color: #efefef9c;
+}
+.details-trigger i {
+  font-size: 25px;
+}
+
 .observation-modal-trigger:hover .fa-up-right-and-down-left-from-center {
-  color: #efefef;
+  color: #efefef9c;
   transform: scale(1.2);
   transition: transform 0.3s ease;
   animation: pulse 1s infinite;
@@ -196,6 +203,7 @@ th {
   text-align: center;
   padding: 3px 0;
   border-radius: 0;
+  height: 60px;
 }
 
 tbody {
@@ -509,6 +517,7 @@ nav a {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  max-width: 900px;
 }
 
 #bird-info-body {
