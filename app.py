@@ -255,20 +255,15 @@ def register():
         if experience == '1':
             avatar_url = '../static/assets/images/eggs.png'
         elif experience == '2':
-            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-pho'
-            'to-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '3':
-            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-pho'
-            'to-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '4':
-            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-pho'
-            'to-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '5':
-            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-pho'
-            'to-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '6':
-            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-pho'
-            'to-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 
         # Redirect if value is invalid.
         if experience == '':
@@ -679,23 +674,17 @@ def edit_user_experience(user_id):
 
         # Match experience levels to different avatars
         if experience == '1':
-            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-pho'
-            'to-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-photo-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '2':
-            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-pho'
-            'to-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '3':
-            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-pho'
-            'to-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '4':
-            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-pho'
-            'to-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '5':
-            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-pho'
-            'to-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '6':
-            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-pho'
-            'to-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         # Validate 'experience' field so that value cannot = 0.
         if experience == '0':
             flash("No changes made, fill in the experience field to make"
