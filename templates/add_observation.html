@@ -13,7 +13,7 @@
             <div id="bird-species-add" class="row autocompleteBird">
                 <div class="input-field col s12 autocompleteBird">
                     <i class="fa-solid fa-crow prefix"></i>
-                    <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" required>
+                    <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" validate required>
                     <label class="tooltipped" data-position="bottom"
                         data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
                         for="bird">Bird Species <strong class="required">*</strong>
@@ -25,8 +25,8 @@
             <div id="location-add" class="row">
                 <div class="input-field col s12 autocompleteLocation">
                     <i class="fa-solid fa-map-location-dot prefix"></i>
-                    <input id="location" class="autocompleteLocation" name="location" type="text" maxlength="100"
-                        required>
+                    <input id="location" class="autocompleteLocation" name="location" type="text" validate
+                        maxlength="100" required>
                     <label class="tooltipped" data-position="bottom"
                         data-tooltip="Using the autocomplete options will make it easier to search for your results. 
                             If you want to be more specific with the location of your observation you can add extra 
@@ -68,7 +68,7 @@
             <div id="notes-add" class="row">
                 <div class="input-field col s12">
                     <i class="fa-regular fa-comment prefix"></i>
-                    <input type="text" name="notes" id="notes" maxlength="500">
+                    <input type="text" name="notes" id="notes" validate maxlength="500">
                     <label class="tooltipped" data-position="bottom"
                         data-tooltip="Talk about anything... What was the weather like? 
                             Describe the bird's appearance if you're unsure of identification! What was the bird doing? Max: 500 characters." for="notes">Notes <i

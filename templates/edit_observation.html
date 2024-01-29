@@ -14,8 +14,8 @@
                 <div id="bird-species-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-crow prefix"></i>
-                        <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" required
-                            value="{{ observation.bird_species }}">
+                        <input id="bird" class="autocompleteBird" name="bird" type="text" validate maxlength="60"
+                            required value="{{ observation.bird_species }}">
                         <label class="tooltipped" data-position="bottom"
                             data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
                             for="bird">Bird Species <strong class="required">*</strong> <i
@@ -26,8 +26,8 @@
                 <div id="location-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-map-location-dot prefix"></i>
-                        <input id="location" class="autocompleteLocation" name="location" type="text" maxlength="100"
-                            required value="{{ observation.location }}">
+                        <input id="location" class="autocompleteLocation" name="location" type="text" validate
+                            maxlength="100" required value="{{ observation.location }}">
                         <label class="tooltipped" data-position="bottom"
                             data-tooltip="Using the autocomplete options will make it easier to search for your results. 
                             If you want to be more specific with the location of your observation you can add extra 
@@ -69,7 +69,8 @@
                 <div id="notes-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-comment prefix"></i>
-                        <input type="text" name="notes" id="notes" maxlength="500" value="{{ observation.notes }}">
+                        <input type="text" name="notes" id="notes" validate maxlength="500"
+                            value="{{ observation.notes }}">
                         <label class="tooltipped" data-position="bottom"
                             data-tooltip="Talk about anything... What was the weather like? Describe the bird's appearance if you're unsure of identification! What was the bird doing? MAx: 500 characters."
                             for="notes">Notes <i class="fa-regular fa-circle-question"></i> </label>
