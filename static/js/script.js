@@ -3,8 +3,6 @@ let year = date.getFullYear();
 let month = date.getMonth();
 let day = date.getDate();
 let minOne = new Date(year, month, day);
-let maxDate;
-let locations = {}
 
 // -------------- Execute when page is ready ---------------
 $(document).ready(function () {
@@ -118,16 +116,11 @@ if (anonymousSwitch && anonymousForm) {
 }
 
 // -------------- Redirect User ---------------
-document.addEventListener("DOMContentLoaded", function () {
-  // Check if the target element exists
-  let redirectAddObs = document.getElementById("redirect-add-obs");
+let redirectAddObs = document.getElementById("redirect-add-obs");
 
-  if (redirectAddObs) {
-    // The target element has loaded
-    // Redirect the user to a new page
-    window.location.href = "/login/";
-  }
-});
+if (redirectAddObs) {
+  window.location.href = "/login/";
+}
 
 
 // -------------- Fill and open observation modal ---------------
