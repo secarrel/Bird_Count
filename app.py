@@ -253,8 +253,7 @@ def register():
         experience = request.form.get("experience")
         # Match experience levels to different avatars
         if experience == '1':
-            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-pho'
-            'to-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            avatar_url = '../static/assets/images/eggs.png'
         elif experience == '2':
             avatar_url = 'https://images.pexels.com/photos/1275680/pexels-pho'
             'to-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
