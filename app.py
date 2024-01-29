@@ -1,9 +1,12 @@
 # Imports
 import os
 import io
+import json
+import pymongo
+
 from flask import (
     Flask, Blueprint, flash, render_template,
-    redirect, request, session, url_for, send_file)
+    redirect, request, session, url_for, send_file, jsonify)
 from flask_pymongo import PyMongo
 from gridfs import GridFS
 from bson.objectid import ObjectId
@@ -18,7 +21,6 @@ app = Flask(__name__, template_folder='templates')
 
 
 # Set up MongoDB.
-import pymongo
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -30,12 +32,16 @@ fs = GridFS(db)
 # Add user data to all templates.
 @app.context_processor
 def inject_user():
-    """ Add session user infromation to all templates before they are rendered"""
+    """
+    Add session user information to all templates
+    before they are rendered.
+    """
     user = None
     if 'user' in session:
         username = session['user']
         user = db.users.find_one({'username': username})
     return dict(user=user)
+
 
 # Render template for welcome page.
 @app.route("/")
@@ -54,12 +60,13 @@ def about():
 # Render template for community observations page.
 @app.route("/get_observations/")
 def get_observations():
-    """ 
-    Renders the 'Observations' page template. 
-    
+    """
+    Renders the 'Observations' page template.
+
     Returns:
         users(list): all data from users in the birdcount database.
-        observations(list): all data from observations in the birdcount database.
+        observations(list): all data from observations in the birdcount
+        database.
     """
     # Get users data from the database.
     users = list(db.users.find())
@@ -67,24 +74,20 @@ def get_observations():
     # Get observations data from database and sort with most recent first.
     observations = list(db.observations.find().sort("date", -1))
 
-    return render_template("observations.html", observations=observations, users=users)
-
-
-# Route to display the modal based on observation ID
-# @app.route('/show_modal/<observation_id>')
-# def get_bird_modal_data(observation_id):
-#     observation_data = observations.get(observation_id)
-#     get_image(observation_id)
-#     return observation_id
+    return render_template(
+        "observations.html",
+        observations=observations,
+        users=users)
 
 
 # Render template for Admin's nest page.
 @app.route("/get_users/")
 def get_users():
-    """ 
-    Renders the 'Admin' page template only for users who are the admin. Other users are redirected.
-    
-    Redirect: 
+    """
+    Renders the 'Admin' page template only for users who are the admin.
+    Other users are redirected.
+
+    Redirect:
         non-users: login()
         non-admin users: my_nest()
 
@@ -113,8 +116,9 @@ def get_users():
 @app.route("/my_nest/", methods=["GET", "POST"])
 def my_nest():
     """
-    Renders 'My Nest' template only for users who are logged in not as 'Admin'; other users are redirected. 
-    Bird stats are calculated from the session user's observations. Message data from the birdcount database
+    Renders 'My Nest' template only for users who are logged in not as
+    'Admin'; other users are redirected. Bird stats are calculated from
+    the session user's observations. Message data from the birdcount database
     are listed.
 
     Redirect:
@@ -122,14 +126,17 @@ def my_nest():
         admin: get_users()
 
     Returns:
-        observations(list): all observation data from the birdcount database, sorted with most recent first.
-        user(list): all user data for only the session user.
-        total_observations(list): the total number of birds of any species observed by the current user.
+        observations(list): all observation data from the birdcount database,
+        sorted with most recent first. user(list): all user data for only the
+        session user.
+        total_observations(list): the total number of birds of any species
+        observed by the current user.
         species_count: the number of different species in user's observations.
-        average_certainty(int): average of the 'certainty' field of all observations from current user.
-        tally(list): 'bird_species' and corresponding 'quantity' observed by the logged in user, grouped by 'bird_species'.
+        average_certainty(int): average of the 'certainty' field of all
+        observations from current user.
+        tally(list): 'bird_species' and corresponding 'quantity' observed by
+        the logged in user, grouped by 'bird_species'.
         messages(list): all message data from the birdcount databse.
-
     """
     # Redirect non users to the login page.
     if 'user' not in session:
@@ -139,16 +146,16 @@ def my_nest():
     elif session["user"] == 'admin':
         flash("Admin can't access personal nests")
         return redirect(url_for('get_users'))
-    
+
     # Get user data for the current logged in user.
     username = session["user"]
-    if username :
+    if username:
         user = db.users.find_one({'username': username})
 
     # Get all observation data and sort so most recent is first.
-    observations = list(db.observations.find().sort("date", -1))   
+    observations = list(db.observations.find().sort("date", -1))
 
-    # Get all observations created by the logged in user to calculate bird stats from.
+    # Get observations created by the logged in user to calculate bird stats.
     users_observations = list(db.observations.find({"seen_by": username}))
     # Create empty list variables for new list data.
     quantities = []
@@ -167,7 +174,7 @@ def my_nest():
 
     # Create a list of the species observed without repeats.
     unique_species = []
-    for species in species_seen :
+    for species in species_seen:
         if species not in unique_species:
             unique_species.append(species)
 
@@ -184,10 +191,13 @@ def my_nest():
         average_certainty = 0
         print("cannot divide zero")
 
-    # Creates a list, 'tally', of bird species and their quantities, grouped by species.
+    # Creates a list of bird species and their quantities, grouped by species.
     bird_count = [
-    {'$match': {'seen_by': session['user']}},
-    {'$group': {'_id': '$bird_species', 'totalQuantity': {'$sum': '$quantity'}}}
+        {'$match': {'seen_by': session['user']}},
+        {'$group': {
+            '_id': '$bird_species',
+            'totalQuantity': {'$sum': '$quantity'}
+        }}
     ]
     tally = list(db.observations.aggregate(bird_count))
 
@@ -195,11 +205,11 @@ def my_nest():
     messages = list(db.messages.find())
 
     return render_template(
-        "my_nest.html", 
-        observations=observations, 
-        user=user, 
-        total_observations=total_observations, 
-        species_count=species_count, 
+        "my_nest.html",
+        observations=observations,
+        user=user,
+        total_observations=total_observations,
+        species_count=species_count,
         average_certainty=average_certainty,
         tally=tally,
         messages=messages
@@ -210,14 +220,16 @@ def my_nest():
 @app.route("/register/", methods=["GET", "POST"])
 def register():
     """
-    Renders template for 'register'. 
-    
-    Value of 'username' in submitted form is checked against 'username' field in each document in the 
-    users collection in the birdcount database. Dulicated usernames are prevented. 
+    Renders template for 'register'.
+
+    Value of 'username' in submitted form is checked against 'username' field
+    in each document in the users collection in the birdcount database.
+    Dulicated usernames are prevented.
 
     Field validation is added for 'experience', so '0' is not a valid value.
 
-    Variable 'register' value is added to the 'users' collection in the birdcount database.
+    Variable 'register' value is added to the 'users' collection in the
+    birdcount database.
 
     The registered user is logged in and added to the 'session' cookie.
 
@@ -231,37 +243,44 @@ def register():
         # check if username already exists in db.
         existing_user = db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
+
         # If the username already exists redirect user to login.
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("login"))
-        
+
         # Validate 'experience' field so '0' isn't an accepted value.
         experience = request.form.get("experience")
         # Match experience levels to different avatars
         if experience == '1':
-            avatar_url = '../static/assets/images/eggs.png' 
+            avatar_url = '../static/assets/images/eggs.png'
         elif experience == '2':
-            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-pho'
+            'to-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '3':
-            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-pho'
+            'to-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '4':
-            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-pho'
+            'to-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '5':
-            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-pho'
+            'to-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '6':
-            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-pho'
+            'to-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 
         # Redirect if value is invalid.
         if experience == '':
-            flash("You need to choose a value for 'experience'. This can be changed in your nest at any time.")
+            flash("You need to choose a value for 'experience'. This can be"
+                  "changed in your nest at any time.")
             return redirect(url_for("register"))
         # Register user if experience is valid.
         else:
             register = {
                 "username": request.form.get("username").lower(),
-                "password": generate_password_hash(request.form.get("password")),
+                "password": generate_password_hash(request.form.get(
+                    "password")),
                 "email": request.form.get("email"),
                 "experience": request.form.get("experience"),
                 "visible": bool("True"),
@@ -272,9 +291,10 @@ def register():
 
         # Put the new user into 'session' cookie and redirect to 'My nest'.
         session["user"] = request.form.get("username").lower()
-        flash("Registration Successful! Welcome, {}!".format(request.form.get("username")))
+        flash("Registration Successful! Welcome, {}!".format(
+            request.form.get("username")))
         return redirect(url_for("my_nest"))
-    
+
     return render_template("register.html")
 
 
@@ -282,10 +302,12 @@ def register():
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     """
-    Renders the template for 'Login' page. 
+    Renders the template for 'Login' page.
 
-    Takes submitted form data and checks validity of username and password against 'users' collection in database.
-    Logs in users if username and password fields match that of a single document in the databse.
+    Takes submitted form data and checks validity of username and password
+    against 'users' collection in database.
+    Logs in users if username and password fields match that of a single
+    document in the databse.
 
     Redirects:
         Logged in admin: get_users().
@@ -300,16 +322,18 @@ def login():
         # Log in user.
         if existing_user:
             # Check password matches hashed password, then log user in.
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}! You have successfully logged in.".format(request.form.get("username")))
-                    # If admin logs in redirect them to the 'Admin' page.
-                    if session["user"] == 'admin':
-                        return redirect(url_for("get_users"))
-                    # If an other existing user logs in redirect them to 'My Nest'.
-                    else:
-                        return redirect(url_for("my_nest"))                    
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash(
+                    "Welcome, {}! You have successfully logged in.".format(
+                        request.form.get("username")))
+                # If admin logs in redirect them to the 'Admin' page.
+                if session["user"] == 'admin':
+                    return redirect(url_for("get_users"))
+                # If an other existing user logs in redirect them to 'My Nest'.
+                else:
+                    return redirect(url_for("my_nest"))
             else:
                 # Invalid password match.
                 flash("Incorrect Username and/or Password")
@@ -323,13 +347,15 @@ def login():
     return render_template("login.html")
 
 
-# Render template for add observations page 
+# Render template for add observations page
 @app.route("/add_observation/", methods=["GET", "POST"])
 def add_observation():
     """
-    Renders the template for 'add_observation.html', only for users that are logged in and not the admin. Other users are redirected.
+    Renders the template for 'add_observation.html', only for users that
+    are logged in and not the admin. Other users are redirected.
 
-    Gets data from observation form at adds it to the birdcount database as a new observation document.
+    Gets data from observation form at adds it to the birdcount database as
+    a new observation document.
 
     Redirect:
         admin: get_users().
@@ -359,17 +385,16 @@ def add_observation():
         if 'image-file' in request.files:
             image_file = request.files['image-file']
             if image_file.filename != '':
-                # A file has been uploaded; proceed to handle it
+                # A file has been uploaded, handle it
                 image_id = fs.put(image_file)
-                # Further logic to handle the image ID, possibly storing it in the database
             else:
-                # No file uploaded; handle accordingly
+                # No file uploaded
                 image_id = ObjectId('65a522a638bb15858a80cc53')
                 print("No file uploaded")
         else:
-            # No file field in the request; handle accordingly
+            # No image file, add default image
             print("No file field in the request")
-                
+
         # Create new observation document in 'observations' collection.
         entry = {
             "bird_species": request.form.get("bird"),
@@ -383,13 +408,13 @@ def add_observation():
             "quantity": int(request.form.get('quantity')),
             "edited": False,
             "anonymous": anonymous,
-            "visible": visible            
+            "visible": visible
         }
         if image_id is not None:
             entry["image"] = image_id
         db.observations.insert_one(entry)
         flash("Observation added to your nest")
-        return redirect(url_for("my_nest")) 
+        return redirect(url_for("my_nest"))
     return render_template("add_observation.html")
 
 
@@ -398,23 +423,28 @@ def add_observation():
 @app.route("/edit_observation/<observation_id>", methods=["GET", "POST"])
 def edit_observation(observation_id):
     """
-    Renders template for 'edit_observation.html), only for user who are 'admin' or match the 
-    observation 'seen_by' field. Other users are redirected.
+    Renders template for 'edit_observation.html), only for user who are
+    'admin' or match the observation 'seen_by' field. Other users are
+    redirected.
 
-    Gets data from the 'edit_observation' form to replace the data in the observation document in teh birdcount database with the 
-    matching observation_id as is passed into the function.
+    Gets data from the 'edit_observation' form to replace the data in the
+    observation document in teh birdcount database with the matching
+    observation_id as is passed into the function.
 
     Parameters:
         observation_id (str): a unique string.
 
     Redirects:
         User that is not logged in: login().
-        Logged in user that is neither admin or creator of the observation: get_observations().
+        Logged in user that is neither admin or creator of the observation:
+            get_observations().
         Successful update: get_observations().
 
     Returns:
-        observation (dict): a dictionary containing data of the observation matching the id passed into function.
-        original_user (str): a string containing the username of the original creator of the observation.
+        observation (dict): a dictionary containing data of the observation
+        matching the id passed into function.
+        original_user (str): a string containing the username of the original
+        creator of the observation.
     """
     # Find the observation with '_id' matching the 'observation_id'
     observation = db.observations.find_one({"_id": ObjectId(observation_id)})
@@ -426,23 +456,23 @@ def edit_observation(observation_id):
     visible = user_info["visible"]
     anonymous = user_info["anonymous"]
     original_image_id = observation.get("image")
-    
+
     # Redirect user to login if they are not already.
     if 'user' not in session:
-        flash("You are not authorised to edit other users' observations. Log in or register to get started.")
+        flash("You are not authorised to edit other users' observations."
+              "Log in or register to get started.")
         return redirect(url_for('login'))
-    # Redirect user to community observations page if they are logged in but neither the admin or creator of the observation.
+    # Redirect user to community observations page
     elif session["user"] != original_user and session["user"] != 'admin':
         flash("You are not authorised to edit other user's observation.")
         return redirect(url_for('get_observations'))
-    
+
     # Check if the file is present in the request
     if 'image-file' in request.files:
         image_file = request.files['image-file']
         if image_file.filename != '':
             # A file has been uploaded; proceed to handle it
             image_id = fs.put(image_file)
-            # Further logic to handle the image ID, possibly storing it in the database
         else:
             # No file uploaded; set value of image_id to original id
             image_id = ObjectId(original_image_id)
@@ -466,7 +496,7 @@ def edit_observation(observation_id):
             "edited": True,
             "edited_by": session["user"],
             "anonymous": anonymous,
-            "visible": visible            
+            "visible": visible
         }
         if image_id is not None:
             entry["image"] = image_id
@@ -476,7 +506,11 @@ def edit_observation(observation_id):
         flash("Observation updated")
         return redirect(url_for("get_observations"))
 
-    return render_template("edit_observation.html", observation=observation, original_user=original_user)
+    return render_template(
+        "edit_observation.html",
+        observation=observation,
+        original_user=original_user
+        )
 
 
 # ------------------ function routes -----------------
@@ -487,6 +521,7 @@ def get_image(observation_id):
     image_id = document.get("image")
     image_file = fs.get(image_id)
     return send_file(image_file, mimetype='image/jpeg')
+
 
 # Logout the session user
 @app.route("/logout/")
@@ -502,9 +537,9 @@ def logout():
 @app.route("/delete_observation/<observation_id>")
 def delete_observation(observation_id):
     """
-    Observations from the birdcount database are deleted if their '_id' matches the
-    observation_id passed into the function.
-    
+    Observations from the birdcount database are deleted if their '_id'
+    matches the observation_id passed into the function.
+
     Parameters:
         observation_id (str): a unique string.
     """
@@ -518,10 +553,13 @@ def delete_observation(observation_id):
     return redirect(request.referrer)
 
 
-# Write and send a new message 
+# Write and send a new message
 @app.route("/new_message/", methods=["GET", "POST"])
 def new_message():
-    """Gets form values to add to the messages collection in the birdcount database as a new document."""
+    """
+    Gets form values to add to the messages collection in the birdcount
+    database as a new document.
+    """
     if request.method == "POST":
         # Add new message data to the messages collection in DB.
         body = request.form.get("body")
@@ -538,14 +576,14 @@ def new_message():
         return redirect(request.referrer)
 
 
-# delete the selected message 
+# delete the selected message
 @app.route("/delete_message", strict_slashes=False)
 @app.route("/delete_message/<message_id>")
 def delete_message(message_id):
     """
     Messages from the birdcount database are deleted if their '_id' matches the
     message_id passed into the function.
-    
+
     Parameters:
         message_id (str): a unique string.
     """
@@ -554,7 +592,7 @@ def delete_message(message_id):
     return redirect(request.referrer)
 
 
-# --------- Routes for editing and deleting user settings. ------------ 
+# --------- Routes for editing and deleting user settings. ------------
 # Route for deleting user.
 @app.route("/delete_user", strict_slashes=False)
 @app.route("/delete_user/<user_id>")
@@ -563,10 +601,11 @@ def delete_user(user_id):
     Users from the birdcount database are deleted if their '_id' matches the
     user_id passed into the function.
 
-    Updates observations made by user with passed in user_id change 'seen_by' field to 'admin'.
+    Updates observations made by user with passed in user_id change 'seen_by'
+    field to 'admin'.
 
     Removes user from 'session' cookie.
-    
+
     Parameters:
         user_id (str): a unique string.
     """
@@ -581,7 +620,7 @@ def delete_user(user_id):
         {
             '$set': {
                 'anonymous': bool(True),
-                'seen_by': 'admin' 
+                'seen_by': 'admin'
             }
         }
     )
@@ -599,9 +638,9 @@ def delete_user(user_id):
 @app.route("/edit_user_email/<user_id>", methods=["GET", "POST"])
 def edit_user_email(user_id):
     """
-    User 'email' field is updated in the document that has an '_id' that matches the
-    user_id passed into the function.
-    
+    User 'email' field is updated in the document that has an '_id' that
+    matches the user_id passed into the function.
+
     Parameters:
         user_id (str): a unique string.
     """
@@ -624,11 +663,12 @@ def edit_user_email(user_id):
 @app.route("/edit_user_experience/<user_id>", methods=["GET", "POST"])
 def edit_user_experience(user_id):
     """
-    User 'experience' field is updated in the document that has an '_id' that matches the
-    user_id passed into the function.
+    User 'experience' field is updated in the document that has an '_id'
+    that matches the user_id passed into the function.
 
-    Validates the 'experience' field in the form to ensure the value is not '0'. User will have to resubmit the form.
-    
+    Validates the 'experience' field in the form to ensure the value is
+    not '0'. User will have to resubmit the form.
+
     Parameters:
         user_id (str): a unique string.
     """
@@ -636,23 +676,30 @@ def edit_user_experience(user_id):
         # Get the 'experience' field value from the form.
         user = ObjectId(user_id)
         experience = request.form.get("experience-edit")
-        
+
         # Match experience levels to different avatars
         if experience == '1':
-            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-photo-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/5501020/pexels-pho'
+            'to-5501020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '2':
-            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-photo-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/1275680/pexels-pho'
+            'to-1275680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '3':
-            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-photo-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/11064121/pexels-pho'
+            'to-11064121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '4':
-            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-photo-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/10922696/pexels-pho'
+            'to-10922696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '5':
-            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-photo-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/12290958/pexels-pho'
+            'to-12290958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         elif experience == '6':
-            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-photo-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+            avatar_url = 'https://images.pexels.com/photos/2474014/pexels-pho'
+            'to-2474014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         # Validate 'experience' field so that value cannot = 0.
         if experience == '0':
-            flash("No changes made, fill in the experience field to make changes")
+            flash("No changes made, fill in the experience field to make"
+                  "changes")
         # Update the 'experience' field in the database.
         else:
             db.users.update_one(
@@ -661,7 +708,7 @@ def edit_user_experience(user_id):
                     'experience': experience,
                     'avatar': avatar_url
                     }
-                }
+                 }
             )
             flash("Experience updated")
         return redirect(url_for("my_nest"))
@@ -672,11 +719,11 @@ def edit_user_experience(user_id):
 @app.route("/edit_user_visibility/<user_id>", methods=["GET", "POST"])
 def edit_user_visibility(user_id):
     """
-    User 'visible' field is updated in the document that has an '_id' that matches the
-    user_id passed into the function.
+    User 'visible' field is updated in the document that has an '_id' that
+    matches the user_id passed into the function.
 
-    All observations whose 'seen_by' field matches the username of the user_id will be 
-    updated with the new visibility data.
+    All observations whose 'seen_by' field matches the username of the user_id
+    will be updated with the new visibility data.
 
     Parameters:
         user_id (str): a unique string.
@@ -712,11 +759,11 @@ def edit_user_visibility(user_id):
 @app.route("/edit_user_anonymous/<user_id>", methods=["GET", "POST"])
 def edit_user_anonymous(user_id):
     """
-    User 'anonymous' field is updated in the document that has an '_id' that matches the
-    user_id passed into the function.
+    User 'anonymous' field is updated in the document that has an '_id' that
+    matches the user_id passed into the function.
 
-    All observations whose 'seen_by' field matches the username of the user_id will be 
-    updated with the new anonymity data.
+    All observations whose 'seen_by' field matches the username of the user_id
+    will be updated with the new anonymity data.
 
     Parameters:
         user_id (str): a unique string.
@@ -747,15 +794,17 @@ def edit_user_anonymous(user_id):
         return redirect(url_for("my_nest"))
 
 
-# --------- Routes for Admin to sort fields in users table. ------------ 
+# --------- Routes for Admin to sort fields in users table. ------------
 @app.route("/sort_ascending_admin", strict_slashes=False)
-@app.route("/sort_ascending_admin/<observation_field>", methods=["GET", "POST"])
+@app.route("/sort_ascending_admin/<observation_field>",
+           methods=["GET", "POST"])
 def sort_ascending_admin(observation_field):
     """
-    Renders template for 'admin.html' only if the user is the admin. Other users are redirected.
+    Renders template for 'admin.html' only if the user is the admin. Other
+    users are redirected.
 
-    Finds all user data from users collection in birdcount database and sorts it in ascending 
-    order by the observation_field passed into the function.
+    Finds all user data from users collection in birdcount database and sorts
+    it in ascending order by the observation_field passed into the function.
 
     Parameters:
         observation_field (str): a string containing a field name.
@@ -775,13 +824,16 @@ def sort_ascending_admin(observation_field):
 
 
 @app.route("/sort_descending_admin", strict_slashes=False)
-@app.route("/sort_descending_admin/<observation_field>", methods=["GET", "POST"])
+@app.route("/sort_descending_admin/<observation_field>",
+           methods=["GET", "POST"])
 def sort_descending_admin(observation_field):
     """
-    Renders template for 'admin.html' only if the user is the admin. Other users are redirected.
+    Renders template for 'admin.html' only if the user is the admin. Other
+    users are redirected.
 
-    Finds all user data from users collection in birdcount database and sorts it in descending 
-    order by the observation_field passed into the function.
+    Finds all user data from users collection in birdcount database and
+    sorts it in descending order by the observation_field passed into the
+    function.
 
     Parameters:
         observation_field (str): a string containing a field name.
@@ -804,7 +856,10 @@ def sort_descending_admin(observation_field):
 # Search bird species and location fields.
 @app.route("/search/", methods=["GET", "POST"])
 def search():
-    """ Get search query from form and find documents with text matching the query"""
+    """
+    Get search query from form and find documents with text matching the
+    query.
+    """
     # Get query value from form.
     query = request.form.get("query")
     # Find observations with text that matches the query.
@@ -818,13 +873,15 @@ def sort_ascending(observation_field):
     """
     Renders template for 'observations.html'.
 
-    Finds all user data from observations collection in birdcount database and sorts it in ascending 
-    order by the observation_field passed into the function.
+    Finds all user data from observations collection in birdcount database
+    and sorts it in ascending order by the observation_field passed into
+    the function.
 
     Parameters:
         observation_field (str): a string containing a field name.
     """
-    observations = list(db.observations.find().sort(observation_field, pymongo.ASCENDING))
+    observations = list(db.observations.find().sort(
+        observation_field, pymongo.ASCENDING))
     return render_template("observations.html", observations=observations)
 
 
@@ -834,31 +891,32 @@ def sort_descending(observation_field):
     """
     Renders template for 'observations.html'.
 
-    Finds all user data from observations collection in birdcount database and sorts it in descending 
-    order by the observation_field passed into the function.
+    Finds all user data from observations collection in birdcount database
+    and sorts it in descending order by the observation_field passed into
+    the function.
 
     Parameters:
         observation_field (str): a string containing a field name.
     """
-    observations = list(db.observations.find().sort(observation_field, pymongo.DESCENDING))
+    observations = list(db.observations.find().sort(
+        observation_field, pymongo.DESCENDING))
     return render_template("observations.html", observations=observations)
-
 
 
 # error 404 handler
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html"),404
+    return render_template("404.html"), 404
+
 
 # error 500 handler
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('404.html'), 500
 
+
 # Run the app
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
-
