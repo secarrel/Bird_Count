@@ -122,12 +122,11 @@ if (redirectAddObs) {
   window.location.href = "/login/";
 }
 
-
 // -------------- Fill and open observation modal ---------------
 let observationRow = document.querySelectorAll(".observation-modal-trigger");
-let observationModal = document.getElementById("observation-details")
+let observationModal = document.getElementById("observation-details");
 
-observationRow.forEach(function(observation) {
+observationRow.forEach(function (observation) {
   observation.addEventListener("click", function () {
     let species = observation.dataset.species;
     let location = observation.dataset.location;
@@ -145,37 +144,37 @@ observationRow.forEach(function(observation) {
     }
 
     if (notes === "") {
-      notes = 'None';
+      notes = "No notes were added.";
     }
 
-  // Get image for this observation
-  fetch(`/get_image/${observationId}`)
-    .then((response) => response.blob())
-    .then((image) => {
-      let imageUrl = URL.createObjectURL(image);
-      let modalImage = document.getElementById("observation-image");
-    
-      // When image has loaded, change modal content and open.
-      modalImage.onload = function() {
-        document.getElementById("observation-title").innerText =
-          species + " by " + seenBy;
-        document.getElementById("observation-location").innerText =
-          "Location: " + location;
-        document.getElementById("observation-date").innerText =
-          "Seen: " + date + " @ " + time;
-        document.getElementById("observation-quantity").innerText =
-          "Quantity: " + quantity;
-        document.getElementById("observation-certainty").innerText =
-          "Certainty: " + certainty + "/10";
-        document.getElementById("observation-notes").innerText = "Notes: " + notes;
+    // Get image for this observation
+    fetch(`/get_image/${observationId}`)
+      .then((response) => response.blob())
+      .then((image) => {
+        let imageUrl = URL.createObjectURL(image);
+        let modalImage = document.getElementById("observation-image");
 
-        // Open the modal
-        let instance = M.Modal.getInstance(observationModal);
-        instance.open();
-      };
+        // When image has loaded, change modal content and open.
+        modalImage.onload = function () {
+          document.getElementById("observation-title").innerText =
+            species + " by " + seenBy;
+          document.getElementById("observation-location").innerText =
+            "Location: " + location;
+          document.getElementById("observation-date").innerText =
+            "Seen: " + date + " @ " + time;
+          document.getElementById("observation-quantity").innerText =
+            "Quantity: " + quantity;
+          document.getElementById("observation-certainty").innerText =
+            "Certainty: " + certainty + "/10";
+          document.getElementById("observation-notes").innerText =
+            "Notes: " + notes;
 
-      modalImage.src = imageUrl;
-    
-    });
+          // Open the modal
+          let instance = M.Modal.getInstance(observationModal);
+          instance.open();
+        };
+
+        modalImage.src = imageUrl;
+      });
   });
 });
