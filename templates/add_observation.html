@@ -1,125 +1,127 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="background-img row">
+<div class="background-img">
     <!-- Only allow users who are logged in and not the admin to view this content-->
     {% if session.user and session.user != 'admin' %}
     <!-- Add observation form -->
-    <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('add_observation') }}"
-        enctype="multipart/form-data">
-        <div class="card-panel">
-            <!-- Page heading -->
-            <h3 class="center-align">New Observation</h3>
-            <!-- Input field for bird species -->
-            <div id="bird-species-add" class="row autocompleteBird">
-                <div class="input-field col s12 autocompleteBird">
-                    <i class="fa-solid fa-crow prefix"></i>
-                    <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" validate required>
-                    <label class="tooltipped" data-position="bottom"
-                        data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
-                        for="bird">Bird Species <strong class="required">*</strong>
-                        <i class="fa-regular fa-circle-question"></i>
-                    </label>
-                </div>
-            </div>
-            <!-- Input field for location -->
-            <div id="location-add" class="row">
-                <div class="input-field col s12 autocompleteLocation">
-                    <i class="fa-solid fa-map-location-dot prefix"></i>
-                    <input id="location" class="autocompleteLocation" name="location" type="text" validate
-                        maxlength="100" required>
-                    <label class="tooltipped" data-position="bottom"
-                        data-tooltip="Using the autocomplete options will make it easier to search for your results. 
-                            If you want to be more specific with the location of your observation you can add extra 
-                            information in brackets after the district. EG. Newport (RSPB Wetlands). Max: 100 characters." for="location">
-                        Location
-                        <strong class="required">*</strong>
-                        <i class="fa-regular fa-circle-question"></i>
-                    </label>
-                </div>
-            </div>
-            <!-- Input field for date -->
-            <div id="date-add" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-calendar-days prefix"></i>
-                    <input id="date" name="date" type="text" class="datepicker" required>
-                    <label for="date">Date of Observation <strong class="required">*</strong> </label>
-                </div>
-            </div>
-            <!-- Input field for time -->
-            <div id="time-add" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-clock prefix"></i>
-                    <input id="time" name="time" type="text" class="timepicker" required>
-                    <label for="time">Time of Observation <strong class="required">*</strong></label>
-                </div>
-            </div>
-            <!-- Input field for certainty -->
-            <div id="certainty-add" class="row">
-                <div class="certainty-label col s12 m4 l3">
-                    <i class="fa-solid fa-eye-low-vision"></i>
-                    <p> Certainty <strong class="required">*</strong></p>
-                </div>
-                <div class="input-field col s12 m8 l9">
-                    <label for="certainty"></label>
-                    <input type="range" name="certainty" id="certainty" min="0" max="10" required>
-                </div>
-            </div>
-            <!-- Input field for notes -->
-            <div id="notes-add" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-regular fa-comment prefix"></i>
-                    <input type="text" name="notes" id="notes" validate maxlength="500">
-                    <label class="tooltipped" data-position="bottom"
-                        data-tooltip="Talk about anything... What was the weather like? 
-                            Describe the bird's appearance if you're unsure of identification! What was the bird doing? Max: 500 characters." for="notes">Notes <i
-                            class="fa-regular fa-circle-question"></i></label>
-                </div>
-            </div>
-            <!-- Input field for quantity -->
-            <div id="quantity-add" class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-hashtag prefix"></i>
-                    <input type="number" name="quantity" id="quantity" min="1" required>
-                    <label for="quantity">Quantity <strong class="required">*</strong></label>
-                </div>
-            </div>
-            <!-- Input field for image -->
-            <div id="image-add" class="row">
-                <div class="input-field col s12">
-                    <div class="image-add-label" class="col s12 m6 l6">
-                        <i class="fa-solid fa-camera prefix"></i>
-                        <label for="image-file">Upload Image (optional):</label>
+    <div class="add-observation-container row">
+        <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('add_observation') }}"
+            enctype="multipart/form-data">
+            <div class="card-panel">
+                <!-- Page heading -->
+                <h3 class="center-align">New Observation</h3>
+                <!-- Input field for bird species -->
+                <div id="bird-species-add" class="row autocompleteBird">
+                    <div class="input-field col s12 autocompleteBird">
+                        <i class="fa-solid fa-crow prefix"></i>
+                        <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" validate required>
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
+                            for="bird">Bird Species <strong class="required">*</strong>
+                            <i class="fa-regular fa-circle-question"></i>
+                        </label>
                     </div>
-                    <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
+                </div>
+                <!-- Input field for location -->
+                <div id="location-add" class="row">
+                    <div class="input-field col s12 autocompleteLocation">
+                        <i class="fa-solid fa-map-location-dot prefix"></i>
+                        <input id="location" class="autocompleteLocation" name="location" type="text" validate
+                            maxlength="100" required>
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Using the autocomplete options will make it easier to search for your results. 
+                                If you want to be more specific with the location of your observation you can add extra 
+                                information in brackets after the district. EG. Newport (RSPB Wetlands). Max: 100 characters." for="location">
+                            Location
+                            <strong class="required">*</strong>
+                            <i class="fa-regular fa-circle-question"></i>
+                        </label>
+                    </div>
+                </div>
+                <!-- Input field for date -->
+                <div id="date-add" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-calendar-days prefix"></i>
+                        <input id="date" name="date" type="text" class="datepicker" required>
+                        <label for="date">Date of Observation <strong class="required">*</strong> </label>
+                    </div>
+                </div>
+                <!-- Input field for time -->
+                <div id="time-add" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-clock prefix"></i>
+                        <input id="time" name="time" type="text" class="timepicker" required>
+                        <label for="time">Time of Observation <strong class="required">*</strong></label>
+                    </div>
+                </div>
+                <!-- Input field for certainty -->
+                <div id="certainty-add" class="row">
+                    <div class="certainty-label col s12 m4 l3">
+                        <i class="fa-solid fa-eye-low-vision"></i>
+                        <p> Certainty <strong class="required">*</strong></p>
+                    </div>
+                    <div class="input-field col s12 m8 l9">
+                        <label for="certainty"></label>
+                        <input type="range" name="certainty" id="certainty" min="0" max="10" required>
+                    </div>
+                </div>
+                <!-- Input field for notes -->
+                <div id="notes-add" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-comment prefix"></i>
+                        <input type="text" name="notes" id="notes" validate maxlength="500">
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Talk about anything... What was the weather like? 
+                                Describe the bird's appearance if you're unsure of identification! What was the bird doing? Max: 500 characters." for="notes">Notes <i
+                                class="fa-regular fa-circle-question"></i></label>
+                    </div>
+                </div>
+                <!-- Input field for quantity -->
+                <div id="quantity-add" class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-hashtag prefix"></i>
+                        <input type="number" name="quantity" id="quantity" min="1" required>
+                        <label for="quantity">Quantity <strong class="required">*</strong></label>
+                    </div>
+                </div>
+                <!-- Input field for image -->
+                <div id="image-add" class="row">
+                    <div class="input-field col s12">
+                        <div class="image-add-label" class="col s12 m6 l6">
+                            <i class="fa-solid fa-camera prefix"></i>
+                            <label for="image-file">Upload Image (optional):</label>
+                        </div>
+                        <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
+                    </div>
+                </div>
+                <p><strong class="required">*</strong> indicates required field</p>
+                <!-- Submit observation -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-small tooltipped" data-position="bottom"
+                        data-tooltip="You will be redirected to your nest.">
+                        Submit Observation <i class="fas fa-circle-plus"></i>
+                    </button>
+                </div>
+                <!-- Cancel and redirect -->
+                <div class="row">
+                    <!-- Non-admin users are returned to 'my nest' -->
+                    {% if session.user != 'admin' %}
+                    <a aria-label="Cancel and return to your nest without saving your changes" href="{{ url_for('my_nest')}}"
+                        class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
+                        data-tooltip="Your changes will not be saved">
+                        Cancel, return to my nest
+                    </a>
+                    <!-- Admin user is returned to 'community observations' -->
+                    {% endif %}
+                    <a aria-label="Cancel and return to Community Observations without saving your changes" href="{{ url_for('get_observations')}}"
+                        class=" cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
+                        data-tooltip="Your changes will not be saved">
+                        Cancel, return to observations
+                    </a>
                 </div>
             </div>
-            <p><strong class="required">*</strong> indicates required field</p>
-            <!-- Submit observation -->
-            <div class="row">
-                <button type="submit" class="col s12 btn-small tooltipped" data-position="bottom"
-                    data-tooltip="You will be redirected to your nest.">
-                    Submit Observation <i class="fas fa-circle-plus"></i>
-                </button>
-            </div>
-            <!-- Cancel and redirect -->
-            <div class="row">
-                <!-- Non-admin users are returned to 'my nest' -->
-                {% if session.user != 'admin' %}
-                <a aria-label="Cancel and return to your nest without saving your changes" href="{{ url_for('my_nest')}}"
-                    class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
-                    data-tooltip="Your changes will not be saved">
-                    Cancel, return to my nest
-                </a>
-                <!-- Admin user is returned to 'community observations' -->
-                {% endif %}
-                <a aria-label="Cancel and return to Community Observations without saving your changes" href="{{ url_for('get_observations')}}"
-                    class=" cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
-                    data-tooltip="Your changes will not be saved">
-                    Cancel, return to observations
-                </a>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
     {% else %}
     <!-- Redirect to login only visible to non-users -->
     <div id="redirect-add-obs"></div>

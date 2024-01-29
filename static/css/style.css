@@ -117,6 +117,8 @@ table.highlight > tbody > tr:hover {
 body {
   background-color: #192738;
   font-size: 14px;
+  max-width: 1920px;
+  margin: auto;
 }
 
 h2 {
