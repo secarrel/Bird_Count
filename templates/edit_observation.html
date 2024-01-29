@@ -5,7 +5,8 @@
     {% if session.user == original_user or session.user == 'admin' %}
     <!-- Edit observation form -->
     <div id="edit-observation" class="row">
-        <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
+        <form class="col s12 m8 l8 margin-auto" method="POST"
+            action="{{ url_for('edit_observation', observation_id=observation._id) }}" enctype="multipart/form-data">
             <div class="card-panel">
                 <!-- Page heading -->
                 <h3 class="center-align">Edit Observation</h3>
@@ -13,19 +14,25 @@
                 <div id="bird-species-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-crow prefix"></i>
-                        <input id="bird" class="autocompleteBird" name="bird" type="text" required value="{{ observation.bird_species }}">
+                        <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" required
+                            value="{{ observation.bird_species }}">
                         <label class="tooltipped" data-position="bottom"
-                            data-tooltip="Using the autocomplete options will make it easier to search for your results." for="bird">Bird Species <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+                            data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
+                            for="bird">Bird Species <strong class="required">*</strong> <i
+                                class="fa-regular fa-circle-question"></i></label>
                     </div>
                 </div>
                 <!-- Input field for location -->
                 <div id="location-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-map-location-dot prefix"></i>
-                        <input id="location" class="autocompleteLocation" name="location" type="text" required value="{{ observation.location }}">
-                        <label class="tooltipped" data-position="bottom" data-tooltip="Using the autocomplete options will make it easier to search for your results. 
+                        <input id="location" class="autocompleteLocation" name="location" type="text" maxlength="100"
+                            required value="{{ observation.location }}">
+                        <label class="tooltipped" data-position="bottom"
+                            data-tooltip="Using the autocomplete options will make it easier to search for your results. 
                             If you want to be more specific with the location of your observation you can add extra 
-                            information in brackets after the district. EG. Newport (RSPB Wetlands)" for="location">Location <strong class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
+                            information in brackets after the district. EG. Newport (RSPB Wetlands). Max: 100 characters." for="location">Location <strong
+                                class="required">*</strong> <i class="fa-regular fa-circle-question"></i></label>
                     </div>
                 </div>
                 <!-- Input field for date -->
@@ -33,7 +40,7 @@
                     <div class="input-field col s12">
                         <i class="fa-regular fa-calendar-days prefix"></i>
                         <input id="date" name="date" type="text" class="datepicker" required
-                        value="{{ observation.date }}">
+                            value="{{ observation.date }}">
                         <label for="date">Date of Observation <strong class="required">*</strong></label>
                     </div>
                 </div>
@@ -41,7 +48,8 @@
                 <div id="time-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-clock prefix"></i>
-                        <input id="time" name="time" type="text" class="timepicker" required value="{{ observation.time }}">
+                        <input id="time" name="time" type="text" class="timepicker" required
+                            value="{{ observation.time }}">
                         <label for="time">Time of Observation <strong class="required">*</strong></label>
                     </div>
                 </div>
@@ -53,16 +61,18 @@
                     </div>
                     <div class="input-field col s12 m8 l9">
                         <label for="certainty"></label>
-                        <input type="range" name="certainty" id="certainty" min="0" max="10" required value="{{ observation.certainty }}">
+                        <input type="range" name="certainty" id="certainty" min="0" max="10" required
+                            value="{{ observation.certainty }}">
                     </div>
                 </div>
                 <!-- Input field for notes -->
                 <div id="notes-edit" class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-comment prefix"></i>
-                        <input type="text" name="notes" id="notes" value="{{ observation.notes }}">
+                        <input type="text" name="notes" id="notes" maxlength="500" value="{{ observation.notes }}">
                         <label class="tooltipped" data-position="bottom"
-                            data-tooltip="Talk about anything... What was the weather like? Describe the bird's appearance if you're unsure of identification! What was the bird doing?"for="notes">Notes <i class="fa-regular fa-circle-question"></i> </label>
+                            data-tooltip="Talk about anything... What was the weather like? Describe the bird's appearance if you're unsure of identification! What was the bird doing? MAx: 500 characters."
+                            for="notes">Notes <i class="fa-regular fa-circle-question"></i> </label>
                     </div>
                 </div>
                 <!-- Input field for quantity -->
@@ -80,27 +90,31 @@
                             <i class="fa-solid fa-camera prefix"></i>
                             <label for="image-file">Change Image (optional):</label>
                         </div>
-                        <a href="#observation-details{{ observation._id }}" class="modal-trigger col s12 m12 l6 image-button btn-small">Current image</a>
+                        <a href="#observation-details{{ observation._id }}"
+                            class="modal-trigger col s12 m12 l6 image-button btn-small">Current image</a>
                         <input class="col s12 m12 l6 image-button" type="file" name="image-file" id="image-file">
                     </div>
                 </div>
                 <p><strong class="required">*</strong> indicates required field</p>
                 <!-- Update observation -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-small tooltipped" data-position="bottom" data-tooltip="On submission you will be redirected to the Community Observations page">
+                    <button type="submit" class="col s12 btn-small tooltipped" data-position="bottom"
+                        data-tooltip="On submission you will be redirected to the Community Observations page">
                         Edit Observation <i class="fas fa-edit"></i>
                     </button>
                 </div>
                 <!-- Cancel and redirect -->
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
-                    {% if session.user != 'admin' %}        
-                    <a href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                    {% if session.user != 'admin' %}
+                    <a href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
+                        data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a href="{{ url_for('get_observations')}}" class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom" data-tooltip="Your changes will not be saved">
+                    <a href="{{ url_for('get_observations')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
+                        data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to community
                     </a>
                 </div>
@@ -109,7 +123,8 @@
                     <div id="bird-info-modal" class="col s12 modal-content">
                         <!-- Observation image -->
                         <div id="bird-info-image-container" class="card-image">
-                            <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
+                            <img src="{{ url_for('get_image', observation_id=observation._id) }}"
+                                alt="Observation Image">
                         </div>
                     </div>
                 </div>
@@ -117,10 +132,11 @@
         </form>
     </div>
     {% else %}
-        <!-- Redirect to welcome if not allowed access-->
-        <div>
-            <a href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home page. </a>
-        </div>
+    <!-- Redirect to welcome if not allowed access-->
+    <div>
+        <a href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home
+            page. </a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
