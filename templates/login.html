@@ -3,7 +3,8 @@
 <div class="background-img" id="login-page-conatainer">
   {% if session.user %}
       <!-- Redirect to login only visible to non-users -->
-      <a href="{{ url_for('my_nest') }}"> You are already logged in. Click to be redirected to your nest </a>
+      <a aria-label="You are already logged in. Click to be redirected to your nest" 
+        href="{{ url_for('my_nest') }}"> You are already logged in. Click to be redirected to your nest </a>
   {% else %}
     <!-- Log in form -->
     <div id="login-form" class="row">
@@ -40,7 +41,7 @@
             <div class="col s12">
               <p class="center-align">
                 New Here?
-                <a href="{{ url_for('register') }}">Register Account</a>
+                <a ara-label="If you're new here of haven't yet registered, you can register an account here." href="{{ url_for('register') }}">Register Account</a>
               </p>
             </div>
           </div>

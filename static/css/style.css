@@ -206,6 +206,11 @@ th {
   height: 60px;
 }
 
+td.details-trigger {
+  max-width: 150px !important;
+  overflow-x: hidden;
+}
+
 tbody {
   max-height: 40vh;
   overflow-y: scroll;

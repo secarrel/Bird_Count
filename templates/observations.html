@@ -13,7 +13,8 @@
                 <div class="row valign-wrapper">
                     <!-- If the user is logged in display 'new observation' button -->
                     {% if session.user and session.user != "admin" %}
-                    <a class="btn-small tooltipped set-size" data-position="bottom"
+                    <a aria-label="Navigate to the 'add observation' page to record an observation." 
+                        class="btn-small tooltipped set-size" data-position="bottom"
                         data-tooltip="Add your own observation" href="{{ url_for('add_observation') }}">
                         New Observation
                         <i class="fa-solid fa-crow"></i>
@@ -21,13 +22,15 @@
                     </a>
                     <!-- If user isn't logged in display button to log in -->
                     {% elif session.user != "admin" %}
-                    <a class="btn-small tooltipped set-size" data-position="bottom"
+                    <a aria-label="Log in to add more observations and see your bird stats."
+                        class="btn-small tooltipped set-size" data-position="bottom"
                         data-tooltip="Log in to record your observations" href="{{ url_for('login') }}">
                         Log in
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                     {% endif %}
-                    <a href="{{ url_for('get_observations') }}" class="center-align btn-small set-size tooltipped"
+                    <a aria-label="Reset search and sort results to show all observations." 
+                        href="{{ url_for('get_observations') }}" class="center-align btn-small set-size tooltipped"
                         data-position="bottom" data-tooltip="Reset sort and search results">
                         Reset All
                     </a>
@@ -54,21 +57,21 @@
                         <th>
                             <!-- Sort bird species in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='bird_species') %}
-                            <a id="sort-species-reverse" aria-label="sort-species-reverse" class="tooltipped"
+                            <a id="sort-species-reverse" aria-label="Sort observations by bird species in reverse alphabetical order" class="tooltipped"
                                 data-position="bottom" data-tooltip="Reverse sort alphabetically by species"
                                 href="{{ url_for('sort_descending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             <!-- Sort bird species in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='bird_species') %}
-                            <a id="sort-species" aria-label="sort-species" class="tooltipped" data-position="bottom"
+                            <a id="sort-species" aria-label="Sort observations by bird species in alphabetical order" class="tooltipped" data-position="bottom"
                                 data-tooltip="Sort alphabetically by species"
                                 href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <!-- Sort bird species in ascending order if unsorted -->
                             {% else %}
-                            <a id="sort-species-default" aria-label="sort-species-default" class="tooltipped"
+                            <a id="sort-species-default" aria-label="Sort observations by bird species in alphabetical order" class="tooltipped"
                                 data-position="bottom" data-tooltip="Sort alphabetically by species"
                                 href="{{ url_for('sort_ascending', observation_field='bird_species') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
@@ -79,21 +82,21 @@
                         <th class="hide-mobile">
                             <!-- Sort quantity in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='quantity') %}
-                            <a id="sort-quantity" aria-label="sort-quantity" class="tooltipped" data-position="bottom"
+                            <a id="sort-quantity" aria-label="Sort observations by quantity with largest first" class="tooltipped" data-position="bottom"
                                 data-tooltip="Show highest quantity first"
                                 href="{{ url_for('sort_descending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <!-- Sort quantity in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='quantity') %}
-                            <a id="sort-quantity-reverse" aria-label="sort-quantity-reverse" class="tooltipped"
+                            <a id="sort-quantity-reverse" aria-label="Sort observations by quantity with smallest first" class="tooltipped"
                                 data-position="bottom" data-tooltip="Show lowest quantity first"
                                 href="{{ url_for('sort_ascending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <!-- Sort quantity in descending order if not sorted -->
                             {% else %}
-                            <a id="sort-quantity-default" aria-label="sort-quantity-default" class="tooltipped"
+                            <a id="sort-quantity-default" aria-label="Sort observations by quantity with largest first" class="tooltipped"
                                 data-position="bottom" data-tooltip="Show highest quantity first"
                                 href="{{ url_for('sort_descending', observation_field='quantity') }}">
                                 <i class="fa-solid fa-sort"></i>
@@ -104,21 +107,21 @@
                         <th>
                             <!-- Sort location in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='location') %}
-                            <a id="sort-location-reverse" aria-label="sort-location-reverse" class="tooltipped"
+                            <a id="sort-location-reverse" aria-label="Sort observations by location in reverse-alphabetical order" class="tooltipped"
                                 data-position="bottom" data-tooltip="Reverse sort alphabetically by species"
                                 href="{{ url_for('sort_descending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-z-a"></i>
                             </a>
                             <!-- Sort location in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='location') %}
-                            <a id="sort-location" aria-label="sort-location" class="tooltipped" data-position="bottom"
+                            <a id="sort-location" aria-label="Sort observations by location in alphabetical order" class="tooltipped" data-position="bottom"
                                 data-tooltip="Sort alphabetically by location"
                                 href="{{ url_for('sort_ascending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
                             </a>
                             <!-- Sort location in ascending order if not sorted -->
                             {% else %}
-                            <a id="sort-location-default" aria-label="sort-location-default" class="tooltipped"
+                            <a id="sort-location-default" aria-label="Sort observations by location in alphabetical order" class="tooltipped"
                                 data-position="bottom" data-tooltip="Sort alphabetically by location"
                                 href="{{ url_for('sort_ascending', observation_field='location') }}">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
@@ -129,21 +132,21 @@
                         <th>
                             <!-- Sort date in descending order if already ascending -->
                             {% if request.path == url_for('sort_ascending', observation_field='date') %}
-                            <a id="sort-date" aria-label="sort-date" class="tooltipped" data-position="bottom"
+                            <a id="sort-date" aria-label="Sort observations by date with most recent first" class="tooltipped" data-position="bottom"
                                 data-tooltip="Show most recent first"
                                 href="{{ url_for('sort_descending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <!-- Sort date in ascending order if already descending -->
                             {% elif request.path == url_for('sort_descending', observation_field='date') %}
-                            <a id="sort-date-reverse" aria-label="sort-date-reverse" class="tooltipped"
+                            <a id="sort-date-reverse" aria-label="Sort observations by date with oldest first" class="tooltipped"
                                 data-position="bottom" data-tooltip="Show oldest first"
                                 href="{{ url_for('sort_ascending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
                             </a>
                             <!-- Sort date in descending order if not sorted -->
                             {% else %}
-                            <a id="sort-date-default" aria-label="sort-date-default" class="tooltipped"
+                            <a id="sort-date-default" aria-label="Sort observations by date with most recent first" class="tooltipped"
                                 data-position="bottom" data-tooltip="Show most recent first"
                                 href="{{ url_for('sort_descending', observation_field='date') }}">
                                 <i class="fa-solid fa-sort"></i>
@@ -169,7 +172,7 @@
                                 <!-- Observation 'seen by' -->
                                 <!-- View observation -->
                                 <td class="hide-mobile details-trigger">
-                                    <a>
+                                    <a aria-label="Click on the observation to see more details">
                                         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                                     </a>
                                 </td>
@@ -190,7 +193,7 @@
                                 {% if session.user|lower == observation.seen_by|lower or session.user|lower == 'admin' %}
                                 <!-- Edit observation -->
                                 <td>
-                                    <a id="edit-community-observation"
+                                    <a aria-label="Edit this observation" id="edit-community-observation"
                                         href="{{ url_for('edit_observation', observation_id=observation._id) }}"
                                         class="btn-small edit-button hide-mobile">
                                         <i class="fa-solid fa-pencil"></i>
@@ -198,7 +201,7 @@
                                 </td>
                                 <!-- Delete observation -->
                                 <td>
-                                    <a href="#confirm-delete{{ observation._id }}"
+                                    <a aria-label="Delete this observation" href="#confirm-delete{{ observation._id }}"
                                         class="btn-small modal-trigger delete-button delete-red hide-mobile">
                                         <i class="fa-regular fa-trash-can "></i>
                                     </a>
@@ -215,8 +218,10 @@
                                         </div>
                                         <!-- Delete confirm or cancel buttons-->
                                         <div class="modal-footer">
-                                            <a href="{{ url_for('delete_observation', observation_id=observation._id) }}"
-                                                class="modal-close btn-flat">Delete</a>
+                                            <a aria-label="Confirm that you would like to delete this observation" href="{{ url_for('delete_observation', observation_id=observation._id) }}"
+                                                class="modal-close btn-flat">
+                                                Delete
+                                            </a>
                                             <div class="modal-close btn-flat">Cancel</div>
                                         </div>
                                     </div>

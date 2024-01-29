@@ -105,14 +105,14 @@
             <div class="row">
                 <!-- Non-admin users are returned to 'my nest' -->
                 {% if session.user != 'admin' %}
-                <a aria-label="Cancel, return to my nest" href="{{ url_for('my_nest')}}"
+                <a aria-label="Cancel and return to your nest without saving your changes" href="{{ url_for('my_nest')}}"
                     class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
                     data-tooltip="Your changes will not be saved">
                     Cancel, return to my nest
                 </a>
                 <!-- Admin user is returned to 'community observations' -->
                 {% endif %}
-                <a aria-label="Cancel, return to observations" href="{{ url_for('get_observations')}}"
+                <a aria-label="Cancel and return to Community Observations without saving your changes" href="{{ url_for('get_observations')}}"
                     class=" cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
                     data-tooltip="Your changes will not be saved">
                     Cancel, return to observations

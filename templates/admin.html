@@ -7,7 +7,8 @@
         <div class="nest-heading-container">
             <h2 class="center-align nest-heading">Admin Nest</h2>
         </div>        <!-- Messages from users -->
-        <a href="#pigeon-hole-admin" class="btn-small modal-trigger tooltipped" data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
+        <a aria-label="Open your pigeon hole to view your messages" href="#pigeon-hole-admin" class="btn-small modal-trigger tooltipped" 
+            data-position="bottom" data-tooltip="Check to see if any users have been in touch with queries"> 
             Pigeon Hole 
             <i class="fa-solid fa-envelope"></i> 
         </a>
@@ -25,19 +26,22 @@
                                     <th>
                                         <!-- Sort descending if ascending -->
                                         {% if request.path == url_for('sort_ascending_admin', observation_field='username') %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by username"
+                                        <a aria-label="Sort users by username in reverse alphabetical order"
+                                            class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by username"
                                             href="{{ url_for('sort_descending_admin', observation_field='username') }}">
                                             <i class="fa-solid fa-arrow-down-z-a"></i>
                                         </a>
                                         <!-- Sort ascending if descending -->
                                         {% elif request.path == url_for('sort_descending_admin', observation_field='username') %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
+                                        <a aria-label="Sort users by username in alphabetical order"
+                                            class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
                                             href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
                                             <i class="fa-solid fa-arrow-down-a-z"></i>
                                         </a>
                                         <!-- Sort descending if unsorted -->
                                         {% else %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
+                                        <a aria-label="Sort users by username in reverse alphabetical order" 
+                                            class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by username"
                                             href="{{ url_for('sort_ascending_admin', observation_field='username') }}">
                                             <i class="fa-solid fa-arrow-down-a-z"></i>
                                         </a>
@@ -50,22 +54,25 @@
                                     <th class="hide-mobile">
                                         <!-- Sort descending if ascending -->
                                         {% if request.path == url_for('sort_ascending_admin', observation_field='experience') %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Reverse sort alphabetically by experience"
-                                            href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
-                                            <i class="fa-solid fa-arrow-down-z-a"></i>
-                                        </a>
+                                            <a aria-label="Sort users by experience with highest experience first"
+                                                class="tooltipped" data-position="bottom" data-tooltip="Sort users by experience with highest experience first"
+                                                href="{{ url_for('sort_descending_admin', observation_field='experience') }}">
+                                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                                            </a>
                                         <!-- Sort ascending if descending -->
                                         {% elif request.path == url_for('sort_descending_admin', observation_field='experience') %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
-                                            href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                            <i class="fa-solid fa-arrow-down-a-z"></i>
-                                        </a>
+                                            <a aria-label="Sort users by experience with lowest experience first" 
+                                                class="tooltipped" data-position="bottom" data-tooltip="Sort users by experience with lowest experience first"
+                                                href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
+                                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                                            </a>
                                         <!-- Sort ascending if unsorted -->
                                         {% else %}
-                                        <a class="tooltipped" data-position="bottom" data-tooltip="Sort alphabetically by experience"
-                                            href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
-                                            <i class="fa-solid fa-arrow-down-a-z"></i>
-                                        </a>
+                                            <a aria-label="Sort users by experience with lowest experience first"
+                                                class="tooltipped" data-position="bottom" data-tooltip="Sort users by experience with lowest experience first"
+                                                href="{{ url_for('sort_ascending_admin', observation_field='experience') }}">
+                                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                                            </a>
                                         {% endif %}
                                         Experience
                                     </th>
@@ -87,7 +94,7 @@
                                             </td>
                                             <td>
                                                 <!-- Delete user -->
-                                                <a href="#confirm-delete-user{{ user._id }}" class="btn-small delete-red modal-trigger red">
+                                                <a aria-label="Delete user" href="#confirm-delete-user{{ user._id }}" class="btn-small delete-red modal-trigger red">
                                                     <i class="fa-regular fa-trash-can "></i>
                                                 </a>
                                                 <!-- Delete confrmation modal -->
@@ -102,7 +109,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- Confrim delete -->
-                                                        <a href="{{ url_for('delete_user', user_id=user._id) }}"
+                                                        <a aria-label="Confirm that you would like to delete this user" href="{{ url_for('delete_user', user_id=user._id) }}"
                                                             class="modal-close btn-flat">Delete</a>
                                                         <!-- Don't delete -->
                                                         <div class="modal-close btn-flat">Cancel</div>
@@ -144,11 +151,12 @@
                                         Sent at: {{ message.time }}
                                         <div class="button-container">
                                             <!-- Delete message button -->
-                                            <a href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
+                                            <a aria-label="Delete this message" href="#confirm-delete-message{{ message._id }}" 
+                                                class="btn pigeon-hole-button btn-small modal-trigger delete-red">
                                                 <i class="fa-regular fa-trash-can "></i>
                                             </a>
                                             <!-- Reply to message button -->
-                                            <a href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                            <a aria-label="Reply to this message" href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
                                                 class="btn modal-trigger btn-small pigeon-hole-button">
                                                 <i class="fa-solid fa-reply "></i>
                                             </a>
@@ -176,8 +184,8 @@
                                     </div>
                                     <!-- Confirm delete or cancel -->
                                     <div class="modal-footer">
-                                        <a href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Agree</a>
-                                        <div class="modal-close btn-flat">Cancel</div>
+                                        <a aria-label="Confirm that you would like to delete this message" href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">Yes, delete</a>
+                                        <div class="modal-close btn-flat">No, cancel</div>
                                     </div>
                                 </div>
                                 <!-- Reply to message modal -->
@@ -251,7 +259,7 @@
     {% else %}
         <!-- Redirect to welcome only visible to non-admin users -->
         <div>
-            <a href="{{ url_for('welcome') }}"> You are not authorised to access this page. Click to return to home page. </a>
+            <a aria-label="Return to welcome page" href="{{ url_for('welcome') }}"> You are not authorised to access this page. Click to return to welcome page. </a>
         </div>
     {% endif %}
 </div>

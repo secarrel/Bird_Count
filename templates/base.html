@@ -26,8 +26,8 @@
                         Hi, {{ session.user }}!
                     </h6>
                 </li>
-                <li><a aria-label="Look in your nest for details about your recorded observations" href="{{ url_for('my_nest') }}">My Nest</a></li>
-                <li><a aria-label="Logout" href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a aria-label="Look in 'My Nest' for details about your recorded observations" href="{{ url_for('my_nest') }}">My Nest</a></li>
+                <li><a aria-label="Log out of your account" href="{{ url_for('logout') }}">Log Out</a></li>
             {% elif session.user == 'admin' %}
                 <li class="no-link" >
                     <div class="avatar-drop-container">
@@ -37,8 +37,8 @@
                         Hi, {{ session.user }}!
                     </h6>
                 </li>
-                <li><a aria-label="Admin Nest" href="{{ url_for('get_users') }}">Admin Nest</a></li>
-                <li><a aria-label="Log Out" href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a aria-label="Open 'Admin Nest' for user information" href="{{ url_for('get_users') }}">Admin Nest</a></li>
+                <li><a aria-label="Log Out of your account" href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
                 <li class="no-link">
                     <div class="avatar-drop-container" id="non-user-full-nav">
@@ -48,8 +48,8 @@
                         Get Started!
                     </h6>
                 </li>
-                <li><a aria-label="Sign Up" href="{{ url_for('register') }}">Sign Up</a></li>
-                <li><a aria-label="Log In" href="{{ url_for('login') }}">Log In</a></li>
+                <li><a aria-label="Sign Up to start recording observations" href="{{ url_for('register') }}">Sign Up</a></li>
+                <li><a aria-label="Log In to your account if you have already registered" href="{{ url_for('login') }}">Log In</a></li>
             {% endif %}
         </ul>
         <!-- Top navbar -->
@@ -60,8 +60,8 @@
                 </a>
                 <a aria-label="Open the side navigation menu" href="{{ url_for('welcome') }}" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a aria-label="About" href="{{ url_for('about') }}">About</a></li>
-                    <li><a aria-label="Community Observations" href="{{ url_for('get_observations') }}">Community Observations</a></li>
+                    <li><a aria-label="Navigate to the 'About' page to learn more." href="{{ url_for('about') }}">About</a></li>
+                    <li><a aria-label="Navigate to 'Community Observations' to see what observations others have recorded" href="{{ url_for('get_observations') }}">Community Observations</a></li>
                     <li class="highlight-custom">
                         <div class="dropdown-trigger" data-target="full-nav-dropdown">
                             {% if session.user %}
@@ -91,10 +91,15 @@
                 <li class="username-drop no-link">
                     Hi, {{ session.user }}!
                 </li>
-                <li><a aria-label="About" href="{{ url_for('about') }}">About</a></li>
-                <li><a aria-label="Community Observations" href="{{ url_for('get_observations') }}">Community Observations</a></li>
-                <li><a aria-label="My Nest" href="{{ url_for('my_nest') }}">My Nest</a></li>
-                <li><a aria-label="Log Out" href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a aria-label="Navigate to the 'About' page to learn more." href="{{ url_for('about') }}">About</a></li>
+                <li>
+                    <a aria-label="Navigate to the 'Community Observations' page to see what observations others have recorded" 
+                    href="{{ url_for('get_observations') }}">
+                        Community Observations
+                    </a>
+                </li>
+                <li><a aria-label="Navigate to 'My Nest' to see your observations and bird stats" href="{{ url_for('my_nest') }}">My Nest</a></li>
+                <li><a aria-label="Log Out of your account" href="{{ url_for('logout') }}">Log Out</a></li>
             {% elif session.user == 'admin' %}
                 <li>
                     <div class="avatar-drop-container no-link">
@@ -104,15 +109,15 @@
                         {{ session.user }}
                     </div>
                 </li>
-                <li><a aria-label="About" href="{{ url_for('about') }}">About</a></li>
-                <li><a aria-label="Community Observations" href="{{ url_for('get_observations') }}">Community Observations</a></li>
-                <li><a aria-label="Admin Nest" href="{{ url_for('get_users') }}">Admin Nest</a></li>
-                <li><a aria-label="Log Out" href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a aria-label="Navigate to the 'About' page to learn more" href="{{ url_for('about') }}">About</a></li>
+                <li><a aria-label="Navigate to the 'Community Observations' page to see what observations others have recorded" href="{{ url_for('get_observations') }}">Community Observations</a></li>
+                <li><a aria-label="Navigate to 'Admin Nest' to see user information" href="{{ url_for('get_users') }}">Admin Nest</a></li>
+                <li><a aria-label="Log Out of your account" href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-                <li><a aria-label="About" href="{{ url_for('about') }}">About</a></li>
-                <li><a aria-label="Community Observations" href="{{ url_for('get_observations') }}">Community Observations</a></li>
-                <li><a aria-label="Sign Up" href="{{ url_for('register') }}">Sign Up</a></li>
-                <li><a aria-label="Log In" href="{{ url_for('login') }}">Log In</a></li>
+                <li><a aria-label="Navigate to the 'About' page to learn more" href="{{ url_for('about') }}">About</a></li>
+                <li><a aria-label="Navigate to the 'Community Observations' page to see what observations others have recorded" href="{{ url_for('get_observations') }}">Community Observations</a></li>
+                <li><a aria-label="Sign Up to start recording your observations" href="{{ url_for('register') }}">Sign Up</a></li>
+                <li><a aria-label="Log In to record more and view your observations." href="{{ url_for('login') }}">Log In</a></li>
             {% endif %}
         </ul>
     </header>
@@ -144,7 +149,7 @@
                 <div>
                     <!-- Get started button for logged-in users -->
                     {% if session.user and session.user != "admin" %}
-                    <a aria-label="New Observation" class="btn-small"
+                    <a aria-label="Navigateto the new observation page to record an observation" class="btn-small"
                         href="{{ url_for('add_observation') }}">
                         New Observation
                         <i class="fa-solid fa-crow"></i>
@@ -152,7 +157,7 @@
                     </a>
                     <!-- Get started button for users not logged in -->
                     {% elif session.user != "admin" %}
-                    <a aria-label="Sign-up" class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
+                    <a aria-label="Sign-up to start recording your observations." class="btn-small tooltipped" data-position="bottom" data-tooltip="Log in to record your observations"
                         href="{{ url_for('register') }}">
                         Sign-up
                         <i class="fa-solid fa-user-plus"></i>
@@ -161,10 +166,9 @@
                 </div>
             </div>
             <div id="footer-links" class="footer-section">
-                <h6> Useful links</h6>
-                <a aria-label="Learn about the BTO" href="https://www.bto.org/" target="_blank"> <i class="fa-brands fa-earlybirds"></i> Learn about the BTO</a>            
-                <a aria-label="Identify a Bird" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank"> <i class="fa-solid fa-binoculars"></i> Identify a Bird</a>
-                <a aria-label="Learn more about Bird Count" href="https://github.com/secarrel/Bird_Count" target="_blank"> <i class="fa-brands fa-github"></i> Learn more about Bird Count</a>        
+                <a aria-label="Navigate to the British Trust for Ornothology's site to learn about the BTO" href="https://www.bto.org/" target="_blank"> <i class="fa-brands fa-earlybirds"></i> Learn about the BTO</a>            
+                <a aria-label="Navigate to Bird Spot fo help to identify a Bird" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank"> <i class="fa-solid fa-binoculars"></i> Identify a Bird</a>
+                <a aria-label="Navigate to GitHub to learn more about Bird Count" href="https://github.com/secarrel/Bird_Count" target="_blank"> <i class="fa-brands fa-github"></i> Learn more about Bird Count</a>        
             </div>
         </div>
     </footer>
