@@ -76,6 +76,8 @@ table.highlight > tbody > tr:hover {
   }
 }
 
+/* ----------- Tooltips ----------- */
+
 /* ----------- Buttons ----------- */
 .btn-small {
   background-color: #8dab7f;
@@ -210,7 +212,8 @@ th {
 
 td.details-trigger {
   max-width: 150px !important;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  padding: 4px;
 }
 
 tbody {
@@ -518,6 +521,10 @@ nav a {
   margin: 1px;
 }
 
+td.details-trigger {
+  max-width: 100px !important;
+}
+
 #bird-info-modal {
   background-color: #192738;
   color: #efefef;
@@ -531,6 +538,7 @@ nav a {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  overflow-wrap: break-word !important;
 }
 
 #observation-data {
@@ -539,10 +547,14 @@ nav a {
   justify-content: center;
   align-items: flex-start;
   max-width: 230px;
+  padding: 5px;
+  overflow-wrap: break-word !important;
 }
 
 #observation-data p {
   margin: 0 !important;
+  max-width: 230px;
+
 }
 
 #observation-details {
@@ -595,6 +607,11 @@ nav a {
   margin: 0;
 }
 
+.nest-table {
+  max-width: 150px;
+  overflow: hidden;
+  padding: 5px;
+}
 /* ----------- Stats Section ----------- */
 #bird-stats-container {
   text-align: center;
@@ -748,6 +765,11 @@ nav a {
 #contact-admin-container {
   display: flex;
   flex-direction: column;
+  color: #efefef !important;
+}
+
+.materialize-textarea {
+  color: #efefef;
 }
 
 #edit-visibility-container {
@@ -819,6 +841,10 @@ input {
   fill: #9e9e9e;
 }
 /* ---------------------- ADD OBSERVATION PAGE ---------------------- */
+
+.autocomplete-content li span {
+  color: #efefef !important;
+}
 
 input#file-upload-button {
   display: none;
@@ -1078,11 +1104,17 @@ input[type="range"] {
   .modal {
     width: 80%;
     background-color: #192738 !important;
+    color: #efefef !important;
   }
 
   #bird-info-body,
   #bird-info-body-nest {
     flex-wrap: wrap;
+  }
+
+  #observation-data, 
+  #observation-data p {
+    max-width: 85vw;
   }
 
   #edit-image-button-container {
@@ -1110,6 +1142,10 @@ input[type="range"] {
     font-size: 30px !important;
   }
 
+  .nest-table {
+    max-width: 100px;
+  }
+  
   /* about */
   #about-heading-container h3 {
     font-size: 30px !important;
@@ -1121,6 +1157,16 @@ input[type="range"] {
     font-size: 15px !important;
     margin: 10px;
   }
+
+  #bird-info-body {
+    max-width: 90vw !important;
+  }
+  
+  #observation-title span{
+    overflow-wrap: break-word !important;
+    max-width: 90vw;
+  }
+
 
   /* footer  */
   #footer-container {
@@ -1170,6 +1216,11 @@ input[type="range"] {
     max-width: 270px;
     border-radius: 100px 0 100px 0;
   }
+
+  .nest-table {
+    max-width: 80px;
+  }
+  
 }
 
 @media only screen and (max-width: 350px) {

@@ -74,10 +74,13 @@
                     <table id="nest-observation-table" class="highlight light-section">
                         <thead>
                             <tr>
+                                <th id="more-details" class="hide-mobile"></th>
                                 <th>Bird Species</th>
                                 <th class="hide-mobile">Quantity</th>
                                 <th class="hide-mobile">Location</th>
                                 <th>Date</th>
+                                <th id="edit" class="hide-mobile"></th>
+                                <th id="delete" class="hide-mobile"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,10 +88,16 @@
                                 <!-- Only show observations made by session user -->
                                 {% if session.user|lower == observation.seen_by|lower %}
                                 <tr>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.bird_species }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile">{{ observation.quantity }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile">{{ observation.location }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger">{{ observation.date }}</td>
+                                    <!-- View observation -->
+                                    <td class="hide-mobile modal-trigger">
+                                        <a aria-label="Click on the observation to see more details">
+                                            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                        </a>
+                                    </td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{ observation.bird_species }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile nest-table">{{ observation.quantity }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile nest-table">{{ observation.location }}</td>
+                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{ observation.date }}</td>
                                     <!-- Edit observation button -->
                                     <td>
                                         <a aria-label="You can edit this observation" href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small mobile-narrow">

@@ -1,3 +1,4 @@
+// This file is taken from Dogfalo GitHub and fixes a known bug with materialize in safari. I take no credit for the following code.
 (function($) {
     'use strict';
   
