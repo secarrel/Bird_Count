@@ -524,3 +524,14 @@ Defensive programming was manually tested with the below user acceptance testing
 - #### Community Observations: search and sort by username shows anonymous users in position of their actual username
 	When a user is set to anonymous, their username isn't displayed in the community observations, as intended. When a user sorts by  usernames or searches an anonymous user's name, their observations will be displayed (still as anonymous). This is a give away of the identity of the user so makes the anonymity feature less effective. 
 	I couldn't find solution to this in the time I had so decided to remove the option to sort and search by username as this isn't an essential functionality. I think having this implemented and not working properly is more impactful on UX than to remove the functionality and continue looking for solutions.
+
+- #### Sorting by date
+
+	Just before submission I found a bug in the community observations table. This is related to the sort functionality. When sorting by date, it sorts based on day of the month, regardless of month and year. This will be a priority, but I unfortunatley won't have time to fix this bug before submission. 
+
+- #### Adding a time to an observation
+
+	It is possible for the user to avoid putting a numeric time in the time field. It is difficult to do this, but is possible. I again discovered this bug before submission so do not have time to fix it. It will be second priority to fix (after the date sort fix above) when I am able to continue work on the project again.
+
+There are no other bugs that I am aware of.
+
