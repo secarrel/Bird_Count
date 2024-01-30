@@ -40,6 +40,10 @@ header {
   width: 100%;
 }
 
+header i{
+  color: #192738 !important;
+}
+
 nav {
   background-color: #e49452;
   box-shadow: none;
