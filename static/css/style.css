@@ -783,6 +783,7 @@ table.highlight > tbody > tr:hover {
 #delete-account-button {
   width: 100%;
   margin: auto;
+  color: #000000;
 }
 
 /* ---------------------- LOG-IN PAGE ---------------------- */
