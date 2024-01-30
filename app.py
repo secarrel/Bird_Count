@@ -512,6 +512,12 @@ def edit_observation(observation_id):
 @app.route("/get_image", strict_slashes=False)
 @app.route('/get_image/<observation_id>')
 def get_image(observation_id):
+    """
+    Gets image file from database and sends it to the html page.
+
+    Parameters:
+        observation_id (str): a unique string.
+    """
     document = db.observations.find_one({"_id": ObjectId(observation_id)})
     image_id = document.get("image")
     image_file = fs.get(image_id)
@@ -895,12 +901,28 @@ def sort_descending(observation_field):
 # error 404 handler
 @app.errorhandler(404)
 def page_not_found(e):
+    """
+    Renders template for '404.html'.
+
+    Detects 404 error and redirects to the 404 page.
+
+    Parameters:
+        e: 404 error.
+    """
     return render_template("404.html"), 404
 
 
 # error 500 handler
 @app.errorhandler(500)
 def internal_server_error(e):
+    """
+    Renders template for '500.html'.
+
+    Detects 500 error and redirects to the 404 page.
+
+    Parameters:
+        e: 500 error.
+    """
     return render_template('500.html'), 500
 
 
