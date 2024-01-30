@@ -75,7 +75,7 @@
                     </a>
                 </div>
                 <!-- Observation table -->
-                <table id="nest-observation-table" class="highlight light-section">
+                <table id="nest-observation-table" class="highlight">
                     <thead>
                         <tr>
                             <th id="more-details" class="hide-mobile"></th>
@@ -91,21 +91,22 @@
                         {% for observation in observations %}
                         <!-- Only show observations made by session user -->
                         {% if session.user|lower == observation.seen_by|lower %}
-                        <tr>
+                        <tr class="observation-modal-trigger" data-id="{{ observation._id }}"
+                            data-species="{{ observation.bird_species }}" data-location="{{ observation.location }}"
+                            data-date="{{ observation.date }}" data-time="{{ observation.time }}"
+                            data-seen-by="{{ observation.seen_by }}" data-quantity="{{ observation.quantity }}"
+                            data-image="{{ observation.image }}" data-anonymous="{{ observation.anonymous }}"
+                            data-certainty="{{ observation.certainty }}" data-notes="{{ observation.notes }}">
                             <!-- View observation -->
-                            <td class="hide-mobile modal-trigger">
+                            <td class="hide-mobile details-trigger">
                                 <a aria-label="Click on the observation to see more details">
                                     <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                                 </a>
                             </td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{
-                                observation.bird_species }}</td>
-                            <td href="#my-observation-details{{ observation._id }}"
-                                class="modal-trigger hide-mobile nest-table">{{ observation.quantity }}</td>
-                            <td href="#my-observation-details{{ observation._id }}"
-                                class="modal-trigger hide-mobile nest-table">{{ observation.location }}</td>
-                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{
-                                observation.date }}</td>
+                            <td class="details-trigger nest-table">{{observation.bird_species }}</td>
+                            <td class="details-trigger hide-mobile nest-table">{{ observation.quantity }}</td>
+                            <td class="details-trigger hide-mobile nest-table">{{ observation.location }}</td>
+                            <td class="details-trigger nest-table">{{ observation.date }}</td>
                             <!-- Edit observation button -->
                             <td>
                                 <a aria-label="You can edit this observation"
@@ -143,33 +144,32 @@
                                     </div>
                                 </div>
                             </td>
-                            <!-- Modal for observation details -->
-                            <div id="my-observation-details{{ observation._id }}" class="modal">
-                                <div id="bird-info-modal-nest" class="col s12 modal-content">
-                                    <div id="bird-info-body-nest">
-                                        <div class="card-image" id="bird-info-image-container-nest">
-                                            <img src="{{ url_for('get_image', observation_id=observation._id) }}"
-                                                alt="Observation Image">
-                                            <span class="observation-title">{{ observation.bird_species }}</span>
-                                        </div>
-                                        <div class="card-content" id="observation-data-nest">
-                                            <p>
-                                                Quantity: {{ observation.quantity }} <br>
-                                                Certainty: {{ observation.certainty }}/10 <br>
-                                                location: {{ observation.location }} <br>
-                                                Seen on: {{ observation.date }} @ {{ observation.time }} <br>
-                                                Notes from {{observation.seen_by}}: <br>
-                                                {{ observation.notes }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </tr>
                         {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
+                <!-- Observation modal -->
+                <div id="observation-details" class="modal">
+                    <div id="bird-info-modal" class="col s12 modal-content">
+                        <div id="bird-info-body">
+                            <!-- Observation image -->
+                            <div id="bird-info-image-container" class="card-image">
+                                <img id="observation-image" src="#" alt="Observation Image">
+                                <span id="observation-title">
+                                </span>
+                            </div>
+                            <!-- Observation details -->
+                            <div class="card-content" id="observation-data">
+                                <p id="observation-quantity"> Quantity:</p>
+                                <p id="observation-certainty"> Certainty:/10 </p>
+                                <p id="observation-location"> Location: </p>
+                                <p id="observation-date"></p>
+                                <p id="observation-notes"> Notes: <em>User didn't add any notes.</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- No observations submitted message -->
                 {% else %}
                 <h6>You haven't submitted any observations yet</h6>

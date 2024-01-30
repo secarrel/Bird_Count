@@ -118,7 +118,6 @@ if (anonymousSwitch && anonymousForm) {
 // -------------- Fill and open observation modal ---------------
 let observationRow = document.querySelectorAll(".observation-modal-trigger");
 let observationModal = document.getElementById("observation-details");
-let deleteButtons = document.querySelectorAll(".delete-button");
 
 observationRow.forEach(function (observation) {
   observation.addEventListener("click", function (event) {
