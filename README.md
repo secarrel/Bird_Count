@@ -259,7 +259,7 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 		There is a section dedicated to explaining to the user what Bird Count is and what they can do with it. This is a way for the user to find out if it is the right tool for them before signing up.
 
 		[Welcome Page Explanation](documentation/features/welcome-sections.png)
-		
+
 
 	<details>
 	<summary>Page Screenshots (responsive design)</summary>
@@ -280,22 +280,33 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 
 	- The British Trust for Ornithology
 		This section explains the conservations and research benefits of submitting and collecting data like this. It gives interested users the chance to learn more about the [BTO](https://www.bto.org/) by providing a useful link.
-		[Learn more section]()
+
+		[Learn more about the BTO section](documentation/features/about-section1.png)
+
 	- Benefits to users
 		The next section lists the benefits the app has for the user, helping them understand why the app could be useful. This is supplemented with a convenient 'sign up' or 'add observation' button depending on the user's status. 
-		[What's in it for me?]()
+
+		['What's in it for me?' section](documentation/features/about-section2.png)
+
 	- What's that bird?
 		This section is designed to make bird watching more accessible to users who are new to bird watching and may have difficulty identifying birds. It provides a useful link to [Bird Spot](https://www.birdspot.co.uk/british-bird-identifier). I found this bird identification tool while researching apps related to bird watching for inspiration.
-		[What's that bird?]()
+
+		['What's that bird?' section](documentation/features/about-section3.png)
 	
 	<details>
 	<summary>Page Screenshots (responsive design)</summary>
 
-	![desktop](documentation/features/pages/welcome-desktop.png)
+	Desktop
 
-	![tablet](documentation/features/pages/welcome-tablet.png)
+	![desktop](documentation/features/pages/about-desktop.png)
 
-	![phone](documentation/features/pages/welcome-phone.png)
+	Tablet
+
+	![tablet](documentation/features/pages/about-tablet.png)
+
+	Mobile
+
+	![phone](documentation/features/pages/about-mobile.png)
 
 	</details>
 
@@ -303,155 +314,294 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 
 	- Observations table
 		This displays all observations submitted by all users that haven't set their account to 'invisible'. It displays data that users might initially find useful for identifying observations, such as species, location, date and user. When an observation is selected a modal pops up. providing all relevant data associated with that observation; this includes the photo uploaded with the observation and any notes the user added. 
-		[Community Observation Table]()
-		[Community observation modal]()
-		The table is responsive and hides less important data columns on smaller screens.
-		[Small screen community observation table]()
-	- Logged in users can edit and delete their observations from this page
-		Observations that belong to the current logged in user are displayed with a column for editing and deleting these observations. The edit and delete observations only appear next to the observations that belong to the current user. These are not visible on smaller screen sizes. 
-		[Edit and delete observation buttons]()
-	- Search observations
-		There is a search functionality for the community observation table which allows the user to find data which is most relevant for them. It allows them to search for words in the fields of user, bird species, and location. I felt these were the most likely be used for finding observations.
-		[Search functionality]()
-	- Sort observations
-		Observations are automatically sorted by date, most recent first, but the user also has the ability to sort by any other field. The only field they cannot sort by is the user field as this caused a bug where anonymous users were including in this sorting and it didn't make sense to the user. 
-		[Sort functionality]() 
-	- Reset sort and search results
-		There is a button located for convenience at the top of the community observations table which resets the search and sort results. All results are then displayed again in the default order.
-		[Reset button]()
-	- Sign-up / Add Observation Button
-		Again, for convenience for the user, I added a button to add observations as this is probably something that is on their mind at this point while looking at other observations. This is also the point I think that new users may be most likely to sign up.
 
-		<details>
-		<summary>Responsive page</summary>
+		![Community observation modal](documentation/features/observation-modal.png)
 
-		![desktop](documentation/features/pages/welcome-desktop.png)
+	- <details>
+		<summary>The table is responsive and hides less important data columns on smaller screens.</summary>
 
-		![tablet](documentation/features/pages/welcome-tablet.png)
+		Desktop
 
-		![phone](documentation/features/pages/welcome-phone.png)
+		![desktop](documentation/features/pages/observation-desktop.png)
+
+		Tablet
+
+		![tablet](documentation/features/pages/observation-tablet.png)
+
+		Mobile
+
+		![phone](documentation/features/pages/observation-mobile.png)
 
 		</details>
+
+	- Logged in users can edit and delete their observations from this page
+		Observations that belong to the current logged in user are displayed with a column for editing and deleting these observations. The edit and delete observations only appear next to the observations that belong to the current user. These are not visible on smaller screen sizes. 
+
+		![Edit and delete observation buttons](documentation/features/observation-buttons.png)
+
+	- Search observations
+		There is a search functionality for the community observation table which allows the user to find data that is most relevant to them. It allows them to search for words in the fields of user, bird species, and location. I felt these were the most likely to be used for finding observations.
+
+		![Search functionality](documentation/features/observation-search.png)
+
+	- Sort observations
+		Observations are automatically sorted by date, most recent first, but the user can also sort by any other field. The only field they cannot sort by is the user field as this caused a bug where anonymous users were included in this sorting.
+
+		![Sort functionality](documentation/features/observation-sort.png) 
+
+	- Reset sort and search results
+		There is a button located for convenience at the top of the community observations table which resets the search and sort results. All results are then displayed again in the default order.
+
+		![Reset button](documentation/features/observation-reset.png)
+
+	- Log-in / Add Observation Button
+		Again, for convenience for the user, I added a button to add observations as this is probably something that is on their mind at this point while looking at other observations. This is also the point I think that new users may be most likely to sign up/log in.
+
+		[Log-in](documentation/features/observation-login.png) / 
+		[Add-observation](documentation/features/observation-add-obs.png) buttons
 
 
 
 - ##### My Nest
 	The user's nest contains all personal information, including their birding stats, their observations, their messages from the admin, and their account settings. There is double protection to prevent anybody who isn't the current user from accessing their next. 
-	- This page is fully responsive.
-		[Nest desktop]()
-		[Nest tablet]()
-		[Nest Mobile]()
-		[Responsive modals]
+
+	- <details>
+		<summary>This page is fully responsive (expand to see images)</summary>
+
+		Desktop
+
+		![desktop](documentation/features/pages/nest-desktop.png)
+
+		Tablet
+
+		![tablet](documentation/features/pages/nest-tablet.png)
+
+		Mobile
+
+		![phone](documentation/features/pages/nest-mobile.png)
+
+		</details>
+		
 	- Stats and life-list
 		The first section for the user to see is the 'My Stats' section which provides some stats based on the data they have provided. This gives makes it easy to set target, see progress, and compare with fellow bird watchers if that's something they are interested in. 
-		[Stats]
+
+		![Stats](documentation/features/nest4.png)
+
 		The life list is a modal that shows every species the user has seen, to save them looking through all of their observations, and says how many they have seen of each. This is a fun feature to help them see what species they have and haven't seen in-case they have a birding bucket list or similar that they want to compare with.
-		[Life list]
+
+		[Life list](documentation/features/nest-lifelist.png)
+
 	- Personal observations table
-		This is very similar to the community observation board but only shows the user's observations. The option to edit and delete observations is available here on every screen size. 
-		[Observation table]
+		This is very similar to the community observation board but only shows the user's observations. The option to edit and delete observations is available here on every screen size.
+
+		![Observation table](documentation/features/nest3.png)
+
+		[Observation modal](documentation/features/nest-obs-modal.png)
+
 		- Delete Observation
-			A delete observation confirmation modal pops up asking the user to confirm they want to delete. The observation details are displayed in the modal so the user knows they have selected the intended observation. 
-			[Delete Observation Confirmation Modal]
+			A delete observation confirmation modal pops up asking the user to confirm they want to delete. The observation details are displayed in the modal so the user knows they have selected the intended observation.
+
+			[Delete Observation Confirmation Modal](documentation/features/nest-delete-obs.png)
+
 		- Edit Observation
 			This redirects the user to the 'Edit Observation' page.
+
 	- Messaging admin
+
 		There is a section dedicated to communications with the admin. The user can message the admin or view their messages by looking in their 'pigeon hole' in this section. 
-		[Messaging buttons]
+
+		![Messaging buttons](documentation/features/nest2.png)
+
 		- Pigeon Hole
 			The pigeon hole contains messages from the admin in response to queries from the user. Message summaries are displayed initially and on click, they expand to show the message body. There is an option to reply to or delete each message.
-			[Pigeon Hole]
+
+			[Pigeon Hole](documentation/features/nest-pigeonhole.png)
+
 			- Reply to message
-				When replying to the admin, all fields are prefilled with the exception of the message body.
-				[Reply to message]
+
+				When replying to the admin, all fields are prefilled except for the message body.
+				
+				[Reply to message](documentation/features/nest-reply.png)
+
 			- Delete message
+			
 				Confirmation of deletion modal pops up.
-				[Confirm Delete Message Modal]
+
 	- Account settings
 		This allows the user to edit their account details.
-		[Account settings desktop]
-		[Account settings Tablet]
-		[Account settings Mobile]
+
+		![Account settings](documentation/features/nest1.png)
+
 		- Privacy settings
 			Both of these settings are displayed as switches which are set by default to the user's current privacy settings. 
-			[Privacy settings desktop]
-			[privacy settings tablet]
-			[privacy settings mobile]
+
 			- Visibility
-				This determines whether the users observations appear on the community observations board. I felt this was an important feature as some users may not want to use the app for the community aspects, but still want to use the tool for their personal bird watching enhancement! 
-				[video demonstration]
+
+				This determines whether the user's observations appear on the community observations board. I felt this was an important feature as some users may not want to use the app for the community aspects, but still want to use the tool to enhance their bird watching! 
+
 			- Anonymity 
-				The user is able to hide their username from the community but still show their observations. 
-				[video demonstration]
+
+				The user can hide their username from the community but still show their observations. 
+
 		- Edit email address and experience level
+
 			Both of these options appear as forms in modals. If the changes are valid, a flash message appears confirming the changes. 
-			[Edit Account Details Section Desktop]
-			[Edit Account Details Section Tablet]
-			[Edit Account Details Section Mobile]
-			[Edit email modal]
-			[Edit experience modal]
-		- delete account with confirmation
+
+			[Edit email modal](documentation/features/nest-edit-email.png)
+
+			[Edit experience modal](documentation/features/nest-edit-experience.png)
+
+		- Delete the account with confirmation
+
 			This is displayed as a red 'danger' button so the user knows only to press this button if certain it's what they want. 
-			[Delete account button]
+
 			This doesn't delete the users observations as I thought that keeping the data is important for potential research, so in the confirmation modal, this is explained.
-			[Delete account confirmation modal]
+
+			![Delete account confirmation modal](documentation/features/nest-delete-account.png)
 			
 - ##### Admin Page
 	This page is only accessible to the admin and has double protection to ensure this is the case.
-	[Admin Page Desktop]
-	[Admin Page Tablet]
-	[Admin Page Mobile]
+
 	- List of users
-		The admin is provided with a list of users. There is a 'delete user' functionality so they have control over the use and activity of the app. a delete user confirmation modal appears on pressing the button.
-		[Delete user confirmation]
+
+		The admin is provided with a list of users. There is a 'delete user' functionality so they have control over the use and activity of the app. A delete user confirmation modal appears on pressing the button.
+
 	- Messaging
+	
 		The admin has access to their pigeon hole which shows messages from users. This has the same functionality as the pigeon hole in 'My Nest'.
-		[Pigeon hole admin nest.]
 		
 - ##### Log in Page
-	The user is able to log in by entering their username and password. They are informed if their username or password are incorrect, without indicating which one. This prevents password guessing etc. If the log in is successful they are redirected to either 'My Nest' or 'Admin Nest' depending who has logged in. They are also presented with a flash message confirming that they have successfully logged in.
-	[Log in page Desktop]
-	[Log in page tablet]
-	[log in page mobile]
-	
+	The user can log in by entering their username and password. They are informed if their username or password is incorrect, without indicating which one. This prevents password guessing etc. If the login is successful they are redirected to either 'My Nest' or 'Admin Nest' depending on who has logged in. They are also presented with a flash message confirming that they have successfully logged in.
+
+	<details>
+	<summary>This page is fully responsive (expand to see images)</summary>
+
+	Desktop
+
+	![desktop](documentation/features/pages/login-desktop.png)
+
+	Tablet
+
+	![tablet](documentation/features/pages/login-tablet.png)
+
+	Mobile
+
+	![phone](documentation/features/pages/login-mobile.png)
+
+	</details>
+
 - ##### Register Page
-	Registration requires filling a number of input fields, some of which are required, this is made clear, and all that have specific requirements are validated. Tooltips indicate the validation criteria. When a user enters a username, the database is checked to see if this username already exists. If it does exist, the user is informed that they already have an account and is redirected to the log in page. 
-	[Registration page desktop]
-	[Registration page tablet]
-	[Registration page mobile]
+	Registration requires filling out several input fields, some of which are required, this is made clear, and all that have specific requirements are validated. Tooltips indicate the validation criteria. When a user enters a username, the database is checked to see if this username already exists. If it does exist, the user is informed that they already have an account and is redirected to the login page. 
+
+	<details>
+	<summary>This page is fully responsive (expand to see images)</summary>
+
+	Desktop
+
+	![desktop](documentation/features/pages/register-desktop.png)
+
+	Tablet
+
+	![tablet](documentation/features/pages/register-tablet.png)
+
+	Mobile
+
+	![phone](documentation/features/pages/register-mobile.png)
+
+	</details>
+
+	When registering you are asked to fill in your experience level. This determines the user's avatar.
 	
+	![Register experience level](documentation/features/register-experience.png)
+
+
 - ##### Add Observation Page
 	This page allows the user to add observations with supporting information. Some fields are required and some are optional; this is made clear. I haven't made it compulsory to select from the autocomplete list as I felt this took away some flexibility in how the user could use the app.
-	- Responsive design 
-		[Add observation desktop]
-		[Add observation tablet]
-		[Add observation mobile]
+
+	- <details>
+		<summary>This page is fully responsive (expand to see images)</summary>
+
+		Desktop
+
+		![desktop](documentation/features/pages/add-desktop.png)
+
+		Tablet
+
+		![tablet](documentation/features/pages/add-tablet.png)
+
+		Mobile
+
+		![phone](documentation/features/pages/add-mobile.png)
+
+		</details>
+		
 	- Autocomplete input fields
+
 		The bird species autocomplete data was compiled from the [British Ornithological Society (BOU)](https://bou.org.uk/), and contains a comprehensive list of bird species that have been seen in Britain. When researching bird watching applications, I found many that were catered to US bird watching, we have different species in the UK which make these apps less useful here. This list provided by the BOU includes British birds specifically, making the data ideal for bird watching in the UK.
-		[Autocomplete birds species]
-		Location autocomplete data was compiled from the [Office for National Statistics](https://geoportal.statistics.gov.uk/documents/ons::local-authority-districts-counties-and-unitary-authorities-april-2021-map-in-united-kingdom--1/about) and includes all districts in the UK. I decided to sort locations by districts to make it easier for the user to identify where they are.
-		[Autocomplete locations]
+
+		[Autocomplete bird species](documentation/features/add-autocomplete2.png)
+
+		Location autocomplete data was compiled from the [Office for National Statistics](https://geoportal.statistics.gov.uk/documents/ons::local-authority-districts-counties-and-unitary-authorities-april-2021-map-in-united-kingdom--1/about) and includes all districts in the UK. I decided to sort locations by district to make it easier for the user to identify where they are.
+
+		[Autocomplete locations](documentation/features/add-automcomplete.png)
+
 	- Date picker
+
 		I added a date and time picker to ensure the values are entered in a format that is easy to sort and search in the database. I set the date picker to only allow the submission of observations from the current data and previous. Users shouldn't be able to post observations from the future, as they won't know what they'll see in the future!
-		[Date picker]
+
+		[Date picker](documentation/features/add-calander.png)
+
+		[Time picker](documentation/features/add-time.png)
+
+	- Cartainty range 
+
+		This helps users to decide if an observation is likely to be correct. This uses a 'range' component from materialize.
+
+		[Certainty](documentation/features/add-certainty.png)
+
 	- Fields are validated
+
 		If any fields are invalid, or unfilled when required a flash message or tooltip appears explaining the issue. 
-	- Cancel button
+
+	- Cancel buttons
+
 		The user is given the option to cancel if they no longer want to add an observation. This redirects them to either the community observations board or their nest, depending on their preference. 
-		[Cancel buttons]
 		
 - ##### Edit Observation page
-	The user is given the change to edit observations. This allows them to keep their records accurate in-case they see an extra bird of that species or want to upload a photo they look a little after the event. This page has double protection to stop anyone from editing the observation who isn't the admin or user that created the observation.
-	- Responsive Design 
-		[Edit observation desktop]
-		[Edit observation tablet]
-		[Edit observation mobile]
+	The user is given the chance to edit observations. This allows them to keep their records accurate in case they see an extra bird of that species or want to upload a photo they took a little after the event. This page has double protection to stop anyone from editing the observation who isn't the admin or user that created the observation.
+
+	- <details>
+		<summary>This page is fully responsive (expand to see images)</summary>
+
+		Desktop
+
+		![desktop](documentation/features/pages/edit-desktop.png)
+
+		Tablet
+
+		![tablet](documentation/features/pages/edit-tablet.png)
+
+		Mobile
+
+		![phone](documentation/features/pages/edit-mobile.png)
+
+		</details>
+
 	- Prefilled fields
+
 		All fields are prefilled so the user can see what the observation was initially. This helps them identify what needs changing.
-		[Prefilled fields]
+
+		[Prefilled fields](documentation/features/edit-prefill.png)
+
+	- View Current Image
+	
+		You can see the image that was originally uploaded with the observation by clicking the 'current image' button. It opens in a modal.
+
+		![Current image](documentation/features/edit-currentimage.png)
+
 	- Cancel
+
 		Cancel buttons are located conveniently to allow the user to change their mind about editing an observation. The user will be redirected to the relevant page.
-		[Cancel buttons]
 		
 - ##### 404/500
 	There are 404 and 500 error handlers that redirect the user to the 404 page. This is designed in a way that is meant to bring some humour to the user to make up for their confusion about not being on the correct page. This page redirects the user to the home page where they can navigate back to the page they were looking for using the built in navigation. 
