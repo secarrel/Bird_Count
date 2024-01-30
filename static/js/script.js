@@ -115,13 +115,6 @@ if (anonymousSwitch && anonymousForm) {
   });
 }
 
-// -------------- Redirect User ---------------
-let redirectAddObs = document.getElementById("redirect-add-obs");
-
-if (redirectAddObs) {
-  window.location.href = "/login/";
-}
-
 // -------------- Fill and open observation modal ---------------
 let observationRow = document.querySelectorAll(".observation-modal-trigger");
 let observationModal = document.getElementById("observation-details");

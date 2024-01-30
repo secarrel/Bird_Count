@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="error-page-conatainer">
+    <div class="card-panel" id="error-card">
+        <h2>Did you get lost?</h2>
+        <p>You shouldn't be here... let's get you back to the flock.</p>
+        <a aria-label="Go Home to return to the welcome page." class="btn-small" href="{{ url_for('welcome') }}">
+            Go Home
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <p> 500 Internal Error </p>
+    </div>
+</div>
+{% endblock %}
