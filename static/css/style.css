@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&family=Mallanna&display=swap');
+
 .flashes h4 {
   font-size: 20px;
   color: #efefef;
@@ -121,22 +123,27 @@ body {
   font-size: 14px;
   max-width: 1920px;
   margin: auto;
+  font-family: 'Mallanna', sans-serif;
 }
 
 h2 {
   font-size: 40px !important;
+  font-family: 'Laila', sans-serif;
 }
 
 h3 {
   font-size: 35px !important;
+  font-family: 'Laila', sans-serif;
 }
 
 h4 {
   font-size: 30px;
+  font-family: 'Laila', sans-serif;
 }
 
 h5 {
   font-size: 20px !important;
+  font-family: 'Laila', sans-serif;
 }
 
 i {
