@@ -816,6 +816,11 @@ select {
     align-items: center;
     align-self: center;
   }
+
+  #login-to-register a {
+    text-decoration: underline;
+  }
+  
   
 /* ---------------------- REGISTER PAGE ---------------------- */
 .select-wrapper input.select-dropdown {
