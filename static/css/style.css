@@ -108,6 +108,7 @@ table.highlight > tbody > tr:hover {
 
 .cancel {
   background-color: #e49452;
+  margin: auto;
 }
 
 .cancel:hover {
