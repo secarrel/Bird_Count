@@ -75,9 +75,9 @@
                 <!-- Get started button for users not logged in -->
                 {% elif session.user != "admin"%}
                 <a aria-label="Sign up so you can record your observations." class="btn-small tooltipped about-button"
-                    data-position="bottom" data-tooltip="Log in to record your observations"
+                    data-position="bottom" data-tooltip="Sign up so you can record your observations."
                     href="{{ url_for('register') }}">
-                    Sign-up
+                    Sign up
                     <i class="fa-solid fa-user-plus"></i>
                 </a>
                 {% endif %}
