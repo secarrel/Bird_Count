@@ -88,8 +88,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for observation in observations %}
                         <!-- Only show observations made by session user -->
+                        {% for observation in observations %}
                         {% if session.user|lower == observation.seen_by|lower %}
                         <tr class="observation-modal-trigger" data-id="{{ observation._id }}"
                             data-species="{{ observation.bird_species }}" data-location="{{ observation.location }}"
@@ -123,7 +123,7 @@
                                     <i class="fa-regular fa-trash-can "></i>
                                 </a>
                                 <!-- Delete modal -->
-                                <div id="confirm-delete" class="modal">
+                                <div class="confirm-delete modal">
                                     <div class="modal-content">
                                         <h4>Delete Observation</h4>
                                         <p>
@@ -537,7 +537,7 @@
         </div>
         <!-- Submit button -->
         <div class="modal-footer">
-            <button type="submit" class="modal-close btn-flat">Update</a>
+            <button type="submit" class="modal-close btn-flat">Update</button>
         </div>
     </form>
     <!-- Edit Experience Modal -->
@@ -550,13 +550,13 @@
                 <div class="input-field col s12">
                     <i class="fas fa-graduation-cap prefix"></i>
                     <select id="experience-edit" name="experience-edit" required>
-                        <option value="0" selected>Select your experience level:</option>
-                        <option value="1"><strong>Egg</strong> (What's a bird?)</option>
-                        <option value="2"><strong>Hatchling</strong> (New to this)</option>
-                        <option value="3"><strong>Fledgling</strong> (Garden birds only)</option>
-                        <option value="4"><strong>Juvenile</strong> ("That's a Coot, not a Moorhen")</option>
-                        <option value="5"><strong>Adult</strong> (Can identify 'that little flitty one')</option>
-                        <option value="6"><strong>Owl</strong> (Have seen ALL the birds)</option>
+                        <option value="" selected>Select your experience level:</option>
+                        <option value="1">Egg (What's a bird?)</option>
+                        <option value="2">Hatchling (New to this)</option>
+                        <option value="3">Fledgling (Garden birds only)</option>
+                        <option value="4">Juvenile ("That's a Coot, not a Moorhen")</option>
+                        <option value="5">Adult (Can identify 'that little flitty one')</option>
+                        <option value="6">Owl (Have seen ALL the birds)</option>
                     </select>
                     <label for="experience-edit">Experience Level</label>
                 </div>
@@ -564,7 +564,7 @@
         </div>
         <!-- Submit or cancel buttons -->
         <div class="modal-footer">
-            <button type="submit" class="modal-close btn-flat">Update</a>
+            <button type="submit" class="modal-close btn-flat">Update</button>
         </div>
     </form>
     <!-- Delete Account Modal -->
