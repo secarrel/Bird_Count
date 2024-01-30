@@ -827,6 +827,10 @@ select {
   background-color: #243449;
 }
 
+#register-to-login a {
+  text-decoration: underline;
+}
+
 .select-wrapper .caret {
   fill: #9e9e9e;
 }
