@@ -335,6 +335,7 @@ nav a {
 .avatar-drop {
   width: 100%;
   padding: 4px 4px 0 4px;
+  max-height: 350px;
 }
 
 .username-drop {
@@ -1123,6 +1124,10 @@ input[type="range"] {
 }
 
 @media only screen and (max-width: 500px) {
+  p {
+    font-size: 13px !important;
+  }
+
   .mobile-narrow {
     width: 20px;
     text-align: center;
