@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Only allow users who are logged in and not the admin to view this content-->
+{% if session.user and session.user != 'admin' %}
 <div class="background-img">
-    <!-- Only allow users who are logged in and not the admin to view this content-->
-    {% if session.user and session.user != 'admin' %}
     <!-- Add observation form -->
     <div class="add-observation-container row">
         <form class="col s12 m8 l8 margin-auto" method="POST" action="{{ url_for('add_observation') }}"
@@ -122,9 +122,19 @@
             </div>
         </form>
     </div>
+</div>
     {% else %}
-    <!-- Redirect to login only visible to non-users -->
-    <div id="redirect-add-obs"></div>
+<!-- Redirect to login only visible to non-users -->
+<div id="error-page-conatainer">
+    <div class="card-panel" id="error-card">
+        <h2>Did you get lost?</h2>
+        <p>You shouldn't be here... let's get you back to the flock.</p>
+        <a aria-label="Go Home to return to the welcome page." class="btn-small" href="{{ url_for('welcome') }}">
+            Go Home
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <p> You are not authorised to add observations.</p>
+    </div>
 </div>
 {% endif %}
 {% endblock %}
