@@ -1137,6 +1137,11 @@ input[type="range"] {
   #edit-image-button-container {
     display: flex;
   }
+
+  /* ----------- Register ----------- */
+  .select-wrapper input.select-dropdown {
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -1270,4 +1275,11 @@ input[type="range"] {
   #life-list-container {
     padding: 5px !important;
   }
+
+  
+  /* ----------- Register ----------- */
+  .select-wrapper input.select-dropdown {
+    font-size: 10px !important;
+  }
+
 }
