@@ -82,6 +82,7 @@
                                 {% endif %}
                                 Experience
                             </th>
+                            <th id="delete-user-column"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,7 +138,7 @@
         </div>
     </div>
     <!-- Pigeon Hole Modal -->
-    <div class="modal" id="pigeon-hole-admin" class="pigeon-hole">
+    <div class="modal pigeon-hole" id="pigeon-hole-admin">
         <div class="col s12">
             <div class="card-panel">
                 <div class="card-heading ">
@@ -146,17 +147,18 @@
                     </h4>
                     <!-- Check if there are any messages for the admin -->
                     {% if messages|selectattr('recipient', 'equalto', 'admin')|list %}
-                    <ul class="collapsible">
+                    <div>
                         <!-- List messages -->
                         {% for message in messages %}
                         <!-- Only show messages for the session user (admin) -->
                         {% if message.recipient == session.user %}
-                        <li id="messages-to-admin">
+                        <div class="messages-to-admin">
                             <!-- Expandable message details -->
-                            <div id="display-recieved-admin" class="collapsible-header light-section-less-padding">
+                            <div class="display-recieved-admin collapsible-header light-section-less-padding">
                                 From: {{ message.sender }} <br>
                                 Subject: {{ message.subject }} <br>
-                                Sent at: {{ message.time }}
+                                Sent at: {{ message.time }} <br>
+                                Message: {{message.body }}
                                 <div class="button-container">
                                     <!-- Delete message button -->
                                     <a aria-label="Delete this message" href="#confirm-delete-message{{ message._id }}"
@@ -164,19 +166,13 @@
                                         <i class="fa-regular fa-trash-can "></i>
                                     </a>
                                     <!-- Reply to message button -->
-                                    <a aria-label="Reply to this message"
-                                        href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                    <a aria-label="Reply to this message" href="#reply-to-message{{ message._id }}"
                                         class="btn modal-trigger btn-small pigeon-hole-button">
                                         <i class="fa-solid fa-reply "></i>
                                     </a>
                                 </div>
                             </div>
-                            <!-- Message Content -->
-                            <div class="collapsible-body">
-                                <h6>Message:</h6>
-                                <span>{{ message.body }}</span>
-                            </div>
-                        </li>
+                        </div>
                         <!-- Modal to confirm deletion of message -->
                         <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
                             <!-- Display message content -->
@@ -200,53 +196,53 @@
                             </div>
                         </div>
                         <!-- Reply to message modal -->
-                        <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                            class="modal pigeon-button-modal">
+                        <div id="reply-to-message{{ message._id }}" class="modal pigeon-button-modal">
                             <div class="modal-content ">
                                 <!-- Message content to reply to -->
                                 <h4>Reply to {{ message.sender }}</h4>
                                 <div>
                                     <h5> {{ message.sender }}'s message:</h5>
                                     <p>
-                                        Subject:{{ message.subject }} <br>
-                                        {{ message.body }}
+                                        Subject: {{ message.subject }} <br>
+                                        Message: {{ message.body }}
                                     </p>
                                 </div>
                                 <!-- Reply to message input fields -->
                                 <form method="POST" action="{{ url_for('new_message') }}">
                                     <!-- sender pre-filled -->
-                                    <div id="sender-admin" class="row">
+                                    <div class="sender-admin row">
                                         <div class="input-field col s12 hidden">
-                                            <input id="sender" name="sender" type="text" value=" {{ session.user }}"
-                                                pattern="^[a-zA-Z\s]{2,}$">
-                                            <label for="sender">Sender</label>
+                                            <input id="sender{{ message._id }}" name="sender" type="text"
+                                                value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
+                                            <label for="sender{{ message._id }}">Sender</label>
                                         </div>
                                     </div>
                                     <!-- recipient pre-filled -->
-                                    <div id="recipient-admin" class="row">
+                                    <div class="recipient-admin row">
                                         <div class="input-field col s12 hidden">
-                                            <input id="recipient" name="recipient" type="text"
+                                            <input id="recipient{{ message._id }}" name="recipient" type="text"
                                                 value="{{ message.sender }}" pattern="^[a-zA-Z\s]{2,}$">
-                                            <label for="subject">Recipient</label>
+                                            <label for="recipient{{ message._id }}">Recipient</label>
                                         </div>
                                     </div>
                                     <!-- subject pre-filled -->
-                                    <div id="subject-admin" class="row">
+                                    <div class="subject-admin row">
                                         <div class="input-field col s12">
-                                            <input id="subject" name="subject" type="text" value="{{ message.subject }}"
-                                                pattern="^[a-zA-Z\s]{2,}$" required>
-                                            <label for="subject">Subject</label>
+                                            <input id="subject{{ message._id }}" name="subject" type="text"
+                                                value="{{ message.subject }}" pattern="^[a-zA-Z\s]{2,}$" required>
+                                            <label for="subject{{ message._id }}">Subject</label>
                                         </div>
                                     </div>
                                     <!-- reply message body input field -->
-                                    <div id="body-admin" class="row">
+                                    <div class="body-admin row">
                                         <div class="input-field col s12">
-                                            <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                                            <label for="body">Type your message</label>
+                                            <textarea id="body{{ message._id }}" name="body"
+                                                class="materialize-textarea"></textarea>
+                                            <label for="body{{ message._id }}">Type your message</label>
                                         </div>
                                     </div>
                                     <!-- Send message -->
-                                    <div id="send-button-admin" class="row">
+                                    <div class="send-button-admin row">
                                         <button type="submit" class="col s12 btn-small">
                                             Send <i class="fa-regular fa-paper-plane"></i>
                                         </button>
@@ -260,7 +256,7 @@
                         </div>
                         {% endif %}
                         {% endfor %}
-                    </ul>
+                    </div>
                     <!-- Display that there are no messages if true -->
                     {% else %}
                     <h6>You have no new messages</h6>
@@ -269,12 +265,19 @@
             </div>
         </div>
     </div>
-    {% else %}
-    <!-- Redirect to welcome only visible to non-admin users -->
-    <div>
-        <a aria-label="Return to welcome page" href="{{ url_for('welcome') }}"> You are not authorised to access this
-            page. Click to return to welcome page. </a>
-    </div>
-    {% endif %}
 </div>
+{% else %}
+<!-- Redirect to welcome only visible to non-admin users -->
+<div id="error-page-conatainer">
+    <div class="card-panel" id="error-card">
+        <h2>Did you get lost?</h2>
+        <p>You shouldn't be here... let's get you back to the flock.</p>
+        <a aria-label="Go Home to return to the welcome page." class="btn-small" href="{{ url_for('welcome') }}">
+            Go Home
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <p> You aren't authorised to see this page </p>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

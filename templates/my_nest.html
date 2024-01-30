@@ -394,17 +394,18 @@
                 </h4>
                 <!-- Display messages if there are any addressed to the session user -->
                 {% if messages|selectattr('recipient', 'equalto', session['user'])|list %}
-                <ul class="collapsible">
+                <div>
                     <!-- List messages -->
                     {% for message in messages %}
                     <!-- Only show messages addressed to the session user -->
                     {% if message.recipient == session.user %}
-                    <li id="messages-to-user">
+                    <div id="messages-to-user">
                         <!-- Message Summary -->
                         <div id="display-recieved-user" class="collapsible-header light-section-less-padding">
                             From: {{ message.sender }} <br>
                             Subject: {{ message.subject }} <br>
-                            Sent at: {{ message.time }}
+                            Sent at: {{ message.time }} <br>
+                            Message: {{ message.body }}
                             <div class="button-container">
                                 <!-- Delete Message Button -->
                                 <a aria-label="You can delete this message"
@@ -413,19 +414,13 @@
                                     <i class="fa-regular fa-trash-can "></i>
                                 </a>
                                 <!-- Reply to message button -->
-                                <a aria-label="You can reply to this message"
-                                    href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                <a aria-label="You can reply to this message" href="#reply-to-message{{ message._id }}"
                                     class="btn modal-trigger btn-small pigeon-hole-button">
                                     <i class="fa-solid fa-reply "></i>
                                 </a>
                             </div>
                         </div>
-                        <!-- Message Content -->
-                        <div class="collapsible-body">
-                            <h6>Message:</h6>
-                            <span>{{ message.body }}</span>
-                        </div>
-                    </li>
+                    </div>
                     <!-- Modal to confirm deletion of message -->
                     <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
                         <div class="modal-content">
@@ -450,8 +445,7 @@
                         </div>
                     </div>
                     <!-- Reply to message modal -->
-                    <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                        class="modal pigeon-button-modal">
+                    <div id="reply-to-message{{ message._id }}" class="modal pigeon-button-modal">
                         <!-- Message Content -->
                         <div class="modal-content">
                             <div>
@@ -460,7 +454,7 @@
                                     <h6> {{ message.sender }}'s message:</h6>
                                     <p>
                                         Subject: {{ message.subject }} <br>
-                                        {{ message.body }}
+                                        Message: {{ message.body }}
                                     </p>
                                 </div>
                             </div>
@@ -470,29 +464,30 @@
                                 <h6> Your reply:</h6>
                                 <!-- Sender pre-filled field -->
                                 <div class="input-field col s12 hidden">
-                                    <input id="sender" name="sender" type="text" value=" {{ session.user }}"
-                                        pattern="^[a-zA-Z\s]{2,}$">
-                                    <label for="sender">Sender</label>
+                                    <input id="sender{{ message._id }}" name="sender" type="text"
+                                        value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
+                                    <label for="sender{{ message._id }}">Sender</label>
                                 </div>
                                 <!-- Recipient pre-filled field -->
                                 <div class="input-field col s12 hidden">
-                                    <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
-                                        pattern="^[a-zA-Z\s]{2,}$">
-                                    <label for="subject">Recipient</label>
+                                    <input id="recipient{{ message._id }}" name="recipient" type="text"
+                                        value="{{ message.sender }}" pattern="^[a-zA-Z\s]{2,}$">
+                                    <label for="subject{{ message._id }}">Recipient</label>
                                 </div>
                                 <!-- Subject pre-filled field -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="subject" name="subject" type="text" value="{{ message.subject }}"
-                                            pattern="^[a-zA-Z\s]{2,}$" required>
-                                        <label for="subject">Subject</label>
+                                        <input id="subject{{ message._id }}" name="subject" type="text"
+                                            value="{{ message.subject }}" pattern="^[a-zA-Z\s]{2,}$" required>
+                                        <label for="subject{{ message._id }}">Subject</label>
                                     </div>
                                 </div>
                                 <!-- Body field -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                                        <label for="body">Type your message</label>
+                                        <textarea id="body{{ message._id }}" name="body"
+                                            class="materialize-textarea"></textarea>
+                                        <label for="body{{ message._id }}">Type your message</label>
                                     </div>
                                 </div>
                                 <!-- Send message button -->
@@ -510,7 +505,7 @@
                     </div>
                     {% endif %}
                     {% endfor %}
-                </ul>
+                </div>
                 <!-- If there are no messages to the user display message explaining list is empty -->
                 {% else %}
                 <h6>You have no new messages</h6>

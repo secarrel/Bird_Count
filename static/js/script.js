@@ -1,3 +1,7 @@
+/* jshint esversion: 11 */
+/* global $ */
+/* global M */
+
 let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth();
@@ -56,7 +60,9 @@ $(document).ready(function () {
       let autoCompleteData = {};
       for (let location of locations) {
         for (let key in location) {
-          autoCompleteData[key] = null;
+          if (location.hasOwnProperty(key)) {
+            autoCompleteData[key] = null;
+          }
         }
       }
       // Activate autocomplete
@@ -81,7 +87,9 @@ $(document).ready(function () {
       let autoCompleteBirds = {};
       for (let bird of birds) {
         for (let key in bird) {
-          autoCompleteBirds[key] = null;
+          if (bird.hasOwnProperty(key)) {
+            autoCompleteBirds[key] = null;
+          }
         }
       }
       // Activate autocomplete
