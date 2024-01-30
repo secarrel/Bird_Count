@@ -603,23 +603,86 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 
 		Cancel buttons are located conveniently to allow the user to change their mind about editing an observation. The user will be redirected to the relevant page.
 		
-- ##### 404/500
-	There are 404 and 500 error handlers that redirect the user to the 404 page. This is designed in a way that is meant to bring some humour to the user to make up for their confusion about not being on the correct page. This page redirects the user to the home page where they can navigate back to the page they were looking for using the built in navigation. 
-	[404 page desktop]
-	[404 page tablet]
-	[404 page mobile]
+- ##### 404/500/unauthorised access
+	There are 404 and 500 error handlers that redirect the user to the 404 page. This is designed in a way that is meant to bring some humour to the user to make up for their confusion about not being on the correct page. This page redirects the user to the home page where they can navigate back to the page they were looking for using the built-in navigation. 
+
+
+	Desktop 404
+
+	![desktop](documentation/features/pages/404-desktop.png)
+
+
+	<details>
+	<summary>This page is fully responsive (expand to see images and other pages)</summary>
+
+	Tablet 404
+
+	![tablet](documentation/features/pages/404-tablet.png)
+
+	Mobile 404
+
+	![phone](documentation/features/pages/404-mobile.png)
+
+	Desktop 500
+
+	![desktop](documentation/features/pages/500-desktop.png)
+
+	Tablet 500
+
+	![tablet](documentation/features/pages/500-tablet.png)
+
+	Mobile 500
+
+	![phone](documentation/features/pages/500-mobile.png)
+
+	Desktop unauthorised access
+
+	![desktop](documentation/features/pages/noaccess-desktop.png)
+
+	Tablet 500 unauthorised access
+
+	![tablet](documentation/features/pages/noaccess-tablet.png)
+
+	Mobile 500 unauthorised access
+
+	![phone](documentation/features/pages/noaccess-mobile.png)
+
+	</details>
 	
 - ##### Footer
-	- Responsive design
-		[Footer desktop]
-		The button to sign in or add observation is hidden on smaller screens.
-		[Footer tablet]
-		[Footer mobile]
+
+	- <details>
+		<summary>This page is fully responsive (expand to see images)</summary>
+
+		Desktop
+
+		![desktop](documentation/features/pages/footer-desktop.png)
+
+		Desktop Admin
+
+		![desktop](documentation/features/pages/footer-desktop-admin.png)
+
+
+		Tablet
+
+		![tablet](documentation/features/pages/footer-tablet.png)
+
+		Mobile
+
+		![phone](documentation/features/pages/footer-mobile.png)
+
+		</details>
+		
 	- Logo with link to welcome page
-		This helps the user navigate back to the welcome page wherever they are in the site without scrolling back to the top. It also reminds them that they are using Bird Count
+
+		This helps the user navigate back to the welcome page wherever they are in the site without scrolling back to the top. It also reminds them that they are using Bird Count.
+
 	- Sign-in / Add observation button
-		This is placed for convenience so the user can easily find the button whatever page they are on.
+
+		This is placed for convenience so the user can easily find the button where-ever they are in the site.
+
 	- Useful links
+
 		The user is provided with links to the [BTO](https://www.bto.org/), [Bird Spot](https://www.birdspot.co.uk/) and the Bird Count [GitHub repository](https://github.com/secarrel/Bird_Count) so that they can find out more about the app.
 		
 - ##### Flash Messages    
@@ -648,7 +711,8 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 	- Community Observations
 	- My Observations
 	- Messages in the Pigeon Hole
-	When these lists are empty the containers they were originally displayed in were empty and formatted in a strange way. The user would have no idea what was going on in this situation so I have added a 'list empty' message explaining that there isn't any data to display. In some of the lists, such as the 'Life List', I added an 'add observation' button if the list is empty so the user can very easily start filling their list.
+
+	When these lists are empty the user is confused by the lack of data so I have added a 'list empty' message explaining that there isn't any data to display. In some of the lists, such as the 'Life List', I added an 'add observation' button if the list is empty so the user can very easily start filling their list.
 	
 - ##### Double Protection
 	There is double protection preventing unauthorised access to every page with user-specific data. I have hidden buttons that direct the user to these pages where appropriate and added checks in the python code to ensure the session user has the right level of access. I have also implemented checks using flask so that on every page, only information specific to the user is displayed. 
@@ -663,34 +727,46 @@ There are a number of features that I would like to implement for this applicati
 - ##### Rating system for observation images with the most popular displaying in a gallery page
 	I think this feature would give the image upload more significance and also encourage the user to take more photos and share their images. This makes the app more fun and inspiring, hopefully enhancing their bird watching experience even more. 
 - ##### Check/bucket list 
-	I think it would be really nice for the user to be able to create a list of birds they would really like to see. This allows them to set themselves goals and challenges them to get out bird watching more. Ideally this feature could be shared with 'friends' to share the experience and make it more fun.
+	I think it would be really nice for the user to be able to create a list of birds they would really like to see. This allows them to set themselves goals and challenges them to get out bird watching more. Ideally, this feature could be shared with 'friends' to share the experience and make it more fun.
 - ##### Reset password
-	This seems like a basic functionality for a registration/login page, and I feel this should be prioritised in future development of the application. It would allow users who have forgotten their passwords to reset them so they don't lose their data.
+	This seems like a basic functionality for a registration/login page, and I feel this should be prioritised in the future development of the application. It would allow users who have forgotten their passwords to reset them so they don't lose their data.
 - ##### Admin can edit account details
 	This would be useful if the email a user has entered is incorrect and they have forgotten their password, for example.
 - ##### Make friends
 	I think this app would stand out as being different from all others on the market if it allowed you to connect with friends and share your observations and stats with them.
 - ##### Improved Messaging
-	The messaging functionality is currently very basic and only hints at the potential of this feature. I would like to add an icon that shows if you have unread messages to save the user looking in their pigeon hole unnecessarily. I would also like to improve the UX of this feature as I don't think the modal view is very appealing. 
+	The messaging functionality is currently very basic and only hints at the potential of this feature. I would like to add an icon that shows if you have unread messages to save the user from looking in their pigeonhole unnecessarily. I would also like to improve the UX of this feature as I don't think the modal view is very appealing. 
 - ##### Add multiple observations at once
-	I think this feature would benefit bird watchers who have a lot of data to upload. Having the option to add many bird species with the rest of the data automatically filled to be the same, would save the user lots of time and effort. It may even make the difference in making this app a long term tool, rather than a fleeting one. 
-- ##### Certainty displayed in observation table
+	I think this feature would benefit bird watchers who have a lot of data to upload. Having the option to add many bird species with the rest of the data automatically filled to be the same, would save the user lots of time and effort. It may even make the difference in making this app a long-term tool, rather than a fleeting one. 
+- ##### Certainty displayed in the observation table
 	I would like to colour code observations based on certainty so the ones that are 10/10 certain, catch the eye as key observations. This seems like a fun and clear way to convey this information to the user.
 
 
 ## Tools & Technologies Used
 
+### Languages 
 - [HTML](https://www.w3schools.com/html/) is used created the main structure of the website.
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) is used to style the site.
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript) is used for interactivity on the site.
 - [Python](https://www.python.org) is used as the back-end programming language.
+
+### Version Control & deployment
 - [Git](https://git-scm.com) used for version control.
 - [GitHub](https://github.com) used for online code storage.
-- [VSCode](https://code.visualstudio.com/) is the chosen environment for writing the code for the app.
+- [Heroku](https://www.heroku.com) is hosting the deployed back-end site.
+- [GitHub Projects](https://github.com) used to plan and manage tasks in my project.
+
+### Frameworks
 - [Materialize](https://materializecss.com) is used as a front-end CSS framework to assist with styling and pre-built components.
 - [Flask](https://flask.palletsprojects.com) is the Python framework used for the site.
+
+### Database Management
 - [MongoDB](https://www.mongodb.com) is the non-relational database management I chose to use for storing data.
-- [Heroku](https://www.heroku.com) is hosting the deployed back-end site.
+
+### Coding Environment
+- [VSCode](https://code.visualstudio.com/) is the chosen environment for writing the code for the app.
+
+### Tools
 - [Figma](https://www.figma.com/) is used to create wireframes for the project.
 - [Logo.com](https://logo.com/) is used to create the logo and favicon for this site.
 - [Font Awesome](https://fontawesome.com/) provided icons for the site.
@@ -749,9 +825,100 @@ The database 'birdcount' contains 3 collections which I designed, and addition f
 | sender | String |
 | recipient | String |
 
+## Implimentation of features
+I added some features which were more difficult to implement than some others so thought I would explain the process of implementing them.
+
+- ### Photo Upload
+
+	I included this feature as I thought the site would benefit from some imagery and that it would inspire users to take more photos and share them more on the app. I used GridFS, which is a built-in feature with MongoDB, to store the images. This is useful for storing large files as it stores each item as a separate document in a cluster. 
+
+	These are the steps for uploading, storing and viewing images in a python project.
+
+	1. Uploading the image (.html).
+	
+		To upload an image you can use an input field with type 'file'. Eg:
+	
+		`<input type="file" name="image-file" id="image-file">`
+
+	2. Get the image file and add to MongoDB (.py).
+
+		First we check for the 'POST' method so we know the form is submitted bu using:
+
+		`if request.method == "POST":`
+
+		Within this 'if' statement we add the 'if' statement:
+
+		`if 'image-file' in request.files:`
+
+		which will check if there is a file field in the request. If there is we can request that file:
+
+		`image_file = request.files['image-file']`
+
+		In this case, uploading an image isn't compulsory so we need to add an if statement to check if the field is empty. This expression checks if the file name is not empty:
+
+		`if image_file.filename != '':`
+
+		If it isn't empty, the contents can be added to the database using the code:
+
+		`image_id = fs.put(image_file)`
+
+		This has created a new document in fs.files and fs.chunks with the same _id (these are collections that MongoDB automatically creates for you with GridFS). We have assigned that ID to our variable 'image_id' here. 
+
+		At this point, you can add a default image if no image is uploaded or just leave it empty. Use an else statement to set 'image_id' to whatever you like. 
+
+		We can close our initial 'if' statement with an 'else' statement that explains that no image-file field was in the request. 
+	
+	3. Add the image ID to any document you like (optional). 
+	
+		In this project, I uploaded the image with other information and called that an observation. As things stand, we haven't yet assigned the image to anything, we have just created an image document in our database. 
+
+		In this project I added the image to an entry then added the whole entry as a document in my database, but this is just one of many ways. If you already have a document that you want to add the image to you can do it like this:
+
+		`db.collection.insert_one("image":image_id)`
+
+	4. Display the image in a html page
+
+		You can create a new function for this section so that you can call it when you need to. 
+
+		Inside our function we first want to get the ID of the document with the image (if you added the image to a document):
+
+		`document = db.collection.find_one({"_id": ObjectId(document_id)})`
+
+		The document_id should be passed into the function as a parameter.
+
+		No we can get the image ID from the document:
+
+		`image_id = document.get("image")`
+
+		This variable holds the ID of the image which is the same as the ID where the image is stored in fs.files and fs.chunks. This means we can get the file from these collections:
+
+		`image_file = fs.get(image_id)`
+
+		We have the image file and can now send it to the HTML document. In my Jinja/Flask project I used:
+
+		`return send_file(image_file, mimetype='image/jpeg')`
+
+		I set the src of an `<img>` element to:
+
+		`<img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">`
+
+		to display the image. This calls the function we made to get the image from the database, and the observation ID is the document ID that contains the image I want, so including it here passes it into the function. 
+
+
+- ### 404 / 500 page 
+
+	To add a 404 or 500 page to a project, you need to create a file named 404.html and another called 500.html.
+
+	In your Python file you can add:
+
+	![screenshot](documentation/404-500.png)
+
+	If either a 404 or 500 error is detected, these functions will run and redirect the user to the relevant page. It's useful to have a automatic redirect or a button to help the user navigate out of these pages. 
+
+
 ## Testing
 
-For testing documentation, please continue to [TESTING.md]().
+For testing documentation, please continue to [TESTING.md](TESTING.md).
 
 ## Deployment
 
@@ -857,9 +1024,9 @@ You can clone the repository by following these steps:
 
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/secarrel/Bird_Count)
+[Open in Gitpod](https://gitpod.io/#https://github.com/secarrel/Bird_Count)
 
-Please note that in order to directly open the project in Gitpod, you need to have the browser extension installed.
+To open the project in Gitpod, you need to have the browser extension installed.
 A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/configure/user-settings/browser-extension).
 
 #### Forking
@@ -878,7 +1045,7 @@ You can fork this repository by using the following steps:
 | Source | Location | Notes |
 | ---- | ---- | ---- |
 | [W3Schools](https://www.w3schools.com/css/default.asp) | entire site | Styling tips for all elements. |
-| [Krita](https://krita.org/en/). | Observation information modals | I used this tool to create a 'no image uploaded' image. |
+| [Krita](https://krita.org/en/) | Observation information modals | I used this tool to create a 'no image uploaded' image. |
 | [British Ornithologists' Union](https://bou.org.uk/) | Add and edit observation: bird species autocomplete input field | I used bird species data provided by this site for the autocomplete data list. |
 | [Office for National Statistics](https://geoportal.statistics.gov.uk/documents/ons::local-authority-districts-counties-and-unitary-authorities-april-2021-map-in-united-kingdom--1/about) | Add and edit observation: location autocomplete input field | I used district data provided by this site for the location autocomplete data list. |
 | [Code Institute (TIm Neslon): Task Manager Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main) | Entire site | This tutorial provided my site with it's initial structure and inspiration. I built on, adapted and developed the code from this tutorial. |

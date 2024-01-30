@@ -392,14 +392,13 @@ def add_observation():
         if 'image-file' in request.files:
             image_file = request.files['image-file']
             if image_file.filename != '':
-                # A file has been uploaded, handle it
+                # A file has been uploaded so add to database
                 image_id = fs.put(image_file)
             else:
                 # No file uploaded
                 image_id = ObjectId('65a522a638bb15858a80cc53')
                 print("No file uploaded")
         else:
-            # No image file, add default image
             print("No file field in the request")
 
         # Create new observation document in 'observations' collection.
