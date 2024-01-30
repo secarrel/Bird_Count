@@ -4,8 +4,8 @@
 <section id="about-container">
     <div id="about-heading-container">
         <h3 id="about-heading">About</h3>
-        <h5>By recording your bird observations with accurate supporting data, you are helping 
-            ornithologists and bird enthusiasts understand the population, distribution and behaviour of 
+        <h5>By recording your bird observations with accurate supporting data, you are helping
+            ornithologists and bird enthusiasts understand the population, distribution and behaviour of
             bird species in the UK.</h5>
     </div>
 </section>
@@ -13,34 +13,37 @@
     <div class="dark-section center-align row">
         <div class="col s12 m12 l6">
             <h4 class="center-align">What is Bird Count?</h4>
-            <p> 
+            <p>
                 Bird Count is a platform for recording personal bird sightings and sharing them with
-                the community. By sharing information about species' and their locations we are making 
-                bird watching more accessible to those that might not know where to look and what they 
-                are looking for! The more people that are out spotting birds and recording bird data, 
-                the better our understanding of species population, distribution and behaviour. 
+                the community. By sharing information about species' and their locations we are making
+                bird watching more accessible to those that might not know where to look and what they
+                are looking for! The more people that are out spotting birds and recording bird data,
+                the better our understanding of species population, distribution and behaviour.
                 <br>
                 We love birds and we know you do as well, which is why conservation is our main mission.
-                We work closely with the British Trust for Ornothology (BTO) who use our data to carry out 
+                We work closely with the British Trust for Ornothology (BTO) who use our data to carry out
                 a wide range of work and research for the benefit of birds and people.
                 <br>
                 Bird Count also gives you the opportunity to share your favourite bird photos, which will
                 also help new bird watchers with bird identification. Your photos will contribute to the important
                 data set being created with each observation. If you need an excuse to get out and start
-                taking photos, this is it! 
+                taking photos, this is it!
             </p>
-            <a aria-label="learn more about the BTO (British Trust for Ornithology) in a new tab." class="btn-small about-button" href="https://www.bto.org/" target="_blank">
+            <a aria-label="learn more about the BTO (British Trust for Ornithology) in a new tab."
+                class="btn-small about-button" href="https://www.bto.org/" target="_blank">
                 Learn about the BTO
                 <i class="fa-solid fa-book-open"></i>
             </a>
         </div>
         <div class="col s12 m12 l6 about-image-container">
-            <img src="https://images.unsplash.com/photo-1480044965905-02098d419e96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="yellow bird sat on a branch">
+            <img src="https://images.unsplash.com/photo-1480044965905-02098d419e96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="yellow bird sat on a branch">
         </div>
     </div>
     <div id="for-the-user" class="light-section center-align row">
         <div class="col s12 m12 l6 about-image-container">
-            <img src="https://images.unsplash.com/photo-1559780530-28f4e94b4bad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="man looking for bird through binoculars">
+            <img src="https://images.unsplash.com/photo-1559780530-28f4e94b4bad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="man looking for bird through binoculars">
         </div>
         <div class="col s12 m12 l6">
             <h4 class="center-align">What can you get out of it?</h4>
@@ -48,7 +51,7 @@
                 By signing up for Bird Count and recording your bird sightings, you can:
             </p>
             <div id="about-list-container">
-                <ul >
+                <ul>
                     <li>Keep track of your sightings and bird data.</li>
                     <li>Find more birds by using community observations as guidance.</li>
                     <li>Share your sightings to inspire other bird watchers.</li>
@@ -59,11 +62,11 @@
             <p>
                 Sound good?...
             </p>
-            <div id="get-started-button" >
+            <div id="get-started-button">
                 <!-- Get started button for logged-in users -->
                 {% if session.user and session.user != "admin" %}
-                <a aria-label="Start recording your observations" 
-                    class="btn-small tooltipped about-button" data-position="bottom" data-tooltip="Add your own observation"
+                <a aria-label="Start recording your observations" class="btn-small tooltipped about-button"
+                    data-position="bottom" data-tooltip="Add your own observation"
                     href="{{ url_for('add_observation') }}">
                     Start recording!
                     <i class="fa-solid fa-crow"></i>
@@ -71,8 +74,8 @@
                 </a>
                 <!-- Get started button for users not logged in -->
                 {% elif session.user != "admin"%}
-                <a aria-label="Sign up so you can record your observations." 
-                    class="btn-small tooltipped about-button" data-position="bottom" data-tooltip="Log in to record your observations"
+                <a aria-label="Sign up so you can record your observations." class="btn-small tooltipped about-button"
+                    data-position="bottom" data-tooltip="Log in to record your observations"
                     href="{{ url_for('register') }}">
                     Sign-up
                     <i class="fa-solid fa-user-plus"></i>
@@ -87,17 +90,17 @@
             <p>
                 Our sister site <em>Bird Spot</em> has a very useful identification guide and sell
                 useful hand guides and bird books. They also have educational articles and advice for
-                bird watchers and photographers.  
+                bird watchers and photographers.
             </p>
-            <a aria-label="Open Bird Spot in a new tab for help to identify a bird" 
-            class="btn-small about-button" href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank">
+            <a aria-label="Open Bird Spot in a new tab for help to identify a bird" class="btn-small about-button"
+                href="https://www.birdspot.co.uk/british-bird-identifier" target="_blank">
                 Identify a bird
                 <i class="fa-solid fa-binoculars"></i>
             </a>
         </div>
         <div class="col s12 m12 l6 about-image-container">
-            <img
-                src="https://images.unsplash.com/photo-1560951750-1e85780f946b?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="bird book and binoculars">
+            <img src="https://images.unsplash.com/photo-1560951750-1e85780f946b?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="bird book and binoculars">
         </div>
     </div>
 </section>

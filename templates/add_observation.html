@@ -14,7 +14,8 @@
                 <div id="bird-species-add" class="row autocompleteBird">
                     <div class="input-field col s12 autocompleteBird">
                         <i class="fa-solid fa-crow prefix"></i>
-                        <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" validate required>
+                        <input id="bird" class="autocompleteBird" name="bird" type="text" maxlength="60" validate
+                            required>
                         <label class="tooltipped" data-position="bottom"
                             data-tooltip="Using the autocomplete options will make it easier to search for your results. Max: 60 characters."
                             for="bird">Bird Species <strong class="required">*</strong>
@@ -72,8 +73,8 @@
                         <input type="text" name="notes" id="notes" validate maxlength="500">
                         <label class="tooltipped" data-position="bottom"
                             data-tooltip="Talk about anything... What was the weather like? 
-                                Describe the bird's appearance if you're unsure of identification! What was the bird doing? Max: 500 characters." for="notes">Notes <i
-                                class="fa-regular fa-circle-question"></i></label>
+                                Describe the bird's appearance if you're unsure of identification! What was the bird doing? Max: 500 characters." for="notes">Notes
+                            <i class="fa-regular fa-circle-question"></i></label>
                     </div>
                 </div>
                 <!-- Input field for quantity -->
@@ -106,16 +107,16 @@
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}
-                    <a aria-label="Cancel and return to your nest without saving your changes" href="{{ url_for('my_nest')}}"
-                        class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
-                        data-tooltip="Your changes will not be saved">
+                    <a aria-label="Cancel and return to your nest without saving your changes"
+                        href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
+                        data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a aria-label="Cancel and return to Community Observations without saving your changes" href="{{ url_for('get_observations')}}"
-                        class=" cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
-                        data-tooltip="Your changes will not be saved">
+                    <a aria-label="Cancel and return to Community Observations without saving your changes"
+                        href="{{ url_for('get_observations')}}" class=" cancel col s12 m12 l6 btn-small tooltipped"
+                        data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to observations
                     </a>
                 </div>
@@ -123,7 +124,7 @@
         </form>
     </div>
 </div>
-    {% else %}
+{% else %}
 <!-- Redirect to login only visible to non-users -->
 <div id="error-page-conatainer">
     <div class="card-panel" id="error-card">

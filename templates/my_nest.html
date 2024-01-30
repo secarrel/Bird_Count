@@ -19,11 +19,11 @@
                         <div class="flex-row" id="stats-container">
                             <div id="total-birds-container" class="stat">
                                 <div class="stats-label">
-                                    <h6>Total Birds Observed</h6> 
+                                    <h6>Total Birds Observed</h6>
                                 </div>
                                 <div class="circle-container">
                                     <p>{{ total_observations }}</p>
-                                </div> 
+                                </div>
                             </div>
                             <div id="total-species-container" class="stat">
                                 <div class="stats-label">
@@ -49,7 +49,10 @@
                         <p>
                             A collection and count of all bird species you have seen and submitted on Bird Count.
                         </p>
-                        <a aria-label="View your life list to see the bird species you have recorded qith quantities." href="#life-list-modal{{ user._id }}" id="life-list-btn" class="modal-trigger btn-small">View your life list <i class="fa-solid fa-binoculars"></i></a>
+                        <a aria-label="View your life list to see the bird species you have recorded qith quantities."
+                            href="#life-list-modal{{ user._id }}" id="life-list-btn"
+                            class="modal-trigger btn-small">View your life list <i
+                                class="fa-solid fa-binoculars"></i></a>
                     </div>
                 </div>
             </div>
@@ -61,109 +64,121 @@
             <div class="card-panel">
                 <h4 class="center-align">My Observations</h4>
                 <!-- Find if there are any observations made by session user -->
-                {% if observations|selectattr('seen_by', 'equalto', session['user'])|list %}                        
-                    <!-- New observation button -->
-                    <div class="center-align">
-                        <a aria-label="Record a new observation by navigating to the 'new observation' page." class="btn-small center-align" href="{{ url_for('add_observation') }}">
-                            New Observation 
-                            <i class="fa-solid fa-crow"></i>
-                            <i class="fa-solid fa-plus"></i>
-                        </a>
-                    </div>
-                    <!-- Observation table -->
-                    <table id="nest-observation-table" class="highlight light-section">
-                        <thead>
-                            <tr>
-                                <th id="more-details" class="hide-mobile"></th>
-                                <th>Bird Species</th>
-                                <th class="hide-mobile">Quantity</th>
-                                <th class="hide-mobile">Location</th>
-                                <th>Date</th>
-                                <th id="edit" class="hide-mobile"></th>
-                                <th id="delete" class="hide-mobile"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for observation in observations %}
-                                <!-- Only show observations made by session user -->
-                                {% if session.user|lower == observation.seen_by|lower %}
-                                <tr>
-                                    <!-- View observation -->
-                                    <td class="hide-mobile modal-trigger">
-                                        <a aria-label="Click on the observation to see more details">
-                                            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                        </a>
-                                    </td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{ observation.bird_species }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile nest-table">{{ observation.quantity }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger hide-mobile nest-table">{{ observation.location }}</td>
-                                    <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{ observation.date }}</td>
-                                    <!-- Edit observation button -->
-                                    <td>
-                                        <a aria-label="You can edit this observation" href="{{ url_for('edit_observation', observation_id=observation._id) }}" class="btn-small mobile-narrow">
-                                            <i class="fa-solid fa-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <!-- Delete observation -->
-                                    <td>
-                                        <!-- Delete button -->
-                                        <a aria-label="You can delete this observation" href="#confirm-delete" class="btn-small modal-trigger delete-red mobile-narrow">
-                                            <i class="fa-regular fa-trash-can "></i>
-                                        </a>
-                                        <!-- Delete modal -->
-                                        <div id="confirm-delete" class="modal">
-                                            <div class="modal-content">
-                                                <h4>Delete Observation</h4>
-                                                <p>
-                                                    Are you sure you want to delete this observation? <br>
-                                                    Observation selected for deletion: <br>
-                                                    {{ observation.bird_species }}, {{ observation.location }}, {{ observation.date }}
-                                                </p>
-                                            </div>
-                                            <!-- Confirm or cancel delete -->
-                                            <div class="modal-footer">
-                                                <a aria-label="Confirm that you would like to delete this Observation" 
-                                                    href="{{ url_for('delete_observation', observation_id=observation._id) }}" class="modal-close btn-flat">
-                                                    Delete
-                                                </a>
-                                                <button class="modal-close btn-flat">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <!-- Modal for observation details -->
-                                    <div id="my-observation-details{{ observation._id }}" class="modal">
-                                        <div id="bird-info-modal-nest" class="col s12 modal-content">
-                                            <div id="bird-info-body-nest">
-                                                <div class="card-image" id="bird-info-image-container-nest">
-                                                    <img src="{{ url_for('get_image', observation_id=observation._id) }}" alt="Observation Image">
-                                                    <span class="observation-title">{{ observation.bird_species }}</span>
-                                                </div>
-                                                <div class="card-content" id="observation-data-nest">
-                                                    <p>
-                                                        Quantity: {{ observation.quantity }} <br>
-                                                        Certainty: {{ observation.certainty }}/10 <br>
-                                                        location: {{ observation.location }} <br>
-                                                        Seen on: {{ observation.date }} @ {{ observation.time }} <br>
-                                                        Notes from {{observation.seen_by}}: <br>
-                                                        {{ observation.notes }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                                {% endif %}
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                <!-- No observations submitted message -->
-                {% else %}
-                    <h6>You haven't submitted any observations yet</h6>
-                    <a aria-label="Navigate to the 'add observation' page to record an observation" class="btn-small" href="{{ url_for('add_observation') }}">
-                        Add Observation
+                {% if observations|selectattr('seen_by', 'equalto', session['user'])|list %}
+                <!-- New observation button -->
+                <div class="center-align">
+                    <a aria-label="Record a new observation by navigating to the 'new observation' page."
+                        class="btn-small center-align" href="{{ url_for('add_observation') }}">
+                        New Observation
                         <i class="fa-solid fa-crow"></i>
                         <i class="fa-solid fa-plus"></i>
                     </a>
+                </div>
+                <!-- Observation table -->
+                <table id="nest-observation-table" class="highlight light-section">
+                    <thead>
+                        <tr>
+                            <th id="more-details" class="hide-mobile"></th>
+                            <th>Bird Species</th>
+                            <th class="hide-mobile">Quantity</th>
+                            <th class="hide-mobile">Location</th>
+                            <th>Date</th>
+                            <th id="edit" class="hide-mobile"></th>
+                            <th id="delete" class="hide-mobile"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for observation in observations %}
+                        <!-- Only show observations made by session user -->
+                        {% if session.user|lower == observation.seen_by|lower %}
+                        <tr>
+                            <!-- View observation -->
+                            <td class="hide-mobile modal-trigger">
+                                <a aria-label="Click on the observation to see more details">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                </a>
+                            </td>
+                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{
+                                observation.bird_species }}</td>
+                            <td href="#my-observation-details{{ observation._id }}"
+                                class="modal-trigger hide-mobile nest-table">{{ observation.quantity }}</td>
+                            <td href="#my-observation-details{{ observation._id }}"
+                                class="modal-trigger hide-mobile nest-table">{{ observation.location }}</td>
+                            <td href="#my-observation-details{{ observation._id }}" class="modal-trigger nest-table">{{
+                                observation.date }}</td>
+                            <!-- Edit observation button -->
+                            <td>
+                                <a aria-label="You can edit this observation"
+                                    href="{{ url_for('edit_observation', observation_id=observation._id) }}"
+                                    class="btn-small mobile-narrow">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </td>
+                            <!-- Delete observation -->
+                            <td>
+                                <!-- Delete button -->
+                                <a aria-label="You can delete this observation" href="#confirm-delete"
+                                    class="btn-small modal-trigger delete-red mobile-narrow">
+                                    <i class="fa-regular fa-trash-can "></i>
+                                </a>
+                                <!-- Delete modal -->
+                                <div id="confirm-delete" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Delete Observation</h4>
+                                        <p>
+                                            Are you sure you want to delete this observation? <br>
+                                            Observation selected for deletion: <br>
+                                            {{ observation.bird_species }}, {{ observation.location }}, {{
+                                            observation.date }}
+                                        </p>
+                                    </div>
+                                    <!-- Confirm or cancel delete -->
+                                    <div class="modal-footer">
+                                        <a aria-label="Confirm that you would like to delete this Observation"
+                                            href="{{ url_for('delete_observation', observation_id=observation._id) }}"
+                                            class="modal-close btn-flat">
+                                            Delete
+                                        </a>
+                                        <button class="modal-close btn-flat">Cancel</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Modal for observation details -->
+                            <div id="my-observation-details{{ observation._id }}" class="modal">
+                                <div id="bird-info-modal-nest" class="col s12 modal-content">
+                                    <div id="bird-info-body-nest">
+                                        <div class="card-image" id="bird-info-image-container-nest">
+                                            <img src="{{ url_for('get_image', observation_id=observation._id) }}"
+                                                alt="Observation Image">
+                                            <span class="observation-title">{{ observation.bird_species }}</span>
+                                        </div>
+                                        <div class="card-content" id="observation-data-nest">
+                                            <p>
+                                                Quantity: {{ observation.quantity }} <br>
+                                                Certainty: {{ observation.certainty }}/10 <br>
+                                                location: {{ observation.location }} <br>
+                                                Seen on: {{ observation.date }} @ {{ observation.time }} <br>
+                                                Notes from {{observation.seen_by}}: <br>
+                                                {{ observation.notes }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- No observations submitted message -->
+                {% else %}
+                <h6>You haven't submitted any observations yet</h6>
+                <a aria-label="Navigate to the 'add observation' page to record an observation" class="btn-small"
+                    href="{{ url_for('add_observation') }}">
+                    Add Observation
+                    <i class="fa-solid fa-crow"></i>
+                    <i class="fa-solid fa-plus"></i>
+                </a>
                 {% endif %}
             </div>
         </div>
@@ -173,16 +188,21 @@
         <div class="col s12">
             <div class="card-panel">
                 <h4 class="center-align">Contact Admin</h4>
-                <p class="center-align"> If you have any queries, you can get in touch with the admin below. Their response will appear in your pigeon hole. </p>
+                <p class="center-align"> If you have any queries, you can get in touch with the admin below. Their
+                    response will appear in your pigeon hole. </p>
                 <div class="row">
                     <!-- Messages -->
-                    <a aria-label="Look in your pigeon hole for messages" href="#pigeon-hole-nest" class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped" data-position="bottom" data-tooltip="Messages from the admin will appear here">
-                        Pigeon Hole 
-                        <i class="fa-solid fa-envelope"></i> 
+                    <a aria-label="Look in your pigeon hole for messages" href="#pigeon-hole-nest"
+                        class="contact-admin-btn btn-small modal-trigger col s12 m6 l6 tooltipped"
+                        data-position="bottom" data-tooltip="Messages from the admin will appear here">
+                        Pigeon Hole
+                        <i class="fa-solid fa-envelope"></i>
                     </a>
                     <!-- Contact Admin -->
-                    <a aria-label="Write a new message to contact the admin" href="#contact-admin" class="contact-admin-btn btn-small col s12 m6 l6 modal-trigger tooltipped" data-position="bottom" data-tooltip="Get in touch with the admin if you have a query"> 
-                        Contact admin 
+                    <a aria-label="Write a new message to contact the admin" href="#contact-admin"
+                        class="contact-admin-btn btn-small col s12 m6 l6 modal-trigger tooltipped"
+                        data-position="bottom" data-tooltip="Get in touch with the admin if you have a query">
+                        Contact admin
                         <i class="fa-solid fa-circle-info"></i>
                     </a>
                 </div>
@@ -196,19 +216,24 @@
                 <!-- Section heading -->
                 <h4 class="center-align">My Account</h4>
                 <div class="privacy card-panel" id="edit-privacy-container">
-                    <h5>Edit privacy settings</h5> 
+                    <h5>Edit privacy settings</h5>
                     <!-- Edit visibility -->
                     <div class="light-section-less-padding" id="edit-visibility-container">
-                        <form id="visibility-form" method="POST" action="{{ url_for('edit_user_visibility', user_id=user._id) }}">
+                        <form id="visibility-form" method="POST"
+                            action="{{ url_for('edit_user_visibility', user_id=user._id) }}">
                             <h6>Visibility</h6>
                             <p>
-                                Set the visibility of your observations to the community. If set the invisible your observations will not 
-                                appear in the community observations. You will still be able to see your observations in your nest.
+                                Set the visibility of your observations to the community. If set the invisible your
+                                observations will not
+                                appear in the community observations. You will still be able to see your observations in
+                                your nest.
                             </p>
                             <div class="switch">
-                                <label class="tooltipped" data-position="bottom" data-tooltip="Changes are updated immediately">
+                                <label class="tooltipped" data-position="bottom"
+                                    data-tooltip="Changes are updated immediately">
                                     Invisible
-                                    <input id="visibility-switch" name="visibility-switch" type="checkbox" {% if user.visible is true %} checked {% endif %}>
+                                    <input id="visibility-switch" name="visibility-switch" type="checkbox" {% if
+                                        user.visible is true %} checked {% endif %}>
                                     <span class="lever"></span>
                                     Visible
                                 </label>
@@ -217,16 +242,20 @@
                     </div>
                     <!-- Edit anonymity -->
                     <div class="light-section-less-padding">
-                        <form id="anonymous-form" method="POST" action="{{ url_for('edit_user_anonymous', user_id=user._id) }}">
+                        <form id="anonymous-form" method="POST"
+                            action="{{ url_for('edit_user_anonymous', user_id=user._id) }}">
                             <h6>Anonymity</h6>
                             <p>
-                                Set the anonymity of your observations to the community. If set to 'anonymous' your observations will 
+                                Set the anonymity of your observations to the community. If set to 'anonymous' your
+                                observations will
                                 still be visible to the community but your username will be hidden.
                             </p>
                             <div class="switch">
-                                <label class="tooltipped" data-position="bottom" data-tooltip="Changes are updated immediately">
+                                <label class="tooltipped" data-position="bottom"
+                                    data-tooltip="Changes are updated immediately">
                                     Named
-                                    <input id="anonymous-switch" name="anonymous-switch" type="checkbox" {% if user.anonymous is true %} checked {% endif %}>
+                                    <input id="anonymous-switch" name="anonymous-switch" type="checkbox" {% if
+                                        user.anonymous is true %} checked {% endif %}>
                                     <span class="lever"></span>
                                     Anonymous
                                 </label>
@@ -234,29 +263,34 @@
                         </form>
                     </div>
                 </div>
-                <div class="edit-details card-panel"> 
+                <div class="edit-details card-panel">
                     <h5>Edit Account Details</h5>
                     <div class="row">
                         <!-- Edit Email -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-email-container">
                             <p> Email: {{ user.email }}</p>
-                            <a aria-label="You can edit your email address." href="#email-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your email address">
+                            <a aria-label="You can edit your email address." href="#email-modal"
+                                class="modal-trigger tooltipped btn-small" data-position="left"
+                                data-tooltip="Edit your email address">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>
                         <!-- Edit experience -->
                         <div class="light-section-less-padding col s12 m12 l6" id="edit-experience-container">
                             <p> Experience: {{ user.experience }}/6</p>
-                            <a aria-label="You can edit your experience level." href="#experience-modal" class="modal-trigger tooltipped btn-small" data-position="left" data-tooltip="Edit your experience level">
+                            <a aria-label="You can edit your experience level." href="#experience-modal"
+                                class="modal-trigger tooltipped btn-small" data-position="left"
+                                data-tooltip="Edit your experience level">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
-                        </div>    
-                    </div>            
+                        </div>
+                    </div>
                 </div>
                 <!-- Delete Account -->
                 <div class="delete-account card-panel">
                     <h5>Delete Account</h5>
-                    <a aria-label="You can delete your account" href="#confirm-delete-account{{ user._id }}" class="modal-trigger btn-small delete-red" id="delete-account-button">
+                    <a aria-label="You can delete your account" href="#confirm-delete-account{{ user._id }}"
+                        class="modal-trigger btn-small delete-red" id="delete-account-button">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         DELETE ACCOUNT
                         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -341,7 +375,7 @@
             <!-- Hide list and display message explaining empty list -->
             {% else %}
             <h6>You haven't got any birds in your nest</h6>
-            <a aria-label="Navigate to the 'add observation' page to start recording your observations" 
+            <a aria-label="Navigate to the 'add observation' page to start recording your observations"
                 class="btn-small" href="{{ url_for('add_observation') }}">
                 Add Observation
                 <i class="fa-solid fa-crow"></i>
@@ -360,120 +394,126 @@
                 </h4>
                 <!-- Display messages if there are any addressed to the session user -->
                 {% if messages|selectattr('recipient', 'equalto', session['user'])|list %}
-                    <ul class="collapsible">
-                        <!-- List messages -->
-                        {% for message in messages %}
-                            <!-- Only show messages addressed to the session user -->
-                            {% if message.recipient == session.user %}
-                                <li id="messages-to-user">
-                                    <!-- Message Summary -->
-                                    <div id="display-recieved-user" class="collapsible-header light-section-less-padding">
-                                        From: {{ message.sender }} <br>
-                                        Subject: {{ message.subject }} <br>
-                                        Sent at: {{ message.time }}
-                                        <div class="button-container">
-                                            <!-- Delete Message Button -->
-                                            <a aria-label="You can delete this message" href="#confirm-delete-message{{ message._id }}" class="btn pigeon-hole-button btn-small modal-trigger delete-red">
-                                                <i class="fa-regular fa-trash-can "></i>
-                                            </a>
-                                            <!-- Reply to message button -->
-                                            <a aria-label="You can reply to this message" href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                                class="btn modal-trigger btn-small pigeon-hole-button">
-                                                <i class="fa-solid fa-reply "></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- Message Content -->
-                                    <div class="collapsible-body">
-                                        <h6>Message:</h6>
-                                        <span>{{ message.body }}</span>
-                                    </div>
-                                </li>
-                            <!-- Modal to confirm deletion of message -->
-                            <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
-                                <div class="modal-content">
-                                    <h4>Delete Message</h4>
+                <ul class="collapsible">
+                    <!-- List messages -->
+                    {% for message in messages %}
+                    <!-- Only show messages addressed to the session user -->
+                    {% if message.recipient == session.user %}
+                    <li id="messages-to-user">
+                        <!-- Message Summary -->
+                        <div id="display-recieved-user" class="collapsible-header light-section-less-padding">
+                            From: {{ message.sender }} <br>
+                            Subject: {{ message.subject }} <br>
+                            Sent at: {{ message.time }}
+                            <div class="button-container">
+                                <!-- Delete Message Button -->
+                                <a aria-label="You can delete this message"
+                                    href="#confirm-delete-message{{ message._id }}"
+                                    class="btn pigeon-hole-button btn-small modal-trigger delete-red">
+                                    <i class="fa-regular fa-trash-can "></i>
+                                </a>
+                                <!-- Reply to message button -->
+                                <a aria-label="You can reply to this message"
+                                    href="#reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                                    class="btn modal-trigger btn-small pigeon-hole-button">
+                                    <i class="fa-solid fa-reply "></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Message Content -->
+                        <div class="collapsible-body">
+                            <h6>Message:</h6>
+                            <span>{{ message.body }}</span>
+                        </div>
+                    </li>
+                    <!-- Modal to confirm deletion of message -->
+                    <div id="confirm-delete-message{{ message._id }}" class="modal pigeon-button-modal">
+                        <div class="modal-content">
+                            <h4>Delete Message</h4>
+                            <p>
+                                Are you sure you want to delete this message? <br>
+                                Message selected for deletion: <br>
+                                From: {{ message.sender }} |
+                                Subject:{{ message.subject }} |
+                                Sent at: {{ message.time }} <br>
+                                {{ message.body }}
+                            </p>
+                        </div>
+                        <!-- Confirm or cancel delete buttons -->
+                        <div class="modal-footer">
+                            <a aria-label="Confirm that you would like to delete this message"
+                                href="{{ url_for('delete_message', message_id=message._id) }}"
+                                class="modal-close btn-flat">
+                                Yes, delete
+                            </a>
+                            <div class="modal-close btn-flat">Cancel</div>
+                        </div>
+                    </div>
+                    <!-- Reply to message modal -->
+                    <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
+                        class="modal pigeon-button-modal">
+                        <!-- Message Content -->
+                        <div class="modal-content">
+                            <div>
+                                <h5 class="center-align">Reply to {{ message.sender }}</h5>
+                                <div>
+                                    <h6> {{ message.sender }}'s message:</h6>
                                     <p>
-                                        Are you sure you want to delete this message? <br>
-                                        Message selected for deletion: <br>
-                                        From: {{ message.sender }} |
-                                        Subject:{{ message.subject }} |
-                                        Sent at: {{ message.time }} <br>
+                                        Subject: {{ message.subject }} <br>
                                         {{ message.body }}
                                     </p>
                                 </div>
-                                <!-- Confirm or cancel delete buttons -->
-                                <div class="modal-footer">
-                                    <a aria-label="Confirm that you would like to delete this message" 
-                                    href="{{ url_for('delete_message', message_id=message._id) }}" class="modal-close btn-flat">
-                                        Yes, delete
-                                    </a>
-                                    <div class="modal-close btn-flat">Cancel</div>
-                                </div>
                             </div>
-                            <!-- Reply to message modal -->
-                            <div id="reply-to-message{{ message._id }}{{ message.sender }}{{ message.body }}{{ message.subject }}"
-                                class="modal pigeon-button-modal">
-                                <!-- Message Content -->
-                                <div class="modal-content">
-                                    <div>
-                                        <h5 class="center-align">Reply to {{ message.sender }}</h5>
-                                        <div>
-                                            <h6> {{ message.sender }}'s message:</h6>
-                                            <p>
-                                                Subject: {{ message.subject }} <br>
-                                                {{ message.body }}
-                                            </p>
-                                        </div>
+                            <!-- Reply form -->
+                            <form method="POST" class="light-section-less-padding"
+                                action="{{ url_for('new_message') }}">
+                                <h6> Your reply:</h6>
+                                <!-- Sender pre-filled field -->
+                                <div class="input-field col s12 hidden">
+                                    <input id="sender" name="sender" type="text" value=" {{ session.user }}"
+                                        pattern="^[a-zA-Z\s]{2,}$">
+                                    <label for="sender">Sender</label>
+                                </div>
+                                <!-- Recipient pre-filled field -->
+                                <div class="input-field col s12 hidden">
+                                    <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
+                                        pattern="^[a-zA-Z\s]{2,}$">
+                                    <label for="subject">Recipient</label>
+                                </div>
+                                <!-- Subject pre-filled field -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="subject" name="subject" type="text" value="{{ message.subject }}"
+                                            pattern="^[a-zA-Z\s]{2,}$" required>
+                                        <label for="subject">Subject</label>
                                     </div>
-                                    <!-- Reply form -->
-                                    <form method="POST" class="light-section-less-padding" action="{{ url_for('new_message') }}">
-                                        <h6> Your reply:</h6>
-                                        <!-- Sender pre-filled field -->
-                                        <div class="input-field col s12 hidden">
-                                            <input id="sender" name="sender" type="text" value=" {{ session.user }}" pattern="^[a-zA-Z\s]{2,}$">
-                                            <label for="sender">Sender</label>
-                                        </div>
-                                        <!-- Recipient pre-filled field -->
-                                        <div class="input-field col s12 hidden">
-                                            <input id="recipient" name="recipient" type="text" value="{{ message.sender }}"
-                                                pattern="^[a-zA-Z\s]{2,}$">
-                                            <label for="subject">Recipient</label>
-                                        </div>
-                                        <!-- Subject pre-filled field -->
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="subject" name="subject" type="text" value="{{ message.subject }}"
-                                                    pattern="^[a-zA-Z\s]{2,}$" required>
-                                                <label for="subject">Subject</label>
-                                            </div>
-                                        </div>
-                                        <!-- Body field -->
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea id="body" name="body" class="materialize-textarea"></textarea>
-                                                <label for="body">Type your message</label>
-                                            </div>
-                                        </div>
-                                        <!-- Send message button -->
-                                        <div class="row">
-                                            <button type="submit" class="col s12 btn-small">
-                                                Send <i class="fa-regular fa-paper-plane"></i>
-                                            </button>
-                                        </div>
-                                    </form>
                                 </div>
-                                <!-- Cancel and close modal -->
-                                <div class="modal-footer">
-                                    <div class="modal-close btn-flat">Cancel</div>
+                                <!-- Body field -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="body" name="body" class="materialize-textarea"></textarea>
+                                        <label for="body">Type your message</label>
+                                    </div>
                                 </div>
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
+                                <!-- Send message button -->
+                                <div class="row">
+                                    <button type="submit" class="col s12 btn-small">
+                                        Send <i class="fa-regular fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Cancel and close modal -->
+                        <div class="modal-footer">
+                            <div class="modal-close btn-flat">Cancel</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
                 <!-- If there are no messages to the user display message explaining list is empty -->
                 {% else %}
-                    <h6>You have no new messages</h6>
+                <h6>You have no new messages</h6>
                 {% endif %}
             </div>
             <!-- Confrim or cancel buttons -->
@@ -501,10 +541,11 @@
         </div>
     </form>
     <!-- Edit Experience Modal -->
-    <form method="POST" action="{{ url_for('edit_user_experience', user_id=user._id) }}" id="experience-modal" class="modal edit-modal">
+    <form method="POST" action="{{ url_for('edit_user_experience', user_id=user._id) }}" id="experience-modal"
+        class="modal edit-modal">
         <!-- Edit experience input field -->
         <div class="modal-content edit-modal">
-            <h4 class="center-align" >Edit Experience</h4>
+            <h4 class="center-align">Edit Experience</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-graduation-cap prefix"></i>
@@ -534,14 +575,17 @@
                 Are you sure you want to delete your account? <br>
             </p>
             <p>
-                Your observations will not be deleted with your account as they provide important information and statistics which helps
-                us with our bird research. All off your observations will appear in the community observations as if created by an 
-                anonymous user; the community will not know these are your observations. 
+                Your observations will not be deleted with your account as they provide important information and
+                statistics which helps
+                us with our bird research. All off your observations will appear in the community observations as if
+                created by an
+                anonymous user; the community will not know these are your observations.
             </p>
         </div>
         <!-- Confrim or cancel buttons -->
         <div class="modal-footer">
-            <a aria-label="Confirm that you would like to delete this account" href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Yes, delete</a>
+            <a aria-label="Confirm that you would like to delete this account"
+                href="{{ url_for('delete_user', user_id=user._id) }}" class="modal-close btn-flat">Yes, delete</a>
             <div class="modal-close btn-flat">No, cancel</div>
         </div>
     </div>

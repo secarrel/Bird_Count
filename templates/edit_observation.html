@@ -91,7 +91,8 @@
                             <i class="fa-solid fa-camera prefix"></i>
                             <label for="image-file">Change Image (optional):</label>
                         </div>
-                        <a aria-label="View the image that is currently uploaded for this observation" href="#observation-details{{ observation._id }}"
+                        <a aria-label="View the image that is currently uploaded for this observation"
+                            href="#observation-details{{ observation._id }}"
                             class="modal-trigger col s12 m12 l6 image-button btn-small">Current image</a>
                         <input class="col s12 m12 l6 image-button" type="file" name="image-file" id="image-file">
                     </div>
@@ -108,13 +109,14 @@
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}
-                    <a aria-label="Cancel and return to 'my nest' without saving changes" href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
-                        data-position="bottom" data-tooltip="Your changes will not be saved">
+                    <a aria-label="Cancel and return to 'my nest' without saving changes" href="{{ url_for('my_nest')}}"
+                        class="cancel col s12 m12 l6 btn-small tooltipped" data-position="bottom"
+                        data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a aria-label="Cancel and return to 'Community Observations' without saving changes" 
+                    <a aria-label="Cancel and return to 'Community Observations' without saving changes"
                         href="{{ url_for('get_observations')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
                         data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to community
@@ -136,9 +138,9 @@
     {% else %}
     <!-- Redirect to welcome if not allowed access-->
     <div>
-        <a aria-label="You are not authorised to edit this observation. Click to return to home page." 
+        <a aria-label="You are not authorised to edit this observation. Click to return to home page."
             href="{{ url_for('welcome') }}"> You are not authorised to edit this observation. Click to return to home
-            page. 
+            page.
         </a>
     </div>
     {% endif %}
