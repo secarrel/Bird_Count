@@ -55,12 +55,12 @@
                 </div>
                 <!-- Input field for certainty -->
                 <div id="certainty-edit" class="row">
-                    <div class="certainty-label col s12 m4 l3">
+                    <div class="certainty-label col s12 m12 l3">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         <p> Certainty </p>
                     </div>
-                    <div class="input-field col s12 m8 l9">
-                        <label for="certainty"></label>
+                    <div class="input-field col s12 m12 l9">
+                        <label for="certainty"> </label>
                         <input type="range" name="certainty" id="certainty" min="0" max="10"
                             value="{{ observation.certainty }}">
                     </div>
@@ -89,7 +89,7 @@
                     <div class="input-field col s12">
                         <div class="image-add-label col s12 m12 l6">
                             <i class="fa-solid fa-camera prefix"></i>
-                            <label for="image-file">Change Image (optional):</label>
+                            <label for="image-file">Change Image:</label>
                         </div>
                         <a aria-label="View the image that is currently uploaded for this observation"
                             href="#observation-details{{ observation._id }}"

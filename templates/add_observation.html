@@ -57,12 +57,12 @@
                 </div>
                 <!-- Input field for certainty -->
                 <div id="certainty-add" class="row">
-                    <div class="certainty-label col s12 m4 l3">
+                    <div class="certainty-label col s12 m12 l4">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         <p> Certainty</p>
                     </div>
-                    <div class="input-field col s12 m8 l9">
-                        <label for="certainty"></label>
+                    <div class="input-field col s12 m12 l8">
+                        <label for="certainty"> </label>
                         <input type="range" name="certainty" id="certainty" min="0" max="10">
                     </div>
                 </div>
@@ -88,11 +88,11 @@
                 <!-- Input field for image -->
                 <div id="image-add" class="row">
                     <div class="input-field col s12">
-                        <div class="image-add-label col s12 m6 l6">
+                        <div class="image-add-label col s12 m12 l6">
                             <i class="fa-solid fa-camera prefix"></i>
-                            <label for="image-file">Upload Image (optional):</label>
+                            <label for="image-file">Upload Image:</label>
                         </div>
-                        <input class="col s12 m6 l6" type="file" name="image-file" id="image-file">
+                        <input class="col s12 m12 l6" type="file" name="image-file" id="image-file">
                     </div>
                 </div>
                 <p><strong class="required">*</strong> indicates required field</p>
@@ -107,14 +107,14 @@
                 <div class="row">
                     <!-- Non-admin users are returned to 'my nest' -->
                     {% if session.user != 'admin' %}
-                    <a aria-label="Cancel and return to your nest without saving your changes"
+                    <a aria-label="Cancel,return to my nest without saving your changes"
                         href="{{ url_for('my_nest')}}" class="cancel col s12 m12 l6 btn-small tooltipped"
                         data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to my nest
                     </a>
                     <!-- Admin user is returned to 'community observations' -->
                     {% endif %}
-                    <a aria-label="Cancel and return to Community Observations without saving your changes"
+                    <a aria-label="Cancel,return to Community Observations without saving your changes"
                         href="{{ url_for('get_observations')}}" class=" cancel col s12 m12 l6 btn-small tooltipped"
                         data-position="bottom" data-tooltip="Your changes will not be saved">
                         Cancel, return to observations
