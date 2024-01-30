@@ -428,6 +428,8 @@ There are a number of features that I would like to implement for this applicati
 - [Figma](https://www.figma.com/) is used to create wireframes for the project.
 - [Logo.com](https://logo.com/) is used to create the logo and favicon for this site.
 - [Font Awesome](https://fontawesome.com/) provided icons for the site.
+- [website planet](https://www.websiteplanet.com/webtools/responsive-checker/) to check responsiveness of the site.
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/) to help analyse elements and check responsiveness throughout.
 
 ## Database Design
 
