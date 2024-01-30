@@ -118,12 +118,12 @@
                             <!-- Delete observation -->
                             <td>
                                 <!-- Delete button -->
-                                <a aria-label="You can delete this observation" href="#confirm-delete"
+                                <a aria-label="You can delete this observation" href="#confirm-delete{{ observation._id }}"
                                     class="btn-small modal-trigger delete-red mobile-narrow">
                                     <i class="fa-regular fa-trash-can "></i>
                                 </a>
                                 <!-- Delete modal -->
-                                <div class="confirm-delete modal">
+                                <div id="confirm-delete{{ observation._id }}" class="modal delete-modal">
                                     <div class="modal-content">
                                         <h4>Delete Observation</h4>
                                         <p>
