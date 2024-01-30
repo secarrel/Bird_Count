@@ -2,7 +2,7 @@
 
 MENTION SOMETHING ABOUT BRITISH BIRD WATCHING 
 
-Introducing 'Bird Count', a web app designed to enhance users' bird watching experience by allowing them to record their observations, keep up to date with community sightings, share their favourite photographs, and keep an eye on their bird watching stats! This is a great way to keep track of the bird species users have seen, when and where!
+Introducing 'Bird Count', a web app designed to enhance users' bird-watching experience by allowing them to record their observations, keep up to date with community sightings, share their favourite photographs, and keep an eye on their bird-watching stats! This is a great way to keep track of the bird species users have seen, when and where!
 
 Bird count collects data about species' populations, distributions and behaviours. This information is important for ornithologists who have ambitions to improve species health through conservation practices. The [BTO](https://www.bto.org/) is an excellent example of an organisation who works to make a different for bird welfare and would benefit from this data. 
 
@@ -16,9 +16,9 @@ Inspired by the [Big Garden Birdwatch](https://www.rspb.org.uk/whats-happening/b
 
 ### Flow
 
-The user is initially presented with the welcome page which shows how 'Bird Count' can be used and encourages the user to sign up. There are 'sign-up' buttons located conveniently so the user can easily navigate to the 'sign-up' page at this point. The sign up button is designed to change depending on whether the user is logged in. If logged in, it will be displayed as an 'add observation' button.
+The user is initially presented with the welcome page which shows how 'Bird Count' can be used and encourages the user to sign up. There are 'sign-up' buttons located conveniently so the user can easily navigate to the 'sign-up' page at this point. The sign-up button is designed to change depending on whether the user is logged in. If logged in, it will be displayed as an 'add observation' button.
 
-The about page is easily accessed in the header and instinctively is the next stop for users that haven't decided whether to sign up or not. This page explains the benefits of signing up to the user and also for conservation and research. Again, this page is designed to provide the user with an opportunity to understand Bird Count before signing up. A sign up button as described above is also located on this page for convenience.
+The 'About' page is easily accessed in the header and instinctively is the next stop for users that haven't decided whether to sign up or not. This page explains the benefits of signing up to the user and also for conservation and research. Again, this page is designed to provide the user with an opportunity to understand Bird Count before signing up. A sign-up button as described above is also located on this page for convenience.
 
 Next along in the navigation is 'Community Observations' which is available for anybody to see and use; again so the user feels they understand what they are signing up for before signing up and to encourage them to do so.  This page displays all observations that visible users have added. This list can provide insight into distributions and inspire bird watchers to look in different locations to their 'usual spots'. Again, this page contains a sign up button. Logged in users are able to edit, add and delete observations here.  
 
@@ -616,6 +616,9 @@ You can fork this repository by using the following steps:
 | [Code Institute (TIm Neslon): Task Manager Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main) | Entire site | This tutorial provided my site with it's initial structure and inspiration. I built on, adapted and developed the code from this tutorial. |
 | [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README | This helped me with the writing of the README. |
 | [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob) | Observation details modals | Ths resource helped me to display images in my observation details modals. |
+| [Dave Lage](https://davelage.com/posts/loading-images-using-fetch/) | Observation modal | USed to help me upload an image to the bird details mdoal. |
+| [MongoDB GridFS](https://www.mongodb.com/docs/manual/core/gridfs/) | Bird images uploaded with observations | I used this to save images that users upload in my MongoDB database |
+| [Dogfalo GitHub](https://github.com/Dogfalo/materialize/issues/6464) | Materialise components | This resolved a known bug when using the dropdown or select components from Materialize with Safari. I used the select.js file from this source to fix the bug successfully. I take no credit for the content of the select.js file. |
 
 ### Media
 

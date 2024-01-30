@@ -5,46 +5,47 @@ Return to [README.md].
 
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files. All screenshots for evidence of validation can be found [HERE]
 
-| Page | W3C URL | Screenshot | Notes |
-| ---- | ---- | ---- | ---- |
-| Welcome | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2F) |  | Pass - No errors |
-| About | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fabout%2F) |  | Pass - No errors |
-| Community Observations | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fget_observations%2F) |  | Pass - No errors |
-| My Nest | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fmy_nest%2F) |  | Pass - No errors |
-| Admin Nest | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fget_users%2F) |  | Pass - No errors |
-| Add Observation | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fadd_observation%2F) |  | Pass - No errors |
-| Edit Observation | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fedit_observation%2F65a6b26cebf1f8dd7e87166a) |  | Pass - No errors |
-| Register | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fregister%2F#l111c18) |  | Pass - No errors |
-| Log in | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Flogin%2F#l111c18) |  | Pass - No errors |
-| 404 | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fedit_observ#textarea) |  | **Error**: Bad value `{{ url_for('welcome') }}` for attribute `href` on element [`a`](https://html.spec.whatwg.org/multipage/#the-a-element): Illegal character in path segment: `{` is not allowed. |
+| Page | URL | Notes |
+| ---- | ---- | ---- |
+| Welcome | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2F) | ✅ No errors. Page link used|
+| About | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fabout%2F) | ✅ No errors. Page link used |
+| Community Observations | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fget_observations%2F) | ✅ No errors. Page link used |
+| My Nest | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
+| Admin Nest | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
+| Add Observation | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
+| Edit Observation | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
+| Register | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Fregister%2F#l111c18) | ✅ No errors. Page link used |
+| Log in | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2Flogin%2F#l111c18) | ✅ No errors. Page link used |
+| 404 | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
+| 505 | [W3C](https://validator.w3.org) | ✅ No errors. Text input used |
 
 
 ### CSS
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate my CSS code.
 
-| File | Jigsaw URL | Screenshot | Notes |
-| --- | --- | --- | --- |
-| style.css | [Jigsaw] |  |  |
+| File | URL | Notes |
+| --- | --- | --- |
+| style.css | [Jigsaw](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fbirdcount-cff31e785337.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) | ✅ Pass. Only errors are from materializa and font awesome |
 
 
 ### JavaScript
 
 I have used the recommended [JShint Validator](https://jshint.com) to validate my JS file.
 
-| File | Screenshot | Notes |
-| --- | --- | --- |
-| script.js |  |  |
+| File | Notes |
+| --- | --- |
+| script.js | ✅ Pass. No errors |
 
 ### Python
 
 I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
 
-| File | CI URL | Screenshot | Notes |
-| --- | --- | --- | --- |
-| app.py | [PEP8 CI](https://pep8ci.herokuapp.com/#) |  |  |
+| File | URL | Notes |
+| --- | --- | --- |
+| app.py | [PEP8 CI](https://pep8ci.herokuapp.com) | ✅ Pass. No errors |
 
 ## Browser Compatibility
 
@@ -105,166 +106,166 @@ Defensive programming was manually tested with the below user acceptance testing
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | ---- | ---- | ---- | ---- | ---- |
 | Navbar |  |  |  |  |
-|  | Click on Logo | Redirection to Welcome page. | Pass |  |
-|  | Click on 'About' link | Redirection to About page. | Pass |  |
-|  | Click on 'Community Observations' | Redirect to Community Observations page. | Pass |  |
-|  | Click on dropdown menu | Opens dropdown menu to display navigation links. | Pass |  |
-|  | Click on 'Burger menu' | Side menu opens displaying navigation links. | Pass |  |
-|  | Click on 'Admin Nest' | Redirects to Admin Nest page. | Pass |  |
-|  | Click on 'My Nest' | Redirects to My Nest page. | Pass |  |
-|  | Click on 'Logout' | User is removed from session.<br> | Pass |  |
-|  | Click on 'Logout' | Redirection to Log In page.<br> | Pass |  |
-|  | Click on 'Logout' | Flash message informs user log out was successful. | Pass |  |
-|  | Click on 'Logout' | 'About', 'Community Observations', 'Sign up', 'Log in' are the only navigation links visible. | Pass |  |
-|  | Click on 'Logout' | 'Add observation' button changes to 'Sign up' button. | Pass |  |
-|  | Successfully logs in | Navbar shows links to About, Community Observations, My Nest and Logout. | Pass |  |
-|  | Successfully logs in as 'admin' | Navbar shows links to About, Community Observations, Admin Nest and Logout. | Pass |  |
-|  | Hovers over logo | Logo expands and cursor changes to pointer. | Pass |  |
-|  | Hovers over 'About' | Container changes colour to highlight link. | Pass |  |
-|  | Hovers over 'Community Observations' | Container changes colour to highlight link. | Pass |  |
-|  | Hovers over dropdown | Container changes colour to highlight link. | Pass |  |
+|  | Click on Logo | Redirection to Welcome page. | ✅ Pass |  |
+|  | Click on 'About' link | Redirection to About page. | ✅ Pass |  |
+|  | Click on 'Community Observations' | Redirect to Community Observations page. | ✅ Pass |  |
+|  | Click on dropdown menu | Opens dropdown menu to display navigation links. | ✅ Pass |  |
+|  | Click on 'Burger menu' | Side menu opens displaying navigation links. | ✅ Pass |  |
+|  | Click on 'Admin Nest' | Redirects to Admin Nest page. | ✅ Pass |  |
+|  | Click on 'My Nest' | Redirects to My Nest page. | ✅ Pass |  |
+|  | Click on 'Logout' | User is removed from session.<br> | ✅ Pass |  |
+|  | Click on 'Logout' | Redirection to Log In page.<br> | ✅ Pass |  |
+|  | Click on 'Logout' | Flash message informs user log out was successful. | ✅ Pass |  |
+|  | Click on 'Logout' | 'About', 'Community Observations', 'Sign up', 'Log in' are the only navigation links visible. | ✅ Pass |  |
+|  | Click on 'Logout' | 'Add observation' button changes to 'Sign up' button. | ✅ Pass |  |
+|  | Successfully logs in | Navbar shows links to About, Community Observations, My Nest and Logout. | ✅ Pass |  |
+|  | Successfully logs in as 'admin' | Navbar shows links to About, Community Observations, Admin Nest and Logout. | ✅ Pass |  |
+|  | Hovers over logo | Logo expands and cursor changes to pointer. | ✅ Pass |  |
+|  | Hovers over 'About' | Container changes colour to highlight link. | ✅ Pass |  |
+|  | Hovers over 'Community Observations' | Container changes colour to highlight link. | ✅ Pass |  |
+|  | Hovers over dropdown | Container changes colour to highlight link. | ✅ Pass |  |
 | Footer |  |  |  |  |
-|  | Click on Logo | Redirection to Welcome page. | Pass |  |
-|  | Hovers over logo | Logo expands and cursor changes to pointer. | Pass |  |
-|  | Clicks on 'Learn about the BTO' | Redirects to website for BTO; opens in new tab. | Pass |  |
-|  | Clicks on 'Identify a bird' | Redirects to website for Bird Spot; opens in new tab. | Pass |  |
-|  | Clicks on 'Learn more about Bird Count' | Redirects to website for Bird Count GitHub repository; opens in new tab. | Pass |  |
-|  | Clicks on 'sign-up' button | Redirection to 'Sign up' page. | Pass |  |
-|  | Clicks on 'Add Observation' button | Redirection to 'Add Observation' page. | Pass |  |
-|  | Successfully logs in as 'admin' | Sign-up buttons disappear. | Pass |  |
-|  | User logs in successfully | Redirection to either 'Admin Nest' or 'My Nest' depending on user. | Pass |  |
-|  | User logs in successfully | Sign-up buttons change to 'Add Observation' buttons | Pass |  |
+|  | Click on Logo | Redirection to Welcome page. | ✅ Pass |  |
+|  | Hovers over logo | Logo expands and cursor changes to pointer. | ✅ Pass |  |
+|  | Clicks on 'Learn about the BTO' | Redirects to website for BTO; opens in new tab. | ✅ Pass |  |
+|  | Clicks on 'Identify a bird' | Redirects to website for Bird Spot; opens in new tab. | ✅ Pass |  |
+|  | Clicks on 'Learn more about Bird Count' | Redirects to website for Bird Count GitHub repository; opens in new tab. | ✅ Pass |  |
+|  | Clicks on 'sign-up' button | Redirection to 'Sign up' page. | ✅ Pass |  |
+|  | Clicks on 'Add Observation' button | Redirection to 'Add Observation' page. | ✅ Pass |  |
+|  | Successfully logs in as 'admin' | Sign-up buttons disappear. | ✅ Pass |  |
+|  | User logs in successfully | Redirection to either 'Admin Nest' or 'My Nest' depending on user. | ✅ Pass |  |
+|  | User logs in successfully | Sign-up buttons change to 'Add Observation' buttons | ✅ Pass |  |
 | Sign Up |  |  |  |  |
-|  | Enter valid User Name | Field will only accept alphanumeric username, with 5-20 characters and no spaces. | Pass |  |
-|  | Enter valid password | Field will only accept alphanumeric password format, with 5-15 characters. | Pass |  |
-|  | Enter valid email | Field will only accept email format inputs. | Pass |  |
-|  | Click experience field | Options drop down are dispalyed. | Pass |  |
-|  | Click on an experience. | The input field is filled with the selected experience level. | Pass |  |
-|  | Inputs invalid information in any field | Icon flashed red and tooltip explains that the entry is invalid. | Pass | Experience level cannot be validated but if it is empty on form submission, a flash message appears explaining that it is invalid. |
-|  | Click on 'Register' button | Redirection to 'My Nest'. | Pass |  |
-|  | Click on 'Log in' | Redirection to 'Log in' page. | Pass |  |
+|  | Enter valid User Name | Field will only accept alphanumeric username, with 5-20 characters and no spaces. | ✅ Pass |  |
+|  | Enter valid Password | Field will only accept alphanumeric Password format, with 5-15 characters. | ✅ Pass |  |
+|  | Enter valid email | Field will only accept email format inputs. | ✅ Pass |  |
+|  | Click experience field | Options drop down are dispalyed. | ✅ Pass |  |
+|  | Click on an experience. | The input field is filled with the selected experience level. | ✅ Pass |  |
+|  | Inputs invalid information in any field | Icon flashed red and tooltip explains that the entry is invalid. | ✅ Pass | Experience level cannot be validated but if it is empty on form submission, a flash message appears explaining that it is invalid. |
+|  | Click on 'Register' button | Redirection to 'My Nest'. | ✅ Pass |  |
+|  | Click on 'Log in' | Redirection to 'Log in' page. | ✅ Pass |  |
 | Log In |  |  |  |  |
-|  | Enter valid User Name | Field will only accept alphanumeric username, with 5-20 characters and no spaces. | Pass |  |
-|  | Enter valid password | Field will only accept alphanumeric password format, with 5-15 characters. | Pass |  |
-|  | Click Log In button with valid Username & Password | Redirection to 'My Nest'. Flash message informs user that log in was successful. | Pass |  |
-|  | Click Log In button with empty Password field | Prompts for Password. | Pass |  |
-|  | Click Log In button with empty Username field | Prompts for Username. | Pass |  |
-|  | Click Log In button with both input fields empty | Prompts for input. | Pass |  |
-|  | Click 'Register Account' | Redirection to 'Sign in' page. | Pass |  |
+|  | Enter valid User Name | Field will only accept alphanumeric username, with 5-20 characters and no spaces. | ✅ Pass |  |
+|  | Enter valid Password | Field will only accept alphanumeric Password format, with 5-15 characters. | ✅ Pass |  |
+|  | Click Log In button with valid Username & Password | Redirection to 'My Nest'. Flash message informs user that log in was successful. | ✅ Pass |  |
+|  | Click Log In button with empty Password field | Prompts for Password. | ✅ Pass |  |
+|  | Click Log In button with empty Username field | Prompts for Username. | ✅ Pass |  |
+|  | Click Log In button with both input fields empty | Prompts for input. | ✅ Pass |  |
+|  | Click 'Register Account' | Redirection to 'Sign in' page. | ✅ Pass |  |
 | About |  |  |  |  |
-|  | Click 'Learn about the BTO' button | Redirects user to BTO website in new tab. | Pass |  |
-|  | Click 'Sign-up' button | Redirection to sign up page. | Pass |  |
-|  | Click 'Add Observation' button | Redirection to add observation page. | Pass |  |
-|  | Click 'Identify a bird' button | Redirection to Bird Spot website in new tab. | Pass |  |
+|  | Click 'Learn about the BTO' button | Redirects user to BTO website in new tab. | ✅ Pass |  |
+|  | Click 'Sign-up' button | Redirection to sign up page. | ✅ Pass |  |
+|  | Click 'Add Observation' button | Redirection to add observation page. | ✅ Pass |  |
+|  | Click 'Identify a bird' button | Redirection to Bird Spot website in new tab. | ✅ Pass |  |
 | Community Observations |  |  |  |  |
-|  | Click 'Log in' button | Redirection to 'Log in' page. | Pass |  |
-|  | Click 'Add Observation' button | Redirection to 'Add Observation' page. | Pass |  |
-|  | Enters invalid enquiry in search field | Search field flashes red. It allows a minimum of 3 letters. | Pass |  |
-|  | Search query with no results | Message explaining that there were no results for that search. | Pass |  |
-|  | Clicks 'Reset All' button | All observations are displayed. | Pass |  |
-|  | Clicks a 'sort' icon next to a table heading. | Observations are sorted by this field in the direction indicated by the tooltip. | Pass |  |
-|  | Clicks a 'sort' icon next to a table heading. | Icon changes to indicate the sort direction if clicked again. | Pass |  |
-|  | Clicks 'Reset All' button | All observations are displayed with the most recent first. | Pass |  |
-|  | Clicks on an observation | Observation modal appears with extra information than is displayed in the table. | Pass |  |
-|  | Hovers over observation | Row is highlighted and expand icon appears and pulses. | Pass |  |
-|  | Clicks on 'Edit' button | Redirects to the 'Edit Observation' page which has fields prefilled with data from that observation. | Pass |  |
-|  | Clicks on 'Delete' button | Delete confirmation modal appears. It contains information about the observation being deleted. | Pass |  |
-|  | Clicks 'Yes, delete' in modal for delete confirmation | Modal closes, observation disappears from table and a flash message appears confirming this action was successful. | Pass |  |
+|  | Click 'Log in' button | Redirection to 'Log in' page. | ✅ Pass |  |
+|  | Click 'Add Observation' button | Redirection to 'Add Observation' page. | ✅ Pass |  |
+|  | Enters invalid enquiry in search field | Search field flashes red. It allows a minimum of 3 letters. | ✅ Pass |  |
+|  | Search query with no results | Message explaining that there were no results for that search. | ✅ Pass |  |
+|  | Clicks 'Reset All' button | All observations are displayed. | ✅ Pass |  |
+|  | Clicks a 'sort' icon next to a table heading. | Observations are sorted by this field in the direction indicated by the tooltip. | ✅ Pass |  |
+|  | Clicks a 'sort' icon next to a table heading. | Icon changes to indicate the sort direction if clicked again. | ✅ Pass |  |
+|  | Clicks 'Reset All' button | All observations are displayed with the most recent first. | ✅ Pass |  |
+|  | Clicks on an observation | Observation modal appears with extra information than is displayed in the table. | ✅ Pass |  |
+|  | Hovers over observation | Row is highlighted and expand icon appears and pulses. | ✅ Pass |  |
+|  | Clicks on 'Edit' button | Redirects to the 'Edit Observation' page which has fields prefilled with data from that observation. | ✅ Pass |  |
+|  | Clicks on 'Delete' button | Delete confirmation modal appears. It contains information about the observation being deleted. | ✅ Pass |  |
+|  | Clicks 'Yes, delete' in modal for delete confirmation | Modal closes, observation disappears from table and a flash message appears confirming this action was successful. | ✅ Pass |  |
 | My Nest |  |  |  |  |
-| (BIRD STATS SECTION) | Click 'View Your Life List' button | Modal opens displaying list of bird species observed with the quantities. If the list is empty a button to 'Add Observation' appears. | Pass |  |
-|  | Clicks 'Add Observation' button in life list modal. | Redirection to Add Observation page. | Pass |  |
-| (MY OBSERVATIONS SECTION) | Clicks 'Add Observation' button in life list modal. | Redirection to Add Observation page. | Pass |  |
-|  | Clicks on an observation | Observation modal appears with extra information than is displayed in the table. | Pass |  |
-|  | Hovers over observation | Row is highlighted and expand icon appears and pulses. | Pass |  |
-|  | Clicks on 'Edit' button | Redirects to the 'Edit Observation' page which has fields prefilled with data from that observation. | Pass |  |
-|  | Clicks on 'Delete' button | Delete confirmation modal appears. It contains information about the observation being deleted. | Pass |  |
-|  | Clicks 'Yes, delete' in modal for delete confirmation | Modal closes, observation disappears from table and a flash message appears confirming this action was successful. | Pass |  |
-| (CONTACT ADMIN SECTION) | Click 'Pigeon Hole' button | Messages from the admin appear. | Pass |  |
-|  | Click on expandable message | Message content appears. | Pass |  |
-|  | Clicks 'reply' button | Modal opens to reply to the message. All fields are prefilled with the exception of the message body. | Pass |  |
-|  | Clicks 'send' | Modals close and flash message appears confirming the message has been sent. | Pass |  |
-|  | Clicks 'delete' message | Confirmation modal appears containing details about the message. | Pass |  |
-|  | Clicks 'Confirm delete' button | Modals close. A flash message appears confirming that the message was deleted. | Pass |  |
-|  | Clicks 'Contact Admin' | Modal appears with subject and message fields. | Pass |  |
-|  | Clicks 'Send Message' with empty subject field | Prompted to fill out subject field. | Pass |  |
-|  | Clicks 'Send Message' with empty message field | Prompted to fill out message field. | Pass |  |
-|  | Clicks 'Send Message' with both fields filled. | Modal closes. Flash message confirms the message has been sent. | Pass |  |
-| (MY ACCOUNT SECTION) | Clicks visibility switch | Switch changes side. Visibility is changed to either visible or invisible (where-ever switch suggests). If invisible, the observations from this user are hidden in the community observations page. Flash message confirms change. | Pass |  |
-|  | Clicks anonymity switch | Switch changes side. Anonymity is changed to either anonymous or named (where-ever switch suggests). If anonymous, the observations from this user are shown to be seen by 'anonymousbirdy' in community observations. Flash message confirms change. | Pass |  |
-|  | Clicks 'Edit' button for email address | Edit email address modal opens. | Pass |  |
-|  | Enters invalid email address. | Modal closes with no changes. | Pass |  |
-|  | Enters valid email address and clicks 'submit' | Modal closes. Email appears updated. Flash message confirms change. | Pass |  |
-|  | Clicks 'Edit' button for experience | Edit experience modal opens. | Pass |  |
-|  | Clicks dropdown selection | Options appear | Pass |  |
-|  | Clicks an option | Input field in filled with selected observation. | Pass |  |
-|  | Clicks 'update' button | Modal closes. Flash message confirms deletion. Experience level appears changed. User avatar changes to match experience level. | Pass |  |
-|  | Clicks 'Delete Account' button | Confirmation modal appears with information about what happens to their data when they delete their account. | Pass |  |
-|  | Clicks 'confirm delete' button | Redirection to welcome page. Flash message confirms deletion. | Pass |  |
+| (BIRD STATS SECTION) | Click 'View Your Life List' button | Modal opens displaying list of bird species observed with the quantities. If the list is empty a button to 'Add Observation' appears. | ✅ Pass |  |
+|  | Clicks 'Add Observation' button in life list modal. | Redirection to Add Observation page. | ✅ Pass |  |
+| (MY OBSERVATIONS SECTION) | Clicks 'Add Observation' button in life list modal. | Redirection to Add Observation page. | ✅ Pass |  |
+|  | Clicks on an observation | Observation modal appears with extra information than is displayed in the table. | ✅ Pass |  |
+|  | Hovers over observation | Row is highlighted and expand icon appears and pulses. | ✅ Pass |  |
+|  | Clicks on 'Edit' button | Redirects to the 'Edit Observation' page which has fields prefilled with data from that observation. | ✅ Pass |  |
+|  | Clicks on 'Delete' button | Delete confirmation modal appears. It contains information about the observation being deleted. | ✅ Pass |  |
+|  | Clicks 'Yes, delete' in modal for delete confirmation | Modal closes, observation disappears from table and a flash message appears confirming this action was successful. | ✅ Pass |  |
+| (CONTACT ADMIN SECTION) | Click 'Pigeon Hole' button | Messages from the admin appear. | ✅ Pass |  |
+|  | Click on expandable message | Message content appears. | ✅ Pass |  |
+|  | Clicks 'reply' button | Modal opens to reply to the message. All fields are prefilled with the exception of the message body. | ✅ Pass |  |
+|  | Clicks 'send' | Modals close and flash message appears confirming the message has been sent. | ✅ Pass |  |
+|  | Clicks 'delete' message | Confirmation modal appears containing details about the message. | ✅ Pass |  |
+|  | Clicks 'Confirm delete' button | Modals close. A flash message appears confirming that the message was deleted. | ✅ Pass |  |
+|  | Clicks 'Contact Admin' | Modal appears with subject and message fields. | ✅ Pass |  |
+|  | Clicks 'Send Message' with empty subject field | Prompted to fill out subject field. | ✅ Pass |  |
+|  | Clicks 'Send Message' with empty message field | Prompted to fill out message field. | ✅ Pass |  |
+|  | Clicks 'Send Message' with both fields filled. | Modal closes. Flash message confirms the message has been sent. | ✅ Pass |  |
+| (MY ACCOUNT SECTION) | Clicks visibility switch | Switch changes side. Visibility is changed to either visible or invisible (where-ever switch suggests). If invisible, the observations from this user are hidden in the community observations page. Flash message confirms change. | ✅ Pass |  |
+|  | Clicks anonymity switch | Switch changes side. Anonymity is changed to either anonymous or named (where-ever switch suggests). If anonymous, the observations from this user are shown to be seen by 'anonymousbirdy' in community observations. Flash message confirms change. | ✅ Pass |  |
+|  | Clicks 'Edit' button for email address | Edit email address modal opens. | ✅ Pass |  |
+|  | Enters invalid email address. | Modal closes with no changes. | ✅ Pass |  |
+|  | Enters valid email address and clicks 'submit' | Modal closes. Email appears updated. Flash message confirms change. | ✅ Pass |  |
+|  | Clicks 'Edit' button for experience | Edit experience modal opens. | ✅ Pass |  |
+|  | Clicks dropdown selection | Options appear | ✅ Pass |  |
+|  | Clicks an option | Input field in filled with selected observation. | ✅ Pass |  |
+|  | Clicks 'update' button | Modal closes. Flash message confirms deletion. Experience level appears changed. User avatar changes to match experience level. | ✅ Pass |  |
+|  | Clicks 'Delete Account' button | Confirmation modal appears with information about what happens to their data when they delete their account. | ✅ Pass |  |
+|  | Clicks 'confirm delete' button | Redirection to welcome page. Flash message confirms deletion. | ✅ Pass |  |
 | Admin Page |  |  |  |  |
-|  | Click 'Pigeon Hole' button | Messages from the admin appear. | Pass |  |
-|  | Click on expandable message | Message content appears. | Pass |  |
-|  | Clicks 'reply' button | Modal opens to reply to the message. All fields are prefilled with the exception of the message body. | Pass |  |
-|  | Clicks 'send' | Modals close and flash message appears confirming the message has been sent. | Pass |  |
-|  | Clicks 'delete' message | Confirmation modal appears containing details about the message. | Pass |  |
-|  | Clicks 'Confirm delete' button | Modals close. A flash message appears confirming that the message was deleted. | Pass |  |
-|  | Click 'Delete' button | A modal appears with details of the user in the row of the delete button. This asks for confirmation of deletion. | Pass |  |
-|  | Clicks 'confirm' | User is deleted and a flash message appears with confirmation. | Pass |  |
+|  | Click 'Pigeon Hole' button | Messages from the admin appear. | ✅ Pass |  |
+|  | Click on expandable message | Message content appears. | ✅ Pass |  |
+|  | Clicks 'reply' button | Modal opens to reply to the message. All fields are prefilled with the exception of the message body. | ✅ Pass |  |
+|  | Clicks 'send' | Modals close and flash message appears confirming the message has been sent. | ✅ Pass |  |
+|  | Clicks 'delete' message | Confirmation modal appears containing details about the message. | ✅ Pass |  |
+|  | Clicks 'Confirm delete' button | Modals close. A flash message appears confirming that the message was deleted. | ✅ Pass |  |
+|  | Click 'Delete' button | A modal appears with details of the user in the row of the delete button. This asks for confirmation of deletion. | ✅ Pass |  |
+|  | Clicks 'confirm' | User is deleted and a flash message appears with confirmation. | ✅ Pass |  |
 | Add Observation Page |  |  |  |  |
-|  | Enters text in 'Bird Species' input field | Autocomplete options appear containing bird species and letters entered by user. | Pass |  |
-|  | Clicks on an autocomplete option | Selected option populated input field | Pass |  |
-|  | Enters text in 'Location' input field | Autocomplete options appear containing districts in the UK and letters entered by user. | Pass |  |
-|  | Clicks on an autocomplete option | Selected option populated input field | Pass |  |
-|  | Clicks on 'date' field | Date picker appears with only the current day and previous available to select. | Pass |  |
-|  | Clicks a date | Date picker closes and selected date populates date field. | Pass |  |
-|  | Clicks on 'time' field | Time picker appears. | Pass |  |
-|  | Selects a time | Selected time populates input field and modal closes. | Pass |  |
-|  | Clicks somewhere along certainty range. | Value of that field pops up and slider moves. | Pass |  |
-|  | Clicks 'choose file' | Local folder opens so user can select a photo. | Pass |  |
-|  | Selects a photo | Name of file appears next to 'choose file' button. | Pass |  |
-|  | Click 'Submit Observation' with any required field empty | 'Please fill out this field' tooltip appears. | Pass |  |
-|  | Clicks 'Submit Observation' with valid fields | Observation is submitted. Flash message appears with confirmation. User is directed their nest. | Pass |  |
-|  | Click 'Cancel, return to my nest' button | Redirected to their nest. | Pass |  |
-|  | Click 'Cancel, return to observations' | Redirected to community observations. | Pass |  |
+|  | Enters text in 'Bird Species' input field | Autocomplete options appear containing bird species and letters entered by user. | ✅ Pass |  |
+|  | Clicks on an autocomplete option | Selected option populated input field | ✅ Pass |  |
+|  | Enters text in 'Location' input field | Autocomplete options appear containing districts in the UK and letters entered by user. | ✅ Pass |  |
+|  | Clicks on an autocomplete option | Selected option populated input field | ✅ Pass |  |
+|  | Clicks on 'date' field | Date picker appears with only the current day and previous available to select. | ✅ Pass |  |
+|  | Clicks a date | Date picker closes and selected date populates date field. | ✅ Pass |  |
+|  | Clicks on 'time' field | Time picker appears. | ✅ Pass |  |
+|  | Selects a time | Selected time populates input field and modal closes. | ✅ Pass |  |
+|  | Clicks somewhere along certainty range. | Value of that field pops up and slider moves. | ✅ Pass |  |
+|  | Clicks 'choose file' | Local folder opens so user can select a photo. | ✅ Pass |  |
+|  | Selects a photo | Name of file appears next to 'choose file' button. | ✅ Pass |  |
+|  | Click 'Submit Observation' with any required field empty | 'Please fill out this field' tooltip appears. | ✅ Pass |  |
+|  | Clicks 'Submit Observation' with valid fields | Observation is submitted. Flash message appears with confirmation. User is directed their nest. | ✅ Pass |  |
+|  | Click 'Cancel, return to my nest' button | Redirected to their nest. | ✅ Pass |  |
+|  | Click 'Cancel, return to observations' | Redirected to community observations. | ✅ Pass |  |
 | Edit Observation Page | *(Mostly the same as above)* |  |  |  |
-|  | Enters text in 'Bird Species' input field | Autocomplete options appear containing bird species and letters entered by user. | Pass |  |
-|  | Clicks on an autocomplete option | Selected option populated input field | Pass |  |
-|  | Enters text in 'Location' input field | Autocomplete options appear containing districts in the UK and letters entered by user. | Pass |  |
-|  | Clicks on an autocomplete option | Selected option populated input field | Pass |  |
-|  | Clicks on 'date' field | Date picker appears with only the current day and previous available to select. | Pass |  |
-|  | Clicks a date | Date picker closes and selected date populates date field. | Pass |  |
-|  | Clicks on 'time' field | Time picker appears. | Pass |  |
-|  | Selects a time | Selected time populates input field and modal closes. | Pass |  |
-|  | Clicks somewhere along certainty range. | Value of that field pops up and slider moves. | Pass |  |
-|  | Clicks 'current image' button | Modal containing the current image for this observation appears. | Pass |  |
-|  | Clicks 'choose file' | Local folder opens so user can select a photo. | Pass |  |
-|  | Selects a photo | Name of file appears next to 'choose file' button. | Pass |  |
-|  | Click 'Submit Observation' with any required field empty | 'Please fill out this field' tooltip appears. | Pass |  |
-|  | Clicks 'Submit Observation' with valid fields | Observation is submitted. Flash message appears with confirmation. User is directed to 'Community Observations'. | Pass |  |
-|  | Click 'Cancel, return to my nest' button | Redirected to their nest. | Pass |  |
-|  | Click 'Cancel, return to observations' | Redirected to community observations. | Pass |  |
+|  | Enters text in 'Bird Species' input field | Autocomplete options appear containing bird species and letters entered by user. | ✅ Pass |  |
+|  | Clicks on an autocomplete option | Selected option populated input field | ✅ Pass |  |
+|  | Enters text in 'Location' input field | Autocomplete options appear containing districts in the UK and letters entered by user. | ✅ Pass |  |
+|  | Clicks on an autocomplete option | Selected option populated input field | ✅ Pass |  |
+|  | Clicks on 'date' field | Date picker appears with only the current day and previous available to select. | ✅ Pass |  |
+|  | Clicks a date | Date picker closes and selected date populates date field. | ✅ Pass |  |
+|  | Clicks on 'time' field | Time picker appears. | ✅ Pass |  |
+|  | Selects a time | Selected time populates input field and modal closes. | ✅ Pass |  |
+|  | Clicks somewhere along certainty range. | Value of that field pops up and slider moves. | ✅ Pass |  |
+|  | Clicks 'current image' button | Modal containing the current image for this observation appears. | ✅ Pass |  |
+|  | Clicks 'choose file' | Local folder opens so user can select a photo. | ✅ Pass |  |
+|  | Selects a photo | Name of file appears next to 'choose file' button. | ✅ Pass |  |
+|  | Click 'Submit Observation' with any required field empty | 'Please fill out this field' tooltip appears. | ✅ Pass |  |
+|  | Clicks 'Submit Observation' with valid fields | Observation is submitted. Flash message appears with confirmation. User is directed to 'Community Observations'. | ✅ Pass |  |
+|  | Click 'Cancel, return to my nest' button | Redirected to their nest. | ✅ Pass |  |
+|  | Click 'Cancel, return to observations' | Redirected to community observations. | ✅ Pass |  |
 
 ## User Story Testing
 
 | User Story | Pass/Fail | Comments |
 | ---- | ---- | ---- |
-| As a first time user, I would like to be able to easily navigate the site, so that I can find what I'm looking for intuitively.<br> | Pass | The navbar provides clear navigation options. |
-| As a first time user, I would like to understand the purpose, benefits and functionality of the site, so I can decide if it fits my needs. <br> | Pass | 'Welcome' page, 'About' page and 'Community Observations' page all give the user the chance to understand the site. |
-| As a first time user, I would like to see buttons and links to login/register, so that I can sign up easily.<br> | Pass | Sign-up links are places on every page and the footer for ease. |
-| As a first time user, I would like to see what current users have been doing on the site, so I can see how the site can be used.<br> | Pass | The 'Community Observations' shows data added by current users. This is a good example of how the site can be used. |
-| As a first time user, I would like to see links and buttons to add observations with clear instruction, so that I can record by bird sightings.<br> | Pass | Add observations buttons are located throughout the site for convenience and direct user to 'Add observation' page which has tooltips to help the user understand what to do. |
-| As a first time user, I would like a responsive design, so that I can view and add observations on any device. | Pass | The site has been tested on different screen sizes and in different browsers and is responsive and compatible with all. |
-| As a returning user, I would like to be able to see my own observations separately, so I don't have to look through irrelevant data. | Pass | 'My Nest' displays the users previous observations. |
-| As a returning user, I would like an option to hide my username from the community, so that I can add observations  without being identified. | Pass | In 'My Nest' the user has the option to change account settings and to make their observations anonymous. |
-| As a returning user, I would like an option to hide my observations from the community, so that I can keep my observations to myself if my certainty is low. | Pass | In 'My Nest' the user has the option to change account settings and to make their observations invisible. |
-| As a returning user, I would like to contact the admin, so I can report any issues with the site or ask questions. <br> | Pass | In 'My Nest' the user has the option to send a message to the admin and to check their messages. |
-| As a returning user, I would like to search through the community observations, so I can find data that is relevant for me.<br> | Pass | The 'Community Observations' page has a search feature which allows the user to search the 'bird species' and 'location' fields. |
-| As a returning user, I would like to easily log in, so that I can access my records and data. | Pass | There is a link to log in in the navigation. The login process is simple and quick. |
-| As a returning user, I would like to be able to see some stats from my observations, so that I can set some personal bird watching goals.<br> | Pass | In 'My Nest' the bird stats for the user are displayed. This includes number of species, total number of birds, average certainty and their 'Life List'. |
-| As a returning user, I would like to easily add, edit or delete observations, so that I can make sure my records are accurate.<br> | Pass | The user can add, edit or delete their observations from their nest or the 'Community Observations' page. The buttons to carry out any of these actions are clear. |
-| As the site admin, I would like to see a list of registered users, so I have information about how the site is used.<br> | Pass | The 'Admin Nest' contains a list of users with the option to delete them. |
-| As the site admin, I would like to be able to remove users, so that I can manage site activity and behaviour.<br> | Pass | The 'Admin Nest' contains a list of users with the option to delete them. |
-| As the site admin, I would like to delete and edit observations, so that I can improve the experience of site users. | Pass | The admin can edit or delete any observations in the  'Community Observations' page. The buttons to carry out any of these actions are clear. |
-| As the site admin, I would like to be able to see and write messages, so that I can reply to queries from users. | Pass | in 'Admin Nest' the admin is able to access their pigeon hole which contains messages from users. |
+| As a first time user, I would like to be able to easily navigate the site, so that I can find what I'm looking for intuitively.<br> | ✅ Pass | The navbar provides clear navigation options. |
+| As a first time user, I would like to understand the purpose, benefits and functionality of the site, so I can decide if it fits my needs. <br> | ✅ Pass | 'Welcome' page, 'About' page and 'Community Observations' page all give the user the chance to understand the site. |
+| As a first time user, I would like to see buttons and links to login/register, so that I can sign up easily.<br> | ✅ Pass | Sign-up links are places on every page and the footer for ease. |
+| As a first time user, I would like to see what current users have been doing on the site, so I can see how the site can be used.<br> | ✅ Pass | The 'Community Observations' shows data added by current users. This is a good example of how the site can be used. |
+| As a first time user, I would like to see links and buttons to add observations with clear instruction, so that I can record by bird sightings.<br> | ✅ Pass | Add observations buttons are located throughout the site for convenience and direct user to 'Add observation' page which has tooltips to help the user understand what to do. |
+| As a first time user, I would like a responsive design, so that I can view and add observations on any device. | ✅ Pass | The site has been tested on different screen sizes and in different browsers and is responsive and compatible with all. |
+| As a returning user, I would like to be able to see my own observations separately, so I don't have to look through irrelevant data. | ✅ Pass | 'My Nest' displays the users previous observations. |
+| As a returning user, I would like an option to hide my username from the community, so that I can add observations  without being identified. | ✅ Pass | In 'My Nest' the user has the option to change account settings and to make their observations anonymous. |
+| As a returning user, I would like an option to hide my observations from the community, so that I can keep my observations to myself if my certainty is low. | ✅ Pass | In 'My Nest' the user has the option to change account settings and to make their observations invisible. |
+| As a returning user, I would like to contact the admin, so I can report any issues with the site or ask questions. <br> | ✅ Pass | In 'My Nest' the user has the option to send a message to the admin and to check their messages. |
+| As a returning user, I would like to search through the community observations, so I can find data that is relevant for me.<br> | ✅ Pass | The 'Community Observations' page has a search feature which allows the user to search the 'bird species' and 'location' fields. |
+| As a returning user, I would like to easily log in, so that I can access my records and data. | ✅ Pass | There is a link to log in in the navigation. The login process is simple and quick. |
+| As a returning user, I would like to be able to see some stats from my observations, so that I can set some personal bird watching goals.<br> | ✅ Pass | In 'My Nest' the bird stats for the user are displayed. This includes number of species, total number of birds, average certainty and their 'Life List'. |
+| As a returning user, I would like to easily add, edit or delete observations, so that I can make sure my records are accurate.<br> | ✅ Pass | The user can add, edit or delete their observations from their nest or the 'Community Observations' page. The buttons to carry out any of these actions are clear. |
+| As the site admin, I would like to see a list of registered users, so I have information about how the site is used.<br> | ✅ Pass | The 'Admin Nest' contains a list of users with the option to delete them. |
+| As the site admin, I would like to be able to remove users, so that I can manage site activity and behaviour.<br> | ✅ Pass | The 'Admin Nest' contains a list of users with the option to delete them. |
+| As the site admin, I would like to delete and edit observations, so that I can improve the experience of site users. | ✅ Pass | The admin can edit or delete any observations in the  'Community Observations' page. The buttons to carry out any of these actions are clear. |
+| As the site admin, I would like to be able to see and write messages, so that I can reply to queries from users. | ✅ Pass | in 'Admin Nest' the admin is able to access their pigeon hole which contains messages from users. |
 
  
 ## Bugs
@@ -314,6 +315,10 @@ Defensive programming was manually tested with the below user acceptance testing
 
  - #### Form Modals: close button submits the form
 	When using modal with input fields, if the user decided to cancel the changes they were making and close the modal, they could click the 'close' button in the modal. This, however, would display a flash message confirming the changes and the changes could be seen in the database. I found that this was because the close button was inside the form element. To fix this, I moved the close buttons outside the form element and into a modal footer.
+
+- #### Community Observations: modals not opening as expected
+	When clicking on an observation in the community observations, the bird details appear in a modal as expected. However, when clicking the 'delete' button on an observation, the same modal opens over the top of the delete modal. This is not as intended and makes it very difficult for the user to use the table functionality.
+	To fix this, I added an 'if' statement which check that the target element is a 'details-trigger' and has that class. If it doesn't have that class, the observation modal isn't openned. This doesn't affect functionality of the delete modal or button but prevents the observation modal from interfering with it. 
 
   
   
