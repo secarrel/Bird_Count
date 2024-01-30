@@ -1,16 +1,15 @@
 # Bird Count
 
-MENTION SOMETHING ABOUT BRITISH BIRD WATCHING 
+![MOCKUP](documentation/features/mockup.png)
+
+[View the live site here.](https://birdcount-cff31e785337.herokuapp.com/)
 
 Introducing 'Bird Count', a web app designed to enhance users' bird-watching experience by allowing them to record their observations, keep up to date with community sightings, share their favourite photographs, and keep an eye on their bird-watching stats! This is a great way to keep track of the bird species users have seen, when and where!
 
-Bird count collects data about species' populations, distributions and behaviours. This information is important for ornithologists who have ambitions to improve species health through conservation practices. The [BTO](https://www.bto.org/) is an excellent example of an organisation who works to make a different for bird welfare and would benefit from this data. 
+Bird count collects data about species' populations, distributions and behaviours. This information is important for ornithologists who have ambitions to improve species health through conservation practices. The [BTO](https://www.bto.org/) is an excellent example of an organisation who work to make a difference for bird welfare and would benefit from this data. 
 
-Inspired by the [Big Garden Birdwatch](https://www.rspb.org.uk/whats-happening/big-garden-birdwatch), which takes place the weekend preceding the submission deadline for this project (26th-28th January 2024), aims to encourage bird watching experts and novices to bring their bird watching to a new level! 
+This projects is partly nspired by the [Big Garden Birdwatch](https://www.rspb.org.uk/whats-happening/big-garden-birdwatch), which takes place the weekend preceding the submission deadline for this project (26th-28th January 2024). This project is also targeting a small gap in bird recording platforms. While researching the topic, I found that there are similar sites for American bird watching but none that contain British bird species and districts in the UK. These are things I have included in the project in order to make this app appealing to British bird watchers. 
 
-![MOCKUP]()
-
-[View the live site here.](https://birdcount-cff31e785337.herokuapp.com/)
 
 ## UX
 
@@ -18,31 +17,32 @@ Inspired by the [Big Garden Birdwatch](https://www.rspb.org.uk/whats-happening/b
 
 The user is initially presented with the welcome page which shows how 'Bird Count' can be used and encourages the user to sign up. There are 'sign-up' buttons located conveniently so the user can easily navigate to the 'sign-up' page at this point. The sign-up button is designed to change depending on whether the user is logged in. If logged in, it will be displayed as an 'add observation' button.
 
-The 'About' page is easily accessed in the header and instinctively is the next stop for users that haven't decided whether to sign up or not. This page explains the benefits of signing up to the user and also for conservation and research. Again, this page is designed to provide the user with an opportunity to understand Bird Count before signing up. A sign-up button as described above is also located on this page for convenience.
+The 'About' page is easily accessed in the header and instinctively is the next stop for users who haven't decided whether to sign up or not. This page explains the benefits of signing up to the user and also for conservation and research. Again, this page is designed to provide the user with an opportunity to understand Bird Count before signing up. A sign-up button as described above is also located on this page for convenience.
 
-Next along in the navigation is 'Community Observations' which is available for anybody to see and use; again so the user feels they understand what they are signing up for before signing up and to encourage them to do so.  This page displays all observations that visible users have added. This list can provide insight into distributions and inspire bird watchers to look in different locations to their 'usual spots'. Again, this page contains a sign up button. Logged in users are able to edit, add and delete observations here.  
+Next along in the navigation is 'Community Observations' which is available for anybody to see and use; again so the user feels they understand what they are signing up for before signing up and to encourage them to do so.  This page displays all observations that visible users have added. This list can provide insight into distributions and inspire bird watchers to look in different locations to their 'usual spots'. Again, this page contains a sign-up button. Logged-in users can edit, add and delete observations here.  
 
 If not logged in, the user only has access to the login and register page, other than those mentioned above. The login page has a link to the register page for convenience, and vice versa. 
 
 If logged in, the user has access to their 'nest' as well. This contains personal information including their observations, bird stats and account settings. On log-in or registration, the user is directed here to help them discover it. 
 
-This explains the user journey through the app but there are many more features than mentioned. One of which, which is very important for UX is the appearance of flash messages whenever the user does something significant. For example, if they login, delete, edit or add an observation a flash message will appear explaining what has happened. This is important for the user to know if changes they have made have been successful or not.  
+This explains the user journey through the app but there are many more features than mentioned. One of which, which is very important for UX is the appearance of flash messages whenever the user does something significant. For example, if they log in, delete, edit or add an observation a flash message will appear explaining what has happened. This is important for the user to know if the changes that they have made have been successful or not.
+
 ### Colour Scheme
 
 Some of the most spectacular times of day for bird watchers are early mornings and evenings when light is low; this is when we often hear the dawn chorus and see startling murmurations. My colour scheme reflects these times of day and also provides some eye comfort as I suspect many users will upload their observations in the evenings after a day of spotting birds!
 
 This colour scheme includes dark blues and reddish-orange colours which we often see at dawn/dusk. I have tried to keep good contrast between colours to make this site more accessible for users with visual impairments. I tried to set a background image that contained the orange and navy-blue colours specified below. This helped tie my colour pallet together.
 
-- `#efefef` is used for all text, with the exception of the header and footer, as it provides good contrast with background colours.
-- `#192738` is the main background colour; It is also used for the header and footer text.
+- `#efefef` is used for all text, except for the header and footer, as it provides good contrast with background colours.
+- `#192738` is the main background colour; It is also used for the header and footer text where it is suitable for achieving greater contrast.
 -  `#243449` is used as the secondary background colour which helps provide contrast between sections.
 - `#e49452` is used as a background colour to highlight sections such as the header and footer, and stats.
 - `#8DAB7F` is used for 'safe' or 'positive' buttons to encourage the user to press or show that there isn't any danger with pressing the button.
-- `#880029` is used for 'danger' buttons. For example, delete buttons use this colour. It's a slightly dull and dark red to provide eye comfort and compliment the rest of the colour pallet. 
+- `#880029` is used for 'danger' buttons. For example, delete buttons use this colour. It's a slightly dull and dark red to provide eye comfort and complement the rest of the colour pallet. 
 
 I used [coolors.co](https://coolors.co/e49452-880029-192738-efefef-8dab7f) to preview my colour palette.
 
-[Image of my colour pallet]()
+![Image of my colour pallet](documentation/colours.png)
 
 ### Typography
 
@@ -50,7 +50,7 @@ I used [coolors.co](https://coolors.co/e49452-880029-192738-efefef-8dab7f) to pr
 
 - [Mallanna](https://fonts.google.com/?query=Mallanna ) is used for secondary text. Most paragraphs, h5 and h6 elements use this font. I chose it for its clarity and similar letter structure to Laila. 
 
-- [Font Awesome](https://fontawesome.com) icons were used throughout the site. There are useful for making buttons, input fields and links clear for the user.
+- [Font Awesome](https://fontawesome.com) icons were used throughout the site. These are useful for making buttons, input fields and links clear for the user.
 
 ## User Stories
 
@@ -58,22 +58,22 @@ I used [coolors.co](https://coolors.co/e49452-880029-192738-efefef-8dab7f) to pr
 
 - As a first time user, I would like to be able to easily navigate the site, so that I can find what I'm looking for intuitively.
 - As a first time user, I would like to understand the purpose, benefits and functionality of the site, so I can decide if it fits my needs. 
-- As a first time user, I would like to see buttons and links to login/register, so that I can sign up easily.
+- As a first time user, I would like to see buttons and links to log-in/register, so that I can sign up easily.
 - As a first time user, I would like to see what current users have been doing on the site, so I can see how the site can be used.
-- As a first time user, I would like to see links and buttons to add observations with clear instruction, so that I can record by bird sightings.
+- As a first time user, I would like to see links and buttons to add observations with clear instruction, so that I can record my bird sightings.
 - As a first time user, I would like a responsive design, so that I can view and add observations on any device.
 
 ### Returning Site Users
 
-- As a returning user, I would like to see the observations that I have previously added, so that I can easily keep track or what I have seen, when and where.
+- As a returning user, I would like to see the observations that I have previously added, so that I can easily keep track of what I have seen, when and where.
 - As a returning user, I would like to easily add, edit or delete observations, so that I can make sure my records are accurate.
-- As a returning user, I would like to be able to see some stats from my observations, so that I can set some personal bird watching goals.
+- As a returning user, I would like to be able to see some stats from my observations, so that I can set some personal bird-watching goals.
 - As a returning user, I would like to easily log in, so that I can access my records and data.
-- As a returning user, I would like to search through the community observations, so I can find data that is relevant for me.
+- As a returning user, I would like to search through the community observations, so I can find data that is relevant.
 - As a returning user, I would like to contact the admin, so I can report any issues with the site or ask questions. 
 - As a returning user, I would like an option to hide my observations from the community, so that I can keep my observations to myself if my certainty is low.
-- As a returning user, I would like an option to hide my username from the community, so that I can add observations  without being identified.
-- As a returning user, I would like to be able to see my own observations separately, so I don't have to look through irrelevant data.
+- As a returning user, I would like an option to hide my username from the community, so that I can add observations without being identified.
+- As a returning user, I would like to be able to see my observations separately, so I don't have to look through lots of data.
 
 ### Admin
 
@@ -89,54 +89,81 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 ### Mobile Wireframes
 
 <details>
-<summary>ADD MOBILE WIREFRAMES</summary>
+<summary>Desktop Wireframes</summary>
 
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
+- Home
+
+  ![screenshot](documentation/wireframes/wireframe1.png)
+
+- Login
+
+  ![screenshot](documentation/wireframes/wireframe2.png)
+
+- Community Observations
+
+  ![screenshot](documentation/wireframes/wireframe3.png)
+
+- My Nest
+
+  ![screenshot](documentation/wireframes/wireframe4.png)
+
+- Create Observation
+
+  ![screenshot](documentation/wireframes/wireframe5.png)
 
 </details>
 
 ### Tablet Wireframes
 
 <details>
-<summary>ADD TABLET WIREFRAMES</summary>
+<summary>Tablet Wireframes</summary>
 
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
+- Home
+
+  ![screenshot](documentation/wireframes/wireframe1.png)
+
+- Login
+
+  ![screenshot](documentation/wireframes/wireframe2.png)
+
+- Community Observations
+
+  ![screenshot](documentation/wireframes/wireframe3.png)
+
+- My Nest
+
+  ![screenshot](documentation/wireframes/wireframe4.png)
+
+- Create Observation
+
+  ![screenshot](documentation/wireframes/wireframe5.png)
 
 </details>
 
 ### Desktop Wireframes
 
 <details>
-<summary>ADD MOBILE WIREFRAMES</summary>
+<summary>Mobile Wireframes</summary>
 
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
-- Page
-  - ![screenshot]()
+- Home
+
+  ![screenshot](documentation/wireframes/wireframe1.png)
+
+- Login
+
+  ![screenshot](documentation/wireframes/wireframe2.png)
+
+- Community Observations
+
+  ![screenshot](documentation/wireframes/wireframe3.png)
+
+- My Nest
+
+  ![screenshot](documentation/wireframes/wireframe4.png)
+
+- Create Observation
+
+  ![screenshot](documentation/wireframes/wireframe5.png)
 
 </details>
 
@@ -146,58 +173,134 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 ### Existing Features
 
 - ##### Navbar
+	![Navbar desktop logged out](documentation/features/Navbar/full-nav.png)
 	- Simple and intuitive
 	     The navbar is simply designed for intuitive use. It offers links to pages that are accessible to the user depending on whether they are logged in. Pages which are not accessible to them will not be displayed in the navbar. The navigation allows first time users to easily navigate and understand the site, and returning users easy access to the page they are looking for.
 	- Logo with link to 'welcome' page.
 		[Logo with link to welcome page]
     - Responsive navigation
 	    - On desktops the 'About' and 'Community Observations' links are visible at all times. There is an additional dropdown section of the navbar which relates to the current user. 
-		    [Navbar desktop]()
 		    - If the user is not logged in, they will see links to 'Sign Up' or 'Log In'. 
-			     [Navbar desktop logged out]()
 		    - If the user is logged in, they will see links to 'My Nest' and 'Logout'. 
-			    [Navbar desktop logged in]()
 		    - If the Admin is logged in they will see 'Admin Nest' and 'Logout'.
-			    [Navbar desktop admin]()
+			    
 		- On tablets and phones the navbar menu is condensed into a burger menu which displays all navigation links.
-			[Navbar tablet]()
-			[Navbar phone logged out]()
-			[Navbar sidebar logged in]()
-			[Navbar sidebar admin]()
+
+			<details>
+			<summary>More Navbar screenshots</summary>
+
+			Desktop
+
+			![Navbar desktop logged in](documentation/features/Navbar/full-nav-user.png)
+			![Navbar desktop admin](documentation/features/Navbar/full-nav-admin.png)
+			![Navbar desktop drop](documentation/features/Navbar/nav-drop.png)
+
+			Tablet
+
+			![Navbar tablet](documentation/features/Navbar/tablet-nav.png)
+			![Navbar tablet drop](documentation/features/Navbar/tablet-nav-drop.png)
+			![Navbar tablet drop](documentation/features/Navbar/tablet-nav-drop-2.png)
+			![Navbar tablet drop](documentation/features/Navbar/tablet-nav-drop3.png)
+
+			Mobile
+
+			![Navbar phone](documentation/features/Navbar/navbar-mobile.png)
+			![Navbar phone drop](documentation/features/Navbar/navbar-mobile-drop.png)
+
+			</details>
+
 	- User Avatar
-		An avatar is assigned to a user depending on the experience level they chose for themselves. This is added as a way to personalise the user's experience with the app and encourage them to get out bird watching so they can change their experience level and get a new avatar! The user can see their avatar in the navbar. This is displayed in the dropdown menu and side menu on all screen sizes and is also displayed as an icon for the dropdown menu on large screen sizes. If the user is logged out, they see an icon representing a user.
-		[Navbar avatar]()
-		[Navbar avatar dropdown]() 
-		[Navbar avatar sidebar]() 
+		An avatar is assigned to a user depending on the experience level they choose for themselves. This is added as a way to personalise the user's experience with the app and encourage them to get out bird watching so they can change their experience level and get a new avatar! The user can see their avatar in the navbar. This is displayed in the dropdown menu and side menu on all screen sizes and is also displayed as an icon for the dropdown menu on large screen sizes. If the user is logged out, they see an icon representing a user.
 		
+		Admin's Avatar
+
+		![Avatar admin](documentation/features/avatars/admin-avatar.png)
+
+
+		<details>
+		<summary>More Avatars</summary>
+
+		Egg
+
+		![Avatar 1](documentation/features/avatars/avatar1.png)
+
+		Hatchling
+
+		![Avatar 2](documentation/features/avatars/avatar2.png)
+
+		Fledgling
+
+		![Avatar 3](documentation/features/avatars/avatar3.png)
+
+		Juvenile
+
+		![Avatar 4](documentation/features/avatars/avatar4.png)
+
+		Adult
+
+		![Avatar 5](documentation/features/avatars/avatar5.png)
+
+		Owl
+
+		![Avatar 6](documentation/features/avatars/avatar6.png)
+
+
+		</details>
+
 - ##### Welcome Page
 	The welcome page is the first page the user sees so it is designed to be striking with clear information drawing the user in and showing the purpose of the app.
-	[Welcome page desktop]()
-	[Welcome page tablet]()
-	[Welcome page phone]()
+
 	- Sign-up / Add observation button
-		There is a button located for convenience allowing the user to quickly sign up if they aren't logged in, or to add an observation if the user is logged in. The button changes as a way of enhancing UX as the user won't want to see a button with irrelevant information or direction as it will confuse them,
-		[Welcome Page With Button]()
+		There is a button located for convenience allowing the user to quickly sign up if they aren't logged in, or to add an observation if the user is logged in. The button changes as a way of enhancing UX as the user won't want to see a button with irrelevant information or direction as it will confuse them.
+
+		[Welcome Page With Button](documentation/features/welcome-button.png)
+
 	- Explanation of the app
 		There is a section dedicated to explaining to the user what Bird Count is and what they can do with it. This is a way for the user to find out if it is the right tool for them before signing up.
-		[Welcome Page Explanation]()
+
+		[Welcome Page Explanation](documentation/features/welcome-sections.png)
+		
+
+	<details>
+	<summary>Page Screenshots (responsive design)</summary>
+
+	![Welcome page desktop](documentation/features/pages/welcome-desktop.png)
+
+	![Welcome page tablet](documentation/features/pages/welcome-tablet.png)
+
+	![Welcome page phone](documentation/features/pages/welcome-phone.png)
+
+	</details>
+
+
 	
 - ##### About Page
-	This page adds more information about Bird Count and how the data is important for conservation and research purposes. I made a separate page for this so it gives extra information only those who are looking for it, so not to overwhelm a first time user on the welcome page. 
-	[About page desktop]()
-	[About page tablet]()
-	[About page phone]()
+	This page adds more information about Bird Count and how the data is important for conservation and research purposes. I made a separate page for this so it gives extra information only to those who are looking for it, so as not to overwhelm a first time user on the welcome page. 
+
+
 	- The British Trust for Ornithology
 		This section explains the conservations and research benefits of submitting and collecting data like this. It gives interested users the chance to learn more about the [BTO](https://www.bto.org/) by providing a useful link.
 		[Learn more section]()
 	- Benefits to users
-		The next section lists the benefits the app has for the user, helping them understand why the app could be useful. This is supplemented with a convenient sign up or add observation button depending on the user's status. 
+		The next section lists the benefits the app has for the user, helping them understand why the app could be useful. This is supplemented with a convenient 'sign up' or 'add observation' button depending on the user's status. 
 		[What's in it for me?]()
 	- What's that bird?
 		This section is designed to make bird watching more accessible to users who are new to bird watching and may have difficulty identifying birds. It provides a useful link to [Bird Spot](https://www.birdspot.co.uk/british-bird-identifier). I found this bird identification tool while researching apps related to bird watching for inspiration.
 		[What's that bird?]()
 	
+	<details>
+	<summary>Page Screenshots (responsive design)</summary>
+
+	![desktop](documentation/features/pages/welcome-desktop.png)
+
+	![tablet](documentation/features/pages/welcome-tablet.png)
+
+	![phone](documentation/features/pages/welcome-phone.png)
+
+	</details>
+
 - ##### Community Observations Page
+
 	- Observations table
 		This displays all observations submitted by all users that haven't set their account to 'invisible'. It displays data that users might initially find useful for identifying observations, such as species, location, date and user. When an observation is selected a modal pops up. providing all relevant data associated with that observation; this includes the photo uploaded with the observation and any notes the user added. 
 		[Community Observation Table]()
@@ -218,7 +321,20 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 		[Reset button]()
 	- Sign-up / Add Observation Button
 		Again, for convenience for the user, I added a button to add observations as this is probably something that is on their mind at this point while looking at other observations. This is also the point I think that new users may be most likely to sign up.
-		
+
+		<details>
+		<summary>Responsive page</summary>
+
+		![desktop](documentation/features/pages/welcome-desktop.png)
+
+		![tablet](documentation/features/pages/welcome-tablet.png)
+
+		![phone](documentation/features/pages/welcome-phone.png)
+
+		</details>
+
+
+
 - ##### My Nest
 	The user's nest contains all personal information, including their birding stats, their observations, their messages from the admin, and their account settings. There is double protection to prevent anybody who isn't the current user from accessing their next. 
 	- This page is fully responsive.
@@ -641,6 +757,8 @@ You can fork this repository by using the following steps:
 | Unsplash | [About page: bird book](https://images.unsplash.com/photo-1560951750-1e85780f946b?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) | Diane Helentjaris |  |
 | Unsplash | [Background image: sunset tree](https://images.unsplash.com/photo-1655981650217-c091cd205970?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB) | Ajeet Panesar |  |
 | Unsplash | [404 page: confused owl](https://images.unsplash.com/photo-1549619856-ac562a3ed1a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) | Dominik Van Opdenbosch |  |
+| Am I responsive | [Mockup](https://ui.dev/amiresponsive) | | |
+
 ### Acknowledgements
 
 - I would like to thank my Code Institute mentor [Iuliia Konovalova](https://github.com/IuliiaKonovalova) for her support with the development of the project and for encouraging me to push myself to see what I could achieve with this app.
