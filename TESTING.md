@@ -40,6 +40,8 @@ I have used the recommended [JShint Validator](https://jshint.com) to validate m
 | --- | --- |
 | script.js | ✅ Pass. No errors |
 
+As GitHub doesn't show the last empty line of the JS file, I have included an [screenshot as evidence](documentation/testing/js-last-line.png)
+
 ### Python
 
 I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
@@ -364,32 +366,12 @@ Defensive programming was manually tested with the below user acceptance testing
 	When a user's account was deleted and a new user chooses that same username, the observations with a 'seen_by' field that matches the username are displayed as if they were created by this new user. I discovered this when creating a new account for a username I just deleted and found the nest was full of observations. 
 	To fix this bug I changed the 'seen_by' field of all observations by the deleted user to 'admin' as that account is deleted. I also added a 'seen_by_id' which is set on creation of the observation and this doesn't change. The seen_by_id remains the same so it can be traced back to the original user and grouped with other observations by that user. 
 
-	<details>
-	<summary>Evidence</summary>
+	[Video showing fix](documentation/bugs/bug-delete-user-delete-observation.mp4)
 
-		[Video showing fix](documentation/bugs/bug-delete-user-delete-observation.mp4)
-
-
-	</details>
 
 - #### JS Error
 	On any page other than 'My Nest' I as getting an error in the console saying that it 'couldn't read add event listener null'. I found that this was being caused because the JavaScript file and the event listener were running on every page, but the event listener was applied to elements that were only on 'My_Nest'. Hence, when on any other page, the element didn't exist according in JS, so an error was thrown. 
 	To resolve this I added a conditional so the JavaScript function only applied to the nest page and the correct form.
-
-	<details>
-	<summary>Evidence</summary>
-
-	- Bug
-		
-		![bug](documentation\bugs\javascript-eventlistener-error.png)
-		![bug](documentation\bugs\javascript-eventlistener-bug-code.png)
-
-	- Code to fix
-
-		![Fix](documentation\bugs\javascript-eventlistener-fix-code.png)
-		![Fix](documentation\bugs\javascript-eventlistener-fix-code2.png)
-
-	</details>
 
 - #### Navbar: side-nav overlay covering side-nav
 	When testing the sid-nav functionality I found that the overlay had started covering the actual menu so nothing in the menu could be selected. This hadn't been happening for long so I knew it was an issue with a recent change I had made. Initially I moved the overlay to the side so it didn't cover the menu anymore but later realised this hadn't actually combatted the cause of the bug. I realised this when facing the following bug 'Input fields covering side-nav'; see this bug for the fix for the current bug. 
