@@ -283,7 +283,7 @@ I used the following wireframes as a guide to help visualize the project. I ende
 
 	![Welcome page tablet](documentation/features/pages/welcome-tablet.png)
 
-	![Welcome page phone](documentation/features/pages/welcome-phone.png)
+	![Welcome page phone](documentation/features/pages/welcome-mobile.png)
 
 	</details>
 
@@ -598,7 +598,7 @@ I used the following wireframes as a guide to help visualize the project. I ende
 
 		Mobile
 
-		![phone](documentation/features/pages/edit-mobile.png)
+		![phone](documentation/features/pages/edit-phone.png)
 
 		</details>
 
@@ -671,7 +671,7 @@ I used the following wireframes as a guide to help visualize the project. I ende
 
 		Desktop
 
-		![desktop](documentation/features/pages/footer-desktop.png)
+		![desktop](documentation/features/pages/footer-desktop1.png)
 
 		Desktop Admin
 
@@ -1092,7 +1092,6 @@ You can fork this repository by using the following steps:
 | [British Ornithologists' Union](https://bou.org.uk/) | Add and edit observation: bird species autocomplete input field | I used bird species data provided by this site for the autocomplete data list. |
 | [Office for National Statistics](https://geoportal.statistics.gov.uk/documents/ons::local-authority-districts-counties-and-unitary-authorities-april-2021-map-in-united-kingdom--1/about) | Add and edit observation: location autocomplete input field | I used district data provided by this site for the location autocomplete data list. |
 | [Code Institute (TIm Neslon): Task Manager Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main) | Entire site | This tutorial provided my site with it's initial structure and inspiration. I built on, adapted and developed the code from this tutorial. |
-| [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README | This helped me with the writing of the README. |
 | [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob) | Observation details modals | Ths resource helped me to display images in my observation details modals. |
 | [Dave Lage](https://davelage.com/posts/loading-images-using-fetch/) | Observation modal | USed to help me upload an image to the bird details mdoal. |
 | [MongoDB GridFS](https://www.mongodb.com/docs/manual/core/gridfs/) | Bird images uploaded with observations | I used this to save images that users upload in my MongoDB database |
