@@ -86,30 +86,36 @@ I used [coolors.co](https://coolors.co/e49452-880029-192738-efefef-8dab7f) to pr
 To follow best practices and guide myself through the design process, wireframes were developed for mobile, tablet, and desktop sizes.
 I've used [Figma](https://www.figma.com/) to design the wireframes.
 
-### Mobile Wireframes
+### Desktop Wireframes
+I used the following wireframes as a guide to help visualize the project. I ended up diverging from these slightly. Some features mentioned in the wireframes haven't been implemented but are mentioned in future features. Tablet and mobile wireframes are very similar except for the mobile view has fewer table columns.
 
 <details>
 <summary>Desktop Wireframes</summary>
 
 - Home
 
-  ![screenshot](documentation/wireframes/wireframe1.png)
+  ![screenshot](documentation/wireframes/desktop7.png)
 
 - Login
 
-  ![screenshot](documentation/wireframes/wireframe2.png)
+  ![screenshot](documentation/wireframes/desktop6.png)
 
 - Community Observations
 
-  ![screenshot](documentation/wireframes/wireframe3.png)
+  ![screenshot](documentation/wireframes/desktop5.png)
 
 - My Nest
 
-  ![screenshot](documentation/wireframes/wireframe4.png)
+  ![screenshot](documentation/wireframes/desktop4.png)
 
 - Create Observation
 
-  ![screenshot](documentation/wireframes/wireframe5.png)
+  ![screenshot](documentation/wireframes/desktop2.png)
+
+  - Edit Observation
+
+  ![screenshot](documentation/wireframes/desktop1.png)
+
 
 </details>
 
@@ -138,32 +144,41 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 
   ![screenshot](documentation/wireframes/wireframe5.png)
 
+- Edit Observation
+
+  ![screenshot](documentation/wireframes/wireframe6.png)
+
+
 </details>
 
-### Desktop Wireframes
+### Mobile Wireframes
 
 <details>
 <summary>Mobile Wireframes</summary>
 
 - Home
 
-  ![screenshot](documentation/wireframes/wireframe1.png)
+  ![screenshot](documentation/wireframes/mobile1.png)
 
 - Login
 
-  ![screenshot](documentation/wireframes/wireframe2.png)
+  ![screenshot](documentation/wireframes/mobile2.png)
 
 - Community Observations
 
-  ![screenshot](documentation/wireframes/wireframe3.png)
+  ![screenshot](documentation/wireframes/mobile3.png)
 
 - My Nest
 
-  ![screenshot](documentation/wireframes/wireframe4.png)
+  ![screenshot](documentation/wireframes/mobile4.png)
 
 - Create Observation
 
-  ![screenshot](documentation/wireframes/wireframe5.png)
+  ![screenshot](documentation/wireframes/mobile5.png)
+
+- Edit Observation
+
+  ![screenshot](documentation/wireframes/mobile6.png)
 
 </details>
 
@@ -177,14 +192,14 @@ I've used [Figma](https://www.figma.com/) to design the wireframes.
 	- Simple and intuitive
 	     The navbar is simply designed for intuitive use. It offers links to pages that are accessible to the user depending on whether they are logged in. Pages which are not accessible to them will not be displayed in the navbar. The navigation allows first time users to easily navigate and understand the site, and returning users easy access to the page they are looking for.
 	- Logo with link to 'welcome' page.
-		[Logo with link to welcome page]
+		[Logo with link to 'welcome' page]
     - Responsive navigation
-	    - On desktops the 'About' and 'Community Observations' links are visible at all times. There is an additional dropdown section of the navbar which relates to the current user. 
+	    - On desktop, the 'About' and 'Community Observations' links are visible at all times. There is an additional dropdown section of the navbar which relates to the current user. 
 		    - If the user is not logged in, they will see links to 'Sign Up' or 'Log In'. 
 		    - If the user is logged in, they will see links to 'My Nest' and 'Logout'. 
 		    - If the Admin is logged in they will see 'Admin Nest' and 'Logout'.
 			    
-		- On tablets and phones the navbar menu is condensed into a burger menu which displays all navigation links.
+		- On tablets and phones, the navbar menu is condensed into a burger menu which displays all navigation links.
 
 			<details>
 			<summary>More Navbar screenshots</summary>
