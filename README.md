@@ -944,11 +944,33 @@ The live site is deployed with Heroku; it can be accessed [here](https://birdcou
 This project uses [MongoDB](https://www.mongodb.com) for the Non-Relational Database.
 
 To obtain your own MongoDB Database URI, sign-up on their site, then follow these steps:
-- The name of the database on MongoDB should be called **insert-your-database-name-here**.
-- The collection(s) needed for this database should be **insert-your-collection-names-here**.
+- Click `+ New Project`
+
+![name](documentation/deployment/mongo1.png)
+
+- Name your project.
+
+![screenshot](documentation/deployment/mongo2.png)
+
+- The collection(s) needed for this database should be `messages`, `observations`, `users`.
+- Deploy. There should be a button in your 'overview' section which takes you to this screen:
+
+![deploy](documentation/deployment/mongo3.png)
+
+- Select your config options:
+
+![screenshot](documentation/deployment/mongo4.png)
+![screenshot](documentation/deployment/mongo5.png)
+
 - Click on the **Cluster** name created for the project.
 - Click on the **Connect** button.
+
+![screenshot](documentation/deployment/mongo6.png)
+
 - Click **Connect Your Application**.
+
+![screenshot](documentation/deployment/mongo7.png)
+
 - Copy the connection string, and replace `password` with your own password (also remove the angle-brackets).
 
 ### Heroku Deployment
@@ -958,8 +980,14 @@ This project uses [Heroku](https://www.heroku.com), a platform as a service (Paa
 Deployment steps are as follows, after account setup:
 
 - Select **New** in the top-right corner of your Heroku Dashboard, and select **Create new app** from the dropdown menu.
+
+![new](documentation/deployment/heroku1.png)
+![create](documentation/deployment/heroku2.png)
 - Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select **Create App**.
+![Name app](documentation/deployment/heroku3.png)
 - From the new app **Settings**, click **Reveal Config Vars**, and set your environment variables.
+![settings](documentation/deployment/heroku4.png)
+![config vars](documentation/deployment/heroku5.png)
 
 | Key | Value |
 | --- | --- |
